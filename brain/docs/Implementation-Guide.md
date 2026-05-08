@@ -1,78 +1,78 @@
 # Implementation Guide
 
-Two sections. One for HTML reports, one for code. Every rule is extracted from the 8 golden docs in this folder.
+Two parts. How to make HTML pages. How to write code.
 
 ---
 
 # Part 1 — HTML Reports
 
-How to build every HTML document in this project.
+Every HTML page in this project looks the same. Here's how.
 
 ---
 
-## Principles
+## Three rules
 
-1. **No AI slop.** Do exactly what is asked. No filler paragraphs, no "in conclusion" summaries, no restating the obvious. Every sentence earns its place or gets cut.
+1. **Say only what you mean.** No filler. No "in summary" at the end. If a sentence doesn't teach something, delete it.
 
-2. **KISS.** Simplest path to the goal. One CSS block, one page-wrap div, semantic HTML. No frameworks, no build steps, no JavaScript unless the content demands it (graphs).
+2. **Keep it simple.** One file. One style block. No JavaScript unless you absolutely need it. Fewer lines = better.
 
-3. **Deviations.** If anything in the output deviates from what the docs specify, mark it:
+3. **If you change something, say so.** If your page does something different from what was asked for, write this where the change is:
 
 ```html
-<p><strong>[DEVIATES FROM SPEC]</strong> reason here.</p>
+<p><strong>[DEVIATES FROM SPEC]</strong> what you changed and why.</p>
 ```
-
-Visible. Inline. No footnotes, no appendix. The reader sees it where it matters.
 
 ---
 
-## HTML structure
+## Page skeleton
 
-Every report follows this skeleton. Taken directly from the golden docs.
+Every page uses this exact shape:
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>{{TITLE}}</title>
+<title>Page Title</title>
 <style>
-  /* full CSS block -- see next section */
+  /* paste the full CSS from the next section */
 </style>
 </head>
 <body>
 <div class="page-wrap">
 
   <div class="cover">
-    <h1 style="border:none">{{TITLE}}</h1>
-    <div class="subtitle">{{ONE-LINE DESCRIPTION}}</div>
-    <div class="meta">{{DATE}} · JustsCE/Khaan</div>
+    <h1 style="border:none">Page Title</h1>
+    <div class="subtitle">One sentence about what this page is.</div>
+    <div class="meta">2026-05-08 · JustsCE/Khaan</div>
   </div>
 
   <div class="toc"><h3>Contents</h3>
     <ol>
-      <li><a href="#section-id">Section name</a></li>
+      <li><a href="#first">First section</a></li>
+      <li><a href="#second">Second section</a></li>
     </ol>
   </div>
 
-  <h2 id="section-id">Section name</h2>
-  <!-- content -->
+  <h2 id="first">First section</h2>
+  <p>Content goes here.</p>
+  <hr>
+
+  <h2 id="second">Second section</h2>
+  <p>More content.</p>
 
 </div>
 </body>
 </html>
 ```
 
-- One `div.page-wrap` per document. Nothing outside it.
-- Cover block: centered title, subtitle in `#666`, meta line in `#999`.
-- TOC: left-bordered box, `#fafafa` background, uppercase heading, ordered list of anchor links.
-- Sections separated by `<hr>`.
+That's it. Title at the top. Table of contents. Sections with `<h2>`. Horizontal lines between them. Everything inside one `div.page-wrap`.
 
 ---
 
-## CSS spec
+## CSS
 
-Copy this block verbatim into every report. It is the exact stylesheet from the golden docs.
+Paste this into every page. Don't change it.
 
 ```css
 @page { size: A4; margin: 14mm 14mm 16mm 14mm; }
@@ -189,17 +189,8 @@ tr:nth-child(even) td { background: #fafafa; }
     border-bottom: 1px solid #ddd;
     margin-bottom: 6mm;
 }
-.cover .subtitle {
-    color: #666;
-    font-size: 11pt;
-    margin-top: 2mm;
-}
-.cover .meta {
-    color: #999;
-    font-size: 9pt;
-    margin-top: 4mm;
-    letter-spacing: .04em;
-}
+.cover .subtitle { color: #666; font-size: 11pt; margin-top: 2mm; }
+.cover .meta { color: #999; font-size: 9pt; margin-top: 4mm; letter-spacing: .04em; }
 .toc {
     background: #fafafa;
     border-left: 2px solid #1a1a1a;
@@ -221,59 +212,45 @@ tr:nth-child(even) td { background: #fafafa; }
 
 ---
 
-## Color rules
+## Colors
 
-**Dominantly white.** The page is white (`#fff`). Body background is `#f7f7f5` (barely off-white). Alternating table rows are `#fafafa`. That is the entire palette for normal content.
+Almost everything is **white and black**. That's on purpose.
 
-**Black for text.** Body text is `#1a1a1a`. Headings h3 use `#333`, h4 use `#555`. Table headers are white-on-black (`#1a1a1a` background, `#fff` text).
+- Page background: white (`#fff`)
+- Text: near-black (`#1a1a1a`)
+- Table headers: white text on black
+- Alternating table rows: barely-gray (`#fafafa`)
 
-**Red: inline code only.** The only red in the golden docs is `#b91c1c` on inline `<code>` elements. This is a muted red, not a bright warning red. It distinguishes code tokens from prose. That is its only use.
+**Red** shows up in one place only: inside inline `<code>` tags. It's a muted red (`#b91c1c`) that makes code names stand out from regular text.
 
-**Orange callout boxes.** For mechanical enforcement warnings or critical contract details. Used sparingly (2-3 times across all 8 docs). The pattern:
+**Orange boxes** are for "stop and read this" moments. Use them rarely -- only when something will break if the reader misses it:
 
 ```html
 <div style="background:#fff7ed; border:2px solid #c2410c; padding:5mm 7mm; margin:6mm 0; page-break-inside:avoid;">
   <p style="margin:0 0 3mm; font-weight:700; color:#7c2d12; font-size:11.5pt;">
-    Title of the callout
+    Warning title
   </p>
-  <p style="margin:0 0 3mm;">Body text.</p>
+  <p style="margin:0;">What the reader must know.</p>
 </div>
 ```
 
-Use these for things that MUST NOT be missed. Not for general notes. Not for "nice to know." If it's not mechanically load-bearing, it doesn't get a box.
-
-**No other colors.** No green for success. No yellow for warnings. No blue for info. No gradients. No colored backgrounds on sections.
+No other colors. No green. No blue. No yellow.
 
 ---
 
-## Code blocks
+## Code in pages
 
-Two types in the golden docs:
+**Short code names** inside a sentence: use `<code>like this</code>`. Shows up red on gray.
 
-### Inline code
-
-```html
-<code>file_name.py</code>
-```
-
-Rendered: `#b91c1c` text on `#f1f1ef` background, 9.5pt monospace, 1mm padding. Use for file paths, function names, config keys, binary names, any token that is a literal identifier.
-
-### Block code
+**Longer code blocks**: wrap in `<pre><code>`:
 
 ```html
-<pre><code>multi-line code here
-preserves whitespace
-no syntax highlighting</code></pre>
+<pre><code>this is a code block
+it keeps spacing
+no syntax coloring</code></pre>
 ```
 
-Rendered: `#f8f8f6` background, 2px left border in `#ddd`, 9pt monospace. Text is `#1a1a1a` (black, not red -- `pre code` overrides inline code color). Use for:
-- File tree diagrams
-- Command sequences
-- JSON schemas
-- ASCII flow charts
-- Pinned prompts
-
-No syntax highlighting. The golden docs use none. Keep it that way.
+Shows up black on light gray with a line on the left side. Use it for file trees, command examples, JSON, diagrams.
 
 ---
 
@@ -281,142 +258,81 @@ No syntax highlighting. The golden docs use none. Keep it that way.
 
 ```html
 <table>
-  <thead><tr><th>Header</th><th>Header</th></tr></thead>
+  <thead><tr><th>Name</th><th>Value</th></tr></thead>
   <tbody>
-    <tr><td>Cell</td><td>Cell</td></tr>
+    <tr><td>First</td><td>100</td></tr>
+    <tr><td>Second</td><td>200</td></tr>
   </tbody>
 </table>
 ```
 
-- Full width, collapsed borders.
-- Header row: white text on `#1a1a1a` black background.
-- Even rows: `#fafafa` background.
-- Bottom borders only (`1px solid #e5e5e5`).
-- 9.5pt font size.
-- Avoid page breaks inside tables.
-
-Use tables for structured data: binary lists, scoring signals, phase summaries, hook dispatch tables. Not for prose.
+Black header row. Alternating gray/white rows. Use tables for data, not for layout.
 
 ---
 
-## Blockquotes
+## Diagrams
 
-```html
-<blockquote>
-  <p><strong>The key statement.</strong></p>
-  <p><strong>Another key statement.</strong></p>
-</blockquote>
+Draw them with text characters inside `<pre><code>` blocks:
+
+```
++---------+     +---------+     +---------+
+| Step 1  | --> | Step 2  | --> | Step 3  |
++---------+     +---------+     +---------+
 ```
 
-Used at the top of each doc section as a philosophy declaration. 3px solid black left border, `#fafafa` background, italic, 11.5pt. Bold the content inside. Use only for foundational statements that frame everything below them.
+No images. No chart libraries. If you need something interactive, use JavaScript and mark it as a deviation.
 
 ---
 
-## Graphs and diagrams
+## File names
 
-The golden docs use ASCII art inside `<pre><code>` blocks for:
-- Flow diagrams (box-and-arrow style with `+--+` boxes and `-->` arrows)
-- Bar charts (using block characters like `████`)
-- Tree structures (using `├──`, `└──`, `│`)
-- State machines (using `→` arrows)
-
-No images. No SVG. No canvas. No charting libraries. If a visualization is needed, build it in ASCII inside a `<pre>` block.
-
-**Exception:** If a graph requires interactivity or is too complex for ASCII (e.g., a real-time 3D brain mesh), then and only then use JavaScript. Mark it:
-
-```html
-<!-- [DEVIATES FROM SPEC] Interactive graph requires JS. ASCII insufficient for this visualization. -->
-```
+Lowercase, words separated by dashes: `recall-engine.html`, `learning-engine.html`.
 
 ---
 
-## Document naming
+## Don't
 
-Golden docs use lowercase-kebab-case: `brain.html`, `recall-engine.html`, `learning-engine.html`.
-
-Implementation reports follow the same pattern. No camelCase, no underscores, no spaces.
-
----
-
-## What NOT to do
-
-- No `<div>` wrappers beyond `page-wrap`. The golden docs use flat semantic HTML.
-- No CSS classes beyond the ones in the spec above. Inline styles for one-off callout boxes only.
-- No external stylesheets. CSS is in a `<style>` block in the `<head>`.
-- No `<script>` tags unless the content demands interactivity.
-- No emoji.
-- No "Summary" or "Conclusion" sections. The content ends when the content ends.
-- No table of contents entries for subsections (h3/h4). TOC lists h2 sections only.
-- No numbered figure captions.
-- No footer.
+- Don't add extra `<div>` wrappers
+- Don't link external CSS or JS files
+- Don't use emoji
+- Don't write a "Summary" or "Conclusion" section
+- Don't put subsections (h3, h4) in the table of contents -- only h2
 
 ---
 
 # Part 2 — Code
 
-How to build the engine code specified by the golden docs.
+Every Python file in this project follows these rules.
 
 ---
 
-## Principles
+## Three rules
 
-Same three apply:
+1. **No filler.** Don't write a comment that says what the next line already says. Don't add a docstring that restates the function name. If the code is clear, leave it alone.
 
-1. **No AI slop.** No docstrings that restate the function name. No comments that say `# increment counter` above `counter += 1`. No dead code, no commented-out blocks, no TODO placeholders.
+2. **Fewer lines wins.** If you can do it in 15 lines, don't write 40. Don't make a class when a function works. Don't make a config file for a number that appears once.
 
-2. **KISS.** Fewer lines wins. Measure in LOC. If a function can be 15 lines, don't write 40. No abstractions for things that happen once. No config files for constants that appear in one place. No class hierarchies when a function and a dict will do.
-
-3. **Deviations.** If the implementation differs from what a doc specifies, mark it in the code:
+3. **If you change something, say so.** If your code does something different from what the docs ask for:
 
 ```python
-# [DEVIATES FROM SPEC: decision-engine.html § Mutex]
-# Using file lock instead of state.json nonce -- simpler, same guarantee.
+# [DEVIATES FROM SPEC: decision-engine.html]
+# Using file lock instead of nonce -- simpler, same result.
 ```
 
-At the point of deviation. Not in a separate changelog.
+Write it at the spot where the change is.
 
 ---
 
-## Language and runtime
+## Python 3, nothing else
 
-- Python 3. The golden docs specify `python3` throughout.
-- No external dependencies beyond the standard library. The docs use `os`, `json`, `hashlib`, `time`, `secrets`, `subprocess`, `re`, `pathlib`. Nothing from pip.
-- `claude -p --output-format json` for LLM subprocesses. Wrapped by `engines/_shared.py :: cli_invoke()`. No Anthropic API key -- uses the CLI subscription session.
-
----
-
-## File layout
-
-All engine code lives under `brain/engines/`. The docs specify these files:
-
-```
-brain/
-  engines/
-    __init__.py
-    _shared.py          cli_invoke(), Entry parsing, atomic file writes
-    bin_io.py            read_binary(), write_binary()
-    dispatcher.py        route hook events, read binaries, return exit code
-    recall.py            5-stage recall pipeline
-    identity_boot.py     SessionStart kernel composition
-    identity_relay.py    per-turn situational picks
-    decision.py          5-hypothesis orchestrator + mutex
-    brain_cycle.py       cycle FSM orchestrator
-    cycle_phases.py      phase 1-8 implementations
-    learning_helpers.py  overlap coefficient, salience, cluster algorithm
-    flip_tool_guards.py  5 rule predicates for PreToolUse
-    flip_bypass.py       HMAC token verification
-    init_binaries.py     create all .bin files at 0
-  logger/
-    api.py               write functions per engine (append-only)
-```
-
-One file per engine. No splitting a single engine across multiple files. No utility directories.
+- Standard library only. `os`, `json`, `hashlib`, `time`, `secrets`, `subprocess`, `re`, `pathlib`, `threading`, `tempfile`. No pip packages.
+- LLM calls go through `claude -p --output-format json`. That's a command-line call, not an API call.
 
 ---
 
-## Atomic writes
+## Writing files safely
 
-Every write to `state.json`, `thalamus.json`, `active-*.json`, and `.bin` files uses tmp-file + `os.rename()`. The golden docs specify this explicitly. The pattern:
+When you write to a shared file (like a JSON config or a gate file), never write directly. Write to a temporary file first, then rename it. This way, if something crashes halfway through, the old file is still intact.
 
 ```python
 import os, json, tempfile
@@ -432,36 +348,14 @@ def atomic_write(path, data):
         raise
 ```
 
-No partial reads possible. This lives in `_shared.py` and is used everywhere.
-
 ---
 
-## Hook entry point
+## Gate files
 
-One file: `~/.claude/hook.py`. Registered in `settings.json` for all 6 events. The docs are explicit:
-
-```python
-import sys, os, json
-
-if os.environ.get("BRAIN_SKIP_HOOKS") == "1":
-    sys.exit(0)
-
-event = sys.argv[1]
-payload = json.loads(sys.stdin.read())
-```
-
-The recursion guard (`BRAIN_SKIP_HOOKS=1`) is checked before any import. Every `claude -p` subprocess sets this env var.
-
-Return codes: `0` = pass, `2` = block. Only `PreToolUse` ever returns `2`.
-
----
-
-## Binary files
-
-Plain text files containing `0` or `1`. Nothing else. Read as:
+A gate file is a tiny text file that holds either `0` (off) or `1` (on). That's the whole file -- one character. Reading one:
 
 ```python
-def read_binary(root, name):
+def read_gate(root, name):
     path = os.path.join(root, "binaries", f"{name}.bin")
     try:
         return int(open(path).read().strip())
@@ -469,63 +363,33 @@ def read_binary(root, name):
         return 0
 ```
 
-Written via atomic write. The dispatcher reads them; cognitive engines write them. The Rule Engine (dispatcher) never writes.
+Writing one uses the safe-write pattern above.
 
 ---
 
-## Overlap coefficient
+## Overlap
 
-Used by the Learning Engine (Phase 3 Consolidate) and Brain Learn/Correct. The formula from the docs:
+When you need to check if two things are talking about the same topic, compare their word sets:
 
 ```python
 def overlap(a, b):
-    intersection = len(a & b)
-    minimum = min(len(a), len(b))
-    return intersection / minimum if minimum > 0 else 0.0
+    shared = len(a & b)
+    smallest = min(len(a), len(b))
+    return shared / smallest if smallest > 0 else 0.0
 ```
 
-Where `a` and `b` are sets of terms (titles, tags, gist tokens, indexed terms).
+`a` and `b` are sets of words. The result is 0.0 (nothing in common) to 1.0 (identical).
 
-Three-band threshold:
-- `>= 0.5` → reinforce existing entry
-- `0.25 - 0.5` → review (salience decides)
-- `< 0.25` → no match (promote if salience >= 0.5, else discard)
-
----
-
-## Scoring patterns
-
-The docs specify explicit numeric formulas for every engine. Follow them exactly.
-
-**Recall (7 signals):** `domain_bonus` +3.0, `type_bonus` +1.5, `level_bonus` L1 +0.5 / L2 +1.5 / L3 +3.0, `lex_bonus` cap 4.0, `co_ref_bonus` +2.0, `bundle_bonus` +1.5, `reuse_bonus` cap 2.0 / -0.5.
-
-**Recall rerank (3 components):** `specificity` cap 2.0, `diversity` -1.0 per dup, `temporal` -1.5 to +1.0.
-
-**Identity Boot (3 signals):** `level_bonus` L1 +0.5 / L2 +1.5 / L3 +3.0 / L4 +5.0, `recency_bonus` +1.0 within 5 cycles / +0.5 within 20, `strength_bonus` +0.3 per point cap 2.0.
-
-**Identity Relay (5 signals):** Same 3 as Boot (L4 excluded) plus `relevance_bonus` +2.0 (overlap >= 0.25) and `charge_bonus` +1.0 (amygdala subject match).
-
-Score floors: Recall 2.0, Identity 1.5.
-
-Do not round. Do not reweight. The numbers in the docs are the numbers in the code.
+What the score means:
+- **0.5 or higher** — same topic. Reinforce the existing entry.
+- **0.25 to 0.5** — maybe the same. Look closer.
+- **Below 0.25** — different topic.
 
 ---
 
-## Error handling
+## Logging
 
-Every handler in `hook.py` is wrapped in try/except. On any internal failure, return `0` (pass). Never crash the harness. Log the error to `logger/handler/hook.errors.jsonl`.
-
-Anti-lockout pattern (identical across all engines):
-1. Retry up to 3 times.
-2. After 3 consecutive failures, raise the `*-failed` binary.
-3. Next `UserPromptSubmit` clears all that engine's binaries.
-4. SessionStart resets all binaries to `0`.
-
----
-
-## Logger
-
-Append-only. One function per engine in `logger/api.py`. Every event carries a timestamp and a join key (`query_hash`, `cycle_id`, or `session_id`).
+Append a JSON line to a file. That's the entire logging system.
 
 ```python
 def write_log(directory, event, payload):
@@ -535,16 +399,29 @@ def write_log(directory, event, payload):
         f.write(line + "\n")
 ```
 
-No log rotation. No structured log library. Append a JSON line to a `.jsonl` file.
+No log rotation. No log library. One line per event, one file per day.
 
 ---
 
-## What NOT to do
+## When things fail
 
-- No classes where a function suffices. The docs describe functions, not objects.
-- No type annotations beyond what aids readability. The docs don't use them.
-- No `requirements.txt`. Standard library only.
-- No test framework. The docs don't specify one. If tests are added, they're plain `assert` statements in a `if __name__ == "__main__"` block.
-- No `async`. The docs use threads (for Recall + Identity Relay parallelism inside the Decision skill) and subprocesses (`claude -p`). No asyncio.
-- No environment variable configuration. Constants live in `thalamus.json :: config`. Read them at cycle start.
-- No abstract base classes. No interfaces. No dependency injection.
+Every engine follows the same recovery pattern:
+
+1. Try up to 3 times.
+2. If all 3 fail, set the engine's gate to `1` (this blocks the agent from using tools until it deals with it).
+3. On the next user message, clear the gate automatically and try fresh.
+4. On session start, clear all gates.
+
+The agent can always run in a degraded state (missing one engine's output). It can never be permanently locked out.
+
+---
+
+## Don't
+
+- Don't make classes when functions work
+- Don't add type annotations everywhere -- only where it actually helps
+- Don't use `async` -- use `threading` for parallelism
+- Don't install pip packages
+- Don't write test files with a framework -- plain `assert` in `if __name__ == "__main__"` is enough
+- Don't put constants in environment variables -- they go in one JSON config file, read once at startup
+- Don't make abstract base classes or interfaces
