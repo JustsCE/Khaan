@@ -6,6 +6,14 @@
 
 ---
 
+## Do exactly what is specified
+
+If the spec says to do X, do X. Not something like X. Not a better version of X. X.
+
+If X is not possible as described, take the simplest possible route to achieve what was asked. Not the most robust route. Not the most future-proof route. The simplest.
+
+---
+
 ## Write less code
 
 If it can be 10 lines, don't write 30. Don't add things "just in case." Don't write error handling for errors that won't happen. Don't add logging unless someone asked for logging. Don't add retry loops unless someone asked for retries.
