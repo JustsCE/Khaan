@@ -2,7 +2,79 @@
 
 ---
 
-# Part 1 — HTML Reports
+# Part 1 — Code
+
+---
+
+## Write less code
+
+If it can be 10 lines, don't write 30. Don't add things "just in case." Don't write error handling for errors that won't happen. Don't add logging unless someone asked for logging. Don't add retry loops unless someone asked for retries.
+
+The right amount of code is the least amount that does the job.
+
+---
+
+## Don't be clever
+
+Write the obvious thing. If a function does one thing, make it do one thing in the obvious way. No tricks, no abstractions, no "what if we need this later."
+
+```python
+# good
+def read_gate(path):
+    return int(open(path).read().strip())
+
+# bad
+class GateReader:
+    def __init__(self, config):
+        self.config = config
+    def read(self, name):
+        path = self.config.get_gate_path(name)
+        ...
+```
+
+---
+
+## No unnecessary layers
+
+- Don't make a class when a function works
+- Don't make a config file for one number
+- Don't make a wrapper around something that's already simple
+- Don't make an abstract base class
+- Don't make a factory
+
+---
+
+## Standard library only
+
+Python 3. No pip. `os`, `json`, `hashlib`, `time`, `subprocess`, `re`, `pathlib`, `threading`, `tempfile`. That's your toolkit.
+
+---
+
+## If you change something, say so
+
+```python
+# [DEVIATES FROM SPEC: decision-engine.html]
+# File lock instead of nonce. Simpler. Same result.
+```
+
+At the spot where it happens. Not in a changelog.
+
+---
+
+## Don't
+
+- Don't add docstrings that restate the function name
+- Don't add comments that describe what the next line does
+- Don't add type annotations everywhere
+- Don't use `async`
+- Don't add a test framework
+- Don't add error handling you weren't asked for
+- Don't add fallback behavior you weren't asked for
+- Don't add logging you weren't asked for
+
+---
+
+# Part 2 — HTML Reports
 
 Every HTML page in this project looks the same. Here's how.
 
@@ -134,75 +206,3 @@ Text characters inside `<pre><code>`. No images. No chart libraries.
 - Don't use emoji
 - Don't write a "Summary" section
 - Don't put h3/h4 in the table of contents
-
----
-
-# Part 2 — Code
-
----
-
-## Write less code
-
-If it can be 10 lines, don't write 30. Don't add things "just in case." Don't write error handling for errors that won't happen. Don't add logging unless someone asked for logging. Don't add retry loops unless someone asked for retries.
-
-The right amount of code is the least amount that does the job.
-
----
-
-## Don't be clever
-
-Write the obvious thing. If a function does one thing, make it do one thing in the obvious way. No tricks, no abstractions, no "what if we need this later."
-
-```python
-# good
-def read_gate(path):
-    return int(open(path).read().strip())
-
-# bad
-class GateReader:
-    def __init__(self, config):
-        self.config = config
-    def read(self, name):
-        path = self.config.get_gate_path(name)
-        ...
-```
-
----
-
-## No unnecessary layers
-
-- Don't make a class when a function works
-- Don't make a config file for one number
-- Don't make a wrapper around something that's already simple
-- Don't make an abstract base class
-- Don't make a factory
-
----
-
-## Standard library only
-
-Python 3. No pip. `os`, `json`, `hashlib`, `time`, `subprocess`, `re`, `pathlib`, `threading`, `tempfile`. That's your toolkit.
-
----
-
-## If you change something, say so
-
-```python
-# [DEVIATES FROM SPEC: decision-engine.html]
-# File lock instead of nonce. Simpler. Same result.
-```
-
-At the spot where it happens. Not in a changelog.
-
----
-
-## Don't
-
-- Don't add docstrings that restate the function name
-- Don't add comments that describe what the next line does
-- Don't add type annotations everywhere
-- Don't use `async`
-- Don't add a test framework
-- Don't add error handling you weren't asked for
-- Don't add fallback behavior you weren't asked for
-- Don't add logging you weren't asked for
