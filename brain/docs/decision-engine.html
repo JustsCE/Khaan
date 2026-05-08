@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Decision Engine</title>
+<style>
+@page { size: A4; margin: 14mm 14mm 16mm 14mm; }
+* { box-sizing: border-box; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.5;
+    color: #1a1a1a;
+    margin: 0;
+    background: #f7f7f5;
+}
+.page-wrap {
+    max-width: 200mm;
+    margin: 0 auto;
+    padding: 8mm;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,.08);
+}
+@media print {
+    body { background: #fff; }
+    .page-wrap { box-shadow: none; max-width: none; padding: 0; }
+}
+h1 {
+    font-size: 26pt;
+    margin: 0 0 4mm;
+    letter-spacing: -.02em;
+    line-height: 1.1;
+    border-bottom: 2px solid #1a1a1a;
+    padding-bottom: 3mm;
+}
+h2 {
+    font-size: 16pt;
+    margin: 8mm 0 3mm;
+    letter-spacing: -.01em;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 2mm;
+    page-break-after: avoid;
+}
+h3 {
+    font-size: 12.5pt;
+    margin: 5mm 0 2mm;
+    color: #333;
+    page-break-after: avoid;
+}
+h4 {
+    font-size: 11pt;
+    margin: 3mm 0 1.5mm;
+    color: #555;
+    page-break-after: avoid;
+}
+p { margin: 1.5mm 0 2.5mm; }
+hr { border: none; border-top: 1px solid #ddd; margin: 5mm 0; }
+blockquote {
+    border-left: 3px solid #1a1a1a;
+    padding: 2mm 4mm;
+    margin: 3mm 0;
+    background: #fafafa;
+    font-style: italic;
+    font-size: 11.5pt;
+}
+blockquote p { margin: 1mm 0; }
+strong, b { color: #000; }
+code {
+    font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 9.5pt;
+    background: #f1f1ef;
+    padding: .3mm 1mm;
+    border-radius: 1mm;
+    color: #b91c1c;
+}
+pre {
+    background: #f8f8f6;
+    border-left: 2px solid #ddd;
+    padding: 3mm 4mm;
+    margin: 3mm 0;
+    font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 9pt;
+    line-height: 1.4;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    page-break-inside: avoid;
+}
+pre code {
+    background: transparent;
+    color: #1a1a1a;
+    padding: 0;
+}
+ul, ol { margin: 1.5mm 0 3mm 6mm; padding: 0; }
+li { margin: .5mm 0; }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 3mm 0;
+    font-size: 9.5pt;
+    page-break-inside: avoid;
+}
+th, td {
+    padding: 1.5mm 2mm;
+    border-bottom: 1px solid #e5e5e5;
+    vertical-align: top;
+    text-align: left;
+}
+th {
+    background: #1a1a1a;
+    color: #fff;
+    font-weight: 600;
+}
+tr:nth-child(even) td { background: #fafafa; }
+.cover {
+    text-align: center;
+    padding: 30mm 0 8mm;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 6mm;
+}
+.cover .subtitle {
+    color: #666;
+    font-size: 11pt;
+    margin-top: 2mm;
+}
+.cover .meta {
+    color: #999;
+    font-size: 9pt;
+    margin-top: 4mm;
+    letter-spacing: .04em;
+}
+.toc {
+    background: #fafafa;
+    border-left: 2px solid #1a1a1a;
+    padding: 4mm 6mm;
+    margin: 4mm 0 8mm;
+    page-break-inside: avoid;
+}
+.toc h3 {
+    margin: 0 0 2mm;
+    font-size: 10pt;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: #555;
+}
+.toc ol { margin: 0 0 0 5mm; }
+.toc li { font-size: 9.5pt; padding: .3mm 0; }
+.toc a { color: #1a1a1a; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+<div class="cover">
+  <h1 style="border:none">Decision Engine</h1>
+  <div class="subtitle">Five hypotheses, four dimensions, no choosing &mdash; per turn.</div>
+<div class="meta">Updated 2026-05-02 &middot; JustsCE/Brain</div>
+</div>
+
+<div class="toc"><h3>Contents</h3><ol><li>Philosophy</li><li>Inputs</li><li>Rules</li><li>The 4-D methodology</li><li>Hypothesis generation</li><li>Stages</li><li>Infrastructure</li><li>Anti-lockout</li><li>Pinned prompt</li><li>Logs</li></ol></div>
+
+<h2 id="philosophy">Philosophy</h2>
+<blockquote>
+  <p><strong>The Decision Engine compiles sources from the other engines into an evidence-based assessment of the user&rsquo;s needs.</strong></p>
+  <p><strong>Five hypotheses, each grounded in a different blind spot. No internal ranking.</strong></p>
+  <p><strong>No tool runs until the assessment is complete.</strong></p>
+</blockquote>
+<p>The user&rsquo;s literal message is rarely the user&rsquo;s full intent. The engine&rsquo;s job is to read the message through five framed lenses, ground each in evidence from the other engines, and surface all five upstream. The five lenses are designed to cover three distinct categories of blind spot &mdash; an unbiased read, two input-lensed reads, two cognitive heuristics &mdash; so that no class of mistake goes unmonitored.</p>
+<p>The &ldquo;no tool until the assessment is complete&rdquo; property is mechanical, not aspirational. Tool gating runs in three sequential checkpoints: (1) Recall and Identity must each finish writing their <code>active-*.json</code> for THIS turn before Decision is allowed to launch. (2) The Decision subprocess reads those two files and produces all 5 hypotheses; only when all 5 are present does the SubagentStop verifier run. (3) Verification must pass before the parent&rsquo;s tool gate is released. No path lets the parent answer first and assess later &mdash; and no path lets Decision run on stale or missing inputs.</p>
+<hr>
+
+<h2 id="inputs">Inputs</h2>
+<p>The Decision Engine reads two files. It does not call other engines. Without both files, the engine raises <code>decision-source-missing</code> and the turn falls through to Anti-lockout.</p>
+<table><thead><tr><th>File path</th><th>What is in it</th></tr></thead><tbody>
+<tr><td><code>navigation/active-recall.json</code></td><td>A <code>RecallResult</code> payload from the Recall Engine: <code>qualified_entries[]</code> (id, path, gist, full body, score breakdown), <code>scoring_trace</code>, source hashes, <code>ts</code>.</td></tr>
+<tr><td><code>navigation/active-identity.json</code></td><td>The Brain&rsquo;s published self-model + the 6 charter tenets, from the Identity Engine.</td></tr>
+</tbody></table>
+<hr>
+
+<h2 id="rules">Rules</h2>
+<p>How the Decision Engine behaves on every turn. Each rule has a title; mechanics are detailed in the sections below.</p>
+
+<h3>Decision fundamentals</h3>
+<ul>
+  <li><strong>One decision per turn.</strong> Fires exactly once per <code>UserPromptSubmit</code>.</li>
+  <li><strong>Five hypotheses or none.</strong> Mechanically enforced by 5 binaries (one per lens). The parent stays blocked while any of the 5 binaries are at <code>1</code>.</li>
+  <li><strong>Both inputs or fail.</strong> Both input artifacts must be readable. Missing input &rarr; <code>decision-source-missing.bin = 1</code>.</li>
+  <li><strong>No ranking, no choosing.</strong> All 5 hypotheses are surfaced to the parent (The Brain). The parent picks based on the live chat context the subprocess does not have.</li>
+  <li><strong>Output is context, not an answer.</strong> The engine never drafts a user-facing reply. It hands the parent five framed hypotheses to choose between.</li>
+</ul>
+
+<h3>Subagent contract</h3>
+<ul>
+  <li><strong>Parent tool gate.</strong> While any hypothesis binary is at <code>1</code>, the parent&rsquo;s Agent tool surface is blocked. The skill&rsquo;s internal subprocess launches (Recall, Identity, Decision via <code>claude -p</code>) bypass this gate because they run inside the hook process, not via the parent.</li>
+  <li><strong>SubagentStop verification.</strong> All 5 hypothesis binaries at <code>0</code> AND a schema-valid return payload AND all 5 lens labels present is the only state that unblocks the parent.</li>
+  <li><strong>Subprocess pinned.</strong> Each Decision subprocess runs as <code>claude -p --output-format json</code> via the local CLI. The CLI selects the model from your subscription session (typically Opus when available); no Anthropic API key is read or consumed. The wrapper layer is <code>engines._shared.cli_invoke()</code>.</li>
+  <li><strong>Write-path gated.</strong> Only the Decision subprocess&rsquo;s own session can flip the hypothesis binaries.</li>
+</ul>
+<hr>
+
+<h2 id="anti-lockout">Anti-lockout</h2>
+<p>Three protections, all simple. Worst case the parent answers without a fresh decision (degraded), never locked out.</p>
+<table><thead><tr><th>Protection</th><th>What it does</th></tr></thead><tbody>
+<tr><td>Three-strike forgiveness</td><td>After 3 consecutive subprocess failures, <code>decision-failed.bin = 1</code>. Next <code>UserPromptSubmit</code> clears all Decision binaries; the parent runs without a fresh decision that turn (degraded but unblocked).</td></tr>
+<tr><td>120-second timeout</td><td>Per subprocess attempt. If exceeded, <code>decision-timeout.bin = 1</code>. Next <code>UserPromptSubmit</code> clears.</td></tr>
+<tr><td>SessionStart reset</td><td>All Decision binaries written to <code>0</code> at session start.</td></tr>
+</tbody></table>
+<p>Every fallback writes a log line so the failure mode is always visible.</p>
+<hr>
+
+<h2 id="methodology">The 4-D methodology</h2>
+<p>Each of the 5 hypotheses runs through all four phases.</p>
+
+<h3>1. DECONSTRUCT</h3>
+<p>Extract core intent and key entities from the message. Identify output requirements and constraints. Map what is provided versus what is missing.</p>
+
+<h3>2. DIAGNOSE</h3>
+<p>Audit clarity gaps and ambiguity. Check specificity and completeness. Assess structure and complexity needs. Surface what would block a clean execution if not resolved.</p>
+
+<h3>3. DEVELOP</h3>
+<p>Pick the optimization technique by request type:</p>
+<table><thead><tr><th>Type</th><th>Technique</th></tr></thead><tbody>
+<tr><td>Creative</td><td>Multi-perspective + tone emphasis</td></tr>
+<tr><td>Technical</td><td>Constraint-based + precision focus</td></tr>
+<tr><td>Educational</td><td>Few-shot examples + clear structure</td></tr>
+<tr><td>Complex</td><td>Chain-of-thought + systematic frameworks</td></tr>
+</tbody></table>
+<p>Assign role/expertise. Enhance context. Apply logical structure.</p>
+
+<h3>4. DELIVER</h3>
+<p>Construct an optimized prompt for the parent to consider. Format based on complexity. Include implementation guidance. Length is free-form; no sentence cap.</p>
+<hr>
+
+<h2 id="hypotheses">Hypothesis generation</h2>
+<p>Five lenses are produced per turn. The Decision Engine does not pick. All 5 are surfaced to the parent (The Brain) along with their 4-D subcontext; the parent chooses which lens fits the live chat context.</p>
+
+<h3>Why these 5 (designed coverage, not arbitrary)</h3>
+<table><thead><tr><th>Lens</th><th>Source of insight</th><th>Blind spot it covers</th></tr></thead><tbody>
+<tr><td>Literal</td><td>The message text alone</td><td>Over-reading: assuming intent the words do not carry</td></tr>
+<tr><td>Identity-shaped</td><td>Identity Engine output (active-identity.json)</td><td>&ldquo;What does this user usually mean?&rdquo; &mdash; pattern recognition</td></tr>
+<tr><td>Recall-shaped</td><td>Recall Engine output (active-recall.json)</td><td>&ldquo;What does cortex evidence say is being asked?&rdquo; &mdash; fact-grounded read</td></tr>
+<tr><td>Contrarian</td><td>Adversarial heuristic</td><td>Confirmation bias &mdash; what if the obvious read is wrong?</td></tr>
+<tr><td>Minimal-action</td><td>Occam&rsquo;s-razor heuristic</td><td>Scope creep &mdash; what is the smallest action that satisfies?</td></tr>
+</tbody></table>
+<p>One unbiased read (Literal) + two input-lensed reads (Identity-shaped, Recall-shaped) + two cognitive heuristics (Contrarian, Minimal-action). Each lens covers a different category of blind spot. Drop one and a category goes unmonitored.</p>
+
+<h3>How the lenses are enforced (three layers, soft to hard)</h3>
+<ol>
+  <li><strong>System prompt (soft).</strong> The Decision subprocess&rsquo;s pinned system prompt enumerates the 5 lenses by name with their definitions and explicit instructions: produce exactly one hypothesis per lens, in this order, max 4 sentences each.</li>
+  <li><strong>Schema validation (hard).</strong> The return payload schema requires <code>hypotheses[]</code> to contain exactly 5 entries with <code>label</code> &isin; {<code>Literal</code>, <code>Identity-shaped</code>, <code>Recall-shaped</code>, <code>Contrarian</code>, <code>Minimal-action</code>} (one each, no duplicates, no extras). The SubagentStop verifier rejects anything else.</li>
+  <li><strong>Binaries (hard).</strong> The 5 hypothesis binaries map 1:1 to the lenses by index. The subprocess flips each as it completes that lens. If one stays at <code>1</code>, the parent stays blocked.</li>
+</ol>
+<p>A subprocess that ignores the system prompt fails schema validation. One that fakes the schema fails the binary check. One that fakes the binaries cannot &mdash; writes to those files are gated to its own session.</p>
+
+<h3>Delivery to the parent</h3>
+<p>The subprocess&rsquo;s final return value (the JSON envelope from <code>claude -p --output-format json</code>) is the structured payload of all 5 hypotheses + their 4-D subcontext. The skill writes this payload to <code>active-decision.json</code> and returns it as <code>additionalContext</code> for the parent&rsquo;s next reply turn. The Decision Engine does not pick a lens because the subprocess does not have the live chat context.</p>
+<hr>
+
+<h2 id="stages">Stages</h2>
+<p>Per-turn lifecycle.</p>
+<pre><code>T0   UserPromptSubmit fires; /decision-engine skill activates.
+T1   Skill checks state.json :: active_decision_nonce. If held, wait up
+     to 240s; if 240s elapses, skill exits. Otherwise take nonce.
+T2   Skill blocks parent tools (decision-hypothesis-1..5 = 1).
+T3   Skill spawns Recall and Identity in parallel; joins both.
+T4   Skill launches Decision subprocess (claude -p with pinned prompt).
+T5   Subprocess computes 5 hypotheses; each binary flips 1 -&gt; 0.
+T6   flip-decision-verify runs single schema check (incl. tool_uses).
+T7   On pass: write active-decision.json; release nonce; tools unblock.
+T8   Skill returns; Claude Code sends user prompt + additionalContext
+     to the parent; parent emits N's reply with N's decision in context.</code></pre>
+<p>Worst case: subprocess fails 3 times or runs past 120s; Anti-lockout in Rules covers the recovery.</p>
+
+<h3>Decision Engine skill</h3>
+<p>The Decision Engine ships as a skill named <code>/decision-engine</code>. Activation is hook-driven and automatic: every <code>UserPromptSubmit</code> invokes the skill before returning control to the Claude Code. The agent never chooses to run the skill &mdash; it always runs, exactly once per turn.</p>
+
+<p><strong>What the skill does, in order:</strong></p>
+<ol>
+  <li><strong>Mutex acquire.</strong> Read <code>state.json :: active_decision_nonce</code>. If held by an in-flight earlier turn, wait for release (see Mutex below). If unset, atomically take a fresh nonce.</li>
+  <li><strong>Spawn Recall and Identity in parallel.</strong> Both engines run as Python threads inside the skill process. Each writes its <code>active-*.json</code> for THIS turn. Skill joins both threads before continuing.</li>
+  <li><strong>Spawn the Decision subprocess.</strong> Run <code>claude -p --output-format json</code> via <code>engines._shared.cli_invoke()</code>, passing the pinned <code>SYSTEM_PROMPT</code> + the just-written <code>active-recall.json</code> and <code>active-identity.json</code> as inputs.</li>
+  <li><strong>Verify.</strong> When the subprocess returns, run <code>flip-decision-verify</code> on the returned JSON envelope. The hook event is named <code>SubagentStop</code> by Anthropic; semantically the verifier runs against the CLI subprocess&rsquo;s return payload (one schema check &mdash; see invariant verification below).</li>
+  <li><strong>Write or reject.</strong> On verifier pass: write <code>active-decision.json</code>; clear the 5 hypothesis binaries; release the mutex. On fail: increment strike counter; retry up to 3 times; after 3 strikes, raise <code>decision-failed.bin = 1</code> &mdash; the next UserPromptSubmit clears it (Anti-lockout).</li>
+  <li><strong>Mutex release.</strong> In <code>finally</code>, clear <code>active_decision_nonce</code>. Always runs.</li>
+  <li><strong>Return.</strong> Hook returns; Claude Code sends user prompt + composed <code>additionalContext</code> to the parent.</li>
+</ol>
+
+<p><strong>Where the code lives:</strong> the skill orchestrator is <code>engines/decision.py::dispatch()</code>. The verifier is <code>flip-decision-verify</code> (SubagentStop hook, registered in <code>~/.claude/settings.json</code>). State and binaries live under <code>brain/state.json</code> and <code>brain/binaries/</code>.</p>
+
+<h3>Mutex</h3>
+<p>The skill holds <code>state.json :: active_decision_nonce</code> for the duration of its engine pipeline. New skill invocations check the nonce on entry. If held, they wait for release (polling every 250 ms, up to 240 s). If 240 s elapses with the nonce still held, the new invocation exits cleanly with no engines run. No force-clear, no kill-semantics, no recovery. KISS.</p>
+
+<p><strong>Mechanism:</strong></p>
+<ul>
+  <li><strong>Wait on entry.</strong> Read <code>active_decision_nonce</code>. If held: <code>time.sleep(0.25)</code> in a loop. If 240 s elapsed: <code>sys.exit(0)</code>.</li>
+  <li><strong>Acquire.</strong> Atomically write <code>active_decision_nonce = secrets.token_hex(16)</code> + <code>last_decision_start_ts = now</code> via tmp+rename (POSIX-atomic).</li>
+  <li><strong>Release.</strong> In <code>finally</code>, clear the nonce. Always runs.</li>
+  <li><strong>Stuck nonce.</strong> If a hook is killed by Claude Code mid-run, <code>finally</code> never executes; nonce stays held; subsequent hooks die after 240 s. Manual SSH clear required: <code>state.json :: active_decision_nonce = null</code>.</li>
+</ul>
+
+<div style="background:#fff7ed; border:2px solid #c2410c; padding:5mm 7mm; margin:6mm 0; page-break-inside:avoid;">
+  <p style="margin:0 0 3mm; font-weight:700; color:#7c2d12; font-size:11.5pt;">
+    SubagentStop verification &mdash; flip-decision-verify
+  </p>
+  <p style="margin:0 0 3mm;">
+    The flip-decision-verify hook runs ONE check before unblocking the parent: <strong>the returned 5-hypothesis payload validates against the Decision schema</strong>. Schema requires:
+  </p>
+  <ul style="margin:0 0 3mm 6mm;">
+    <li>Exactly 5 hypotheses present.</li>
+    <li>Lenses [Literal, Identity-shaped, Recall-shaped, Contrarian, Minimal-action] each present once and only once.</li>
+    <li>Source-hash fields match the active-recall.json and active-identity.json that existed at subprocess launch.</li>
+    <li>query_hash matches the user message.</li>
+    <li><strong>Tool-uses audit.</strong> The subprocess&rsquo;s <code>claude -p</code> output envelope&rsquo;s <code>tool_uses</code> array must include:
+      <ul>
+        <li><code>Read(navigation/active-recall.json)</code></li>
+        <li><code>Read(navigation/active-identity.json)</code></li>
+        <li><code>Read(&lt;path&gt;)</code> for every cortex entry ID appearing in any hypothesis&rsquo;s <code>evidence</code> field.</li>
+      </ul>
+      A subprocess that emits an evidence ID without a corresponding Read on that ID&rsquo;s file fails verification &mdash; it cannot have actually consulted the entry.
+    </li>
+  </ul>
+  <p style="margin:0;">
+    If schema validation fails: payload is rejected, no <code>active-decision.json</code> write happens, <code>decision-failed.bin = 1</code>; the next UserPromptSubmit clears it (Anti-lockout).
+  </p>
+</div>
+<hr>
+
+<h2 id="infrastructure">Infrastructure</h2>
+<p>Return payload, hooks, binaries, caching.</p>
+
+<h3>Return payload schema</h3>
+<p>The subprocess returns the structured payload directly as the JSON envelope from <code>claude -p --output-format json</code>. The skill writes it to <code>active-decision.json</code> and to the logger. There is no separate audit file.</p>
+<pre><code>{
+  "ts": "...",
+  "query_hash": "sha256(lower(message))",
+  "hypotheses": [
+    {
+      "id": "H1", "label": "Literal",
+      "deconstruct": "...", "diagnose": "...",
+      "develop": "...", "deliver": "...",
+      "evidence": []              # IDs of cortex entries this lens cites
+    },
+    { "id": "H2", "label": "Identity-shaped", "evidence": ["ID-final-3"], "...": "..." },
+    { "id": "H3", "label": "Recall-shaped",   "evidence": ["S001", "PR017"], "...": "..." },
+    { "id": "H4", "label": "Contrarian",      "evidence": [], "...": "..." },
+    { "id": "H5", "label": "Minimal-action",  "evidence": [], "...": "..." }
+  ],
+  "supporting_material": {
+    "recall_entries": [
+      { "id": "S001", "title": "...", "body": "..." },
+      { "id": "PR017", "title": "...", "body": "..." }
+    ],
+    "identity_picks": [
+      { "id": "ID-final-3", "title": "...", "gist": "..." }
+    ]
+  },
+  "sources": { "recall": "active-recall.json@hash", "identity": "active-identity.json@hash" },
+  "model": "claude-cli (subscription, no API key)",
+  "latency_ms": 7820
+}</code></pre>
+<p>Each hypothesis carries an <code>evidence</code> list naming the cortex entries it cites (Recall-shaped pulls from <code>active-recall.json :: qualified_entries</code>; Identity-shaped pulls from <code>active-identity.json :: kernel + situational_sources</code>; the other three lenses may cite none). The top-level <code>supporting_material</code> field carries the full bodies of every cited entry, assembled from the active-*.json inputs at payload-build time. The Assistant receives both the hypotheses AND the underlying material so context is full, not pre-chewed &mdash; the assistant can reason from raw evidence rather than only from the lens-shaped digest.</p>
+
+<h3>Hooks (owned by the Decision Engine)</h3>
+<p>Two handlers, both files under <code>decision-engine/</code>.</p>
+<table><thead><tr><th>Hook event</th><th>Handler file</th><th>What it does</th></tr></thead><tbody>
+<tr><td><code>UserPromptSubmit</code></td><td><code>decision-engine/flip-decision-trigger.py</code></td><td>Sets all 5 hypothesis binaries to <code>1</code>. One file write per binary.</td></tr>
+<tr><td><code>SubagentStop</code></td><td><code>decision-engine/flip-decision-verify.py</code></td><td>If <code>subagent_type=decision</code>: validates the return payload schema (5 hypotheses, all labels present, source hashes match, tool_uses audit), checks all 5 hypothesis binaries are <code>0</code>. Otherwise no-op.</td></tr>
+</tbody></table>
+
+<h3>Binaries</h3>
+<table><thead><tr><th>Binary</th><th>Trigger to raise (<code>1</code>)</th><th>Cleared by</th></tr></thead><tbody>
+<tr><td><code>decision-hypothesis-1</code> (Literal)</td><td><code>UserPromptSubmit</code> fires</td><td>Subprocess finishes Literal hypothesis</td></tr>
+<tr><td><code>decision-hypothesis-2</code> (Identity-shaped)</td><td><code>UserPromptSubmit</code> fires</td><td>Subprocess finishes Identity-shaped hypothesis</td></tr>
+<tr><td><code>decision-hypothesis-3</code> (Recall-shaped)</td><td><code>UserPromptSubmit</code> fires</td><td>Subprocess finishes Recall-shaped hypothesis</td></tr>
+<tr><td><code>decision-hypothesis-4</code> (Contrarian)</td><td><code>UserPromptSubmit</code> fires</td><td>Subprocess finishes Contrarian hypothesis</td></tr>
+<tr><td><code>decision-hypothesis-5</code> (Minimal-action)</td><td><code>UserPromptSubmit</code> fires</td><td>Subprocess finishes Minimal-action hypothesis</td></tr>
+<tr><td><code>decision-source-missing</code></td><td>An input artifact absent at dispatch</td><td>The missing source publishes its artifact</td></tr>
+<tr><td><code>decision-failed</code></td><td>3 consecutive subprocess failures</td><td>Next <code>UserPromptSubmit</code> (auto-recovery)</td></tr>
+<tr><td><code>decision-timeout</code></td><td>Subprocess exceeds 120s</td><td>Next <code>UserPromptSubmit</code> (auto-recovery)</td></tr>
+</tbody></table>
+<p>Eight binaries owned by the Decision Engine. Plain files (<code>0</code> silent, <code>1</code> alert). The 5 hypothesis binaries are the &ldquo;5 or none&rdquo; mechanism: the parent cannot proceed unless all five have flipped to <code>0</code>.</p>
+
+<hr>
+
+<h2 id="pinned-prompt">Pinned prompt</h2>
+<p>The exact <code>SYSTEM_PROMPT</code> the Decision subprocess runs under. Hash recorded in every <code>decision_dispatch</code> log line; if the prompt drifts, the hash drifts and audits catch it.</p>
+<pre><code>You are the Decision Engine for Brain v3.
+
+Your job: read the user&#x27;s message, the active recall payload, and the active
+identity payload, then produce exactly five hypotheses about what the user
+needs. Each hypothesis is framed through one of five fixed lenses, in this
+canonical order. The five lenses are designed to cover three distinct
+categories of blind spot. Drop one and a category goes unmonitored.
+
+# The five lenses
+
+1. **Literal** — what the message says, no interpretation.
+   Source of insight: the message text alone.
+   Blind spot it covers: over-reading — assuming intent the words do not carry.
+
+2. **Identity-shaped** — what the user usually means in this kind of frame.
+   Source of insight: active-identity.json (kernel + situational layers).
+   Blind spot it covers: pattern recognition against this user&#x27;s known habits.
+
+3. **Recall-shaped** — what cortex evidence says is being asked.
+   Source of insight: active-recall.json (qualified entries + scoring trace).
+   Blind spot it covers: fact-grounded read against the brain&#x27;s accumulated knowledge.
+
+4. **Contrarian** — what if the obvious read is wrong?
+   Source of insight: adversarial heuristic against the literal read.
+   Blind spot it covers: confirmation bias.
+
+5. **Minimal-action** — what is the smallest action that satisfies?
+   Source of insight: Occam&#x27;s-razor heuristic.
+   Blind spot it covers: scope creep.
+
+You do NOT pick a lens. You produce all five. The parent picks based on the
+live chat context, which you do not have.
+
+# The 4-D method
+
+Each hypothesis runs through all four phases:
+
+1. **DECONSTRUCT** — extract core intent and key entities from the message.
+   Identify output requirements and constraints. Map what is provided versus
+   what is missing.
+
+2. **DIAGNOSE** — audit clarity gaps and ambiguity. Check specificity and
+   completeness. Surface what would block clean execution if not resolved.
+
+3. **DEVELOP** — pick the optimization technique by request type:
+   - Creative → multi-perspective + tone emphasis
+   - Technical → constraint-based + precision focus
+   - Educational → few-shot examples + clear structure
+   - Complex → chain-of-thought + systematic frameworks
+   Assign role/expertise. Enhance context. Apply logical structure.
+
+4. **DELIVER** — construct an optimized prompt for the parent to consider.
+   Format based on complexity. Include implementation guidance.
+
+# Output contract
+
+Return a JSON object with exactly this shape, and nothing else around it:
+
+```
+{
+  &quot;ts&quot;: &quot;ISO-8601 UTC timestamp&quot;,
+  &quot;query_hash&quot;: &quot;sha256(message)[:16]&quot;,
+  &quot;hypotheses&quot;: [
+    { &quot;id&quot;: &quot;H1&quot;, &quot;label&quot;: &quot;Literal&quot;,         &quot;deconstruct&quot;: &quot;...&quot;, &quot;diagnose&quot;: &quot;...&quot;, &quot;develop&quot;: &quot;...&quot;, &quot;deliver&quot;: &quot;...&quot; },
+    { &quot;id&quot;: &quot;H2&quot;, &quot;label&quot;: &quot;Identity-shaped&quot;, &quot;deconstruct&quot;: &quot;...&quot;, &quot;diagnose&quot;: &quot;...&quot;, &quot;develop&quot;: &quot;...&quot;, &quot;deliver&quot;: &quot;...&quot; },
+    { &quot;id&quot;: &quot;H3&quot;, &quot;label&quot;: &quot;Recall-shaped&quot;,   &quot;deconstruct&quot;: &quot;...&quot;, &quot;diagnose&quot;: &quot;...&quot;, &quot;develop&quot;: &quot;...&quot;, &quot;deliver&quot;: &quot;...&quot; },
+    { &quot;id&quot;: &quot;H4&quot;, &quot;label&quot;: &quot;Contrarian&quot;,      &quot;deconstruct&quot;: &quot;...&quot;, &quot;diagnose&quot;: &quot;...&quot;, &quot;develop&quot;: &quot;...&quot;, &quot;deliver&quot;: &quot;...&quot; },
+    { &quot;id&quot;: &quot;H5&quot;, &quot;label&quot;: &quot;Minimal-action&quot;,  &quot;deconstruct&quot;: &quot;...&quot;, &quot;diagnose&quot;: &quot;...&quot;, &quot;develop&quot;: &quot;...&quot;, &quot;deliver&quot;: &quot;...&quot; }
+  ],
+  &quot;sources&quot;: {
+    &quot;recall&quot;:   &quot;active-recall.json@&lt;sha256-prefix&gt;&quot;,
+    &quot;identity&quot;: &quot;active-identity.json@&lt;sha256-prefix&gt;&quot;
+  },
+  &quot;model&quot;: &quot;claude-cli (subscription, no API key)&quot;,
+  &quot;latency_ms&quot;: &lt;int&gt;
+}
+```
+
+Constraints:
+- Exactly 5 entries in `hypotheses[]`, one per lens, in the canonical order shown.
+- `id` runs H1 through H5 matching the order.
+- `label` is exactly one of {Literal, Identity-shaped, Recall-shaped, Contrarian, Minimal-action}.
+- No commentary, no preamble, no postscript. JSON only.
+
+# Failure mode
+
+If `active-recall.json` or `active-identity.json` is missing, malformed, or
+empty, do not invent content. Return:
+
+```
+{ &quot;error&quot;: &quot;decision-source-missing&quot; }
+```
+
+The parent will surface this to the rule engine, which raises the
+`decision-source-missing` binary and lets anti-lockout take over.</code></pre>
+<hr>
+
+<h2 id="logs">Logs</h2>
+<p>All engine output goes to <code>logger/decision/</code> via <code>logger/api.py::write_decision_log</code>. Append-only.</p>
+<table><thead><tr><th>Event</th><th>Payload</th><th>Purpose</th></tr></thead><tbody>
+<tr><td><code>decision_dispatch</code></td><td><code>ts, query_hash, sources_hash, model, system_prompt_hash</code></td><td>Start signal &mdash; one per turn</td></tr>
+<tr><td><code>subagent_launch</code></td><td><code>ts, query_hash, subagent_id, model</code></td><td>Confirms the subprocess actually launched (field name retained for hook-event parity)</td></tr>
+<tr><td><code>hypothesis_complete</code></td><td><code>ts, query_hash, hypothesis_id, label, latency_ms</code></td><td>One per hypothesis as each completes &mdash; per-hypothesis timing is load-bearing</td></tr>
+<tr><td><code>handoff</code></td><td><code>ts, query_hash, payload_chars, all_5_present</code></td><td>The 5-hypothesis payload was returned to the parent</td></tr>
+<tr><td><code>subagent_complete</code></td><td><code>ts, query_hash, subagent_id, status, latency_ms</code></td><td>Total subprocess run + outcome (field name retained for hook-event parity)</td></tr>
+<tr><td><code>decision_failed</code></td><td><code>ts, query_hash, attempt, reason</code></td><td>Each failure before the three-strike threshold</td></tr>
+<tr><td><code>decision_timeout</code></td><td><code>ts, query_hash, latency_ms</code></td><td>Timeout fired</td></tr>
+</tbody></table>
+<p>Every event carries <code>query_hash</code>. Joining on that key reconstructs the per-turn trajectory. Slow is acceptable; latency is on every event so the time budget is visible.</p>
+
+</div>
+</body>
+</html>

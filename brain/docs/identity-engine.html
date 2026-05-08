@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Identity Engine</title>
+<style>
+@page { size: A4; margin: 14mm 14mm 16mm 14mm; }
+* { box-sizing: border-box; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.5;
+    color: #1a1a1a;
+    margin: 0;
+    background: #f7f7f5;
+}
+.page-wrap {
+    max-width: 200mm;
+    margin: 0 auto;
+    padding: 8mm;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,.08);
+}
+@media print {
+    body { background: #fff; }
+    .page-wrap { box-shadow: none; max-width: none; padding: 0; }
+}
+h1 {
+    font-size: 26pt;
+    margin: 0 0 4mm;
+    letter-spacing: -.02em;
+    line-height: 1.1;
+    border-bottom: 2px solid #1a1a1a;
+    padding-bottom: 3mm;
+}
+h2 {
+    font-size: 16pt;
+    margin: 8mm 0 3mm;
+    letter-spacing: -.01em;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 2mm;
+    page-break-after: avoid;
+}
+h3 {
+    font-size: 12.5pt;
+    margin: 5mm 0 2mm;
+    color: #333;
+    page-break-after: avoid;
+}
+h4 {
+    font-size: 11pt;
+    margin: 3mm 0 1.5mm;
+    color: #555;
+    page-break-after: avoid;
+}
+p { margin: 1.5mm 0 2.5mm; }
+hr { border: none; border-top: 1px solid #ddd; margin: 5mm 0; }
+blockquote {
+    border-left: 3px solid #1a1a1a;
+    padding: 2mm 4mm;
+    margin: 3mm 0;
+    background: #fafafa;
+    font-style: italic;
+    font-size: 11.5pt;
+}
+blockquote p { margin: 1mm 0; }
+strong, b { color: #000; }
+code {
+    font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 9.5pt;
+    background: #f1f1ef;
+    padding: .3mm 1mm;
+    border-radius: 1mm;
+    color: #b91c1c;
+}
+pre {
+    background: #f8f8f6;
+    border-left: 2px solid #ddd;
+    padding: 3mm 4mm;
+    margin: 3mm 0;
+    font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 9pt;
+    line-height: 1.4;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    page-break-inside: avoid;
+}
+pre code {
+    background: transparent;
+    color: #1a1a1a;
+    padding: 0;
+}
+ul, ol { margin: 1.5mm 0 3mm 6mm; padding: 0; }
+li { margin: .5mm 0; }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 3mm 0;
+    font-size: 9.5pt;
+    page-break-inside: avoid;
+}
+th, td {
+    padding: 1.5mm 2mm;
+    border-bottom: 1px solid #e5e5e5;
+    vertical-align: top;
+    text-align: left;
+}
+th {
+    background: #1a1a1a;
+    color: #fff;
+    font-weight: 600;
+}
+tr:nth-child(even) td { background: #fafafa; }
+.cover {
+    text-align: center;
+    padding: 30mm 0 8mm;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 6mm;
+}
+.cover .subtitle {
+    color: #666;
+    font-size: 11pt;
+    margin-top: 2mm;
+}
+.cover .meta {
+    color: #999;
+    font-size: 9pt;
+    margin-top: 4mm;
+    letter-spacing: .04em;
+}
+.toc {
+    background: #fafafa;
+    border-left: 2px solid #1a1a1a;
+    padding: 4mm 6mm;
+    margin: 4mm 0 8mm;
+    page-break-inside: avoid;
+}
+.toc h3 {
+    margin: 0 0 2mm;
+    font-size: 10pt;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: #555;
+}
+.toc ol { margin: 0 0 0 5mm; }
+.toc li { font-size: 9.5pt; padding: .3mm 0; }
+.toc a { color: #1a1a1a; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+<div class="cover">
+  <h1 style="border:none">Identity Engine</h1>
+  <div class="subtitle">Compiles The Brain&rsquo;s self into a boot kernel and a per-turn payload.</div>
+<div class="meta">Updated 2026-05-03 &middot; JustsCE/Brain</div>
+</div>
+
+<div class="toc"><h3>Contents</h3><ol><li><a href="#philosophy">Philosophy</a></li><li><a href="#inputs">Inputs</a></li><li><a href="#skills">Skills</a></li><li><a href="#stages">Stages</a></li><li><a href="#infrastructure">Infrastructure</a></li><li><a href="#logs">Logs</a></li><li><a href="#anti-lockout">Anti-lockout</a></li></ol></div>
+
+<h2 id="philosophy">Philosophy</h2>
+<blockquote>
+  <p><strong>The Identity Engine compiles The Brain&rsquo;s self into two payloads on every session.</strong></p>
+  <p><strong>One is the constant: who The Brain is. The other is the situational: what the current turn calls for.</strong></p>
+  <p><strong>No tool runs until the latest payload is published.</strong></p>
+</blockquote>
+<p>Every architectural decision in this document follows from those statements.</p>
+<p>Identity, voice, and emotional charges live as many small markdown files in three regions on disc. They cannot all fit in context every turn. The Identity Engine is the synthesizer: it picks the entries that matter right now, composes them into a single payload, and hands the result downstream. The skills implement this &mdash; one runs once at session start (constant kernel), the other runs once per turn, composing the situational slice that Decision reads alongside Recall&rsquo;s qualified set.</p>
+<p>The "no tool until published" property is mechanical. PreToolUse blocks the parent on the Decision Engine&rsquo;s hypothesis binaries; the Decision Engine cannot raise those without a current <code>active-identity.json</code>; therefore the parent literally cannot use any tool until Identity Relay finishes for this turn.</p>
+<hr>
+
+<h2 id="inputs">Inputs</h2>
+<p>The engine reads three memory regions for synthesis, one for lookups during scoring, plus a runtime signal.</p>
+<table><thead><tr><th>Source</th><th>Format</th><th>What is read</th></tr></thead><tbody>
+<tr><td><code>cortex/identity/L&lt;n&gt;/ID###.md</code></td><td>markdown with YAML frontmatter + body</td><td>Self-model facets. Boot reads L1&ndash;L4 (L4 dominates by score). Relay reads L1 / L2 / L3 (L4 already in kernel).</td></tr>
+<tr><td><code>cortex/broca/L&lt;n&gt;/BR###.md</code></td><td>markdown with YAML frontmatter + body</td><td>Emotional event chains. Same Boot/Relay split.</td></tr>
+<tr><td><code>cortex/amygdala/L&lt;n&gt;/AM###.md</code></td><td>markdown with YAML frontmatter + body</td><td>Current emotional charges. Same Boot/Relay split.</td></tr>
+<tr><td><code>cortex/fusiform/L&lt;n&gt;/FUS###.md</code></td><td>markdown with YAML frontmatter + body</td><td>Person lookup for <code>charge_bonus</code> (read-only; not a synthesis target)</td></tr>
+<tr><td><code>thalamus.json</code></td><td>JSON</td><td>Counter context for recency calculations</td></tr>
+<tr><td>Runtime signal</td><td>SessionStart event or current user message</td><td>Boot trigger or per-turn relevance signal</td></tr>
+</tbody></table>
+<p><strong>YAML.</strong> A simple key/value text format used for the metadata block at the top of each markdown entry. Lines like <code>id: ID042</code>, <code>strength: 4</code>, <code>tags: [doctrine, core]</code>. The frontmatter is fenced by <code>---</code> at the start and end. Everything below the closing fence is the body, plain prose.</p>
+<hr>
+
+<h2 id="skills">Skills</h2>
+<p>Two skills, same synthesis core, different cadence and scoring. Boot scores L1&ndash;L4 across identity / broca / amygdala (L4 dominates by <code>level_bonus</code>, but strong L3 / L2 sub-traits join the kernel as supporting structure). Relay scores L1&ndash;L3 only &mdash; L4 is mirrored from the kernel rather than re-scored. Both skills compose their final payload via a <code>claude -p --output-format json</code> subprocess wrapped by <code>engines._shared.cli_invoke()</code> &mdash; the same mechanism the Decision Engine uses. The CLI selects the model from the active subscription (typically Opus when available); no Anthropic API key is consumed.</p>
+
+<h3>Identity Boot &mdash; once per session</h3>
+<p><strong>Trigger:</strong> <code>SessionStart</code> hook. Boot runs synchronously inside the hook handler before the harness returns control to the assistant; the kernel reaches the parent as <code>additionalContext</code> on the very first turn.</p>
+<p><strong>Reads:</strong> <code>cortex/identity/{L1,L2,L3,L4}/</code>, <code>cortex/broca/{L1,L2,L3,L4}/</code>, <code>cortex/amygdala/{L1,L2,L3,L4}/</code>, <code>thalamus.json</code> (counter context).<br>
+<strong>Writes:</strong> <code>brain/boot-identity.md</code>.<br>
+<strong>Budget:</strong> 60 tool calls, 180 seconds. Score floor 1.5.</p>
+
+<p><strong>How it works:</strong></p>
+<ol>
+  <li><strong>Walk</strong> identity / broca / amygdala across L1&ndash;L4.</li>
+  <li><strong>Score</strong> each entry with the signals below. No relevance signal &mdash; there is no current message at session start.</li>
+  <li><strong>Rank</strong> descending. Drop entries below the 1.5 score floor.</li>
+  <li><strong>Compose</strong> the kernel via <code>claude -p --output-format json</code>: pass the ranked entries to the subagent, which produces a structured kernel grouped by region (L4 entries always at the top of each region group).</li>
+  <li><strong>Write</strong> the resulting <strong>IdentitySnapshot</strong> to <code>brain/boot-identity.md</code> as YAML frontmatter + body, and return the kernel as <code>additionalContext</code>.</li>
+</ol>
+
+<h4>Boot scoring signals</h4>
+<table><thead><tr><th>Signal</th><th>Formula</th><th>Cap</th></tr></thead><tbody>
+<tr><td><code>level_bonus</code></td><td>L1 +0.5, L2 +1.5, L3 +3.0, <strong>L4 +5.0</strong></td><td>+5.0</td></tr>
+<tr><td><code>recency_bonus</code></td><td>+1.0 if reinforced within last 5 cycles; +0.5 if within 20 cycles</td><td>+1.0</td></tr>
+<tr><td><code>strength_bonus</code></td><td>+0.3 per strength point</td><td>+2.0</td></tr>
+</tbody></table>
+<p>L4&rsquo;s +5.0 is intentionally above L3&rsquo;s +3.0 + the maximum recency + strength caps (1.0 + 2.0 = 3.0). Even a stale L4 entry with no recency / strength contribution outranks the most-recently-reinforced L3 entry. L4 = ratified core; everything else can support but cannot supplant.</p>
+
+<p><strong>Worked examples (Boot).</strong></p>
+<ul>
+  <li>An L4 facet, strength 10, reinforced 3 cycles ago: <code>level_bonus</code> +5.0 + <code>recency_bonus</code> +1.0 + <code>strength_bonus</code> +2.0 = <strong>8.0</strong>. Top of the kernel.</li>
+  <li>An L4 facet at strength 8, reinforced 50 cycles ago: <code>level_bonus</code> +5.0 + 0 + +2.0 = <strong>7.0</strong>. Still in the kernel; L4 alone is enough.</li>
+  <li>An L3 entry at strength 8, reinforced 3 cycles ago: <code>level_bonus</code> +3.0 + <code>recency_bonus</code> +1.0 + <code>strength_bonus</code> +2.0 = <strong>6.0</strong>. Joins the kernel as a strong sub-trait beneath L4.</li>
+  <li>An L1 facet at strength 1, reinforced 50 cycles ago: <code>level_bonus</code> +0.5 + 0 + +0.3 = <strong>0.8</strong>. Below the 1.5 floor; dropped.</li>
+</ul>
+
+<p>The kernel is small and slow-moving at the L4 layer (L4 promotion happens only on explicit ratification &mdash; User or Teacher) and adapts at the L3 / L2 layers as cortex synthesis runs. Session-over-session, the L4 spine is near-identical; the supporting layers drift with reinforcement.</p>
+
+<p><strong>Output schema (Boot IdentitySnapshot):</strong> markdown with YAML frontmatter holding <code>session_id</code>, <code>ts</code>, <code>kernel_size</code>, <code>source_hashes</code>, <code>model</code>, plus a body composed of three sections (Identity / Voice / Charges). Diagnostic; the actual delivery channel is the SessionStart hook return value.</p>
+
+<p><strong>Why not write to <code>CLAUDE.md</code>.</strong> CLAUDE.md is read by Claude Code at session start, before our hooks fire. If Boot wrote to CLAUDE.md, the change would appear in the NEXT session, not this one. The <code>additionalContext</code> path makes the kernel available immediately. <code>boot-identity.md</code> on disc is for diagnostics and the next-session warm-start path, not the delivery mechanism.</p>
+
+<h3>Identity Relay &mdash; every turn</h3>
+<p><strong>Trigger:</strong> Relay runs once per turn, before the Decision Engine composes its hypotheses. Decision reads Relay&rsquo;s output (<code>active-identity.json</code>) the same way it reads Recall&rsquo;s. Relay does not have its own hook handler.</p>
+<p><strong>Reads:</strong> <code>cortex/identity/{L1,L2,L3}/</code>, <code>cortex/broca/{L1,L2,L3}/</code>, <code>cortex/amygdala/{L1,L2,L3}/</code>, <code>cortex/fusiform/L&lt;n&gt;/</code> (FUS lookup for <code>charge_bonus</code>), current user message, <code>thalamus.json</code>, <code>boot-identity.md</code> (for the kernel mirror).<br>
+<strong>Writes:</strong> <code>navigation/active-identity.json</code>.<br>
+<strong>Budget:</strong> 60 tool calls, 60 seconds. Score floor 1.5.</p>
+
+<p><strong>How it works:</strong></p>
+<ol>
+  <li><strong>Walk</strong> identity / broca / amygdala across L1&ndash;L3 only. (L4 is excluded &mdash; already in the kernel.)</li>
+  <li><strong>Score</strong> each entry with the signals below.</li>
+  <li><strong>Rank</strong> descending. Drop entries below the 1.5 score floor.</li>
+  <li><strong>Synthesize</strong> the situational layer via <code>claude -p --output-format json</code>: pass the ranked entries to the subagent, which composes a single prose paragraph capturing the current voice / mood / situational concerns. The output is a synthesized read of what the brain&rsquo;s self is bringing to this turn &mdash; not a list of entry references.</li>
+  <li><strong>Write</strong> the resulting <strong>IdentitySnapshot</strong> to <code>navigation/active-identity.json</code>. The snapshot carries the L4 kernel (mirrored verbatim from <code>boot-identity.md</code>) AND the situational paragraph in one file.</li>
+</ol>
+
+<h4>Relay scoring signals</h4>
+<table><thead><tr><th>Signal</th><th>Formula</th><th>Cap</th></tr></thead><tbody>
+<tr><td><code>level_bonus</code></td><td>L1 +0.5, L2 +1.5, L3 +3.0 (folder = level)</td><td>+3.0</td></tr>
+<tr><td><code>recency_bonus</code></td><td>+1.0 if reinforced within last 5 cycles; +0.5 if within 20 cycles</td><td>+1.0</td></tr>
+<tr><td><code>strength_bonus</code></td><td>+0.3 per strength point</td><td>+2.0</td></tr>
+<tr><td><code>relevance_bonus</code></td><td>+2.0 if the entry shares terms with the current message (overlap coefficient against message tokens, threshold 0.25)</td><td>+2.0</td></tr>
+<tr><td><code>charge_bonus</code></td><td>+1.0 if amygdala entry has subject matching a person named in the current message (FUS### lookup)</td><td>+1.0</td></tr>
+</tbody></table>
+
+<p><strong>Worked examples (Relay).</strong></p>
+<ul>
+  <li>An L3 entry at strength 8, reinforced 3 cycles ago, in a turn that shares terms with its body: <code>level_bonus</code> +3.0 + <code>recency_bonus</code> +1.0 + <code>strength_bonus</code> +2.0 + <code>relevance_bonus</code> +2.0 = <strong>8.0</strong>. Strong contributor to the situational synthesis.</li>
+  <li>An L1 amygdala entry with <code>subject: FUS012</code>, in a turn where the user names that person: <code>level_bonus</code> +0.5 + <code>charge_bonus</code> +1.0 = 1.5. Just clears the floor &mdash; the charge is felt this turn.</li>
+  <li>An L1 broca entry, no recency, no relevance, no charge match: <code>level_bonus</code> +0.5 + <code>strength_bonus</code> +0.3 = <strong>0.8</strong>. Below the 1.5 floor; dropped.</li>
+</ul>
+
+<p><strong>Output schema (Relay IdentitySnapshot, JSON):</strong></p>
+<pre><code>{
+  "session_id":   "...",
+  "query_hash":   "sha256(lower(message))",
+  "ts":           "...",
+  "kernel":       [{"id": "ID-final-3", "title": "...", "gist": "..."}, ...],
+  "situational":  "...synthesized prose paragraph...",
+  "source_hashes": {"identity": "...", "broca": "...", "amygdala": "..."},
+  "model":         "claude-cli (subscription, no API key)"
+}</code></pre>
+
+<div style="background:#fff7ed; border:2px solid #c2410c; padding:5mm 7mm; margin:6mm 0; page-break-inside:avoid;">
+  <p style="margin:0 0 3mm; font-weight:700; color:#7c2d12; font-size:11.5pt;">
+    Mechanical enforcement &mdash; the gate that protects every turn
+  </p>
+  <p style="margin:0 0 3mm;">
+    Boot runs synchronously inside <code>SessionStart</code>; the kernel
+    reaches the parent as <code>additionalContext</code> on hook return and
+    is system-context for every turn of the session. Relay runs once per
+    turn before the Decision Engine composes &mdash; its output is what
+    Decision reads as <code>active-identity.json</code>. Until both payloads
+    are current, the parent cannot use any tool.
+  </p>
+  <p style="margin:0 0 2mm; font-weight:600;">The two enforcement points:</p>
+  <ol style="margin:0 0 4mm 6mm;">
+    <li><strong>SessionStart hook return.</strong> Boot runs inside the hook
+        handler; the harness waits on hook return before the assistant sees
+        its first message. The hook returns the kernel as
+        <code>additionalContext</code>; the kernel is in-context from
+        message 1.</li>
+    <li><strong>PreToolUse on <code>decision-hypothesis-{1..5}</code>.</strong>
+        The parent&rsquo;s tools stay blocked until all five hypothesis
+        binaries clear, and Decision will not clear them without a current
+        <code>active-identity.json</code>. Relay must publish before any
+        tool runs.</li>
+  </ol>
+</div>
+<hr>
+
+<h2 id="stages">Stages</h2>
+<p>Two lifecycles &mdash; one per session, one per turn.</p>
+
+<h3>Per-session lifecycle (Boot)</h3>
+<pre><code>T0   SessionStart fires.
+T1   Identity Boot reads cortex/{identity,broca,amygdala}/{L1,L2,L3,L4}/, thalamus.json.
+T2   Score + rank entries (L4 always tops); drop entries below the 1.5 floor.
+T3   claude -p subprocess composes the kernel from the ranked entries.
+T4   Write boot-identity.md.
+T5   SessionStart hook returns; kernel injected as additionalContext.
+T6   Assistant ready. Boot kernel is system context for every turn this session.</code></pre>
+
+<h3>Per-turn lifecycle (Relay)</h3>
+<pre><code>T0   UserPromptSubmit fires the Decision Engine skill.
+T1   Identity Relay launches for this turn.
+T2   Identity Relay reads cortex/identity/{L1,L2,L3}/, cortex/broca/{L1,L2,L3}/,
+     cortex/amygdala/{L1,L2,L3}/, cortex/fusiform/, current user message, boot-identity.md.
+T3   Score + rank L1-L3 entries; drop entries below the 1.5 floor.
+T4   claude -p subprocess synthesizes the situational paragraph from the ranked entries.
+T5   Write active-identity.json (kernel mirror + situational paragraph).
+T6   Decision Engine reads active-identity.json and proceeds.
+T7   PreToolUse gate releases when decision-hypothesis-{1..5} all clear; parent unblocked.</code></pre>
+<p>Worst case for either lifecycle: skill fails 3 times or runs past its budget; Anti-lockout covers the recovery (degraded but unblocked).</p>
+<hr>
+
+<h2 id="infrastructure">Infrastructure</h2>
+<p>Hooks, binaries, output artifacts.</p>
+
+<h3>Hooks (owned by the Identity Engine)</h3>
+<table><thead><tr><th>Hook event</th><th>Handler file</th><th>What it does</th></tr></thead><tbody>
+<tr><td><code>SessionStart</code></td><td><code>identity-engine/identity_boot.py</code></td><td>Run Boot synchronously: read cortex L1&ndash;L4, score, compose kernel via <code>claude -p</code>, write <code>boot-identity.md</code>, return kernel as <code>additionalContext</code>.</td></tr>
+</tbody></table>
+<p>Relay has no hook handler &mdash; it is invoked by the Decision Engine skill as a Python thread, not a registered hook event.</p>
+
+<h3>Binaries</h3>
+<table><thead><tr><th>Binary</th><th>Trigger to raise (<code>1</code>)</th><th>Cleared by</th></tr></thead><tbody>
+<tr><td><code>identity-boot-failed</code></td><td>3 consecutive Boot failures</td><td>Next <code>UserPromptSubmit</code> (auto-recovery)</td></tr>
+<tr><td><code>identity-relay-failed</code></td><td>3 consecutive Relay failures</td><td>Next <code>UserPromptSubmit</code> (auto-recovery)</td></tr>
+<tr><td><code>identity-boot-timeout</code></td><td>Boot exceeds 180s</td><td>Next <code>UserPromptSubmit</code> (auto-recovery)</td></tr>
+<tr><td><code>identity-relay-timeout</code></td><td>Relay exceeds 60s</td><td>Next <code>UserPromptSubmit</code> (auto-recovery)</td></tr>
+</tbody></table>
+<p>No <em>pending</em> binary surface &mdash; Boot is gated by SessionStart hook-return semantics; Relay is gated transitively by the Decision Engine&rsquo;s <code>decision-hypothesis-{1..5}</code> binaries on PreToolUse. Failure binaries above are the only Identity-owned binaries.</p>
+
+<h3>Output artifacts</h3>
+<ul>
+  <li><code>brain/boot-identity.md</code> &mdash; constant per session. Loaded as system context.</li>
+  <li><code>navigation/active-identity.json</code> &mdash; refreshed per turn. Consumed by the Decision Engine.</li>
+</ul>
+<hr>
+
+<h2 id="logs">Logs</h2>
+<p>All events go to <code>logger/identity/</code> via <code>logger/api.py::write_identity_log</code>. Append-only.</p>
+<table><thead><tr><th>Event</th><th>Payload</th><th>Purpose</th></tr></thead><tbody>
+<tr><td><code>boot_start</code></td><td><code>ts, session_id</code></td><td>SessionStart fired</td></tr>
+<tr><td><code>boot_complete</code></td><td><code>ts, session_id, latency_ms, entries_picked, tokens_used</code></td><td>Boot synthesis done</td></tr>
+<tr><td><code>relay_start</code></td><td><code>ts, session_id, query_hash</code></td><td>Relay started for this turn</td></tr>
+<tr><td><code>relay_complete</code></td><td><code>ts, session_id, query_hash, latency_ms, entries_picked, tokens_used</code></td><td>Relay synthesis done</td></tr>
+<tr><td><code>boot_failed</code></td><td><code>ts, session_id, attempt, reason</code></td><td>Boot failed (counts toward 3-strike)</td></tr>
+<tr><td><code>relay_failed</code></td><td><code>ts, session_id, query_hash, attempt, reason</code></td><td>Relay failed (counts toward 3-strike)</td></tr>
+<tr><td><code>identity_timeout</code></td><td><code>ts, skill, latency_ms</code></td><td>Budget blew</td></tr>
+</tbody></table>
+<p>Joining on <code>session_id</code> reconstructs a session&rsquo;s identity history. Joining on <code>query_hash</code> joins per-turn trajectories with other engines&rsquo; logs.</p>
+<hr>
+
+<h2 id="anti-lockout">Anti-lockout</h2>
+<p>Three protections, all simple. Worst case the session continues without a kernel or the turn continues without active-identity (degraded), never locked out.</p>
+<table><thead><tr><th>Protection</th><th>What it does</th></tr></thead><tbody>
+<tr><td>Three-strike forgiveness</td><td>After 3 consecutive failures of either skill, the corresponding <code>*-failed</code> binary fires. The next <code>UserPromptSubmit</code> clears all Identity binaries.</td></tr>
+<tr><td>Per-skill timeout</td><td>Boot 180s &rarr; <code>identity-boot-timeout.bin = 1</code>. Relay 60s &rarr; <code>identity-relay-timeout.bin = 1</code>. Cleared on the next <code>UserPromptSubmit</code>.</td></tr>
+<tr><td>SessionStart reset</td><td>All Identity binaries written to <code>0</code> at session start.</td></tr>
+</tbody></table>
+<p>Every fallback writes a log line so the failure mode is always visible.</p>
+
+</div>
+</body>
+</html>

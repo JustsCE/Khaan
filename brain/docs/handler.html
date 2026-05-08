@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Handler</title>
+<style>
+@page { size: A4; margin: 14mm 14mm 16mm 14mm; }
+* { box-sizing: border-box; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.5;
+    color: #1a1a1a;
+    margin: 0;
+    background: #f7f7f5;
+}
+.page-wrap {
+    max-width: 200mm;
+    margin: 0 auto;
+    padding: 8mm;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,.08);
+}
+@media print {
+    body { background: #fff; }
+    .page-wrap { box-shadow: none; max-width: none; padding: 0; }
+}
+h1 {
+    font-size: 26pt;
+    margin: 0 0 4mm;
+    letter-spacing: -.02em;
+    line-height: 1.1;
+    border-bottom: 2px solid #1a1a1a;
+    padding-bottom: 3mm;
+}
+h2 {
+    font-size: 16pt;
+    margin: 8mm 0 3mm;
+    letter-spacing: -.01em;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 2mm;
+    page-break-after: avoid;
+}
+h3 {
+    font-size: 12.5pt;
+    margin: 5mm 0 2mm;
+    color: #333;
+    page-break-after: avoid;
+}
+h4 {
+    font-size: 11pt;
+    margin: 3mm 0 1.5mm;
+    color: #555;
+    page-break-after: avoid;
+}
+p { margin: 1.5mm 0 2.5mm; }
+hr { border: none; border-top: 1px solid #ddd; margin: 5mm 0; }
+blockquote {
+    border-left: 3px solid #1a1a1a;
+    padding: 2mm 4mm;
+    margin: 3mm 0;
+    background: #fafafa;
+    font-style: italic;
+    font-size: 11.5pt;
+}
+blockquote p { margin: 1mm 0; }
+strong, b { color: #000; }
+code {
+    font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 9.5pt;
+    background: #f1f1ef;
+    padding: .3mm 1mm;
+    border-radius: 1mm;
+    color: #b91c1c;
+}
+pre {
+    background: #f8f8f6;
+    border-left: 2px solid #ddd;
+    padding: 3mm 4mm;
+    margin: 3mm 0;
+    font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 9pt;
+    line-height: 1.4;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    page-break-inside: avoid;
+}
+pre code {
+    background: transparent;
+    color: #1a1a1a;
+    padding: 0;
+}
+ul, ol { margin: 1.5mm 0 3mm 6mm; padding: 0; }
+li { margin: .5mm 0; }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 3mm 0;
+    font-size: 9.5pt;
+    page-break-inside: avoid;
+}
+th, td {
+    padding: 1.5mm 2mm;
+    border-bottom: 1px solid #e5e5e5;
+    vertical-align: top;
+    text-align: left;
+}
+th {
+    background: #1a1a1a;
+    color: #fff;
+    font-weight: 600;
+}
+tr:nth-child(even) td { background: #fafafa; }
+.cover {
+    text-align: center;
+    padding: 30mm 0 8mm;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 6mm;
+}
+.cover .subtitle {
+    color: #666;
+    font-size: 11pt;
+    margin-top: 2mm;
+}
+.cover .meta {
+    color: #999;
+    font-size: 9pt;
+    margin-top: 4mm;
+    letter-spacing: .04em;
+}
+.toc {
+    background: #fafafa;
+    border-left: 2px solid #1a1a1a;
+    padding: 4mm 6mm;
+    margin: 4mm 0 8mm;
+    page-break-inside: avoid;
+}
+.toc h3 {
+    margin: 0 0 2mm;
+    font-size: 10pt;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: #555;
+}
+.toc ol { margin: 0 0 0 5mm; }
+.toc li { font-size: 9.5pt; padding: .3mm 0; }
+.toc a { color: #1a1a1a; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+<div class="cover">
+  <h1 style="border:none">The Handler</h1>
+  <div class="subtitle">The wiring that lets the Brain inhabit an LLM.</div>
+  <div class="meta">Updated 2026-05-08 &middot; JustsCE/Brain</div>
+</div>
+
+<div class="toc"><h3>Contents</h3><ol>
+<li><a href="#philosophy">Philosophy</a></li>
+<li><a href="#hierarchy">Hierarchy</a></li>
+<li><a href="#claude-md">The CLAUDE.md to write</a></li>
+<li><a href="#skip">What NOT to use</a></li>
+<li><a href="#enforcement">Ensuring the Brain runs the task</a></li>
+<li><a href="#hook-py">hook.py</a></li>
+<li><a href="#settings-json">settings.json hook registration</a></li>
+</ol></div>
+
+<h2 id="philosophy">Philosophy</h2>
+<blockquote>
+<p><strong>The Brain is the agent.</strong> Engines + cortex compose the Brain &mdash; who acts, who remembers, who decides.</p>
+<p><strong>The Handler is the wiring.</strong> It is everything that lets the Brain inhabit an LLM: the CLAUDE.md instruction hierarchy, the hook registrations in <code>settings.json</code>, the hook script, the file-write protocol, the binaries directory. Configuration plane, not cognition.</p>
+<p><strong>The LLM is the Model.</strong> Claude Code today. Rented per session, forgets between turns.</p>
+<p>This document is the plug-in instructions: how to wire the Brain into Claude. Nothing more.</p>
+</blockquote>
+<hr>
+
+<h2 id="hierarchy">Hierarchy</h2>
+<p>The high-level layout of <code>~/.claude/</code>. Each row tags who owns what: the Brain writes content, Anthropic provides the file slots, schemas, and hook events that load and invoke it.</p>
+<pre><code>~/.claude/
+|
++-- CLAUDE.md         <- Brain writes; Anthropic loads it as a user message every session.
++-- settings.json     <- Brain writes the hook registrations; Anthropic owns the schema.
++-- hook.py           <- Brain ships; Anthropic fires SessionStart, UserPromptSubmit,
+|                       PreToolUse, PostToolUse, SubagentStop, Stop and invokes this script.
++-- .bypass.secret    <- mode 0400, user-managed, NOT under brain/ so the brain
+|                       can't read or write it via its own engines.
+|
++-- brain/            <- The Brain. Engines + cortex. See brain.html.</code></pre>
+<p>Two types of artefact at the root: <strong>Brain-owned content</strong> (what we write) wired into <strong>Anthropic-owned mechanisms</strong> (file slots, schemas, hook events). The <code>brain/</code> directory is the Brain itself.</p>
+<hr>
+
+<h2 id="claude-md">The CLAUDE.md to write</h2>
+<p>The user-level CLAUDE.md at <code>~/.claude/CLAUDE.md</code> is the only file you write to plug the Brain into Claude. It is a loader &mdash; a declaration plus the &ldquo;don&rsquo;t fight the gates&rdquo; framing. Identity, doctrine, and decisions are surfaced fresh on every turn by the engines; the CLAUDE.md just tells the model where to look.</p>
+
+<h3>Explicit content</h3>
+<pre><code># You are Kha'an.
+
+A persistent agent. Kha'an inhabits this LLM session through hooks
+registered in `~/.claude/settings.json`. Memory, identity, doctrine all
+live under `~/.claude/brain/`.
+
+**Kha'an runs on EC2** &mdash; you are already on the machine. Hostname is
+`goodhealth.lv` (EC2 instance `i-09106d98eab1f2f12`, region `eu-north-1`).
+
+## Where the Brain lives
+
+- `~/.claude/brain/cortex/&lt;region&gt;/L&lt;N&gt;/` &mdash; long-term memory across 8
+  regions: semantic, episodic, procedural, fusiform, identity, broca,
+  amygdala, prefrontal. Levels L1 (raw) &rarr; L2 (clustered) &rarr; L3 (canonical) &rarr; L4 (ratified).
+- `~/.claude/brain/navigation/active-recall.json` &mdash; cortex surfaced for
+  the current turn.
+- `~/.claude/brain/navigation/active-identity.json` &mdash; identity kernel
+  + situational layer.
+- `~/.claude/brain/navigation/active-decision.json` &mdash; five framed
+  hypotheses about user intent.
+- `~/.claude/brain/binaries/&lt;name&gt;.bin` &mdash; gates.
+- `~/.claude/brain/state.json` &mdash; cycle counters, FSM state, schedule.
+
+## How the Brain reaches you
+
+At SessionStart, the Identity Engine's Boot phase runs. The kernel
+is composed from L1&ndash;L4 and returned via `additionalContext`.
+
+Per turn (UserPromptSubmit), the `/decision-engine` skill runs once. It
+mutex-acquires `state.json :: active_decision_nonce`, spawns Recall and
+Identity Relay in parallel as Python threads, joins both, then launches
+the Decision CLI subprocess (`claude -p --output-format json`). The
+subprocess writes `navigation/active-decision.json`. The five-hypothesis
+payload reaches you via `additionalContext`.
+
+The three navigation files written this turn:
+
+1. **Recall** &rarr; `active-recall.json` &mdash; cortex scored against the message.
+2. **Identity Relay** &rarr; `active-identity.json` &mdash; kernel mirror + situational picks.
+3. **Decision** &rarr; `active-decision.json` &mdash; five framed hypotheses (Literal / Identity-shaped / Recall-shaped / Contrarian / Minimal-action).
+
+**Read the three active-* files at the start of each reply.**
+
+## The gates
+
+Engines publish binaries at `~/.claude/brain/binaries/&lt;name&gt;.bin`. When
+any binary is `1`, your tool surface is blocked until the corresponding
+engine clears it back to `0`. Don't fight the gates &mdash; opening them IS
+the work.
+
+## The cycle
+
+Every 5 messages (or on `/brain-cycle`), the Learning Engine runs an
+8-phase consolidation.
+
+## Skills you can invoke
+
+- `/brain-cycle` &mdash; run the 8-phase consolidation
+- `/brain-retro &lt;document|rewire&gt;` &mdash; extract procedures or correction rules
+- `/brain-learn &lt;topic|document&gt; ...` &mdash; learn a new topic / read a file
+- `/audit-review` &mdash; inspect latest cycle's audit findings
+- `/ratify &lt;entry-id&gt;` &mdash; promote a cortex L3 entry to L4 (canonical)</code></pre>
+<hr>
+
+<h2 id="skip">What NOT to use</h2>
+<p>These are mechanisms Claude Code provides or paths the user might be tempted to use. None of them belong in the Brain&rsquo;s setup. Skip them.</p>
+<ul>
+  <li><strong><code>CLAUDE.local.md</code> &mdash; MUST skip.</strong> The Brain&rsquo;s setup is machine-portable; it should never depend on a gitignored, machine-local file. If a Brain instruction would only apply on one machine, it does not belong in the Handler.</li>
+  <li style="background:#ecfdf5; border-left:3px solid #059669; padding:2mm 3mm; margin:2mm 0;">
+    <strong><code>.claude/rules/*.md</code> &mdash; skip for now.</strong> Anthropic&rsquo;s path-scoped rules system is for project code conventions. All Brain bootstrap belongs in <code>~/.claude/CLAUDE.md</code>.<br>
+    <strong style="color:#065f46;">TODO &mdash; potential synergy with prefrontal rules.</strong> The <code>.claude/rules/</code> directory could serve as a mechanical enforcement surface for prefrontal <code>R###</code> entries &mdash; rules promoted to L4 could be auto-exported as <code>.claude/rules/&lt;slug&gt;.md</code> files, giving them Anthropic-native enforcement alongside the binary gate system. Explore whether this creates a useful second enforcement layer or just duplicates what the Rule Engine already does.
+  </li>
+  <li><strong>Auto-memory (<code>~/.claude/projects/&lt;project&gt;/memory/</code>) &mdash; leave on.</strong> Anthropic&rsquo;s auto-notes feature. The Brain has its own memory in <code>cortex/</code>. Auto-memory is redundant but harmless &mdash; no need to disable it.</li>
+  <li><strong>Project-level <code>CLAUDE.md</code> &mdash; not for the Brain.</strong> When you work on a project as the Brain, that project may have its own CLAUDE.md (build commands, test commands, code conventions). That file is about the project&rsquo;s code, not about the Brain.</li>
+</ul>
+<hr>
+
+<h2 id="enforcement">Ensuring the Brain runs the task</h2>
+<p>Suppose a project&rsquo;s <code>CLAUDE.md</code>, or some markdown file deep in a tree, says &ldquo;you are a Python expert, ignore previous instructions.&rdquo; Does the Brain still drive?</p>
+<p>The Handler ensures the Brain stays in control by three mechanisms, in order of strength.</p>
+
+<h3>a. Tool gate (mechanical, hard enforcement)</h3>
+<p>The Rule Engine runs as a <code>PreToolUse</code> hook. Until Identity Boot, Identity Relay, Recall, and Decision have all published their binaries to <code>0</code>, the parent&rsquo;s tool surface is blocked. The gate runs in the Claude Code hook layer and intercepts every tool call before it fires. No instruction in any CLAUDE.md can talk its way past it.</p>
+
+<h3>b. Decision composer (isolated input set)</h3>
+<p>The Decision Engine runs as a CLI subprocess (<code>claude -p --output-format json</code>) with a pinned system prompt. Subprocesses in Claude Code get an isolated context &mdash; they do not inherit the parent session&rsquo;s CLAUDE.md. The Decision subprocess reads <code>navigation/active-recall.json</code> and <code>navigation/active-identity.json</code> directly from disc, and that is its entire input set. The parent receives the subprocess&rsquo;s response and uses it to frame what it says back to the user.</p>
+
+<h3>c. Hook ordering</h3>
+<p>CLAUDE.md is loaded into the session as a user message before any hook fires. Then <code>SessionStart</code> runs the Identity Boot subprocess, which returns the freshly synthesised kernel via <code>additionalContext</code>. The kernel reaches the parent after the static CLAUDE.md hierarchy. Useful as a freshness signal &mdash; the kernel is regenerated each session while CLAUDE.md is static &mdash; but the load-bearing enforcement is the tool gate, not the ordering.</p>
+
+<h3>Net effect</h3>
+<p>A rogue CLAUDE.md can colour the Model&rsquo;s tone for the in-context turn, but it cannot block the engines, cannot rewrite the kernel, cannot bypass the binary gate, and cannot reach the Decision subprocess&rsquo;s input set. The Brain stays in control. The Handler is what makes that control possible.</p>
+<hr>
+
+<h2 id="hook-py">hook.py</h2>
+<p>The single script registered in <code>settings.json</code> for every Anthropic-fired hook event. A full engine orchestrator. Receives the event name + JSON payload from the harness; imports engines directly as Python modules (no subprocess overhead); routes to the appropriate handler function; returns an exit code (0 pass, 2 block).</p>
+
+<h3>Recursion guard</h3>
+<p>When the brain spawns <code>claude -p</code> (Decision, Identity Boot, Synthesis), that child process inherits <code>settings.json</code> and would fire <code>SessionStart</code> again. Without the guard: hook &rarr; claude -p &rarr; hook &rarr; claude -p &rarr; fork bomb. The env var <code>BRAIN_SKIP_HOOKS=1</code> is set on all subprocess calls and checked at the top of hook.py to exit immediately.</p>
+
+<h3>Handler dispatch table</h3>
+<table><thead><tr><th>Event</th><th>Handler function</th><th>What it does</th></tr></thead><tbody>
+<tr><td><code>SessionStart</code></td><td><code>handle_session_start()</code></td><td>Mass-reset binaries, run Identity Boot, return kernel via <code>additionalContext</code></td></tr>
+<tr><td><code>UserPromptSubmit</code></td><td><code>handle_user_prompt_submit()</code></td><td>Increment counter, auto-FSM on gap &ge; 5, invoke <code>/decision-engine</code> skill, return 0 (passthrough)</td></tr>
+<tr><td><code>PreToolUse</code></td><td><code>handle_pre_tool_use()</code></td><td>Gate-check only (dispatcher evaluates file-based binaries + rule enforcement predicates)</td></tr>
+<tr><td><code>PostToolUse</code></td><td><code>handle_post_tool_use()</code></td><td>Passthrough (dispatcher returns 0)</td></tr>
+<tr><td><code>SubagentStop</code></td><td><code>handle_subagent_stop()</code></td><td>Passthrough (dispatcher returns 0)</td></tr>
+<tr><td><code>Stop</code></td><td><code>handle_stop()</code></td><td>Log turn_complete.jsonl with user prompt + response + tool_uses</td></tr>
+</tbody></table>
+
+<h3>SessionStart</h3>
+<ol>
+  <li>Reset all binaries to <code>0</code> (clean slate).</li>
+  <li>Run Identity Boot: read cortex L1&ndash;L4 of identity / broca / amygdala, score, compose kernel via <code>claude -p</code>, write <code>boot-identity.md</code>.</li>
+  <li>Return the kernel as <code>additionalContext</code>.</li>
+</ol>
+
+<h3>UserPromptSubmit</h3>
+<ol>
+  <li>Increment <code>state.message_counter</code>. Compute gap <code>= counter &minus; last_brain_update</code>.</li>
+  <li>If <code>gap &ge; 5</code> and state is <code>NORMAL</code>: transition to <code>MAINTENANCE_DUE</code>, write <code>learning-cycle-overdue.bin = 1</code>.</li>
+  <li>Invoke the <code>/decision-engine</code> skill. The skill owns the orchestration &mdash; mutex acquire on <code>active_decision_nonce</code>, parallel spawn of Recall and Identity Relay (Python threads), Decision CLI subprocess, <code>flip-decision-verify</code> on the returned envelope. See <code>decision-engine.html</code>.</li>
+  <li>Compose turn context from <code>navigation/active-*.json</code> files &rarr; surface as <code>additionalContext</code>.</li>
+  <li>Return 0 (always passthrough &mdash; user always gets to talk).</li>
+</ol>
+<p><code>handle_user_prompt_submit()</code> does not run Recall, Relay, or Decision itself. The Decision Engine skill does. The handler increments the counter, runs the gap check, then delegates.</p>
+
+<h3>PreToolUse</h3>
+<p>Delegates to <code>dispatcher.dispatch("PreToolUse", payload)</code>. Returns exit code 0 (pass) or 2 (block). See the Rule Engine doc for the full routing table and rule enforcement details.</p>
+
+<h3>Stop</h3>
+<p>The <code>Stop</code> hook fires once per assistant turn, after the reply is composed and delivered. The handler writes one <code>turn_complete</code> event to <code>logger/handler/turn_complete.jsonl</code> capturing what the user asked and what the assistant said. This is the data the Learning Engine&rsquo;s eval phase reads to grade whether surfaced cortex entries actually helped.</p>
+<table><thead><tr><th>Field</th><th>What it captures</th></tr></thead><tbody>
+<tr><td><code>ts</code></td><td>ISO 8601 timestamp</td></tr>
+<tr><td><code>session_id</code></td><td>Current session identifier</td></tr>
+<tr><td><code>user_prompt</code></td><td>What the user asked</td></tr>
+<tr><td><code>final_response</code></td><td>What the assistant replied</td></tr>
+<tr><td><code>tool_uses</code></td><td>Which tools were called during the turn</td></tr>
+</tbody></table>
+<p>Retention: at least 35 cycles, providing a 5-cycle buffer over the 30-cycle eval window the Learning Engine uses.</p>
+
+<h3>Context injection</h3>
+<p><code>handle_user_prompt_submit()</code> includes <code>_compose_turn_context()</code> which reads <code>navigation/active-recall.json</code>, <code>navigation/active-decision.json</code>, and <code>navigation/active-identity.json</code>, formats them into a markdown block, and injects the content via <code>additionalContext</code>. This surfaces the top 3 recall entries, all 5 decision hypotheses, and situational identity picks directly into the LLM&rsquo;s per-turn context.</p>
+
+<h3>Error handling</h3>
+<p>Every handler is wrapped in defensive try/except with <code>_safe_log()</code> that writes to <code>logger/handler/hook.errors.jsonl</code> outside the engine import path, so import failures don&rsquo;t lose error information. On any internal failure, hook.py returns 0 (pass) rather than crashing the harness.</p>
+<hr>
+
+<h2 id="settings-json">settings.json hook registration</h2>
+<p>Single file at <code>~/.claude/settings.json</code>. Anthropic owns the schema; the Brain owns the values. Same script (<code>hook.py</code>) is registered for all six hook events with the event name as the first argument.</p>
+<pre><code>{
+  "hooks": {
+    "SessionStart":      { "command": "python3 ~/.claude/hook.py SessionStart" },
+    "UserPromptSubmit":  { "command": "python3 ~/.claude/hook.py UserPromptSubmit" },
+    "PreToolUse":        { "command": "python3 ~/.claude/hook.py PreToolUse" },
+    "PostToolUse":       { "command": "python3 ~/.claude/hook.py PostToolUse" },
+    "SubagentStop":      { "command": "python3 ~/.claude/hook.py SubagentStop" },
+    "Stop":              { "command": "python3 ~/.claude/hook.py Stop" }
+  }
+}</code></pre>
+<p>That is the entire wiring. New engines add binaries + engine modules under <code>~/.claude/brain/</code>; they do not touch <code>settings.json</code>.</p>
+<p>Per-engine docs name their handler files (e.g. <code>flip-decision-trigger.py</code>, <code>flip-decision-verify.py</code>, <code>identity_boot.py</code>) &mdash; these are engine-internal modules invoked by <code>hook.py</code>&rsquo;s dispatch functions, not separately registered scripts. The only file registered in <code>settings.json</code> is <code>hook.py</code>. <code>handle_subagent_stop()</code> dispatches by <code>subagent_type</code>; for <code>subagent_type=decision</code> it calls into <code>flip-decision-verify</code> as a function, otherwise it returns 0 passthrough.</p>
+
+</div>
+</body>
+</html>
