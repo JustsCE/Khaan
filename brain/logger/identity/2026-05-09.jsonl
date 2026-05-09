@@ -91,3 +91,4 @@
 {"event": "identity_timeout", "ts": "2026-05-09T17:10:47Z", "skill": "relay", "latency_ms": 60054}
 {"event": "relay_start", "ts": "2026-05-09T17:13:44Z", "session_id": "", "query_hash": "9222d91cc64b3ae8"}
 {"event": "relay_failed", "ts": "2026-05-09T17:14:19Z", "session_id": "", "query_hash": "9222d91cc64b3ae8", "attempt": 1, "reason": "Expecting value: line 1 column 1 (char 0)"}
+{"event": "relay_failed", "ts": "2026-05-09T17:14:48Z", "session_id": "", "query_hash": "9222d91cc64b3ae8", "attempt": 2, "reason": "Expecting value: line 1 column 1 (char 0)"}

@@ -1,5 +1,5 @@
 {
-  "cycleCount": 5,
+  "cycleCount": 6,
   "nextIds": {
     "H": 1,
     "S": 81,
@@ -12,7 +12,7 @@
     "R": 161
   },
   "schedule": {
-    "last_promotion_scan_cycle": 5,
+    "last_promotion_scan_cycle": 6,
     "last_eval_cycle": 0,
     "last_hygiene_cycle": 0
   },
