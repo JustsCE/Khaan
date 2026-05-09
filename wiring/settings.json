@@ -7,11 +7,68 @@
     ]
   },
   "hooks": {
-    "SessionStart":     { "command": "python3 ~/.claude/hook.py SessionStart" },
-    "UserPromptSubmit": { "command": "python3 ~/.claude/hook.py UserPromptSubmit" },
-    "PreToolUse":       { "command": "python3 ~/.claude/hook.py PreToolUse" },
-    "PostToolUse":      { "command": "python3 ~/.claude/hook.py PostToolUse" },
-    "SubagentStop":     { "command": "python3 ~/.claude/hook.py SubagentStop" },
-    "Stop":             { "command": "python3 ~/.claude/hook.py Stop" }
-  }
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hook.py SessionStart"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hook.py UserPromptSubmit"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hook.py PreToolUse"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hook.py PostToolUse"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hook.py SubagentStop"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hook.py Stop"
+          }
+        ]
+      }
+    ]
+  },
+  "skipDangerousModePermissionPrompt": true
 }
