@@ -235,7 +235,7 @@ tr:nth-child(even) td { background: #fafafa; }
   <li><strong>Score</strong> each entry with the signals below.</li>
   <li><strong>Rank</strong> descending. Drop entries below the 1.5 score floor.</li>
   <li><strong>Synthesize</strong> the situational layer via <code>claude -p --output-format json</code>: pass the ranked entries to the subagent, which composes a single prose paragraph capturing the current voice / mood / situational concerns. The output is a synthesized read of what the brain&rsquo;s self is bringing to this turn &mdash; not a list of entry references.</li>
-  <li><strong>Write</strong> the resulting <strong>IdentitySnapshot</strong> to <code>navigation/active-identity.json</code>. The snapshot carries the L4 kernel (mirrored verbatim from <code>boot-identity.md</code>) AND the situational paragraph in one file.</li>
+  <li><strong>Write</strong> the resulting <strong>IdentitySnapshot</strong> to <code>navigation/active-identity.json</code>. The snapshot carries only the situational paragraph &mdash; the kernel lives in <code>boot-identity.md</code> and is read directly from there by any consumer that needs it (the Relay subagent itself reads it to compose the situational extension, so nothing is repeated).</li>
 </ol>
 
 <h4>Relay scoring signals</h4>
@@ -259,7 +259,6 @@ tr:nth-child(even) td { background: #fafafa; }
   "session_id":   "...",
   "query_hash":   "sha256(lower(message))",
   "ts":           "...",
-  "kernel":       [{"id": "ID-final-3", "title": "...", "gist": "..."}, ...],
   "situational":  "...synthesized prose paragraph...",
   "source_hashes": {"identity": "...", "broca": "...", "amygdala": "..."},
   "model":         "claude-cli (subscription, no API key)"

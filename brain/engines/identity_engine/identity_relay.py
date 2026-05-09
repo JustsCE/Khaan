@@ -72,7 +72,6 @@ Return JSON only:
                 "session_id": "",
                 "query_hash": query_hash,
                 "ts": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-                "kernel": kernel_mirror,
                 "situational": situational,
                 "source_hashes": source_hashes,
                 "model": "claude-cli (subscription, no API key)"

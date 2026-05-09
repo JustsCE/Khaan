@@ -124,12 +124,10 @@ def _compose_turn_context():
                         parts.append(f"- **{e.get('id', '')}**: {e.get('gist', '')}\n")
                     parts.append("\n")
                 elif name == "active-identity.json":
-                    parts.append("## Identity\n")
-                    for k in data.get("kernel", []) or []:
-                        parts.append(f"- **{k.get('id', '')}** ({k.get('region', '')}/{k.get('level', '')}): {k.get('gist', k.get('title', ''))}\n")
                     sit = data.get("situational", "")
                     if sit:
-                        parts.append(f"\n{sit}\n\n")
+                        parts.append("## Identity\n")
+                        parts.append(f"{sit}\n\n")
             except Exception:
                 pass
     return "".join(parts) if parts else None
