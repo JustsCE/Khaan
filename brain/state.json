@@ -1,0 +1,15 @@
+{
+  "fsm": "NORMAL",
+  "message_counter": 10,
+  "last_brain_update": 10,
+  "active_decision_nonce": null,
+  "last_decision_start_ts": 1778322625.022148,
+  "decision_consecutive_failures": 0,
+  "active_cycle_nonce": "163e64172005eb27999e5439a23f7b6d",
+  "escalation_count": 0,
+  "last_session_start": null,
+  "last_transition": null,
+  "last_cycle_end_ts": 1778330856.7932842,
+  "last_cycle_outcome": "success",
+  "bypass_expiry": {}
+}

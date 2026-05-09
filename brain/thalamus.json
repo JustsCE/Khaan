@@ -1,0 +1,43 @@
+{
+  "cycleCount": 2,
+  "nextIds": {
+    "H": 1,
+    "S": 81,
+    "E": 95,
+    "PR": 164,
+    "FUS": 12,
+    "ID": 24,
+    "BR": 17,
+    "AM": 16,
+    "R": 161
+  },
+  "schedule": {
+    "last_promotion_scan_cycle": 2,
+    "last_eval_cycle": 0,
+    "last_hygiene_cycle": 0
+  },
+  "config": {
+    "level_thresholds": {
+      "L2": 5,
+      "L3": 8
+    },
+    "synthesis": {
+      "cohesion": 0.4,
+      "cluster_size": {
+        "min": 2,
+        "max": 8
+      }
+    },
+    "decay": {
+      "miss_rate": 0.8,
+      "sample_size": 10
+    },
+    "cycle": {
+      "gap": 5
+    },
+    "eval": {
+      "window": 30,
+      "retention": 35
+    }
+  }
+}

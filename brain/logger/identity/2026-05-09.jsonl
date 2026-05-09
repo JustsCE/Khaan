@@ -1,0 +1,32 @@
+{"event": "relay_start", "ts": "2026-05-09T10:26:05Z", "session_id": "", "query_hash": "e3b0c44298fc1c14"}
+{"event": "relay_failed", "ts": "2026-05-09T10:26:07Z", "session_id": "", "query_hash": "e3b0c44298fc1c14", "attempt": 1, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "relay_failed", "ts": "2026-05-09T10:26:08Z", "session_id": "", "query_hash": "e3b0c44298fc1c14", "attempt": 2, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "relay_failed", "ts": "2026-05-09T10:26:09Z", "session_id": "", "query_hash": "e3b0c44298fc1c14", "attempt": 3, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "relay_start", "ts": "2026-05-09T10:27:10Z", "session_id": "", "query_hash": "e3b0c44298fc1c14"}
+{"event": "relay_failed", "ts": "2026-05-09T10:27:12Z", "session_id": "", "query_hash": "e3b0c44298fc1c14", "attempt": 1, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "relay_failed", "ts": "2026-05-09T10:27:13Z", "session_id": "", "query_hash": "e3b0c44298fc1c14", "attempt": 2, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "relay_failed", "ts": "2026-05-09T10:27:14Z", "session_id": "", "query_hash": "e3b0c44298fc1c14", "attempt": 3, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "relay_start", "ts": "2026-05-09T10:27:42Z", "session_id": "", "query_hash": "e3b0c44298fc1c14"}
+{"event": "relay_failed", "ts": "2026-05-09T10:27:44Z", "session_id": "", "query_hash": "e3b0c44298fc1c14", "attempt": 1, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "relay_failed", "ts": "2026-05-09T10:27:46Z", "session_id": "", "query_hash": "e3b0c44298fc1c14", "attempt": 2, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "relay_failed", "ts": "2026-05-09T10:27:48Z", "session_id": "", "query_hash": "e3b0c44298fc1c14", "attempt": 3, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "relay_start", "ts": "2026-05-09T10:28:15Z", "session_id": "", "query_hash": "e3b0c44298fc1c14"}
+{"event": "relay_failed", "ts": "2026-05-09T10:28:16Z", "session_id": "", "query_hash": "e3b0c44298fc1c14", "attempt": 1, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "relay_failed", "ts": "2026-05-09T10:28:18Z", "session_id": "", "query_hash": "e3b0c44298fc1c14", "attempt": 2, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "relay_failed", "ts": "2026-05-09T10:28:19Z", "session_id": "", "query_hash": "e3b0c44298fc1c14", "attempt": 3, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "relay_start", "ts": "2026-05-09T10:28:59Z", "session_id": "", "query_hash": "e3b0c44298fc1c14"}
+{"event": "relay_failed", "ts": "2026-05-09T10:29:00Z", "session_id": "", "query_hash": "e3b0c44298fc1c14", "attempt": 1, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "relay_failed", "ts": "2026-05-09T10:29:03Z", "session_id": "", "query_hash": "e3b0c44298fc1c14", "attempt": 2, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "relay_failed", "ts": "2026-05-09T10:29:05Z", "session_id": "", "query_hash": "e3b0c44298fc1c14", "attempt": 3, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "relay_start", "ts": "2026-05-09T10:29:49Z", "session_id": "", "query_hash": "e3b0c44298fc1c14"}
+{"event": "relay_failed", "ts": "2026-05-09T10:29:50Z", "session_id": "", "query_hash": "e3b0c44298fc1c14", "attempt": 1, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "relay_failed", "ts": "2026-05-09T10:29:52Z", "session_id": "", "query_hash": "e3b0c44298fc1c14", "attempt": 2, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "relay_failed", "ts": "2026-05-09T10:29:55Z", "session_id": "", "query_hash": "e3b0c44298fc1c14", "attempt": 3, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "relay_start", "ts": "2026-05-09T10:30:25Z", "session_id": "", "query_hash": "e3b0c44298fc1c14"}
+{"event": "relay_failed", "ts": "2026-05-09T10:30:26Z", "session_id": "", "query_hash": "e3b0c44298fc1c14", "attempt": 1, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "relay_failed", "ts": "2026-05-09T10:30:27Z", "session_id": "", "query_hash": "e3b0c44298fc1c14", "attempt": 2, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "relay_failed", "ts": "2026-05-09T10:30:28Z", "session_id": "", "query_hash": "e3b0c44298fc1c14", "attempt": 3, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "boot_start", "ts": "2026-05-09T12:40:54Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-09T12:42:40Z", "session_id": "", "latency_ms": 106104, "entries_picked": 50}
+{"event": "relay_start", "ts": "2026-05-09T12:42:40Z", "session_id": "", "query_hash": "a423484b9cbcd46b"}
+{"event": "relay_complete", "ts": "2026-05-09T12:43:06Z", "session_id": "", "query_hash": "a423484b9cbcd46b", "latency_ms": 25387, "entries_picked": 54}

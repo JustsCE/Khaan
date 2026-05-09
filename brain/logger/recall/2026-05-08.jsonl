@@ -1,0 +1,10 @@
+{"event": "dispatch", "ts": "2026-05-08T16:05:35Z", "query_hash": "1440f2b383f892bc", "scan_domains": ["semantic", "episodic", "procedural", "fusiform", "prefrontal"], "candidate_count": 508, "qualified_count": 311, "route": "normal"}
+{"event": "handoff", "ts": "2026-05-08T16:05:35Z", "query_hash": "1440f2b383f892bc", "qualified_ids": ["PR145", "PR162", "PR045", "S065", "E069", "R145", "S034", "R151", "E098", "PR119", "PR044", "E064", "R140", "S022", "E084"], "total_chars": 41853}
+{"event": "dispatch", "ts": "2026-05-08T16:16:22Z", "query_hash": "1440f2b383f892bc", "scan_domains": ["semantic", "episodic", "procedural", "fusiform", "prefrontal"], "candidate_count": 508, "qualified_count": 205, "route": "normal"}
+{"event": "handoff", "ts": "2026-05-08T16:16:22Z", "query_hash": "1440f2b383f892bc", "qualified_ids": ["S072", "E090", "PR147", "R145", "R151", "E095", "PR149", "PR016", "S034", "E093", "R140"], "total_chars": 34757}
+{"event": "dispatch", "ts": "2026-05-08T17:41:10Z", "query_hash": "e3b0c44298fc1c14", "scan_domains": ["semantic", "episodic", "procedural", "fusiform", "prefrontal"], "candidate_count": 508, "qualified_count": 0, "route": "normal"}
+{"event": "handoff", "ts": "2026-05-08T17:41:10Z", "query_hash": "e3b0c44298fc1c14", "qualified_ids": [], "total_chars": 107}
+{"event": "dispatch", "ts": "2026-05-08T17:42:56Z", "query_hash": "e3b0c44298fc1c14", "scan_domains": ["semantic", "episodic", "procedural", "fusiform", "prefrontal"], "candidate_count": 508, "qualified_count": 0, "route": "normal"}
+{"event": "handoff", "ts": "2026-05-08T17:42:56Z", "query_hash": "e3b0c44298fc1c14", "qualified_ids": [], "total_chars": 107}
+{"event": "dispatch", "ts": "2026-05-08T17:43:27Z", "query_hash": "e3b0c44298fc1c14", "scan_domains": ["semantic", "episodic", "procedural", "fusiform", "prefrontal"], "candidate_count": 508, "qualified_count": 0, "route": "normal"}
+{"event": "handoff", "ts": "2026-05-08T17:43:27Z", "query_hash": "e3b0c44298fc1c14", "qualified_ids": [], "total_chars": 107}

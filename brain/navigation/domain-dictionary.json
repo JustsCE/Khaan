@@ -1,0 +1,6 @@
+{
+  "deployment": {
+    "keywords": ["docker", "deploy", "ec2", "container", "nginx", "lambda", "acr"],
+    "bundles": []
+  }
+}

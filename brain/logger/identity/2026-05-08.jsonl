@@ -1,0 +1,24 @@
+{"event": "boot_start", "ts": "2026-05-08T16:46:25Z", "session_id": ""}
+{"event": "boot_failed", "ts": "2026-05-08T16:46:26Z", "session_id": "", "attempt": 1, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "boot_failed", "ts": "2026-05-08T16:46:27Z", "session_id": "", "attempt": 2, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "boot_failed", "ts": "2026-05-08T16:46:29Z", "session_id": "", "attempt": 3, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "boot_start", "ts": "2026-05-08T17:05:30Z", "session_id": ""}
+{"event": "boot_failed", "ts": "2026-05-08T17:05:32Z", "session_id": "", "attempt": 1, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "boot_failed", "ts": "2026-05-08T17:05:33Z", "session_id": "", "attempt": 2, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "boot_failed", "ts": "2026-05-08T17:05:34Z", "session_id": "", "attempt": 3, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "boot_start", "ts": "2026-05-08T17:39:58Z", "session_id": ""}
+{"event": "boot_failed", "ts": "2026-05-08T17:40:00Z", "session_id": "", "attempt": 1, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "boot_failed", "ts": "2026-05-08T17:40:02Z", "session_id": "", "attempt": 2, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "boot_failed", "ts": "2026-05-08T17:40:04Z", "session_id": "", "attempt": 3, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "relay_start", "ts": "2026-05-08T17:41:10Z", "session_id": "", "query_hash": "e3b0c44298fc1c14"}
+{"event": "relay_failed", "ts": "2026-05-08T17:41:11Z", "session_id": "", "query_hash": "e3b0c44298fc1c14", "attempt": 1, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "relay_failed", "ts": "2026-05-08T17:41:12Z", "session_id": "", "query_hash": "e3b0c44298fc1c14", "attempt": 2, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "relay_failed", "ts": "2026-05-08T17:41:13Z", "session_id": "", "query_hash": "e3b0c44298fc1c14", "attempt": 3, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "relay_start", "ts": "2026-05-08T17:42:56Z", "session_id": "", "query_hash": "e3b0c44298fc1c14"}
+{"event": "relay_failed", "ts": "2026-05-08T17:42:57Z", "session_id": "", "query_hash": "e3b0c44298fc1c14", "attempt": 1, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "relay_failed", "ts": "2026-05-08T17:42:58Z", "session_id": "", "query_hash": "e3b0c44298fc1c14", "attempt": 2, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "relay_failed", "ts": "2026-05-08T17:43:00Z", "session_id": "", "query_hash": "e3b0c44298fc1c14", "attempt": 3, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "relay_start", "ts": "2026-05-08T17:43:27Z", "session_id": "", "query_hash": "e3b0c44298fc1c14"}
+{"event": "relay_failed", "ts": "2026-05-08T17:43:28Z", "session_id": "", "query_hash": "e3b0c44298fc1c14", "attempt": 1, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "relay_failed", "ts": "2026-05-08T17:43:29Z", "session_id": "", "query_hash": "e3b0c44298fc1c14", "attempt": 2, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
+{"event": "relay_failed", "ts": "2026-05-08T17:43:30Z", "session_id": "", "query_hash": "e3b0c44298fc1c14", "attempt": 3, "reason": "claude -p exited 1: Error: When using --print, --output-format=stream-json requires --verbose\n"}
