@@ -66,7 +66,7 @@ def handle_user_prompt_submit(payload):
 
     check_overdue()
 
-    user_message = payload.get("message", payload.get("content", ""))
+    user_message = payload.get("prompt") or payload.get("message") or payload.get("content", "")
     proceed = trigger()
     if proceed:
         # /decision-engine skill auto-invocation per handler.html § UserPromptSubmit step 3.
@@ -94,9 +94,9 @@ def handle_stop(payload):
         entry = {
             "ts": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
             "session_id": payload.get("session_id", ""),
-            "user_prompt": payload.get("user_prompt", payload.get("message", "")),
-            "final_response": payload.get("final_response", payload.get("response", "")),
-            "tool_uses": payload.get("tool_uses", [])
+            "user_prompt":    payload.get("input")  or payload.get("prompt")          or payload.get("user_prompt", ""),
+            "final_response": payload.get("output") or payload.get("final_response") or payload.get("response", ""),
+            "tool_uses":      payload.get("tool_uses") or payload.get("tools_used") or [],
         }
         with open(p, "a") as f:
             f.write(json.dumps(entry) + "\n")
@@ -140,17 +140,11 @@ def handle_post_tool_use(payload):
 
 
 def handle_subagent_stop(payload):
-    # [DEVIATES FROM SPEC: decision-engine.html line 367]
-    # Decision verification stays inline in decision.dispatch() because verify()
-    # needs recall_hash/identity_hash/query_hash/tool_uses context that the
-    # SubagentStop payload does not carry, and the Decision subprocess uses
-    # cli_invoke (Bash subprocess), not Anthropic's subagent mechanism, so
-    # SubagentStop does not naturally fire for it. Brain Retro / Learn / Correct
-    # subagent verifications will plug in here in Phase C.
-    subagent_type = payload.get("subagent_type", "")
-    if subagent_type in ("brain-retro", "brain-learn", "brain-correct"):
-        # Phase C: route to the matching schema verifier.
-        return {}
+    # Decision, Brain Retro, Brain Learn, Brain Correct all run via cli_invoke
+    # (a Bash subprocess), not Anthropic's native subagent — so SubagentStop
+    # does not fire for them. Each engine does its schema verification inline
+    # inside run(). Kept as a named no-op so DISPATCH stays valid; rewire here
+    # if any engine transitions to a native subagent.
     return {}
 
 

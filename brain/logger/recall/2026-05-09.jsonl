@@ -12,3 +12,5 @@
 {"event": "handoff", "ts": "2026-05-09T10:29:49Z", "query_hash": "e3b0c44298fc1c14", "qualified_ids": [], "total_chars": 107}
 {"event": "dispatch", "ts": "2026-05-09T10:30:25Z", "query_hash": "e3b0c44298fc1c14", "scan_domains": ["semantic", "episodic", "procedural", "fusiform", "prefrontal"], "candidate_count": 508, "qualified_count": 0, "route": "normal"}
 {"event": "handoff", "ts": "2026-05-09T10:30:25Z", "query_hash": "e3b0c44298fc1c14", "qualified_ids": [], "total_chars": 107}
+{"event": "dispatch", "ts": "2026-05-09T13:53:40Z", "query_hash": "cb1394567198c4d6", "scan_domains": ["semantic", "episodic", "procedural", "fusiform", "prefrontal"], "candidate_count": 508, "qualified_count": 416, "route": "normal"}
+{"event": "handoff", "ts": "2026-05-09T13:53:40Z", "query_hash": "cb1394567198c4d6", "qualified_ids": ["S065", "S013", "E065", "E058", "PR145", "R145", "R151", "S034", "PR095", "S007", "PR162", "E069", "R140", "S006", "R41"], "total_chars": 37855}

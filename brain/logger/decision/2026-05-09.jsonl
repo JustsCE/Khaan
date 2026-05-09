@@ -1,0 +1,3 @@
+{"event": "decision_dispatch", "ts": "2026-05-09T13:54:07Z", "query_hash": "cb1394567198c4d6", "sources_hash": "7269cc4f3333680e:f3c727b678f47cd7", "model": "claude-cli", "system_prompt_hash": "662dd57fc909e9ff"}
+{"event": "subagent_complete", "ts": "2026-05-09T13:55:12Z", "query_hash": "cb1394567198c4d6", "subagent_id": "decision-0", "status": "returned", "latency_ms": 65386}
+{"event": "handoff", "ts": "2026-05-09T13:55:12Z", "query_hash": "cb1394567198c4d6", "payload_chars": 7571, "all_5_present": true}
