@@ -1058,6 +1058,7 @@ def phase_commit(cycle_id, ledger, hippo_hash_start, nonce):
     st["last_cycle_end_ts"] = time.time()
     st["last_cycle_outcome"] = "success"
     st["fsm"] = "NORMAL"
+    st["active_cycle_nonce"] = None
     write_state(st)
 
     write_learning_log("cycle_ledger", {"cycle_id": cycle_id, "phases": ledger,
