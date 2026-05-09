@@ -6,20 +6,17 @@ from engines import flip_tool_guards
 
 BRAIN = Path.home() / ".claude" / "brain"
 
-ALL_BINARIES = [
-    "decision-hypothesis-1", "decision-hypothesis-2", "decision-hypothesis-3",
-    "decision-hypothesis-4", "decision-hypothesis-5",
-    "decision-source-missing", "decision-failed", "decision-timeout",
-    "recall-stale", "recall-dispatch-failed", "recall-failed", "recall-timeout",
-    "identity-boot-failed", "identity-relay-failed", "identity-boot-timeout", "identity-relay-timeout",
-    "learning-cycle-overdue", "learning-cycle-running", "learning-cycle-failed",
-    "learning-cycle-timeout", "consolidation-pending", "promote-scan-stale", "cycle-empty"
+BLOCKING_BINARIES = [
+    "learning-cycle-overdue",
+    "learning-cycle-running",
+    "consolidation-pending",
+    "promote-scan-stale",
 ]
 
 ROUTING = {
     "SessionStart":     {"behaviour": "passthrough", "blocking_binaries": []},
     "UserPromptSubmit": {"behaviour": "passthrough", "blocking_binaries": []},
-    "PreToolUse":       {"behaviour": "block",       "blocking_binaries": ALL_BINARIES},
+    "PreToolUse":       {"behaviour": "block",       "blocking_binaries": BLOCKING_BINARIES},
     "PostToolUse":      {"behaviour": "passthrough", "blocking_binaries": []},
     "SubagentStop":     {"behaviour": "passthrough", "blocking_binaries": []},
     "Stop":             {"behaviour": "passthrough", "blocking_binaries": []},
@@ -70,7 +67,6 @@ def dispatch(event, payload, repo_root):
     raised = []
     for bname in spec["blocking_binaries"]:
         if read_binary(repo_root, bname) == 1:
-            # learning-cycle-overdue: allow brain_cycle commands through
             if bname == "learning-cycle-overdue":
                 tool_name = payload.get("tool_name", "")
                 cmd = payload.get("tool_input", {}).get("command", "")
