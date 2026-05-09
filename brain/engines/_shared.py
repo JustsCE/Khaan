@@ -66,5 +66,8 @@ def cli_invoke(system_prompt, user_prompt, timeout=120):
         if s.endswith("```"):
             s = s[:-3]
         s = s.strip()
-    payload = json.loads(s)
+    # tolerate prose around the JSON: find first { or [ and parse from there;
+    # raw_decode returns the first valid value and ignores trailing content.
+    start = min((i for i in (s.find("{"), s.find("[")) if i != -1), default=0)
+    payload, _ = json.JSONDecoder().raw_decode(s[start:])
     return {"result": payload, "tool_uses": tool_uses}

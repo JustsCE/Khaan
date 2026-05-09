@@ -5,5 +5,13 @@
       "/home/ubuntu/Khaan",
       "/opt/brain-viz"
     ]
+  },
+  "hooks": {
+    "SessionStart":     { "command": "python3 ~/.claude/hook.py SessionStart" },
+    "UserPromptSubmit": { "command": "python3 ~/.claude/hook.py UserPromptSubmit" },
+    "PreToolUse":       { "command": "python3 ~/.claude/hook.py PreToolUse" },
+    "PostToolUse":      { "command": "python3 ~/.claude/hook.py PostToolUse" },
+    "SubagentStop":     { "command": "python3 ~/.claude/hook.py SubagentStop" },
+    "Stop":             { "command": "python3 ~/.claude/hook.py Stop" }
   }
 }
