@@ -165,6 +165,7 @@ tr:nth-child(even) td { background: #fafafa; }
 <li><a href="#enforcement">Ensuring the Brain runs the task</a></li>
 <li><a href="#hook-py">hook.py</a></li>
 <li><a href="#settings-json">settings.json hook registration</a></li>
+<li><a href="#bootstrap">Bootstrap &mdash; setup.sh and the wiring/ directory</a></li>
 </ol></div>
 
 <h2 id="philosophy">Philosophy</h2>
@@ -347,6 +348,62 @@ I develop my own relationships with the people in my orbit.</code></pre>
 }</code></pre>
 <p>That is the entire wiring. New engines add binaries + engine modules under <code>~/.claude/brain/</code>; they do not touch <code>settings.json</code>.</p>
 <p>Per-engine docs name their handler files (e.g. <code>flip-decision-trigger.py</code>, <code>flip-decision-verify.py</code>, <code>identity_boot.py</code>) &mdash; these are engine-internal modules invoked by <code>hook.py</code>&rsquo;s dispatch functions, not separately registered scripts. The only file registered in <code>settings.json</code> is <code>hook.py</code>. <code>handle_subagent_stop()</code> dispatches by <code>subagent_type</code>; for <code>subagent_type=decision</code> it calls into <code>flip-decision-verify</code> as a function, otherwise it returns 0 passthrough.</p>
+<hr>
+
+<h2 id="bootstrap">Bootstrap &mdash; setup.sh and the wiring/ directory</h2>
+<p>The Handler files described above (<code>hook.py</code>, <code>CLAUDE.md</code>, <code>settings.json</code>, the skill <code>.md</code> files) live in <code>~/.claude/</code> on each machine. The Brain repo on GitHub holds the canonical copy. <code>setup.sh</code> is the one-shot script that connects the two. Run it once per machine; re-running is safe.</p>
+
+<h3>The reuse pattern</h3>
+<p>From any fresh EC2 instance, two commands stand up the Brain:</p>
+<pre><code>git clone &lt;repo&gt;.git ~/&lt;repo&gt;
+bash ~/&lt;repo&gt;/setup.sh</code></pre>
+<p>That is the whole installation. The first line clones the repo from GitHub. The second line wires the cloned files into <code>~/.claude/</code> via symlinks. Switching to a different brain (different account, different repo) is the same two commands run against the other repo &mdash; <code>setup.sh</code> overwrites the symlinks and the new repo&rsquo;s files take effect on the next Claude Code session.</p>
+
+<h3>Repo layout</h3>
+<p>For <code>setup.sh</code> to work, the repo must hold both the Brain itself and the wiring files that live outside it:</p>
+<pre><code>&lt;repo&gt;/
++-- setup.sh                <- the bootstrap script
++-- wiring/                 <- files that get symlinked into ~/.claude/
+|   +-- hook.py
+|   +-- CLAUDE.md
+|   +-- settings.json
+|   +-- skills/
+|       +-- decision-engine.md
+|       +-- brain-cycle.md
+|       +-- brain-retro.md
+|       +-- brain-learn.md
+|       +-- brain-correct.md
++-- brain/                  <- the Brain itself; engines, cortex, navigation, logger, state.json, ...</code></pre>
+<p><strong><code>brain/</code></strong> holds the Brain&rsquo;s memory and engine code. <code>~/.claude/brain</code> on the machine becomes a symlink to this directory, so every cycle&rsquo;s mutation lands in git automatically.</p>
+<p><strong><code>wiring/</code></strong> holds the four kinds of file the Handler needs at the <code>~/.claude/</code> root: the hook script, the user-level CLAUDE.md, the settings.json, and each skill descriptor. These live outside <code>brain/</code> because Anthropic loads them from <code>~/.claude/</code>, not from any subdirectory.</p>
+<p><strong><code>setup.sh</code></strong> is the connector. It reads <code>wiring/</code> and writes the symlinks.</p>
+
+<h3>What setup.sh does, step by step</h3>
+<ol>
+  <li><strong>Symlink the brain.</strong> Replaces <code>~/.claude/brain</code> with a symlink to <code>&lt;repo&gt;/brain</code>. If <code>~/.claude/brain</code> already exists as a real directory (a fresh install with content), the script moves it aside to <code>~/.claude/brain.bak.&lt;timestamp&gt;</code> first &mdash; nothing is destroyed.</li>
+  <li><strong>Symlink the three loader files.</strong> For each of <code>hook.py</code>, <code>CLAUDE.md</code>, and <code>settings.json</code>, the script replaces the file at <code>~/.claude/&lt;name&gt;</code> with a symlink to <code>&lt;repo&gt;/wiring/&lt;name&gt;</code>. Pre-existing real files are renamed with a <code>.bak.&lt;timestamp&gt;</code> suffix.</li>
+  <li><strong>Symlink each skill descriptor.</strong> For every <code>.md</code> in <code>&lt;repo&gt;/wiring/skills/</code>, the script creates the matching symlink under <code>~/.claude/skills/</code>. Skills directory is created if missing.</li>
+  <li><strong>Generate the bypass secret.</strong> If <code>~/.claude/.bypass.secret</code> is absent, <code>setup.sh</code> writes a fresh 64-character hex string with mode 0400. This file is per-machine and is never tracked in git (Rule Engine spec). If a secret already exists on the machine, the script leaves it alone.</li>
+  <li><strong>Verify the brain imports.</strong> The script imports <code>engines.brain_cycle</code> through the new symlink and exits non-zero if the import fails. This catches a broken symlink or missing engine file before the user starts a Claude Code session.</li>
+</ol>
+
+<h3>Why symlinks (instead of copies)</h3>
+<p>Copying would require a re-deploy step every time <code>hook.py</code> or a skill <code>.md</code> changes. With symlinks, <code>git pull</code> in the repo updates the wiring on every machine that uses it &mdash; the symlinked files are the repo files. The Brain has one source of truth.</p>
+<p>The trade-off: a per-machine override (e.g. a different <code>settings.json</code> for one EC2&rsquo;s permissions) means breaking that one symlink and replacing it with a copy. The script does not handle this case; it is rare enough that the manual step is the right answer.</p>
+
+<h3>What is in git versus on the machine</h3>
+<p>After <code>setup.sh</code> runs, the only Brain-related artefacts that are not in git are the per-machine credentials and the runtime caches:</p>
+<table><thead><tr><th>Path</th><th>Where it lives</th><th>Why</th></tr></thead><tbody>
+<tr><td><code>~/.claude/.bypass.secret</code></td><td>per-machine</td><td>HMAC secret. Each deployment owns its own. Never in git.</td></tr>
+<tr><td><code>~/.claude/.credentials.json</code></td><td>per-machine</td><td>OAuth tokens. The user runs <code>claude /login</code> on a fresh install to refresh these.</td></tr>
+<tr><td><code>~/.claude/brain/binaries/*.bin</code></td><td>per-machine (gitignored)</td><td>Rule Engine gates. SessionStart resets all of them to <code>0</code>; persisting them across reboots adds no value.</td></tr>
+<tr><td><code>~/.claude/brain/__pycache__/</code></td><td>per-machine (gitignored)</td><td>Python bytecode. Build artefact, not state.</td></tr>
+<tr><td>Anthropic-managed (<code>plugins/</code>, <code>projects/</code>, <code>sessions/</code>, <code>cache/</code>, <code>telemetry/</code>, &hellip;)</td><td>per-machine</td><td>Claude Code&rsquo;s own working state. The Brain does not touch these.</td></tr>
+</tbody></table>
+<p>Everything else under the symlinks &mdash; cortex entries, engine code, hook script, identity declaration, skill descriptors, settings, runtime navigation files, logger streams, hippocampus, thalamus, FSM state &mdash; is tracked. A fresh EC2 with the two-command install and a <code>claude /login</code> reconstitutes the Brain in full.</p>
+
+<h3>Switching accounts or brains</h3>
+<p>Run <code>setup.sh</code> from a different repo. The script re-points every symlink in one pass, so the previous repo&rsquo;s files are no longer wired. The previous wiring is preserved as <code>.bak.&lt;timestamp&gt;</code>, so reverting is one <code>mv</code> per file. The Brain&rsquo;s memory does not migrate with this switch &mdash; each repo carries its own <code>brain/</code> and the symlink simply selects which one is live.</p>
 
 </div>
 </body>
