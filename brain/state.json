@@ -9,7 +9,7 @@
   "escalation_count": 0,
   "last_session_start": null,
   "last_transition": null,
-  "last_cycle_end_ts": 1778400692.6697521,
+  "last_cycle_end_ts": 1778400740.975908,
   "last_cycle_outcome": "success",
   "bypass_expiry": {}
 }
