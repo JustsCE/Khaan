@@ -90,6 +90,13 @@ def handle_pre_tool_use(payload):
 
 def handle_stop(payload):
     try:
+        # DEBUG: log raw payload keys to understand Stop event shape
+        dbg = BRAIN / "logger" / "handler" / "stop_debug.jsonl"
+        with open(dbg, "a") as df:
+            df.write(json.dumps({"ts": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), "keys": list(payload.keys()), "sample": {k: str(v)[:100] for k, v in payload.items()}}) + "\n")
+    except Exception:
+        pass
+    try:
         p = BRAIN / "logger" / "handler" / "turn_complete.jsonl"
         entry = {
             "ts": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
