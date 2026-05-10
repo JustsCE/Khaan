@@ -1,4 +1,5 @@
 import os, sys, json, time
+import calendar, re
 from pathlib import Path
 
 sys.path.insert(0, os.path.join(os.path.expanduser("~"), ".claude", "brain"))
@@ -37,7 +38,7 @@ def restore_expired(repo_root):
     changed = False
     for guard, expiry_iso in list(bypass.items()):
         try:
-            exp_ts = time.mktime(time.strptime(expiry_iso[:19], "%Y-%m-%dT%H:%M:%S"))
+            exp_ts = calendar.timegm(time.strptime(expiry_iso[:19], "%Y-%m-%dT%H:%M:%S"))
             if now > exp_ts:
                 del bypass[guard]
                 changed = True
@@ -69,9 +70,14 @@ def dispatch(event, payload, repo_root):
         if read_binary(repo_root, bname) == 1:
             if bname == "learning-cycle-overdue":
                 tool_name = payload.get("tool_name", "")
-                cmd = payload.get("tool_input", {}).get("command", "")
-                if tool_name == "Bash" and "brain_cycle" in cmd:
-                    continue
+                if tool_name == "Skill":
+                    skill = payload.get("tool_input", {}).get("skill", "")
+                    if skill == "brain-cycle":
+                        continue
+                elif tool_name == "Bash":
+                    cmd = payload.get("tool_input", {}).get("command", "")
+                    if re.match(r"python3\s+(-m\s+engines\.brain_cycle|.*engines/brain_cycle\.py)", cmd):
+                        continue
             raised.append(bname)
     raised.extend(per_call_gates)
 

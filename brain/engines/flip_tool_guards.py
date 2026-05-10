@@ -7,7 +7,7 @@ BRAIN_PATH = str(BRAIN)
 BYPASSABLE = {"use-bash-block", "engine-security-block", "cycle-security-block", "permissions-block"}
 CYCLE_STATE_FILES = {"state.json", "brain_cycle.py", "cycle_phases.py"}
 DOCKER_RE = re.compile(r"docker\s+compose\s+(up|down|restart)(\s*$|\s*[;&|])")
-ENGINE_REDIRECT_RE = re.compile(r"(?:>|>>|tee\s+|open\s*\().*engines/\w+\.py")
+ENGINE_REDIRECT_RE = re.compile(r"(?:>|>>|tee\s+|open\s*\().*engines/[\w/]+\.py")
 CHMOD_CHOWN_RE = re.compile(r"(?:sudo\s+)?(?:chmod|chown)\s+.*brain/")
 
 
@@ -23,7 +23,7 @@ def _is_bypassed(guard_name, repo_root):
     if not expiry_iso:
         return False
     try:
-        exp_ts = time.mktime(time.strptime(expiry_iso[:19], "%Y-%m-%dT%H:%M:%S"))
+        exp_ts = calendar.timegm(time.strptime(expiry_iso[:19], "%Y-%m-%dT%H:%M:%S"))
         return time.time() <= exp_ts
     except (ValueError, TypeError):
         return False

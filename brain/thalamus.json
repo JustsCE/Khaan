@@ -1,7 +1,7 @@
 {
-  "cycleCount": 8,
+  "cycleCount": 9,
   "nextIds": {
-    "H": 1,
+    "H": 9,
     "S": 81,
     "E": 95,
     "PR": 164,
@@ -12,7 +12,7 @@
     "R": 161
   },
   "schedule": {
-    "last_promotion_scan_cycle": 8,
+    "last_promotion_scan_cycle": 9,
     "last_eval_cycle": 0,
     "last_hygiene_cycle": 0
   },

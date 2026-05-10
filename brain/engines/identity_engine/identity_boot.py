@@ -92,7 +92,8 @@ model: claude-cli (subscription, no API key)
                 "session_id": "", "latency_ms": int((time.time() - t0) * 1000),
                 "entries_picked": len(scored)
             })
-            return md_content
+            prose = f"## Identity\n\n{identity_section}\n\n## Voice\n\n{voice_section}\n\n## Charges\n\n{charges_section}\n"
+            return prose
 
         except subprocess.TimeoutExpired:
             write_bin("identity-boot-timeout", 1)

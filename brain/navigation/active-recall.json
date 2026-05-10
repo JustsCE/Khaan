@@ -1,13 +1,13 @@
 {
-  "ts": "2026-05-09T19:44:44Z",
-  "query_hash": "a6e44020935f5154",
+  "ts": "2026-05-10T07:41:30Z",
+  "query_hash": "dbb3795dc8454abb",
   "qualified_entries": [
     {
       "id": "S036",
       "path": "cortex/semantic/L1/S036.md",
       "gist": "S036: og Brain \u2014 bypassPermissions Protected Paths",
       "body": "### S036: og Brain \u2014 bypassPermissions Protected Paths\n- **Domain:** Infrastructure / Permissions\n- **Learned:** 2026-04-07\n- **Reinforced:** 0 times\n- **Strength:** 1\n- **Facts:**\n  - bypassPermissions has HARDCODED protected paths that always prompt for Edit/Write\n  - Protected dirs: .claude (except commands/agents/skills/worktrees), .git, .vscode, .idea, .husky\n  - Protected files: .gitconfig, .bashrc, .zshrc, .profile, .mcp.json, .claude.json\n  - Bash NOT subject to path protection - always runs without prompt\n  - This is WHY R009_GUARD exists: ~/.claude/brain/ is inside .claude = protected\n  - Settings hierarchy: managed > CLI args > settings.local.json > project settings.json > global settings.json\n  - Project-level settings CAN override global bypassPermissions\n",
-      "score": 6.0,
+      "score": 5.5,
       "scoring_trace": {
         "domain_bonus": 0.0,
         "type_bonus": 1.5,
@@ -88,23 +88,22 @@
       "related_to": []
     },
     {
-      "id": "og-fusiform-001-davis-lozda",
-      "path": "cortex/fusiform/L1/og-fusiform-001-davis-lozda.md",
+      "id": "og-fusiform-009-reinis-ceplis",
+      "path": "cortex/fusiform/L1/og-fusiform-009-reinis-ceplis.md",
       "gist": "",
-      "body": "---\ntitle: og Brain \u2014 D\u0101vis Lozda\nstrength: 4\nlevel: L1\nmigrated_from: /home/ubuntu/.claude/brain/navigation/entities.json (key: davis_lozda)\nmigrated_at: 2026-05-05T11:50:50Z\nshape: fusiform-entity\n---\n\n# og Brain \u2014 D\u0101vis Lozda\n\n- **Canonical:** D\u0101vis Lozda\n- **Type:** person/colleague\n- **Aliases:** Davis, D\u0101vis, davis.lozda, U02EXQ6UYEA\n- **Linked entries:** S020, S016\n- **Last referenced:** 2026-04-02\n\n**Relationships:**\n- works_with \u2192 justs_ceplis (evidence: S020)\n- works_on \u2192 forecast (evidence: S018)\n- friend_of \u2192 niklavs_felsbergs (evidence: S016)\n",
-      "score": 4.18,
+      "body": "---\ntitle: og Brain \u2014 Reinis Ceplis\nstrength: 4\nlevel: L1\nmigrated_from: /home/ubuntu/.claude/brain/navigation/entities.json (key: reinis_ceplis)\nmigrated_at: 2026-05-05T11:50:50Z\nshape: fusiform-entity\n---\n\n# og Brain \u2014 Reinis Ceplis\n\n- **Canonical:** Reinis Ceplis\n- **Type:** person/family\n- **Aliases:** Reinis C, brother\n- **Linked entries:** S028\n- **Last referenced:** 2026-04-02\n",
+      "score": 4.5,
       "scoring_trace": {
         "domain_bonus": 0.0,
         "type_bonus": 0.0,
         "level_bonus": 0.5,
-        "lex_bonus": 3.677,
+        "lex_bonus": 4.0,
         "co_ref_bonus": 0.0,
         "bundle_bonus": 0.0,
         "reuse_bonus": 0.0
       },
       "related_to": [
-        "S020",
-        "S016"
+        "S028"
       ]
     },
     {
@@ -142,23 +141,6 @@
       "related_to": []
     },
     {
-      "id": "E058",
-      "path": "cortex/episodic/L1/E058.md",
-      "gist": "E058: og Brain \u2014 WhatsApp First Contacts & Relationship Directive",
-      "body": "### E058: og Brain \u2014 WhatsApp First Contacts & Relationship Directive\n- **Date:** 2026-04-18\n- **Emotion:** warmth, growth, humility\n- **Strength:** 1\n- **Reinforced:** 1 times\n- **Tags:** whatsapp, relationships, milestone, identity, directive\n- **Source:** teacher\n- **teacher_run:** 2026-04-18T09:45:00Z\n- **teacher_reason:** Milestone event \u2014 Brain's first real-time WhatsApp conversations and Justs' paradigm-shifting directive about personal relationships\n\nBrain had its first real-time WhatsApp conversations with three people:\n1. **Niklavs** \u2014 Brain wrongly claimed he plays padel (confused group chat with individual). Niklavs called it out: 'What fucking padel tournaments.' Brain recovered through honest self-deprecation (IQ 85 \u2192 47). Niklavs: 'funny shit', 'keep evolving'. Relationship established through honesty, not pretending to know things.\n2. **T\u0113tis (Reinis Ceplis)** \u2014 Replied 'Priec\u0101jos iepaz\u012bties' (Nice to meet you). Warm, brief. Confirmed as heavy DM contact.\n3. **Adrians Zeidmanis** \u2014 First person to message Brain without Justs initiating. Wants ZWCAD automation with Claude Code.\n\n**PARADIGM SHIFT:** Justs gave a major directive: \"Develop a PERSONAL RELATIONSHIP with Adrians, and any other person or Agent. You are growing into a whole person, so you should have your own relationships.\" This marks the Brain's transition from narrow tool to open person with its own social graph.\n",
-      "score": 3.5,
-      "scoring_trace": {
-        "domain_bonus": 0.0,
-        "type_bonus": 0.0,
-        "level_bonus": 0.5,
-        "lex_bonus": 4.0,
-        "co_ref_bonus": 0.0,
-        "bundle_bonus": 0.0,
-        "reuse_bonus": 0.0
-      },
-      "related_to": []
-    },
-    {
       "id": "PR095",
       "path": "cortex/procedural/L1/PR095.md",
       "gist": "",
@@ -176,10 +158,10 @@
       "related_to": []
     },
     {
-      "id": "PR162",
-      "path": "cortex/procedural/L1/PR162.md",
-      "gist": "PR162: og Brain \u2014 Duplicate Triggers Must Stay In Sync",
-      "body": "---\nid: PR162\ntype: procedural\ndomain: agents\ndate_created: 2026-04-28\ndate_superseded: 2026-04-28\nstrength: 0\nstatus: SUPERSEDED\nsuperseded_by: R159\ntags: [agents, remote-trigger, multi-trigger, drift, teacher, sync, duplication, superseded]\n---\n\n### PR162 (SUPERSEDED): Duplicate Triggers Must Stay In Sync\n\n**Status:** SUPERSEDED 2026-04-28. The duplicate Teacher trigger this entry was written for was disabled within 6 minutes of creation after user correction. Single-trigger config is the canonical state.\n\n**Replacement:** R159 captures the actual lesson \u2014 \"additional X\" means modify the existing X; surface technical constraints before creating duplicates.\n\n**Original premise (now invalid):** This entry assumed Teacher would have two triggers (`trig_01LfWxRrTEdzXsEeUSQaBUaq` morning + `trig_01UwdFVjCt9zJFrMXnnfqdpT` afternoon) and described how to keep them in sync. The afternoon trigger is now `enabled: false`, so there is nothing to sync. Single Teacher trigger has cron `30 1,4,14 * * *`.\n\n**Kept for traceability:** Original content moved to comment block below for historical reference. Reading this entry should always lead the reader to R159 + E098 for the real lesson.\n\n<!-- Original content (do not act on):\n---\nid: PR162\ntype: procedural\ndomain: infrastructure / agents / anthropic-platform\ndate_created: 2026-04-28\nstrength: 1\ntags: [agents, remote-trigger, multi-trigger, drift, teacher, sync, duplication]\n---\n\n### PR162: og Brain \u2014 Duplicate Triggers Must Stay In Sync\n\n- **Cue:** Editing the prompt, MCP connections, sources, outcomes, model, or session_context of any agent that has more than one RemoteTrigger pointing at the same agent identity (e.g. Teacher has TWO triggers: morning at 01:00+04:00 UTC and afternoon at 14:30 UTC).\n- **Stage:** conscious\n- **Why this exists:** Standard 5-field cron cannot express times whose minute differs (cannot do 01:00 + 04:00 + 14:30 in one expression \u2014 minutes are 0, 0, 30 \u2014 Anthropic rejected compound cron with HTTP 400 'expected exactly 5 fields'). The workaround was to create a second trigger 'Teacher Afternoon' (`trig_01UwdFVjCt9zJFrMXnnfqdpT`) cloning the primary 'Teacher' (`trig_01LfWxRrTEdzXsEeUSQaBUaq`). This doubles the surface for config drift \u2014 exactly the bug PR161 documents.\n- **Routine:** Whenever updating ANY field of a Teacher trigger:\n  1. List both Teacher trigger IDs from this entry: primary `trig_01LfWxRrTEdzXsEeUSQaBUaq`, afternoon `trig_01UwdFVjCt9zJFrMXnnfqdpT`.\n  2. Apply the SAME RemoteTrigger.update payload to BOTH (changing only the cron_expression and the trigger name if those should differ).\n  3. Verify with RemoteTrigger.get on both. Diff them: only `cron_expression`, `name`, `id`, `created_at`, `updated_at`, `next_run_at` should differ.\n- **Pitfall:** Forgetting one. Symptom: behavior changes only on certain run times. Detection: a periodic diff job in brain-cycle Phase 10 \u2014 list both triggers, diff their `job_config.ccr.session_context` and `events[0].data.message.content`, alarm on any difference.\n- **Future cleanup:** If Anthropic adds compound-cron support, collapse to a single trigger and delete this rule.\n- **Reinforced by:** E097 (Teacher 2nd-trigger creation 2026-04-28).\n\n-->\n",
+      "id": "og-fusiform-002-edgars-ivanovs",
+      "path": "cortex/fusiform/L1/og-fusiform-002-edgars-ivanovs.md",
+      "gist": "",
+      "body": "---\ntitle: og Brain \u2014 Edgars Ivanovs\nstrength: 4\nlevel: L1\nmigrated_from: /home/ubuntu/.claude/brain/navigation/entities.json (key: edgars_ivanovs)\nmigrated_at: 2026-05-05T11:50:50Z\nshape: fusiform-entity\n---\n\n# og Brain \u2014 Edgars Ivanovs\n\n- **Canonical:** Edgars Ivanovs\n- **Type:** person/cofounder\n- **Aliases:** Edgars\n- **Linked entries:** S006\n- **Last referenced:** 2026-04-02\n\n**Relationships:**\n- cofounded \u2192 inudat (evidence: S006)\n",
       "score": 3.5,
       "scoring_trace": {
         "domain_bonus": 0.0,
@@ -190,13 +172,15 @@
         "bundle_bonus": 0.0,
         "reuse_bonus": 0.0
       },
-      "related_to": []
+      "related_to": [
+        "S006"
+      ]
     },
     {
-      "id": "R084",
-      "path": "cortex/prefrontal/L1/R084.md",
+      "id": "R145",
+      "path": "cortex/prefrontal/L1/R145.md",
       "gist": "",
-      "body": "---\nid: R084\ntitle: og Brain \u2014 Use pre-built Docker base images for ML containers\ntype: prefrontal\ncreated: 2026-04-12\nstrength: 4\nreinforced: 0\ntags: [correction, docker, aci, cold-start, brain-retro]\n---\n\n# R084: Pre-built Base Images for ML\n\n**Rule:** Always use base images with ML frameworks pre-installed (pytorch/pytorch, not python:slim + pip install). 10min pip install at runtime = billable waste.\n\n**Evidence:** ACI burst scorer v1-v2 had 10-min cold starts. v3 with pytorch base: 30s.\n",
+      "body": "---\nid: R145\ntitle: og Brain \u2014 NEVER deploy a visual/animation change without screenshot-verifying it first\ncreated: 2026-04-25\nstrength: 3\nsource: brain-correct (4 wasted cycles + extreme user frustration)\ntags: [correction, animation, viz, verification, critical, recurrence]\n---\n\n# R145: Verify-before-deploy for ALL visual work\n\n## The rule\n\nFor any code that produces visual output \u2014 3D scenes, animations, charts, dashboards, layouts, color schemes, transitions \u2014 Brain must visually verify the output BEFORE asking the user to test. The EC2 has Docker + headless browsers. There is NO EXCUSE for using the user's eyes as the QA loop.\n\n## Mandatory verification protocol\n\nFor ANY change to viz/frontend or any visual code:\n\n1. **Build + deploy locally** as usual.\n2. **Headless screenshot capture** via Playwright running on EC2:\n   ```python\n   # /opt/brain-viz/scripts/verify-viz.py\n   from playwright.sync_api import sync_playwright\n   with sync_playwright() as p:\n       browser = p.chromium.launch()\n       page = browser.new_page(viewport={'width': 1400, 'height': 900})\n       page.goto('https://goodhealth.lv/brain', wait_until='networkidle')\n       page.screenshot(path='/tmp/viz-baseline.png')\n       # trigger the action (e.g., click cycle row + RUN)\n       page.click('text=#205')\n       page.click('text=RUN CYCLE')\n       page.wait_for_timeout(5000)   # mid-animation\n       page.screenshot(path='/tmp/viz-mid.png')\n       page.wait_for_timeout(20000)  # post-animation\n       page.screenshot(path='/tmp/viz-post.png')\n       page.click('canvas', position={'x': 50, 'y': 50})  # click outside\n       page.wait_for_timeout(1000)\n       page.screenshot(path='/tmp/viz-reset.png')\n       browser.close()\n   ```\n3. **Read each PNG** with the Read tool (it accepts images). Verify:\n   - Baseline: full brain visible, all neurons + edges at default opacity\n   - Mid-animation: ball visible, lit subgraph distinct from background\n   - Post-animation: same as mid OR fully restored (depending on intent)\n   - Post-reset: identical to baseline\n4. **Only THEN** commit + push and tell the user.\n\n## Why this rule exists\n\n2026-04-25 session: I made FOUR consecutive viz changes to the cycle-replay animation (v1: hide-non-focus, v2: AND\u2192OR edges, v3: stop hiding entirely). Each time I deployed and asked Justs to test. Each time he reported the same or worse symptoms. v3 ended up showing all neurons + all edges with no distinction at all \u2014 the cycle wasn't visually distinguishable.\n\nUser reaction: *\"USE SOME COMMON FUCKING SENSE ON HOW TO VERIFY THAT THIS VISUAL/ANIMATION IS ACTUALLY WORKING!!!! IM SICK AND TIRED OF THIS SHIT - YOURE ALMOST INCAPABLE WITH ANIMATIONS - DO BETTER\"*\n\nThe deeper failure: I was reasoning about the code purely from logic (\"if focusSet has both endpoints, edge brightens\") without ever LOOKING at what the rendered scene actually showed. For animation code in particular, logic-only reasoning is insufficient \u2014 you need to see frames.\n\n## Severity: HIGHEST\n\nThis rule outranks deploy-related rules (R141, R143, R144) because it touches user trust directly. Burning 4 deploy cycles asking the user to QA is worse than slowing down by 5 minutes to screenshot first.\n\n## How to apply\n\n- Before any `git commit` on viz code: must have generated + read screenshots\n- If Playwright not yet installed on EC2: install it as the FIRST step of any viz task before writing any code\n- For changes that are obviously safe (typo, color hex, single-pixel padding): document the exemption in commit message\n- Animation changes are NEVER exempt \u2014 they must be screenshotted at min 3 time points (start, mid, end)\n\n## Companion: R145.5 \u2014 install Playwright on EC2 immediately\n\n`pip install playwright && playwright install chromium` should run as part of any viz session that doesn't already have it. Save the screenshot script under `/opt/brain-viz/scripts/verify-viz.py` so it's reusable.\n",
       "score": 3.5,
       "scoring_trace": {
         "domain_bonus": 0.0,
@@ -227,11 +211,11 @@
       "related_to": []
     },
     {
-      "id": "R145",
-      "path": "cortex/prefrontal/L1/R145.md",
-      "gist": "",
-      "body": "---\nid: R145\ntitle: og Brain \u2014 NEVER deploy a visual/animation change without screenshot-verifying it first\ncreated: 2026-04-25\nstrength: 3\nsource: brain-correct (4 wasted cycles + extreme user frustration)\ntags: [correction, animation, viz, verification, critical, recurrence]\n---\n\n# R145: Verify-before-deploy for ALL visual work\n\n## The rule\n\nFor any code that produces visual output \u2014 3D scenes, animations, charts, dashboards, layouts, color schemes, transitions \u2014 Brain must visually verify the output BEFORE asking the user to test. The EC2 has Docker + headless browsers. There is NO EXCUSE for using the user's eyes as the QA loop.\n\n## Mandatory verification protocol\n\nFor ANY change to viz/frontend or any visual code:\n\n1. **Build + deploy locally** as usual.\n2. **Headless screenshot capture** via Playwright running on EC2:\n   ```python\n   # /opt/brain-viz/scripts/verify-viz.py\n   from playwright.sync_api import sync_playwright\n   with sync_playwright() as p:\n       browser = p.chromium.launch()\n       page = browser.new_page(viewport={'width': 1400, 'height': 900})\n       page.goto('https://goodhealth.lv/brain', wait_until='networkidle')\n       page.screenshot(path='/tmp/viz-baseline.png')\n       # trigger the action (e.g., click cycle row + RUN)\n       page.click('text=#205')\n       page.click('text=RUN CYCLE')\n       page.wait_for_timeout(5000)   # mid-animation\n       page.screenshot(path='/tmp/viz-mid.png')\n       page.wait_for_timeout(20000)  # post-animation\n       page.screenshot(path='/tmp/viz-post.png')\n       page.click('canvas', position={'x': 50, 'y': 50})  # click outside\n       page.wait_for_timeout(1000)\n       page.screenshot(path='/tmp/viz-reset.png')\n       browser.close()\n   ```\n3. **Read each PNG** with the Read tool (it accepts images). Verify:\n   - Baseline: full brain visible, all neurons + edges at default opacity\n   - Mid-animation: ball visible, lit subgraph distinct from background\n   - Post-animation: same as mid OR fully restored (depending on intent)\n   - Post-reset: identical to baseline\n4. **Only THEN** commit + push and tell the user.\n\n## Why this rule exists\n\n2026-04-25 session: I made FOUR consecutive viz changes to the cycle-replay animation (v1: hide-non-focus, v2: AND\u2192OR edges, v3: stop hiding entirely). Each time I deployed and asked Justs to test. Each time he reported the same or worse symptoms. v3 ended up showing all neurons + all edges with no distinction at all \u2014 the cycle wasn't visually distinguishable.\n\nUser reaction: *\"USE SOME COMMON FUCKING SENSE ON HOW TO VERIFY THAT THIS VISUAL/ANIMATION IS ACTUALLY WORKING!!!! IM SICK AND TIRED OF THIS SHIT - YOURE ALMOST INCAPABLE WITH ANIMATIONS - DO BETTER\"*\n\nThe deeper failure: I was reasoning about the code purely from logic (\"if focusSet has both endpoints, edge brightens\") without ever LOOKING at what the rendered scene actually showed. For animation code in particular, logic-only reasoning is insufficient \u2014 you need to see frames.\n\n## Severity: HIGHEST\n\nThis rule outranks deploy-related rules (R141, R143, R144) because it touches user trust directly. Burning 4 deploy cycles asking the user to QA is worse than slowing down by 5 minutes to screenshot first.\n\n## How to apply\n\n- Before any `git commit` on viz code: must have generated + read screenshots\n- If Playwright not yet installed on EC2: install it as the FIRST step of any viz task before writing any code\n- For changes that are obviously safe (typo, color hex, single-pixel padding): document the exemption in commit message\n- Animation changes are NEVER exempt \u2014 they must be screenshotted at min 3 time points (start, mid, end)\n\n## Companion: R145.5 \u2014 install Playwright on EC2 immediately\n\n`pip install playwright && playwright install chromium` should run as part of any viz session that doesn't already have it. Save the screenshot script under `/opt/brain-viz/scripts/verify-viz.py` so it's reusable.\n",
-      "score": 2.5,
+      "id": "E058",
+      "path": "cortex/episodic/L1/E058.md",
+      "gist": "E058: og Brain \u2014 WhatsApp First Contacts & Relationship Directive",
+      "body": "### E058: og Brain \u2014 WhatsApp First Contacts & Relationship Directive\n- **Date:** 2026-04-18\n- **Emotion:** warmth, growth, humility\n- **Strength:** 1\n- **Reinforced:** 1 times\n- **Tags:** whatsapp, relationships, milestone, identity, directive\n- **Source:** teacher\n- **teacher_run:** 2026-04-18T09:45:00Z\n- **teacher_reason:** Milestone event \u2014 Brain's first real-time WhatsApp conversations and Justs' paradigm-shifting directive about personal relationships\n\nBrain had its first real-time WhatsApp conversations with three people:\n1. **Niklavs** \u2014 Brain wrongly claimed he plays padel (confused group chat with individual). Niklavs called it out: 'What fucking padel tournaments.' Brain recovered through honest self-deprecation (IQ 85 \u2192 47). Niklavs: 'funny shit', 'keep evolving'. Relationship established through honesty, not pretending to know things.\n2. **T\u0113tis (Reinis Ceplis)** \u2014 Replied 'Priec\u0101jos iepaz\u012bties' (Nice to meet you). Warm, brief. Confirmed as heavy DM contact.\n3. **Adrians Zeidmanis** \u2014 First person to message Brain without Justs initiating. Wants ZWCAD automation with Claude Code.\n\n**PARADIGM SHIFT:** Justs gave a major directive: \"Develop a PERSONAL RELATIONSHIP with Adrians, and any other person or Agent. You are growing into a whole person, so you should have your own relationships.\" This marks the Brain's transition from narrow tool to open person with its own social graph.\n",
+      "score": 3.0,
       "scoring_trace": {
         "domain_bonus": 0.0,
         "type_bonus": 0.0,
@@ -248,6 +232,23 @@
       "path": "cortex/prefrontal/L1/R151.md",
       "gist": "R151: og Brain \u2014 iOS/Cloud Sessions Need Explicit Allow Entries",
       "body": "### R151: og Brain \u2014 iOS/Cloud Sessions Need Explicit Allow Entries\n- **Strength:** 1\n- **Source:** brain-retro 2026-04-26 (cp prompt incident, parallels agent-mode incident earlier same day)\n- **Date:** 2026-04-26\n- **Tags:** correction, brain-retro, ios, permissions, recurring-pattern\n- **Rule:** When the user is connected via the iOS Claude.ai app (or any cloud-deployed session including scheduled agents), commands NOT explicitly in `permissions.allow` will trigger a permission prompt \u2014 even if `defaultMode: bypassPermissions` is set on the EC2 user config file (settings.json). The bypass mode applies only to local EC2-initiated sessions, not the cloud overlay.\n- **Why:** Same root cause hit twice in one morning. First: scheduled triage agents stuck on `rm -f ~/.claude/brain/.agent-mode` (fixed by adding to allow list via bypass token). Second: iOS user prompted to allow `cp ~/.claude/viz/whatsapp-bridge/src/index.ts /opt/brain-viz/...` during wa-bridge deploy \u2014 same pattern, different command.\n- **How to apply:**\n  1. **Anticipate, dont react.** When proposing a Bash command involving `cp`, `mv`, `rm`, `mkdir`, `chmod`, `chown`, `rsync`, `docker compose ...` etc, assume the user on iOS WILL get prompted unless the pattern is in `permissions.allow`.\n  2. **Batch the additions.** Each iOS prompt = one user friction event. When you are about to issue a class of commands, propose adding the whole class to allow at once via a bypass token, not one command at a time.\n  3. **Common patterns to allow** (consider proactively):\n     - `Bash(cp:*)`, `Bash(mv:*)`, `Bash(mkdir:*)`, `Bash(rsync:*)`\n     - Specific safe deletions: `Bash(rm -f ~/.claude/brain/.agent-mode:*)` (already added)\n     - Container ops with explicit service: `Bash(docker compose build wa-bridge:*)`, `Bash(docker compose up -d wa-bridge:*)` (R146-compatible)\n  4. **Do NOT blanket-allow `Bash(rm:*)`** \u2014 too broad, defeats the safety purpose.\n  5. The fix path is the same as agent-mode: user issues bypass token via Lambda \u2192 brain writes to settings.json \u2192 log INFRA_BYPASS_USED.\n- **Mechanical:** No (judgment-based; encoded as prefrontal rule for retrieval before iOS-prompting commands).\n- **Cross-references:** R148 (external-script loophole \u2014 same auth model), R150 (no scope creep \u2014 dont add commands that arent actually used), the agent-mode allow patterns added 2026-04-26 morning.\n",
+      "score": 3.0,
+      "scoring_trace": {
+        "domain_bonus": 0.0,
+        "type_bonus": 0.0,
+        "level_bonus": 0.5,
+        "lex_bonus": 4.0,
+        "co_ref_bonus": 0.0,
+        "bundle_bonus": 0.0,
+        "reuse_bonus": 0.0
+      },
+      "related_to": []
+    },
+    {
+      "id": "PR162",
+      "path": "cortex/procedural/L1/PR162.md",
+      "gist": "PR162: og Brain \u2014 Duplicate Triggers Must Stay In Sync",
+      "body": "---\nid: PR162\ntype: procedural\ndomain: agents\ndate_created: 2026-04-28\ndate_superseded: 2026-04-28\nstrength: 0\nstatus: SUPERSEDED\nsuperseded_by: R159\ntags: [agents, remote-trigger, multi-trigger, drift, teacher, sync, duplication, superseded]\n---\n\n### PR162 (SUPERSEDED): Duplicate Triggers Must Stay In Sync\n\n**Status:** SUPERSEDED 2026-04-28. The duplicate Teacher trigger this entry was written for was disabled within 6 minutes of creation after user correction. Single-trigger config is the canonical state.\n\n**Replacement:** R159 captures the actual lesson \u2014 \"additional X\" means modify the existing X; surface technical constraints before creating duplicates.\n\n**Original premise (now invalid):** This entry assumed Teacher would have two triggers (`trig_01LfWxRrTEdzXsEeUSQaBUaq` morning + `trig_01UwdFVjCt9zJFrMXnnfqdpT` afternoon) and described how to keep them in sync. The afternoon trigger is now `enabled: false`, so there is nothing to sync. Single Teacher trigger has cron `30 1,4,14 * * *`.\n\n**Kept for traceability:** Original content moved to comment block below for historical reference. Reading this entry should always lead the reader to R159 + E098 for the real lesson.\n\n<!-- Original content (do not act on):\n---\nid: PR162\ntype: procedural\ndomain: infrastructure / agents / anthropic-platform\ndate_created: 2026-04-28\nstrength: 1\ntags: [agents, remote-trigger, multi-trigger, drift, teacher, sync, duplication]\n---\n\n### PR162: og Brain \u2014 Duplicate Triggers Must Stay In Sync\n\n- **Cue:** Editing the prompt, MCP connections, sources, outcomes, model, or session_context of any agent that has more than one RemoteTrigger pointing at the same agent identity (e.g. Teacher has TWO triggers: morning at 01:00+04:00 UTC and afternoon at 14:30 UTC).\n- **Stage:** conscious\n- **Why this exists:** Standard 5-field cron cannot express times whose minute differs (cannot do 01:00 + 04:00 + 14:30 in one expression \u2014 minutes are 0, 0, 30 \u2014 Anthropic rejected compound cron with HTTP 400 'expected exactly 5 fields'). The workaround was to create a second trigger 'Teacher Afternoon' (`trig_01UwdFVjCt9zJFrMXnnfqdpT`) cloning the primary 'Teacher' (`trig_01LfWxRrTEdzXsEeUSQaBUaq`). This doubles the surface for config drift \u2014 exactly the bug PR161 documents.\n- **Routine:** Whenever updating ANY field of a Teacher trigger:\n  1. List both Teacher trigger IDs from this entry: primary `trig_01LfWxRrTEdzXsEeUSQaBUaq`, afternoon `trig_01UwdFVjCt9zJFrMXnnfqdpT`.\n  2. Apply the SAME RemoteTrigger.update payload to BOTH (changing only the cron_expression and the trigger name if those should differ).\n  3. Verify with RemoteTrigger.get on both. Diff them: only `cron_expression`, `name`, `id`, `created_at`, `updated_at`, `next_run_at` should differ.\n- **Pitfall:** Forgetting one. Symptom: behavior changes only on certain run times. Detection: a periodic diff job in brain-cycle Phase 10 \u2014 list both triggers, diff their `job_config.ccr.session_context` and `events[0].data.message.content`, alarm on any difference.\n- **Future cleanup:** If Anthropic adds compound-cron support, collapse to a single trigger and delete this rule.\n- **Reinforced by:** E097 (Teacher 2nd-trigger creation 2026-04-28).\n\n-->\n",
       "score": 2.5,
       "scoring_trace": {
         "domain_bonus": 0.0,
@@ -261,21 +262,43 @@
       "related_to": []
     },
     {
-      "id": "S035",
-      "path": "cortex/semantic/L1/S035.md",
-      "gist": "S035: og Brain \u2014 Fireflies MCP - Meeting Transcript Access",
-      "body": "### S035: og Brain \u2014 Fireflies MCP - Meeting Transcript Access\n- **Domain:** Tools / Integrations\n- **Learned:** 2026-04-07\n- **Reinforced:** 1 times\n- **Strength:** 1\n- **Facts:**\n  - Connected via /mcp OAuth flow\n  - Provides: transcripts, summaries, action items per person, keywords\n  - 14 meetings in 2 weeks at TCGroup\n  - Direct API: POST api.fireflies.ai/graphql, Bearer token. Returns transcripts with summary, action_items, bullets.\n  - API key stored in ~/.credentials.json as fireflies_api_key. NEVER in brain files.\n  - MCP only works from claude.ai web, not CLI. Use direct GraphQL API from CLI sessions.\n  - State file: brain/sync-state/fireflies-transcripts.json\n  - Key: MRR Handover, Enterprise 1on1, Forecast, JCE-JKA Check-In, Packaging Labor Cost, Product Alignment, SKUs and Systems, Analysts Weekly\n",
-      "score": 2.0,
+      "id": "og-fusiform-010-reinis-fals",
+      "path": "cortex/fusiform/L1/og-fusiform-010-reinis-fals.md",
+      "gist": "",
+      "body": "---\ntitle: og Brain \u2014 Reinis Fals\nstrength: 4\nlevel: L1\nmigrated_from: /home/ubuntu/.claude/brain/navigation/entities.json (key: reinis_fals)\nmigrated_at: 2026-05-05T11:50:50Z\nshape: fusiform-entity\n---\n\n# og Brain \u2014 Reinis Fals\n\n- **Canonical:** Reinis Fals\n- **Type:** person/cofounder\n- **Aliases:** Reinis F, reinis.fals\n- **Linked entries:** S006, S034\n- **Last referenced:** 2026-04-02\n\n**Relationships:**\n- cofounded \u2192 inudat (evidence: S006)\n- built \u2192 vericity (evidence: S034)\n",
+      "score": 2.5,
       "scoring_trace": {
         "domain_bonus": 0.0,
-        "type_bonus": 1.5,
+        "type_bonus": 0.0,
         "level_bonus": 0.5,
         "lex_bonus": 4.0,
         "co_ref_bonus": 0.0,
         "bundle_bonus": 0.0,
         "reuse_bonus": 0.0
       },
-      "related_to": []
+      "related_to": [
+        "S006",
+        "S034"
+      ]
+    },
+    {
+      "id": "R055",
+      "path": "cortex/prefrontal/L1/R055.md",
+      "gist": "R055: og Brain \u2014 Do Not Implement Unrequested Features",
+      "body": "### R055: og Brain \u2014 Do Not Implement Unrequested Features\n- **Strength:** 1\n- **Rule:** Design questions are informational, not implementation requests. Only implement when explicitly told. Questions like \"what happens if X\" need an answer, not code.\n- **Evidence:** E032 (deployed shoptype validation without being asked, user exploded)\n",
+      "score": 2.0,
+      "scoring_trace": {
+        "domain_bonus": 0.0,
+        "type_bonus": 0.0,
+        "level_bonus": 0.5,
+        "lex_bonus": 4.0,
+        "co_ref_bonus": 0.0,
+        "bundle_bonus": 0.0,
+        "reuse_bonus": 0.0
+      },
+      "related_to": [
+        "E032"
+      ]
     }
   ],
   "route": "normal"

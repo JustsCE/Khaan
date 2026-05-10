@@ -133,3 +133,7 @@
 {"event": "identity_timeout", "ts": "2026-05-09T19:42:36Z", "skill": "relay", "latency_ms": 154839}
 {"event": "relay_start", "ts": "2026-05-09T19:44:43Z", "session_id": "", "query_hash": "a6e44020935f5154"}
 {"event": "identity_timeout", "ts": "2026-05-09T19:45:43Z", "skill": "relay", "latency_ms": 60048}
+{"event": "relay_start", "ts": "2026-05-09T19:59:02Z", "session_id": "", "query_hash": "50ed078700653e29"}
+{"event": "identity_timeout", "ts": "2026-05-09T20:00:02Z", "skill": "relay", "latency_ms": 60151}
+{"event": "relay_start", "ts": "2026-05-09T20:11:33Z", "session_id": "", "query_hash": "13e9808fdde37935"}
+{"event": "identity_timeout", "ts": "2026-05-09T20:12:33Z", "skill": "relay", "latency_ms": 60047}
