@@ -20,7 +20,7 @@ def check_overdue():
 
     st = read_state()
     gap = st.get("message_counter", 0) - st.get("last_brain_update", 0)
-    if gap >= 5:
+    if gap >= 15:
         write_bin("learning-cycle-overdue", 1)
         if st.get("fsm") == "NORMAL":
             st["fsm"] = "MAINTENANCE_DUE"

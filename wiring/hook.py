@@ -90,26 +90,50 @@ def handle_pre_tool_use(payload):
 
 def handle_stop(payload):
     try:
-        # DEBUG: log raw payload keys to understand Stop event shape
-        dbg = BRAIN / "logger" / "handler" / "stop_debug.jsonl"
-        with open(dbg, "a") as df:
-            df.write(json.dumps({"ts": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()), "keys": list(payload.keys()), "sample": {k: str(v)[:100] for k, v in payload.items()}}) + "\n")
-    except Exception:
-        pass
-    try:
         p = BRAIN / "logger" / "handler" / "turn_complete.jsonl"
+        user_prompt = ""
+        tool_uses = []
+        transcript_path = payload.get("transcript_path", "")
+        if transcript_path:
+            from pathlib import Path as _P
+            tp = _P(transcript_path)
+            if tp.exists():
+                last_user = ""
+                last_tools = []
+                for line in tp.read_text(errors="replace").splitlines():
+                    if not line.strip():
+                        continue
+                    try:
+                        evt = json.loads(line)
+                    except Exception:
+                        continue
+                    if evt.get("type") == "user":
+                        msg = evt.get("message", {})
+                        content = msg.get("content", "")
+                        if isinstance(content, list):
+                            last_user = " ".join(b.get("text", "") for b in content if b.get("type") == "text")
+                        else:
+                            last_user = str(content)
+                    elif evt.get("type") == "assistant":
+                        msg = evt.get("message", {})
+                        content = msg.get("content", [])
+                        if isinstance(content, list):
+                            last_tools = [b.get("name", "") for b in content if b.get("type") == "tool_use"]
+                user_prompt = last_user
+                tool_uses = last_tools
         entry = {
             "ts": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
             "session_id": payload.get("session_id", ""),
-            "user_prompt":    payload.get("input")  or payload.get("prompt")          or payload.get("user_prompt", ""),
-            "final_response": payload.get("output") or payload.get("final_response") or payload.get("response", ""),
-            "tool_uses":      payload.get("tool_uses") or payload.get("tools_used") or [],
+            "user_prompt": user_prompt[-2000:] if user_prompt else "",
+            "final_response": (payload.get("last_assistant_message", "") or "")[-2000:],
+            "tool_uses": tool_uses,
         }
         with open(p, "a") as f:
             f.write(json.dumps(entry) + "\n")
     except Exception:
         pass
     return {}
+
 
 
 def _compose_turn_context():

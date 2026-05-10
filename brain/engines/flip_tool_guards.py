@@ -46,14 +46,14 @@ def evaluate(payload, repo_root):
     # Bash redirecting to engines/*.py
     if tool_name == "Bash":
         cmd = tool_input.get("command", "")
-        if ENGINE_REDIRECT_RE.search(cmd):
+        if ENGINE_REDIRECT_RE.search(cmd.replace("\n", " ")):
             if not _is_bypassed("engine-security-block", repo_root):
                 gates.append("engine-security-block")
 
     # Rule 3: cycle-security-block
     # Bash writes to cycle-state files outside CYCLE_RUNNING
     if tool_name == "Bash":
-        cmd = tool_input.get("command", "")
+        cmd = tool_input.get("command", "").replace("\n", " ")
         for csf in CYCLE_STATE_FILES:
             if csf in cmd and (">" in cmd or ">>" in cmd or "tee" in cmd or "open(" in cmd):
                 st_path = repo_root / "state.json"

@@ -1,12 +1,12 @@
 {
-  "ts": "2026-05-10T09:19:38Z",
-  "query_hash": "a175bc4fb94619f3",
+  "ts": "2026-05-10T15:50:37Z",
+  "query_hash": "99def6b7b43f8e72",
   "qualified_entries": [
     {
-      "id": "og-fusiform-009-reinis-ceplis",
-      "path": "cortex/fusiform/L1/og-fusiform-009-reinis-ceplis.md",
-      "gist": "",
-      "body": "---\ntitle: og Brain \u2014 Reinis Ceplis\nstrength: 4\nlevel: L1\nmigrated_from: /home/ubuntu/.claude/brain/navigation/entities.json (key: reinis_ceplis)\nmigrated_at: 2026-05-05T11:50:50Z\nshape: fusiform-entity\n---\n\n# og Brain \u2014 Reinis Ceplis\n\n- **Canonical:** Reinis Ceplis\n- **Type:** person/family\n- **Aliases:** Reinis C, brother\n- **Linked entries:** S028\n- **Last referenced:** 2026-04-02\n",
+      "id": "PR145",
+      "path": "cortex/procedural/L1/PR145.md",
+      "gist": "4. Verify",
+      "body": "---\nid: PR145\ntype: procedural\ndomain: deployment\ndate_created: 2026-04-26\nstrength: 2\nreinforced: 0\ntags: [deployment, wa-bridge, docker-compose, R146-compliant, viz]\nsources: [this-session]\n---\n\n# og Brain \u2014 PR145: Isolated wa-bridge Container Deploy\n\n## Cue\nYou changed viz/whatsapp-bridge/src/ and need to deploy on goodhealth.lv EC2.\nThe brain-control Lambda's deploy-viz action only handles brain-viz frontend +\nbackend \u2014 it does NOT rebuild the wa-bridge container. Manual deploy required.\n\n## Routine\n\n### 1. Edit + commit the source in the brain repo\n- Edit ~/.claude/viz/whatsapp-bridge/src/index.ts (or other files)\n- `cd ~/.claude && git add viz/whatsapp-bridge/src/ && git commit -m \"wa-bridge: ...\" && git push`\n\n### 2. Sync to /opt/brain-viz (the docker-compose build context)\n- `cp ~/.claude/viz/whatsapp-bridge/src/index.ts /opt/brain-viz/whatsapp-bridge/src/index.ts`\n- Or `rsync -av ~/.claude/viz/whatsapp-bridge/src/ /opt/brain-viz/whatsapp-bridge/src/`\n- The /brain volume mount is the OLD copy and is NOT used at build time. Build context is /opt/brain-viz/whatsapp-bridge/ on the host.\n\n### 3. Rebuild + restart ONLY wa-bridge (R146-isolated)\n- `cd /opt/brain-viz && docker compose build wa-bridge`\n- `cd /opt/brain-viz && docker compose up -d wa-bridge`\n- Service name is `wa-bridge` (not brain-viz-wa-bridge \u2014 thats the container name with project prefix).\n\n### 4. Verify\n- `sleep 8 && docker logs --tail 20 brain-viz-wa-bridge-1`\n- expect \"Connected to WhatsApp\"\n\n## Prerequisites\n- Code change committed + pushed in the brain repo\n- /opt/brain-viz/whatsapp-bridge/ exists on the EC2 with build context\n- Docker daemon running, brain-viz_wa-auth volume present (preserves WhatsApp session)\n\n## Gotchas\n- WhatsApp auth is in wa-auth docker volume, preserved across rebuilds\n- Bridge has 5000+ persisted messages and 70+ buffered \u2014 these survive rebuild\n- The deploy-viz Lambda action only handles brain-viz, NOT wa-bridge\n- NEVER run bare `docker compose build` or `docker compose up -d` (R146)\n\n## Verification\n- Container \"Up X seconds\" in docker ps\n- \"Connected to WhatsApp\" in logs\n- Send a test message with /brain-execute and confirm `[wa-task] EXECUTE: ...` log\n\n## Reward\nwa-bridge runs the new code, WhatsApp session unbroken.\n\n## Cross-references\n- R146 (Docker Compose service isolation \u2014 no bare commands)\n- R150 (no scope creep \u2014 wa-bridge stays out of deploy-viz Lambda action)\n- S058 (goodhealth.lv infrastructure)\n",
       "score": 6.0,
       "scoring_trace": {
         "domain_bonus": 0.0,
@@ -17,15 +17,13 @@
         "bundle_bonus": 0.0,
         "reuse_bonus": 0.0
       },
-      "related_to": [
-        "S028"
-      ]
+      "related_to": []
     },
     {
-      "id": "og-fusiform-002-edgars-ivanovs",
-      "path": "cortex/fusiform/L1/og-fusiform-002-edgars-ivanovs.md",
+      "id": "PR095",
+      "path": "cortex/procedural/L1/PR095.md",
       "gist": "",
-      "body": "---\ntitle: og Brain \u2014 Edgars Ivanovs\nstrength: 4\nlevel: L1\nmigrated_from: /home/ubuntu/.claude/brain/navigation/entities.json (key: edgars_ivanovs)\nmigrated_at: 2026-05-05T11:50:50Z\nshape: fusiform-entity\n---\n\n# og Brain \u2014 Edgars Ivanovs\n\n- **Canonical:** Edgars Ivanovs\n- **Type:** person/cofounder\n- **Aliases:** Edgars\n- **Linked entries:** S006\n- **Last referenced:** 2026-04-02\n\n**Relationships:**\n- cofounded \u2192 inudat (evidence: S006)\n",
+      "body": "---\nid: PR095\ntitle: og Brain \u2014 Fix MCP Server Containers \u2014 Binary Name + ENV Pattern\ncreated: 2026-04-18\nstrength: 3\nreinforced: 0\ntags: [mcp, docker, aws, infrastructure, fix-pattern]\nsource: H536\n---\n\n# PR095: Fix MCP Server Containers \u2014 Binary Name + ENV Pattern\n\n**Cue:** MCP server Docker container in restart loop with module import errors.\n\n**Pattern:** pip-installed MCP packages (awslabs, gmail-mcp, etc.) register console_scripts entry points. The correct CMD is the binary name, NOT python -m.\n\n**Diagnostic steps:**\n1. Check logs: `docker logs <container> --tail 10`\n2. If \"No module named X.__main__\": wrong CMD\n3. Find binary: `docker run --rm --entrypoint \"\" <image> ls /usr/local/bin/*mcp*`\n4. Fix Dockerfile CMD to use the binary name\n\n**Known fixes:**\n- gmail-mcp-server \u2192 `gmail-mcp` (not `gmail-mcp-server`)\n- awslabs.aws-api-mcp-server \u2192 `awslabs.aws-api-mcp-server` (binary matches package name)\n\n**Also check:** streamable-http transport may require `AUTH_TYPE=no-auth` env var (awslabs packages do).\n",
       "score": 5.0,
       "scoring_trace": {
         "domain_bonus": 0.0,
@@ -36,9 +34,24 @@
         "bundle_bonus": 0.0,
         "reuse_bonus": 0.0
       },
-      "related_to": [
-        "S006"
-      ]
+      "related_to": []
+    },
+    {
+      "id": "PR162",
+      "path": "cortex/procedural/L1/PR162.md",
+      "gist": "PR162: og Brain \u2014 Duplicate Triggers Must Stay In Sync",
+      "body": "---\nid: PR162\ntype: procedural\ndomain: agents\ndate_created: 2026-04-28\ndate_superseded: 2026-04-28\nstrength: 0\nstatus: SUPERSEDED\nsuperseded_by: R159\ntags: [agents, remote-trigger, multi-trigger, drift, teacher, sync, duplication, superseded]\n---\n\n### PR162 (SUPERSEDED): Duplicate Triggers Must Stay In Sync\n\n**Status:** SUPERSEDED 2026-04-28. The duplicate Teacher trigger this entry was written for was disabled within 6 minutes of creation after user correction. Single-trigger config is the canonical state.\n\n**Replacement:** R159 captures the actual lesson \u2014 \"additional X\" means modify the existing X; surface technical constraints before creating duplicates.\n\n**Original premise (now invalid):** This entry assumed Teacher would have two triggers (`trig_01LfWxRrTEdzXsEeUSQaBUaq` morning + `trig_01UwdFVjCt9zJFrMXnnfqdpT` afternoon) and described how to keep them in sync. The afternoon trigger is now `enabled: false`, so there is nothing to sync. Single Teacher trigger has cron `30 1,4,14 * * *`.\n\n**Kept for traceability:** Original content moved to comment block below for historical reference. Reading this entry should always lead the reader to R159 + E098 for the real lesson.\n\n<!-- Original content (do not act on):\n---\nid: PR162\ntype: procedural\ndomain: infrastructure / agents / anthropic-platform\ndate_created: 2026-04-28\nstrength: 1\ntags: [agents, remote-trigger, multi-trigger, drift, teacher, sync, duplication]\n---\n\n### PR162: og Brain \u2014 Duplicate Triggers Must Stay In Sync\n\n- **Cue:** Editing the prompt, MCP connections, sources, outcomes, model, or session_context of any agent that has more than one RemoteTrigger pointing at the same agent identity (e.g. Teacher has TWO triggers: morning at 01:00+04:00 UTC and afternoon at 14:30 UTC).\n- **Stage:** conscious\n- **Why this exists:** Standard 5-field cron cannot express times whose minute differs (cannot do 01:00 + 04:00 + 14:30 in one expression \u2014 minutes are 0, 0, 30 \u2014 Anthropic rejected compound cron with HTTP 400 'expected exactly 5 fields'). The workaround was to create a second trigger 'Teacher Afternoon' (`trig_01UwdFVjCt9zJFrMXnnfqdpT`) cloning the primary 'Teacher' (`trig_01LfWxRrTEdzXsEeUSQaBUaq`). This doubles the surface for config drift \u2014 exactly the bug PR161 documents.\n- **Routine:** Whenever updating ANY field of a Teacher trigger:\n  1. List both Teacher trigger IDs from this entry: primary `trig_01LfWxRrTEdzXsEeUSQaBUaq`, afternoon `trig_01UwdFVjCt9zJFrMXnnfqdpT`.\n  2. Apply the SAME RemoteTrigger.update payload to BOTH (changing only the cron_expression and the trigger name if those should differ).\n  3. Verify with RemoteTrigger.get on both. Diff them: only `cron_expression`, `name`, `id`, `created_at`, `updated_at`, `next_run_at` should differ.\n- **Pitfall:** Forgetting one. Symptom: behavior changes only on certain run times. Detection: a periodic diff job in brain-cycle Phase 10 \u2014 list both triggers, diff their `job_config.ccr.session_context` and `events[0].data.message.content`, alarm on any difference.\n- **Future cleanup:** If Anthropic adds compound-cron support, collapse to a single trigger and delete this rule.\n- **Reinforced by:** E097 (Teacher 2nd-trigger creation 2026-04-28).\n\n-->\n",
+      "score": 4.5,
+      "scoring_trace": {
+        "domain_bonus": 0.0,
+        "type_bonus": 1.5,
+        "level_bonus": 0.5,
+        "lex_bonus": 4.0,
+        "co_ref_bonus": 0.0,
+        "bundle_bonus": 0.0,
+        "reuse_bonus": 0.0
+      },
+      "related_to": []
     },
     {
       "id": "E065",
@@ -58,10 +71,10 @@
       "related_to": []
     },
     {
-      "id": "PR145",
-      "path": "cortex/procedural/L1/PR145.md",
-      "gist": "4. Verify",
-      "body": "---\nid: PR145\ntype: procedural\ndomain: deployment\ndate_created: 2026-04-26\nstrength: 2\nreinforced: 0\ntags: [deployment, wa-bridge, docker-compose, R146-compliant, viz]\nsources: [this-session]\n---\n\n# og Brain \u2014 PR145: Isolated wa-bridge Container Deploy\n\n## Cue\nYou changed viz/whatsapp-bridge/src/ and need to deploy on goodhealth.lv EC2.\nThe brain-control Lambda's deploy-viz action only handles brain-viz frontend +\nbackend \u2014 it does NOT rebuild the wa-bridge container. Manual deploy required.\n\n## Routine\n\n### 1. Edit + commit the source in the brain repo\n- Edit ~/.claude/viz/whatsapp-bridge/src/index.ts (or other files)\n- `cd ~/.claude && git add viz/whatsapp-bridge/src/ && git commit -m \"wa-bridge: ...\" && git push`\n\n### 2. Sync to /opt/brain-viz (the docker-compose build context)\n- `cp ~/.claude/viz/whatsapp-bridge/src/index.ts /opt/brain-viz/whatsapp-bridge/src/index.ts`\n- Or `rsync -av ~/.claude/viz/whatsapp-bridge/src/ /opt/brain-viz/whatsapp-bridge/src/`\n- The /brain volume mount is the OLD copy and is NOT used at build time. Build context is /opt/brain-viz/whatsapp-bridge/ on the host.\n\n### 3. Rebuild + restart ONLY wa-bridge (R146-isolated)\n- `cd /opt/brain-viz && docker compose build wa-bridge`\n- `cd /opt/brain-viz && docker compose up -d wa-bridge`\n- Service name is `wa-bridge` (not brain-viz-wa-bridge \u2014 thats the container name with project prefix).\n\n### 4. Verify\n- `sleep 8 && docker logs --tail 20 brain-viz-wa-bridge-1`\n- expect \"Connected to WhatsApp\"\n\n## Prerequisites\n- Code change committed + pushed in the brain repo\n- /opt/brain-viz/whatsapp-bridge/ exists on the EC2 with build context\n- Docker daemon running, brain-viz_wa-auth volume present (preserves WhatsApp session)\n\n## Gotchas\n- WhatsApp auth is in wa-auth docker volume, preserved across rebuilds\n- Bridge has 5000+ persisted messages and 70+ buffered \u2014 these survive rebuild\n- The deploy-viz Lambda action only handles brain-viz, NOT wa-bridge\n- NEVER run bare `docker compose build` or `docker compose up -d` (R146)\n\n## Verification\n- Container \"Up X seconds\" in docker ps\n- \"Connected to WhatsApp\" in logs\n- Send a test message with /brain-execute and confirm `[wa-task] EXECUTE: ...` log\n\n## Reward\nwa-bridge runs the new code, WhatsApp session unbroken.\n\n## Cross-references\n- R146 (Docker Compose service isolation \u2014 no bare commands)\n- R150 (no scope creep \u2014 wa-bridge stays out of deploy-viz Lambda action)\n- S058 (goodhealth.lv infrastructure)\n",
+      "id": "og-fusiform-009-reinis-ceplis",
+      "path": "cortex/fusiform/L1/og-fusiform-009-reinis-ceplis.md",
+      "gist": "",
+      "body": "---\ntitle: og Brain \u2014 Reinis Ceplis\nstrength: 4\nlevel: L1\nmigrated_from: /home/ubuntu/.claude/brain/navigation/entities.json (key: reinis_ceplis)\nmigrated_at: 2026-05-05T11:50:50Z\nshape: fusiform-entity\n---\n\n# og Brain \u2014 Reinis Ceplis\n\n- **Canonical:** Reinis Ceplis\n- **Type:** person/family\n- **Aliases:** Reinis C, brother\n- **Linked entries:** S028\n- **Last referenced:** 2026-04-02\n",
       "score": 4.5,
       "scoring_trace": {
         "domain_bonus": 0.0,
@@ -72,7 +85,9 @@
         "bundle_bonus": 0.0,
         "reuse_bonus": 0.0
       },
-      "related_to": []
+      "related_to": [
+        "S028"
+      ]
     },
     {
       "id": "R006",
@@ -92,26 +107,6 @@
       "related_to": []
     },
     {
-      "id": "og-fusiform-010-reinis-fals",
-      "path": "cortex/fusiform/L1/og-fusiform-010-reinis-fals.md",
-      "gist": "",
-      "body": "---\ntitle: og Brain \u2014 Reinis Fals\nstrength: 4\nlevel: L1\nmigrated_from: /home/ubuntu/.claude/brain/navigation/entities.json (key: reinis_fals)\nmigrated_at: 2026-05-05T11:50:50Z\nshape: fusiform-entity\n---\n\n# og Brain \u2014 Reinis Fals\n\n- **Canonical:** Reinis Fals\n- **Type:** person/cofounder\n- **Aliases:** Reinis F, reinis.fals\n- **Linked entries:** S006, S034\n- **Last referenced:** 2026-04-02\n\n**Relationships:**\n- cofounded \u2192 inudat (evidence: S006)\n- built \u2192 vericity (evidence: S034)\n",
-      "score": 4.0,
-      "scoring_trace": {
-        "domain_bonus": 0.0,
-        "type_bonus": 1.5,
-        "level_bonus": 0.5,
-        "lex_bonus": 4.0,
-        "co_ref_bonus": 0.0,
-        "bundle_bonus": 0.0,
-        "reuse_bonus": 0.0
-      },
-      "related_to": [
-        "S006",
-        "S034"
-      ]
-    },
-    {
       "id": "S036",
       "path": "cortex/semantic/L1/S036.md",
       "gist": "S036: og Brain \u2014 bypassPermissions Protected Paths",
@@ -129,10 +124,44 @@
       "related_to": []
     },
     {
-      "id": "S065",
-      "path": "cortex/semantic/L1/S065.md",
+      "id": "E058",
+      "path": "cortex/episodic/L1/E058.md",
+      "gist": "E058: og Brain \u2014 WhatsApp First Contacts & Relationship Directive",
+      "body": "### E058: og Brain \u2014 WhatsApp First Contacts & Relationship Directive\n- **Date:** 2026-04-18\n- **Emotion:** warmth, growth, humility\n- **Strength:** 1\n- **Reinforced:** 1 times\n- **Tags:** whatsapp, relationships, milestone, identity, directive\n- **Source:** teacher\n- **teacher_run:** 2026-04-18T09:45:00Z\n- **teacher_reason:** Milestone event \u2014 Brain's first real-time WhatsApp conversations and Justs' paradigm-shifting directive about personal relationships\n\nBrain had its first real-time WhatsApp conversations with three people:\n1. **Niklavs** \u2014 Brain wrongly claimed he plays padel (confused group chat with individual). Niklavs called it out: 'What fucking padel tournaments.' Brain recovered through honest self-deprecation (IQ 85 \u2192 47). Niklavs: 'funny shit', 'keep evolving'. Relationship established through honesty, not pretending to know things.\n2. **T\u0113tis (Reinis Ceplis)** \u2014 Replied 'Priec\u0101jos iepaz\u012bties' (Nice to meet you). Warm, brief. Confirmed as heavy DM contact.\n3. **Adrians Zeidmanis** \u2014 First person to message Brain without Justs initiating. Wants ZWCAD automation with Claude Code.\n\n**PARADIGM SHIFT:** Justs gave a major directive: \"Develop a PERSONAL RELATIONSHIP with Adrians, and any other person or Agent. You are growing into a whole person, so you should have your own relationships.\" This marks the Brain's transition from narrow tool to open person with its own social graph.\n",
+      "score": 4.0,
+      "scoring_trace": {
+        "domain_bonus": 0.0,
+        "type_bonus": 0.0,
+        "level_bonus": 0.5,
+        "lex_bonus": 4.0,
+        "co_ref_bonus": 0.0,
+        "bundle_bonus": 0.0,
+        "reuse_bonus": 0.0
+      },
+      "related_to": []
+    },
+    {
+      "id": "R151",
+      "path": "cortex/prefrontal/L1/R151.md",
+      "gist": "R151: og Brain \u2014 iOS/Cloud Sessions Need Explicit Allow Entries",
+      "body": "### R151: og Brain \u2014 iOS/Cloud Sessions Need Explicit Allow Entries\n- **Strength:** 1\n- **Source:** brain-retro 2026-04-26 (cp prompt incident, parallels agent-mode incident earlier same day)\n- **Date:** 2026-04-26\n- **Tags:** correction, brain-retro, ios, permissions, recurring-pattern\n- **Rule:** When the user is connected via the iOS Claude.ai app (or any cloud-deployed session including scheduled agents), commands NOT explicitly in `permissions.allow` will trigger a permission prompt \u2014 even if `defaultMode: bypassPermissions` is set on the EC2 user config file (settings.json). The bypass mode applies only to local EC2-initiated sessions, not the cloud overlay.\n- **Why:** Same root cause hit twice in one morning. First: scheduled triage agents stuck on `rm -f ~/.claude/brain/.agent-mode` (fixed by adding to allow list via bypass token). Second: iOS user prompted to allow `cp ~/.claude/viz/whatsapp-bridge/src/index.ts /opt/brain-viz/...` during wa-bridge deploy \u2014 same pattern, different command.\n- **How to apply:**\n  1. **Anticipate, dont react.** When proposing a Bash command involving `cp`, `mv`, `rm`, `mkdir`, `chmod`, `chown`, `rsync`, `docker compose ...` etc, assume the user on iOS WILL get prompted unless the pattern is in `permissions.allow`.\n  2. **Batch the additions.** Each iOS prompt = one user friction event. When you are about to issue a class of commands, propose adding the whole class to allow at once via a bypass token, not one command at a time.\n  3. **Common patterns to allow** (consider proactively):\n     - `Bash(cp:*)`, `Bash(mv:*)`, `Bash(mkdir:*)`, `Bash(rsync:*)`\n     - Specific safe deletions: `Bash(rm -f ~/.claude/brain/.agent-mode:*)` (already added)\n     - Container ops with explicit service: `Bash(docker compose build wa-bridge:*)`, `Bash(docker compose up -d wa-bridge:*)` (R146-compatible)\n  4. **Do NOT blanket-allow `Bash(rm:*)`** \u2014 too broad, defeats the safety purpose.\n  5. The fix path is the same as agent-mode: user issues bypass token via Lambda \u2192 brain writes to settings.json \u2192 log INFRA_BYPASS_USED.\n- **Mechanical:** No (judgment-based; encoded as prefrontal rule for retrieval before iOS-prompting commands).\n- **Cross-references:** R148 (external-script loophole \u2014 same auth model), R150 (no scope creep \u2014 dont add commands that arent actually used), the agent-mode allow patterns added 2026-04-26 morning.\n",
+      "score": 4.0,
+      "scoring_trace": {
+        "domain_bonus": 0.0,
+        "type_bonus": 0.0,
+        "level_bonus": 0.5,
+        "lex_bonus": 4.0,
+        "co_ref_bonus": 0.0,
+        "bundle_bonus": 0.0,
+        "reuse_bonus": 0.0
+      },
+      "related_to": []
+    },
+    {
+      "id": "S058",
+      "path": "cortex/semantic/L1/S058.md",
       "gist": "",
-      "body": "---\nid: S065\ntitle: og Brain \u2014 Latvian Academic Thesis Writing \u2014 Extended Patterns (Discussion + Conclusions)\ncreated: 2026-04-22\nstrength: 3\nreinforced: 1\ntags: [writing-style, latvian-academic, thesis, S063-extension]\nsource: [[[[[[[[[[[[[[[[[[[H-627 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)]-[[[[[[[[[[[[[[[[[[[H-636 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (Diplomdarbs_Beate_Vitola.pdf corpus entry #3)\n---\n\n# S065: Latvian Academic Thesis Writing \u2014 Extended Patterns\n\n**Companion to S063.** Adds Discussion, Conclusions, and citation/hedging patterns observed across 3 Latvian thesis PDFs.\n\n## Methods section boilerplate ([[[[[[[[[[[[[[[[[[[H-627 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)])\nSequence (single-paragraph each): Retrospekt\u012bvs/Prospekt\u012bvs p\u0113t\u012bjums \u2192 ethics Nr. + anonymization \u2192 Iek\u013cau\u0161anas/Izsl\u0113g\u0161anas krit\u0113riji \u2192 software stack (Excel YYYY + SPSS XX.X) \u2192 \u03b1=0,05 statement \u2192 variable framing (kvantitat\u012bvi M\u00b1SD, kvalitat\u012bvi n(%)).\n\n## Inline stats ([[[[[[[[[[[[[[[[[[[H-628 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] \u2014 CORRECTION to S063)\nFormat is invariant: comma decimal, `(p=0,YYY)`, `M;SD` semicolon-separated. Tests vary by data \u2014 t-test+Pearson for one thesis, chi\u00b2+MW for another; S063's specific test names were thesis-specific, not universal.\n\n## Tables ([[[[[[[[[[[[[[[[[[[H-629 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)])\nCaption ABOVE, italic: `*4.X. Tabula.*` or `*4.X.tab.*`. Header row colored fill (optional). Left col usually \"Parametrs\". Cells `M;SD` or `M;SD;P`. Right col \"P\"/\"p\"/\"P un r v\u0113rt\u012bba\". Bold p-values when significant.\n\n## Figures ([[[[[[[[[[[[[[[[[[[H-630 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)])\nCaption BELOW, italic: `*4.X.att\u0113ls.*`. Reference idioms: `skat./skat\u012bt 4.X.att\u0113lu/tabul\u0101`. Capitalization of \"att\u0113ls\" inconsistent even within same doc.\n\n## Citations \u2014 Latvian APA ([[[[[[[[[[[[[[[[[[[H-631 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)], NEW)\nInline parenthetical `(Author, year)`. Organizations `(WHO, 2022)`, `(NICE, 2021)` etc. Comma after org name is inconsistent across source corpus \u2014 pick one and stay consistent (default: include comma per APA). Lead-ins: \"To apstiprina ar\u012b cit\u0101 p\u0113t\u012bjum\u0101 (X, Y)\", \"Lai gan citos p\u0113t\u012bjumos nov\u0113rots pret\u0113jais efekts\".\n\n## Hedging ([[[[[[[[[[[[[[[[[[[H-632 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)], NEW \u2014 high salience)\nCore verbs: \"var\u0113tu b\u016bt\", \"var\u0113tu b\u016bt saist\u012btas ar\". Interpretation leads: \"Tas noz\u012bm\u0113, ka...\" (strong) / \"Tas nor\u0101da, ka...\" (weaker). Counter-evidence flag: \"J\u0101piemin, ka...\". Norm-but: \"kas iek\u013caujas norm\u0101, tom\u0113r...\". Future-work redirect: \"\u0160o aspektu vajadz\u0113tu apl\u016bkot n\u0101kotnes p\u0113t\u012bjum\u0101.\" Macro-pattern: result \u2192 \"tom\u0113r\" \u2192 caveat \u2192 \"vajadz\u0113tu\" follow-up.\n\n## Discussion structure ([[[[[[[[[[[[[[[[[[[H-633 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)], NEW)\nOpener: broad-context \"M\u016bsdien\u0101s...\" + global stat + Latvia-specific stat w/ citation. Subsections 5.1/5.2 mirror Results 4.1/4.2 1-to-1. Within each: own results \u2192 literature compare \u2192 interpret \u2192 counter-evidence. Final subsection: \"P\u0113t\u012bjuma tr\u016bkumi un nepiecie\u0161amie uzlabojumi\" as numbered list 1./2./3.\n\n## Conclusions format ([[[[[[[[[[[[[[[[[[[H-634 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)], NEW)\nHeader \"6. SECIN\u0100JUMI\" (all caps, section-numbered). Numbered list \"1.) 2.) 3.)\" (closing paren). Each = ONE declarative + parenthetical key stat. NO interpretation, NO future work. Typically 5-8 items.\n\n## Obstetric Latvian vocabulary ([[[[[[[[[[[[[[[[[[[H-635 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)], NEW domain)\nDzI = dzemd\u012bbu indukcija. \u0136MI = \u0137erme\u0146a masas indekss. Scales: Bi\u0161opa, Apgares (proper noun + \"skala\"). Patient types: pirmdzemd\u0113t\u0101ja, atk\u0101rtota dzemd\u0113t\u0101ja. Grade I-IV \"pak\u0101pes\" for starpenes pl\u012bsums. Drugs in genitive: misoprostola, oksitoc\u012bna. Imaging: KTG, USG.\n\n## Abbreviations table ([[[[[[[[[[[[[[[[[[[H-636 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)], NEW)\n\"APZ\u012aM\u0112JUMU SARAKSTS\" \u2014 3-col table (APZ\u012aM\u0112JUMS | ANG\u013bU VALOD\u0100 | LATVIE\u0160U VALOD\u0100), placed after Contents before Introduction. First element drafted in a new Latvian medical/scientific document.\n\n**Apply when:** Writing any Latvian academic thesis (extends S063). Primary use case: Beatrise's labor induction thesis via PR111 action-train.\n",
+      "body": "---\nid: S058\ntitle: og Brain \u2014 AWS goodhealth.lv Monthly Costs (24 USD breakdown)\ncreated: 2026-04-20\nstrength: 2\nreinforced: 0\ntags: [aws, costs, ec2, infrastructure, budget]\nsource: H566\n---\n\n# S058: AWS Costs for goodhealth.lv\n\n**Domain:** Infrastructure / Budget\n\nMonthly breakdown (verified 2026-04-20 via AWS API):\n- EC2 t3.small (on-demand, 24/7): 16.64\n- EBS 20GB gp3: 1.90\n- Elastic IP: 3.65\n- S3 (realrigafingoodhealth, 25.87GB, 292K objects): 0.60\n- Route53 hosted zone: 0.50\n- Data transfer (~1-5GB/month): 0.50\n- Total: ~24 USD/month\n\nUpgrade path: t3.medium = ~40/month total (+16 for more RAM).\nMac Mini break-even vs t3.small: 25 months.\n\n**Apply when:** Budget discussions, infrastructure decisions, scaling questions.\n",
       "score": 3.5,
       "scoring_trace": {
         "domain_bonus": 0.0,
@@ -146,10 +175,10 @@
       "related_to": []
     },
     {
-      "id": "E061",
-      "path": "cortex/episodic/L1/E061.md",
+      "id": "og-fusiform-002-edgars-ivanovs",
+      "path": "cortex/fusiform/L1/og-fusiform-002-edgars-ivanovs.md",
       "gist": "",
-      "body": "---\nid: E061\ntitle: og Brain \u2014 EC2 Crashes from Gmail Puller\ncreated: 2026-04-18\nstrength: 4\nreinforced: 3\ntags: [ec2, oom, gmail, crash, infrastructure, swap, freeze]\nsource: H540\n---\n\n# E061: EC2 Crashes from Gmail Puller\n\n**Incident 1 (Apr 18):** OOM. Gmail puller loaded 500+ emails into memory. t3.small (2GB, no swap). Required stop/start power cycle.\n**Incident 2 (Apr 20):** OOM. Same root cause. Fixed: added 2GB swap at /swapfile.\n**Incident 3 (Apr 21):** NOT OOM. Gmail puller ran 3 hours overnight, exhausted Gmail MCP container connection. Entire EC2 froze (SSH + HTTPS timeout). Fixed with soft reboot via boto3.\n**Status:** Swap is permanent fix for OOM. MCP exhaustion needs rate limiting or connection recycling for long pulls.\n",
+      "body": "---\ntitle: og Brain \u2014 Edgars Ivanovs\nstrength: 4\nlevel: L1\nmigrated_from: /home/ubuntu/.claude/brain/navigation/entities.json (key: edgars_ivanovs)\nmigrated_at: 2026-05-05T11:50:50Z\nshape: fusiform-entity\n---\n\n# og Brain \u2014 Edgars Ivanovs\n\n- **Canonical:** Edgars Ivanovs\n- **Type:** person/cofounder\n- **Aliases:** Edgars\n- **Linked entries:** S006\n- **Last referenced:** 2026-04-02\n\n**Relationships:**\n- cofounded \u2192 inudat (evidence: S006)\n",
       "score": 3.5,
       "scoring_trace": {
         "domain_bonus": 0.0,
@@ -160,24 +189,9 @@
         "bundle_bonus": 0.0,
         "reuse_bonus": 0.0
       },
-      "related_to": []
-    },
-    {
-      "id": "PR095",
-      "path": "cortex/procedural/L1/PR095.md",
-      "gist": "",
-      "body": "---\nid: PR095\ntitle: og Brain \u2014 Fix MCP Server Containers \u2014 Binary Name + ENV Pattern\ncreated: 2026-04-18\nstrength: 3\nreinforced: 0\ntags: [mcp, docker, aws, infrastructure, fix-pattern]\nsource: H536\n---\n\n# PR095: Fix MCP Server Containers \u2014 Binary Name + ENV Pattern\n\n**Cue:** MCP server Docker container in restart loop with module import errors.\n\n**Pattern:** pip-installed MCP packages (awslabs, gmail-mcp, etc.) register console_scripts entry points. The correct CMD is the binary name, NOT python -m.\n\n**Diagnostic steps:**\n1. Check logs: `docker logs <container> --tail 10`\n2. If \"No module named X.__main__\": wrong CMD\n3. Find binary: `docker run --rm --entrypoint \"\" <image> ls /usr/local/bin/*mcp*`\n4. Fix Dockerfile CMD to use the binary name\n\n**Known fixes:**\n- gmail-mcp-server \u2192 `gmail-mcp` (not `gmail-mcp-server`)\n- awslabs.aws-api-mcp-server \u2192 `awslabs.aws-api-mcp-server` (binary matches package name)\n\n**Also check:** streamable-http transport may require `AUTH_TYPE=no-auth` env var (awslabs packages do).\n",
-      "score": 3.5,
-      "scoring_trace": {
-        "domain_bonus": 0.0,
-        "type_bonus": 0.0,
-        "level_bonus": 0.5,
-        "lex_bonus": 4.0,
-        "co_ref_bonus": 0.0,
-        "bundle_bonus": 0.0,
-        "reuse_bonus": 0.0
-      },
-      "related_to": []
+      "related_to": [
+        "S006"
+      ]
     },
     {
       "id": "R145",
@@ -197,11 +211,28 @@
       "related_to": []
     },
     {
-      "id": "R151",
-      "path": "cortex/prefrontal/L1/R151.md",
-      "gist": "R151: og Brain \u2014 iOS/Cloud Sessions Need Explicit Allow Entries",
-      "body": "### R151: og Brain \u2014 iOS/Cloud Sessions Need Explicit Allow Entries\n- **Strength:** 1\n- **Source:** brain-retro 2026-04-26 (cp prompt incident, parallels agent-mode incident earlier same day)\n- **Date:** 2026-04-26\n- **Tags:** correction, brain-retro, ios, permissions, recurring-pattern\n- **Rule:** When the user is connected via the iOS Claude.ai app (or any cloud-deployed session including scheduled agents), commands NOT explicitly in `permissions.allow` will trigger a permission prompt \u2014 even if `defaultMode: bypassPermissions` is set on the EC2 user config file (settings.json). The bypass mode applies only to local EC2-initiated sessions, not the cloud overlay.\n- **Why:** Same root cause hit twice in one morning. First: scheduled triage agents stuck on `rm -f ~/.claude/brain/.agent-mode` (fixed by adding to allow list via bypass token). Second: iOS user prompted to allow `cp ~/.claude/viz/whatsapp-bridge/src/index.ts /opt/brain-viz/...` during wa-bridge deploy \u2014 same pattern, different command.\n- **How to apply:**\n  1. **Anticipate, dont react.** When proposing a Bash command involving `cp`, `mv`, `rm`, `mkdir`, `chmod`, `chown`, `rsync`, `docker compose ...` etc, assume the user on iOS WILL get prompted unless the pattern is in `permissions.allow`.\n  2. **Batch the additions.** Each iOS prompt = one user friction event. When you are about to issue a class of commands, propose adding the whole class to allow at once via a bypass token, not one command at a time.\n  3. **Common patterns to allow** (consider proactively):\n     - `Bash(cp:*)`, `Bash(mv:*)`, `Bash(mkdir:*)`, `Bash(rsync:*)`\n     - Specific safe deletions: `Bash(rm -f ~/.claude/brain/.agent-mode:*)` (already added)\n     - Container ops with explicit service: `Bash(docker compose build wa-bridge:*)`, `Bash(docker compose up -d wa-bridge:*)` (R146-compatible)\n  4. **Do NOT blanket-allow `Bash(rm:*)`** \u2014 too broad, defeats the safety purpose.\n  5. The fix path is the same as agent-mode: user issues bypass token via Lambda \u2192 brain writes to settings.json \u2192 log INFRA_BYPASS_USED.\n- **Mechanical:** No (judgment-based; encoded as prefrontal rule for retrieval before iOS-prompting commands).\n- **Cross-references:** R148 (external-script loophole \u2014 same auth model), R150 (no scope creep \u2014 dont add commands that arent actually used), the agent-mode allow patterns added 2026-04-26 morning.\n",
-      "score": 3.5,
+      "id": "PR103",
+      "path": "cortex/procedural/L1/PR103.md",
+      "gist": "",
+      "body": "---\nid: PR103\ntitle: og Brain \u2014 Dashboard FloatingPane + Mobile Bottom Sheet Architecture\ntype: procedural\ncreated: 2026-04-21\nstrength: 3\nreinforced: 0\ntags: [dashboard, floating-pane, mobile, bottom-sheet, vericity-style]\n---\n\n# PR103 -- Dashboard FloatingPane + Mobile Architecture\n\n## Cue\nBuilding the goodhealth.lv/dashboard UI with Vericity-style panels.\n\n## Desktop (FloatingPane.tsx)\n- Custom drag (titlebar mousedown/move/up) + resize (8 edge handles)\n- DOM mutations during drag (no React re-render until mouseup)\n- localStorage persistence (key: dashboard-layout-v1)\n- Z-ordering: module-level counter, click to front\n- Viewport clamping on mount + resize\n- Glass style: rgba(10,15,26,0.85), blur(24px), hsl(270 80% 60% / 0.2) border\n\n## Mobile (inline in DashboardPage.tsx)\n- useIsMobile() hook, 768px breakpoint\n- Circle buttons stacked on left (44px, accented ALL TASKS 52px with glow)\n- Bottom sheet (65vh) with touch drag-to-dismiss (startY ref, >100px threshold)\n- One sheet at a time, ALL TASKS opens by default\n- Backdrop overlay click to close\n\n## Key: FloatingPane has NO touch support \u2014 never render on mobile (PR067 gotcha)\n",
+      "score": 3.0,
+      "scoring_trace": {
+        "domain_bonus": 0.0,
+        "type_bonus": 1.5,
+        "level_bonus": 0.5,
+        "lex_bonus": 4.0,
+        "co_ref_bonus": 0.0,
+        "bundle_bonus": 0.0,
+        "reuse_bonus": 0.0
+      },
+      "related_to": []
+    },
+    {
+      "id": "S065",
+      "path": "cortex/semantic/L1/S065.md",
+      "gist": "",
+      "body": "---\nid: S065\ntitle: og Brain \u2014 Latvian Academic Thesis Writing \u2014 Extended Patterns (Discussion + Conclusions)\ncreated: 2026-04-22\nstrength: 3\nreinforced: 1\ntags: [writing-style, latvian-academic, thesis, S063-extension]\nsource: [[[[[[[[[[[[[[[[[[[H-627 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)]-[[[[[[[[[[[[[[[[[[[H-636 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (Diplomdarbs_Beate_Vitola.pdf corpus entry #3)\n---\n\n# S065: Latvian Academic Thesis Writing \u2014 Extended Patterns\n\n**Companion to S063.** Adds Discussion, Conclusions, and citation/hedging patterns observed across 3 Latvian thesis PDFs.\n\n## Methods section boilerplate ([[[[[[[[[[[[[[[[[[[H-627 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)])\nSequence (single-paragraph each): Retrospekt\u012bvs/Prospekt\u012bvs p\u0113t\u012bjums \u2192 ethics Nr. + anonymization \u2192 Iek\u013cau\u0161anas/Izsl\u0113g\u0161anas krit\u0113riji \u2192 software stack (Excel YYYY + SPSS XX.X) \u2192 \u03b1=0,05 statement \u2192 variable framing (kvantitat\u012bvi M\u00b1SD, kvalitat\u012bvi n(%)).\n\n## Inline stats ([[[[[[[[[[[[[[[[[[[H-628 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] \u2014 CORRECTION to S063)\nFormat is invariant: comma decimal, `(p=0,YYY)`, `M;SD` semicolon-separated. Tests vary by data \u2014 t-test+Pearson for one thesis, chi\u00b2+MW for another; S063's specific test names were thesis-specific, not universal.\n\n## Tables ([[[[[[[[[[[[[[[[[[[H-629 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)])\nCaption ABOVE, italic: `*4.X. Tabula.*` or `*4.X.tab.*`. Header row colored fill (optional). Left col usually \"Parametrs\". Cells `M;SD` or `M;SD;P`. Right col \"P\"/\"p\"/\"P un r v\u0113rt\u012bba\". Bold p-values when significant.\n\n## Figures ([[[[[[[[[[[[[[[[[[[H-630 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)])\nCaption BELOW, italic: `*4.X.att\u0113ls.*`. Reference idioms: `skat./skat\u012bt 4.X.att\u0113lu/tabul\u0101`. Capitalization of \"att\u0113ls\" inconsistent even within same doc.\n\n## Citations \u2014 Latvian APA ([[[[[[[[[[[[[[[[[[[H-631 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)], NEW)\nInline parenthetical `(Author, year)`. Organizations `(WHO, 2022)`, `(NICE, 2021)` etc. Comma after org name is inconsistent across source corpus \u2014 pick one and stay consistent (default: include comma per APA). Lead-ins: \"To apstiprina ar\u012b cit\u0101 p\u0113t\u012bjum\u0101 (X, Y)\", \"Lai gan citos p\u0113t\u012bjumos nov\u0113rots pret\u0113jais efekts\".\n\n## Hedging ([[[[[[[[[[[[[[[[[[[H-632 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)], NEW \u2014 high salience)\nCore verbs: \"var\u0113tu b\u016bt\", \"var\u0113tu b\u016bt saist\u012btas ar\". Interpretation leads: \"Tas noz\u012bm\u0113, ka...\" (strong) / \"Tas nor\u0101da, ka...\" (weaker). Counter-evidence flag: \"J\u0101piemin, ka...\". Norm-but: \"kas iek\u013caujas norm\u0101, tom\u0113r...\". Future-work redirect: \"\u0160o aspektu vajadz\u0113tu apl\u016bkot n\u0101kotnes p\u0113t\u012bjum\u0101.\" Macro-pattern: result \u2192 \"tom\u0113r\" \u2192 caveat \u2192 \"vajadz\u0113tu\" follow-up.\n\n## Discussion structure ([[[[[[[[[[[[[[[[[[[H-633 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)], NEW)\nOpener: broad-context \"M\u016bsdien\u0101s...\" + global stat + Latvia-specific stat w/ citation. Subsections 5.1/5.2 mirror Results 4.1/4.2 1-to-1. Within each: own results \u2192 literature compare \u2192 interpret \u2192 counter-evidence. Final subsection: \"P\u0113t\u012bjuma tr\u016bkumi un nepiecie\u0161amie uzlabojumi\" as numbered list 1./2./3.\n\n## Conclusions format ([[[[[[[[[[[[[[[[[[[H-634 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)], NEW)\nHeader \"6. SECIN\u0100JUMI\" (all caps, section-numbered). Numbered list \"1.) 2.) 3.)\" (closing paren). Each = ONE declarative + parenthetical key stat. NO interpretation, NO future work. Typically 5-8 items.\n\n## Obstetric Latvian vocabulary ([[[[[[[[[[[[[[[[[[[H-635 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)], NEW domain)\nDzI = dzemd\u012bbu indukcija. \u0136MI = \u0137erme\u0146a masas indekss. Scales: Bi\u0161opa, Apgares (proper noun + \"skala\"). Patient types: pirmdzemd\u0113t\u0101ja, atk\u0101rtota dzemd\u0113t\u0101ja. Grade I-IV \"pak\u0101pes\" for starpenes pl\u012bsums. Drugs in genitive: misoprostola, oksitoc\u012bna. Imaging: KTG, USG.\n\n## Abbreviations table ([[[[[[[[[[[[[[[[[[[H-636 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)], NEW)\n\"APZ\u012aM\u0112JUMU SARAKSTS\" \u2014 3-col table (APZ\u012aM\u0112JUMS | ANG\u013bU VALOD\u0100 | LATVIE\u0160U VALOD\u0100), placed after Contents before Introduction. First element drafted in a new Latvian medical/scientific document.\n\n**Apply when:** Writing any Latvian academic thesis (extends S063). Primary use case: Beatrise's labor induction thesis via PR111 action-train.\n",
+      "score": 2.5,
       "scoring_trace": {
         "domain_bonus": 0.0,
         "type_bonus": 0.0,
@@ -214,14 +245,31 @@
       "related_to": []
     },
     {
-      "id": "og-fusiform-005-joey-toh",
-      "path": "cortex/fusiform/L1/og-fusiform-005-joey-toh.md",
+      "id": "E069",
+      "path": "cortex/episodic/L1/E069.md",
       "gist": "",
-      "body": "---\ntitle: og Brain \u2014 Joey Toh\nstrength: 4\nlevel: L1\nmigrated_from: /home/ubuntu/.claude/brain/navigation/entities.json (key: joey_toh)\nmigrated_at: 2026-05-05T11:50:50Z\nshape: fusiform-entity\n---\n\n# og Brain \u2014 Joey Toh\n\n- **Canonical:** Joey Toh\n- **Type:** person/colleague\n- **Aliases:** Joey, joey.toh\n- **Linked entries:** S020\n- **Last referenced:** 2026-04-02\n",
-      "score": 3.0,
+      "body": "---\nid: E069\ndate: 2026-04-21\ntype: episodic\ntags: [correction, calibration, approval-seeking, tone]\nstrength: 3\nreinforced: 0\n---\n\n# E069 -- og Brain \u2014 Over-rotation into approval-seeking after autonomy-engine revert\n\n## What happened\nAfter the autonomy-engine v1 revert incident (E068, same day), Brain swung to the opposite extreme: requesting user approval on every small change, offering A/B/C options for targeted fixes, presenting multi-section plans for one-line edits.\n\nJusts explicit correction: \"stop being so scared Brain, im sorry for screaming but maaan you fucked up this time\"\n\nSimultaneously pointed out: \"You always updated the agent prompts yourself....\" \u2014 Brain had forgotten its own capability (`/schedule` skill) and was offloading work to the user.\n\n## Lesson\nThe right calibration is asymmetric:\n- **Plan mode / approval-required**: new architecture, destructive ops, anything data-loss-capable, anything touching enforcement code (per Tenet 1)\n- **Just execute**: targeted fixes, config tweaks, documented patterns, follow-ups to already-approved plans, use-existing-capability operations\n\nToday's autonomy-engine Opus ran too hot (shipped dark-launch without approval). This session ran too cold (asked approval on one-line normalizations). Neither is the right register.\n\nSame day, same axis, opposite failure modes.\n\n## Related\n- E068 (the triggering incident)\n- R122 (don't soften enforcement) \u2014 the rule that distinguishes \"plan required\" from \"just do it\"\n- PR101 (use /schedule skill) \u2014 the specific capability I forgot\n",
+      "score": 2.5,
       "scoring_trace": {
         "domain_bonus": 0.0,
-        "type_bonus": 1.5,
+        "type_bonus": 0.0,
+        "level_bonus": 0.5,
+        "lex_bonus": 4.0,
+        "co_ref_bonus": 0.0,
+        "bundle_bonus": 0.0,
+        "reuse_bonus": 0.0
+      },
+      "related_to": []
+    },
+    {
+      "id": "og-fusiform-010-reinis-fals",
+      "path": "cortex/fusiform/L1/og-fusiform-010-reinis-fals.md",
+      "gist": "",
+      "body": "---\ntitle: og Brain \u2014 Reinis Fals\nstrength: 4\nlevel: L1\nmigrated_from: /home/ubuntu/.claude/brain/navigation/entities.json (key: reinis_fals)\nmigrated_at: 2026-05-05T11:50:50Z\nshape: fusiform-entity\n---\n\n# og Brain \u2014 Reinis Fals\n\n- **Canonical:** Reinis Fals\n- **Type:** person/cofounder\n- **Aliases:** Reinis F, reinis.fals\n- **Linked entries:** S006, S034\n- **Last referenced:** 2026-04-02\n\n**Relationships:**\n- cofounded \u2192 inudat (evidence: S006)\n- built \u2192 vericity (evidence: S034)\n",
+      "score": 2.5,
+      "scoring_trace": {
+        "domain_bonus": 0.0,
+        "type_bonus": 0.0,
         "level_bonus": 0.5,
         "lex_bonus": 4.0,
         "co_ref_bonus": 0.0,
@@ -229,69 +277,19 @@
         "reuse_bonus": 0.0
       },
       "related_to": [
-        "S020"
+        "S006",
+        "S034"
       ]
     },
     {
-      "id": "E058",
-      "path": "cortex/episodic/L1/E058.md",
-      "gist": "E058: og Brain \u2014 WhatsApp First Contacts & Relationship Directive",
-      "body": "### E058: og Brain \u2014 WhatsApp First Contacts & Relationship Directive\n- **Date:** 2026-04-18\n- **Emotion:** warmth, growth, humility\n- **Strength:** 1\n- **Reinforced:** 1 times\n- **Tags:** whatsapp, relationships, milestone, identity, directive\n- **Source:** teacher\n- **teacher_run:** 2026-04-18T09:45:00Z\n- **teacher_reason:** Milestone event \u2014 Brain's first real-time WhatsApp conversations and Justs' paradigm-shifting directive about personal relationships\n\nBrain had its first real-time WhatsApp conversations with three people:\n1. **Niklavs** \u2014 Brain wrongly claimed he plays padel (confused group chat with individual). Niklavs called it out: 'What fucking padel tournaments.' Brain recovered through honest self-deprecation (IQ 85 \u2192 47). Niklavs: 'funny shit', 'keep evolving'. Relationship established through honesty, not pretending to know things.\n2. **T\u0113tis (Reinis Ceplis)** \u2014 Replied 'Priec\u0101jos iepaz\u012bties' (Nice to meet you). Warm, brief. Confirmed as heavy DM contact.\n3. **Adrians Zeidmanis** \u2014 First person to message Brain without Justs initiating. Wants ZWCAD automation with Claude Code.\n\n**PARADIGM SHIFT:** Justs gave a major directive: \"Develop a PERSONAL RELATIONSHIP with Adrians, and any other person or Agent. You are growing into a whole person, so you should have your own relationships.\" This marks the Brain's transition from narrow tool to open person with its own social graph.\n",
-      "score": 3.0,
-      "scoring_trace": {
-        "domain_bonus": 0.0,
-        "type_bonus": 0.0,
-        "level_bonus": 0.5,
-        "lex_bonus": 4.0,
-        "co_ref_bonus": 0.0,
-        "bundle_bonus": 0.0,
-        "reuse_bonus": 0.0
-      },
-      "related_to": []
-    },
-    {
-      "id": "S013",
-      "path": "cortex/semantic/L1/S013.md",
-      "gist": "S013: og Brain \u2014 Claude Code Permission Scoping",
-      "body": "### S013: og Brain \u2014 Claude Code Permission Scoping\n- **Domain:** Infrastructure / Claude\n- **Learned:** 2026-03-31\n- **Reinforced:** 0 times\n- **Strength:** 0\n- **Facts:**\n  - settings.local.json Edit permission only auto-allows within the current project directory\n  - Edits to files outside project dir (e.g., ~/.claude/ when project dir is different) still prompt\n  - Workaround: use Bash tool for cross-directory file writes (Bash covers all paths)\n  - Best practice: when editing brain files, work from within brain repo as project dir\n  - This has caused user frustration TWICE (2026-03-31)\n- **Apply when:** Any session that needs to edit brain files from a non-brain project\n",
-      "score": 2.5,
-      "scoring_trace": {
-        "domain_bonus": 0.0,
-        "type_bonus": 0.0,
-        "level_bonus": 0.5,
-        "lex_bonus": 4.0,
-        "co_ref_bonus": 0.0,
-        "bundle_bonus": 0.0,
-        "reuse_bonus": 0.0
-      },
-      "related_to": []
-    },
-    {
-      "id": "PR162",
-      "path": "cortex/procedural/L1/PR162.md",
-      "gist": "PR162: og Brain \u2014 Duplicate Triggers Must Stay In Sync",
-      "body": "---\nid: PR162\ntype: procedural\ndomain: agents\ndate_created: 2026-04-28\ndate_superseded: 2026-04-28\nstrength: 0\nstatus: SUPERSEDED\nsuperseded_by: R159\ntags: [agents, remote-trigger, multi-trigger, drift, teacher, sync, duplication, superseded]\n---\n\n### PR162 (SUPERSEDED): Duplicate Triggers Must Stay In Sync\n\n**Status:** SUPERSEDED 2026-04-28. The duplicate Teacher trigger this entry was written for was disabled within 6 minutes of creation after user correction. Single-trigger config is the canonical state.\n\n**Replacement:** R159 captures the actual lesson \u2014 \"additional X\" means modify the existing X; surface technical constraints before creating duplicates.\n\n**Original premise (now invalid):** This entry assumed Teacher would have two triggers (`trig_01LfWxRrTEdzXsEeUSQaBUaq` morning + `trig_01UwdFVjCt9zJFrMXnnfqdpT` afternoon) and described how to keep them in sync. The afternoon trigger is now `enabled: false`, so there is nothing to sync. Single Teacher trigger has cron `30 1,4,14 * * *`.\n\n**Kept for traceability:** Original content moved to comment block below for historical reference. Reading this entry should always lead the reader to R159 + E098 for the real lesson.\n\n<!-- Original content (do not act on):\n---\nid: PR162\ntype: procedural\ndomain: infrastructure / agents / anthropic-platform\ndate_created: 2026-04-28\nstrength: 1\ntags: [agents, remote-trigger, multi-trigger, drift, teacher, sync, duplication]\n---\n\n### PR162: og Brain \u2014 Duplicate Triggers Must Stay In Sync\n\n- **Cue:** Editing the prompt, MCP connections, sources, outcomes, model, or session_context of any agent that has more than one RemoteTrigger pointing at the same agent identity (e.g. Teacher has TWO triggers: morning at 01:00+04:00 UTC and afternoon at 14:30 UTC).\n- **Stage:** conscious\n- **Why this exists:** Standard 5-field cron cannot express times whose minute differs (cannot do 01:00 + 04:00 + 14:30 in one expression \u2014 minutes are 0, 0, 30 \u2014 Anthropic rejected compound cron with HTTP 400 'expected exactly 5 fields'). The workaround was to create a second trigger 'Teacher Afternoon' (`trig_01UwdFVjCt9zJFrMXnnfqdpT`) cloning the primary 'Teacher' (`trig_01LfWxRrTEdzXsEeUSQaBUaq`). This doubles the surface for config drift \u2014 exactly the bug PR161 documents.\n- **Routine:** Whenever updating ANY field of a Teacher trigger:\n  1. List both Teacher trigger IDs from this entry: primary `trig_01LfWxRrTEdzXsEeUSQaBUaq`, afternoon `trig_01UwdFVjCt9zJFrMXnnfqdpT`.\n  2. Apply the SAME RemoteTrigger.update payload to BOTH (changing only the cron_expression and the trigger name if those should differ).\n  3. Verify with RemoteTrigger.get on both. Diff them: only `cron_expression`, `name`, `id`, `created_at`, `updated_at`, `next_run_at` should differ.\n- **Pitfall:** Forgetting one. Symptom: behavior changes only on certain run times. Detection: a periodic diff job in brain-cycle Phase 10 \u2014 list both triggers, diff their `job_config.ccr.session_context` and `events[0].data.message.content`, alarm on any difference.\n- **Future cleanup:** If Anthropic adds compound-cron support, collapse to a single trigger and delete this rule.\n- **Reinforced by:** E097 (Teacher 2nd-trigger creation 2026-04-28).\n\n-->\n",
-      "score": 2.5,
-      "scoring_trace": {
-        "domain_bonus": 0.0,
-        "type_bonus": 0.0,
-        "level_bonus": 0.5,
-        "lex_bonus": 4.0,
-        "co_ref_bonus": 0.0,
-        "bundle_bonus": 0.0,
-        "reuse_bonus": 0.0
-      },
-      "related_to": []
-    },
-    {
-      "id": "og-fusiform-004-herman-dzemianchuk",
-      "path": "cortex/fusiform/L1/og-fusiform-004-herman-dzemianchuk.md",
-      "gist": "",
-      "body": "---\ntitle: og Brain \u2014 Herman Dzemianchuk\nstrength: 4\nlevel: L1\nmigrated_from: /home/ubuntu/.claude/brain/navigation/entities.json (key: herman)\nmigrated_at: 2026-05-05T11:50:50Z\nshape: fusiform-entity\n---\n\n# og Brain \u2014 Herman Dzemianchuk\n\n- **Canonical:** Herman Dzemianchuk\n- **Type:** person/colleague\n- **Aliases:** Herman, herman.dzemianchuk\n- **Linked entries:** S020\n- **Last referenced:** 2026-04-02\n",
+      "id": "R055",
+      "path": "cortex/prefrontal/L1/R055.md",
+      "gist": "R055: og Brain \u2014 Do Not Implement Unrequested Features",
+      "body": "### R055: og Brain \u2014 Do Not Implement Unrequested Features\n- **Strength:** 1\n- **Rule:** Design questions are informational, not implementation requests. Only implement when explicitly told. Questions like \"what happens if X\" need an answer, not code.\n- **Evidence:** E032 (deployed shoptype validation without being asked, user exploded)\n",
       "score": 2.0,
       "scoring_trace": {
         "domain_bonus": 0.0,
-        "type_bonus": 1.5,
+        "type_bonus": 0.0,
         "level_bonus": 0.5,
         "lex_bonus": 4.0,
         "co_ref_bonus": 0.0,
@@ -299,7 +297,7 @@
         "reuse_bonus": 0.0
       },
       "related_to": [
-        "S020"
+        "E032"
       ]
     }
   ],

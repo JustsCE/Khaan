@@ -1,8 +1,8 @@
 {
-  "cycleCount": 12,
+  "cycleCount": 13,
   "nextIds": {
-    "H": 9,
-    "S": 81,
+    "H": 14,
+    "S": 83,
     "E": 95,
     "PR": 164,
     "FUS": 12,
@@ -12,7 +12,7 @@
     "R": 161
   },
   "schedule": {
-    "last_promotion_scan_cycle": 12,
+    "last_promotion_scan_cycle": 13,
     "last_eval_cycle": 0,
     "last_hygiene_cycle": 0
   },
@@ -33,7 +33,7 @@
       "sample_size": 10
     },
     "cycle": {
-      "gap": 5
+      "gap": 15
     },
     "eval": {
       "window": 30,
