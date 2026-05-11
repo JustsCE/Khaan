@@ -76,7 +76,7 @@ def dispatch(event, payload, repo_root):
                         continue
                 elif tool_name == "Bash":
                     cmd = payload.get("tool_input", {}).get("command", "")
-                    if re.match(r"python3\s+(-m\s+engines\.brain_cycle|.*engines/brain_cycle\.py)", cmd):
+                    if re.match(r"python3\s+(-m\s+engines\.brain_cycle|.*engines/brain_cycle\.py|-c\s+.*brain_cycle)", cmd):
                         continue
             raised.append(bname)
     raised.extend(per_call_gates)

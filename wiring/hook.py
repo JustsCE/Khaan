@@ -69,10 +69,14 @@ def handle_user_prompt_submit(payload):
     user_message = payload.get("prompt") or payload.get("message") or payload.get("content", "")
     proceed = trigger()
     if proceed:
-        # /decision-engine skill auto-invocation per handler.html § UserPromptSubmit step 3.
-        # Skill descriptor: ~/.claude/skills/decision-engine.md
-        # Orchestrator: engines/decision.py::dispatch (decision-engine.html line 288).
-        dispatch(user_message)
+        # Fire-and-forget: decision pipeline (recall + identity relay + decision
+        # subprocess) runs in a daemon thread so UserPromptSubmit returns instantly.
+        # _compose_turn_context() serves whatever navigation files already exist
+        # (previous turn's output). Fresh decision lands mid-response or is ready
+        # for the next turn — either way, the user is never blocked.
+        import threading
+        t = threading.Thread(target=dispatch, args=(user_message,), daemon=True)
+        t.start()
 
     ctx = _compose_turn_context()
     if ctx:

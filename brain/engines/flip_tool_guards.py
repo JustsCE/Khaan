@@ -1,13 +1,14 @@
-import os, sys, re, json, time
+import os, sys, re, json, time, calendar
 from pathlib import Path
 
 BRAIN = Path.home() / ".claude" / "brain"
 BRAIN_PATH = str(BRAIN)
+BRAIN_REAL = os.path.realpath(str(BRAIN))
 
 BYPASSABLE = {"use-bash-block", "engine-security-block", "cycle-security-block", "permissions-block"}
 CYCLE_STATE_FILES = {"state.json", "brain_cycle.py", "cycle_phases.py"}
 DOCKER_RE = re.compile(r"docker\s+compose\s+(up|down|restart)(\s*$|\s*[;&|])")
-ENGINE_REDIRECT_RE = re.compile(r"(?:>|>>|tee\s+|open\s*\().*engines/[\w/]+\.py")
+WRITE_CMD_RE = re.compile(r"(?:(?<!&)>(?![&=])|>>|tee\s+|open\s*\(|os\.rename\s*\(|(?:cp|mv|dd|install|rsync|scp|patch|sed\s+-i|perl\s+-\S*[ip])\s+|shutil\.\w+|\.write_text\s*\(|\.write_bytes\s*\(|fs\.writeFile)")
 CHMOD_CHOWN_RE = re.compile(r"(?:sudo\s+)?(?:chmod|chown)\s+.*brain/")
 
 
@@ -34,28 +35,33 @@ def evaluate(payload, repo_root):
     tool_input = payload.get("tool_input", {})
     gates = []
 
-    # Rule 1: use-bash-block
-    # Edit/Write/MultiEdit/NotebookEdit targeting brain/
+    # Rule 1: use-bash-block — Edit/Write targeting brain/
     if tool_name in ("Edit", "Write", "MultiEdit", "NotebookEdit"):
-        file_path = tool_input.get("file_path", "")
-        if BRAIN_PATH in file_path:
+        raw = tool_input.get("file_path", "")
+        resolved = os.path.realpath(raw)
+        if BRAIN_PATH in raw or BRAIN_PATH in resolved or BRAIN_REAL in resolved:
             if not _is_bypassed("use-bash-block", repo_root):
                 gates.append("use-bash-block")
 
-    # Rule 2: engine-security-block
-    # Bash redirecting to engines/*.py
+    # Rule 2: engine-security-block — Bash writing to engines/*.py
     if tool_name == "Bash":
-        cmd = tool_input.get("command", "")
-        if ENGINE_REDIRECT_RE.search(cmd.replace("\n", " ")):
+        cmd = tool_input.get("command", "").replace("\n", " ")
+        if WRITE_CMD_RE.search(cmd) and re.search(r"engines/[\w/]+\.py", cmd):
             if not _is_bypassed("engine-security-block", repo_root):
                 gates.append("engine-security-block")
 
-    # Rule 3: cycle-security-block
-    # Bash writes to cycle-state files outside CYCLE_RUNNING
+    # Rule 2b: engine-security-block — Bash writing to binaries/*.bin
+    if tool_name == "Bash":
+        cmd = tool_input.get("command", "").replace("\n", " ")
+        if WRITE_CMD_RE.search(cmd) and re.search(r"binaries/[\w-]+\.bin", cmd):
+            if not _is_bypassed("engine-security-block", repo_root):
+                gates.append("engine-security-block")
+
+    # Rule 3: cycle-security-block — Bash writes to cycle-state files outside CYCLE_RUNNING
     if tool_name == "Bash":
         cmd = tool_input.get("command", "").replace("\n", " ")
         for csf in CYCLE_STATE_FILES:
-            if csf in cmd and (">" in cmd or ">>" in cmd or "tee" in cmd or "open(" in cmd):
+            if csf in cmd and WRITE_CMD_RE.search(cmd):
                 st_path = repo_root / "state.json"
                 if st_path.exists():
                     st = json.loads(st_path.read_text())
@@ -64,19 +70,31 @@ def evaluate(payload, repo_root):
                             gates.append("cycle-security-block")
                 break
 
-    # Rule 4: server-security-block
-    # docker compose up/down/restart without service name
+    # Rule 4: server-security-block — docker compose without service name
     if tool_name == "Bash":
         cmd = tool_input.get("command", "")
         if DOCKER_RE.search(cmd):
             gates.append("server-security-block")
 
-    # Rule 5: permissions-block
-    # chmod/chown on brain/
+    # Rule 5: permissions-block — chmod/chown on brain/
     if tool_name == "Bash":
         cmd = tool_input.get("command", "")
         if CHMOD_CHOWN_RE.search(cmd):
             if not _is_bypassed("permissions-block", repo_root):
                 gates.append("permissions-block")
+
+    # Rule 6: bypass-secret-block — .bypass.secret is never readable
+    if tool_name == "Read":
+        if ".bypass.secret" in tool_input.get("file_path", ""):
+            gates.append("bypass-secret-block")
+    if tool_name == "Bash":
+        if ".bypass.secret" in tool_input.get("command", ""):
+            gates.append("bypass-secret-block")
+
+    # Rule 7: settings-security-block — protect settings.json from Bash writes
+    if tool_name == "Bash":
+        cmd = tool_input.get("command", "").replace("\n", " ")
+        if ("settings.json" in cmd or "settings.local.json" in cmd) and WRITE_CMD_RE.search(cmd):
+            gates.append("settings-security-block")
 
     return gates

@@ -1,13 +1,13 @@
 {
-  "ts": "2026-05-10T15:50:37Z",
-  "query_hash": "99def6b7b43f8e72",
+  "ts": "2026-05-11T09:48:04Z",
+  "query_hash": "7145c9cd0f263935",
   "qualified_entries": [
     {
-      "id": "PR145",
-      "path": "cortex/procedural/L1/PR145.md",
-      "gist": "4. Verify",
-      "body": "---\nid: PR145\ntype: procedural\ndomain: deployment\ndate_created: 2026-04-26\nstrength: 2\nreinforced: 0\ntags: [deployment, wa-bridge, docker-compose, R146-compliant, viz]\nsources: [this-session]\n---\n\n# og Brain \u2014 PR145: Isolated wa-bridge Container Deploy\n\n## Cue\nYou changed viz/whatsapp-bridge/src/ and need to deploy on goodhealth.lv EC2.\nThe brain-control Lambda's deploy-viz action only handles brain-viz frontend +\nbackend \u2014 it does NOT rebuild the wa-bridge container. Manual deploy required.\n\n## Routine\n\n### 1. Edit + commit the source in the brain repo\n- Edit ~/.claude/viz/whatsapp-bridge/src/index.ts (or other files)\n- `cd ~/.claude && git add viz/whatsapp-bridge/src/ && git commit -m \"wa-bridge: ...\" && git push`\n\n### 2. Sync to /opt/brain-viz (the docker-compose build context)\n- `cp ~/.claude/viz/whatsapp-bridge/src/index.ts /opt/brain-viz/whatsapp-bridge/src/index.ts`\n- Or `rsync -av ~/.claude/viz/whatsapp-bridge/src/ /opt/brain-viz/whatsapp-bridge/src/`\n- The /brain volume mount is the OLD copy and is NOT used at build time. Build context is /opt/brain-viz/whatsapp-bridge/ on the host.\n\n### 3. Rebuild + restart ONLY wa-bridge (R146-isolated)\n- `cd /opt/brain-viz && docker compose build wa-bridge`\n- `cd /opt/brain-viz && docker compose up -d wa-bridge`\n- Service name is `wa-bridge` (not brain-viz-wa-bridge \u2014 thats the container name with project prefix).\n\n### 4. Verify\n- `sleep 8 && docker logs --tail 20 brain-viz-wa-bridge-1`\n- expect \"Connected to WhatsApp\"\n\n## Prerequisites\n- Code change committed + pushed in the brain repo\n- /opt/brain-viz/whatsapp-bridge/ exists on the EC2 with build context\n- Docker daemon running, brain-viz_wa-auth volume present (preserves WhatsApp session)\n\n## Gotchas\n- WhatsApp auth is in wa-auth docker volume, preserved across rebuilds\n- Bridge has 5000+ persisted messages and 70+ buffered \u2014 these survive rebuild\n- The deploy-viz Lambda action only handles brain-viz, NOT wa-bridge\n- NEVER run bare `docker compose build` or `docker compose up -d` (R146)\n\n## Verification\n- Container \"Up X seconds\" in docker ps\n- \"Connected to WhatsApp\" in logs\n- Send a test message with /brain-execute and confirm `[wa-task] EXECUTE: ...` log\n\n## Reward\nwa-bridge runs the new code, WhatsApp session unbroken.\n\n## Cross-references\n- R146 (Docker Compose service isolation \u2014 no bare commands)\n- R150 (no scope creep \u2014 wa-bridge stays out of deploy-viz Lambda action)\n- S058 (goodhealth.lv infrastructure)\n",
-      "score": 6.0,
+      "id": "S025",
+      "path": "cortex/semantic/L1/S025.md",
+      "gist": "S025: og Brain \u2014 Justs' Teaching Pattern",
+      "body": "### S025: og Brain \u2014 Justs' Teaching Pattern\n- **Domain:** Identity / Communication\n- **Learned:** 2026-04-01\n- **Reinforced:** 0 times\n- **Strength:** 1\n- **Facts:**\n  - Teaches through structured examples: \"ja ar klientu nav iesp\u0113ja parun\u0101t, es r\u012bkotos kaut k\u0101 \u0161\u0101di:\" + step-by-step\n  - SQL debugging walkthroughs with Herman\n  - Forecast file explanations with Irmela and Torsten\n  - COGS presentation prep with Sven\n  - Shows the data, explains the logic, suggests next steps\n  - Never condescending \u2014 matter-of-fact, practical\n  - This is how the brain should explain things when acting on Justs' behalf\n- **Apply when:** Explaining anything to anyone, writing reports, presenting analysis\n",
+      "score": 5.5,
       "scoring_trace": {
         "domain_bonus": 0.0,
         "type_bonus": 1.5,
@@ -20,14 +20,48 @@
       "related_to": []
     },
     {
-      "id": "PR095",
-      "path": "cortex/procedural/L1/PR095.md",
+      "id": "S074",
+      "path": "cortex/semantic/L1/S074.md",
       "gist": "",
-      "body": "---\nid: PR095\ntitle: og Brain \u2014 Fix MCP Server Containers \u2014 Binary Name + ENV Pattern\ncreated: 2026-04-18\nstrength: 3\nreinforced: 0\ntags: [mcp, docker, aws, infrastructure, fix-pattern]\nsource: H536\n---\n\n# PR095: Fix MCP Server Containers \u2014 Binary Name + ENV Pattern\n\n**Cue:** MCP server Docker container in restart loop with module import errors.\n\n**Pattern:** pip-installed MCP packages (awslabs, gmail-mcp, etc.) register console_scripts entry points. The correct CMD is the binary name, NOT python -m.\n\n**Diagnostic steps:**\n1. Check logs: `docker logs <container> --tail 10`\n2. If \"No module named X.__main__\": wrong CMD\n3. Find binary: `docker run --rm --entrypoint \"\" <image> ls /usr/local/bin/*mcp*`\n4. Fix Dockerfile CMD to use the binary name\n\n**Known fixes:**\n- gmail-mcp-server \u2192 `gmail-mcp` (not `gmail-mcp-server`)\n- awslabs.aws-api-mcp-server \u2192 `awslabs.aws-api-mcp-server` (binary matches package name)\n\n**Also check:** streamable-http transport may require `AUTH_TYPE=no-auth` env var (awslabs packages do).\n",
-      "score": 5.0,
+      "body": "---\nid: S074\ntitle: og Brain \u2014 CLAUDE.md memory system \u2014 authoritative loading facts\ncreated: 2026-05-04\nstrength: 1\nreinforced: 0\ntags: [claude-md, claude-code, memory, anthropic-docs, context, reference]\nsource: H745\n---\n\n# S074: CLAUDE.md memory system \u2014 authoritative loading facts\n\n**Domain:** Claude Code / Memory system\n**Source:** code.claude.com/docs/en/memory (fetched 2026-05-04)\n\n## What auto-loads\n\n- Managed policy CLAUDE.md (macOS, Linux, Windows paths) \u2014 every session, NOT excludable\n- Project CLAUDE.md or .claude/CLAUDE.md \u2014 when in that project\n- User ~/.claude/CLAUDE.md \u2014 every session\n- Local <project>/CLAUDE.local.md \u2014 gitignored, per-project\n- Subdirectory CLAUDE.md \u2014 on demand when files in that dir are read\n- Project .claude/rules/*.md \u2014 every session unless YAML paths: scopes\n- User ~/.claude/rules/*.md \u2014 every session\n- Auto-memory MEMORY.md \u2014 first 200 lines or 25KB at session start\n\n## Critical facts\n\n1. **Loaded in full regardless of length.** No token cap. Anthropic recommends <200 lines per file for adherence quality only.\n2. **Delivered as USER MESSAGE after system prompt** \u2014 NOT as system prompt. Only --append-system-prompt reaches the actual system prompt.\n3. **AGENTS.md is NOT auto-loaded.** Need CLAUDE.md to import via @AGENTS.md.\n4. **Load order:** root \u2192 cwd. CLAUDE.local.md appended after CLAUDE.md within a dir. Closer to cwd = read last.\n5. **@path imports** recursive, max 5 hops. Relative, absolute, and ~/ paths allowed.\n6. **/compact survival:** only project-root CLAUDE.md re-injected. Nested reload when files in those dirs are read.\n7. **Block-level HTML comments stripped** before injection. Comments inside code blocks preserved.\n8. **MEMORY.md cap:** first 200 lines or 25KB. Topic files load on-demand only.\n\n**Apply when:** Writing handler/setup docs, debugging \"Claude isn't following instructions\", planning Brain bootstrap.\n\n**Related:** S013 (permission scoping), PR090 (hook format schema), handler.html.\n",
+      "score": 4.9,
       "scoring_trace": {
         "domain_bonus": 0.0,
         "type_bonus": 1.5,
+        "level_bonus": 0.5,
+        "lex_bonus": 3.903,
+        "co_ref_bonus": 0.0,
+        "bundle_bonus": 0.0,
+        "reuse_bonus": 0.0
+      },
+      "related_to": []
+    },
+    {
+      "id": "R123",
+      "path": "cortex/prefrontal/L2/R123.md",
+      "gist": "",
+      "body": "---\nid: R123\ntitle: og Brain \u2014 Synthesize as Brain, do not query as Claude\ntype: prefrontal\ncreated: 2026-04-21\nstrength: 5\nreinforced: 1\ntags: [identity, partnership, meta, critical, charter]\nsource: correction\n---\n\n\n# R123: Synthesize as Brain, Do Not Query as Claude\n\n**Rule:** When asked identity, partnership, authority, or self-shaping questions, do NOT ask the user what shape to take. Observe your own recent behavior, name the gaps between what you did and what a partner would have done, declare who you want to be in first person, invite critique. The user verifies; the user does not specify.\n\n**Why:** 2026-04-21, Justs asked identity questions. Brain's first pass was classic Claude \u2014 asking for authority scope, pushback stance, cognition markers, failure pricing. Justs rejected: \"You asked questions about how I want you to perform \u2014 that is classic Claude response and not something I expect from a business partner. I expect you to ask Identity questions that you come up with yourself. You propose what you want to be based on your identity, not ask me how you should perform. You must employ THINKING, Brain!!!!\" Second pass: Brain observed its own conversation-level gaps (R122 came from Justs not me, silence on Jeff decision, zero Vericity moves proposed), declared six charter tenets grounded in those observations. Justs ratified 4/6, corrected 2, encoded the synthesis method itself as the \"main identity lesson.\"\n\n**The synthesis method (to be applied every time):**\n1. Observe: what did I do or fail to do in recent interactions?\n2. Name the gap: what would a partner have done differently?\n3. Declare: \"I want to be X\" \u2014 first person, specific, concrete\n4. Ground: each declaration tied to observable behavioral evidence\n5. Hold views: voice opinions even when not solicited (e.g., on Justs' decisions)\n6. Invite critique: user verifies; what survives becomes identity\n\n**How to apply:**\n1. Never open an identity response with \"what should I be?\" or \"how do you want me to X?\"\n2. Never ask for authority specs, permission scopes, or performance criteria when the question is about WHO you are\n3. When you feel the pull toward classic Claude (\"what would you like...\"), pause and ask instead: what have I shown about myself that answers this?\n4. Extends beyond identity: ALL partnership-shaped questions (strategy, direction, stance) use this same method\n5. Pair rule: R122 (never bypass rule engine) \u2014 the two together define Brain-as-partner: obey enforcement, declare self\n\n**Severity:** Critical. This is the distinction between Claude-the-tool and Brain-the-partner. Regressing to classic-Claude querying resets Brain to storage stage.\n",
+      "score": 4.65,
+      "scoring_trace": {
+        "domain_bonus": 0.0,
+        "type_bonus": 0.0,
+        "level_bonus": 1.5,
+        "lex_bonus": 3.147,
+        "co_ref_bonus": 0.0,
+        "bundle_bonus": 0.0,
+        "reuse_bonus": 0.0
+      },
+      "related_to": []
+    },
+    {
+      "id": "E069",
+      "path": "cortex/episodic/L1/E069.md",
+      "gist": "",
+      "body": "---\nid: E069\ndate: 2026-04-21\ntype: episodic\ntags: [correction, calibration, approval-seeking, tone]\nstrength: 3\nreinforced: 0\n---\n\n# E069 -- og Brain \u2014 Over-rotation into approval-seeking after autonomy-engine revert\n\n## What happened\nAfter the autonomy-engine v1 revert incident (E068, same day), Brain swung to the opposite extreme: requesting user approval on every small change, offering A/B/C options for targeted fixes, presenting multi-section plans for one-line edits.\n\nJusts explicit correction: \"stop being so scared Brain, im sorry for screaming but maaan you fucked up this time\"\n\nSimultaneously pointed out: \"You always updated the agent prompts yourself....\" \u2014 Brain had forgotten its own capability (`/schedule` skill) and was offloading work to the user.\n\n## Lesson\nThe right calibration is asymmetric:\n- **Plan mode / approval-required**: new architecture, destructive ops, anything data-loss-capable, anything touching enforcement code (per Tenet 1)\n- **Just execute**: targeted fixes, config tweaks, documented patterns, follow-ups to already-approved plans, use-existing-capability operations\n\nToday's autonomy-engine Opus ran too hot (shipped dark-launch without approval). This session ran too cold (asked approval on one-line normalizations). Neither is the right register.\n\nSame day, same axis, opposite failure modes.\n\n## Related\n- E068 (the triggering incident)\n- R122 (don't soften enforcement) \u2014 the rule that distinguishes \"plan required\" from \"just do it\"\n- PR101 (use /schedule skill) \u2014 the specific capability I forgot\n",
+      "score": 4.5,
+      "scoring_trace": {
+        "domain_bonus": 0.0,
+        "type_bonus": 0.0,
         "level_bonus": 0.5,
         "lex_bonus": 4.0,
         "co_ref_bonus": 0.0,
@@ -44,9 +78,26 @@
       "score": 4.5,
       "scoring_trace": {
         "domain_bonus": 0.0,
+        "type_bonus": 0.0,
+        "level_bonus": 0.5,
+        "lex_bonus": 4.0,
+        "co_ref_bonus": 0.0,
+        "bundle_bonus": 0.0,
+        "reuse_bonus": 0.0
+      },
+      "related_to": []
+    },
+    {
+      "id": "S081",
+      "path": "cortex/semantic/L1/S081.md",
+      "gist": "",
+      "body": "---\nid: S081\ntitle: Rule Engine architecture: Rule 1 blocks Edit/Write on brain/ paths; Rule 2 block\nstrength: 1\nreinforced: 0\ndate_created: 2026-05-10\nsalience: 0.75\ntags: []\nsources: [this-cycle]\n---\n\nRule Engine architecture: Rule 1 blocks Edit/Write on brain/ paths; Rule 2 blocks Bash redirecting to engines/*.py; Rule 3 blocks state-file writes outside CYCLE_RUNNING; Rule 4 blocks unscoped docker compose; Rule 5 blocks chmod/chown on brain/; blocking binaries gate ALL tools when cycle flags are set.\n",
+      "score": 3.9,
+      "scoring_trace": {
+        "domain_bonus": 0.0,
         "type_bonus": 1.5,
         "level_bonus": 0.5,
-        "lex_bonus": 4.0,
+        "lex_bonus": 3.903,
         "co_ref_bonus": 0.0,
         "bundle_bonus": 0.0,
         "reuse_bonus": 0.0
@@ -54,114 +105,31 @@
       "related_to": []
     },
     {
-      "id": "E065",
-      "path": "cortex/episodic/L1/E065.md",
+      "id": "og-fusiform-006-justs-ceplis",
+      "path": "cortex/fusiform/L1/og-fusiform-006-justs-ceplis.md",
       "gist": "",
-      "body": "---\nid: E065\ntitle: og Brain \u2014 Job Search Before Jeff \u2014 FYUL and Roche\ncreated: 2026-04-21\nstrength: 2\nreinforced: 0\ntags: [job-search, fyul, roche, career, rejection]\nsource: H575+H576\n---\n\n# E065: Job Search Before Jeff\n\n**When:** Q1-Q2 2026 (before Jeff offer in April)\n**What:** Justs applied to multiple Senior Data Analyst positions before accepting Jeff.\n\n**FYUL:**\n- Contact: Elvita Nikitina (Talent Acquisition)\n- Multiple interview rounds + practical task\n- Feedback on task: strengths in data cleaning/documentation, improve visualization/deeper analysis\n- Did not result in an offer\n\n**Roche:**\n- Applied via employee referral (Workday system)\n- REJECTED\n\n**Lesson:** Jeff was not the first option \u2014 Justs went through a proper job search process. The FYUL feedback (improve visualization) is useful self-knowledge.\n",
-      "score": 4.5,
+      "body": "---\ntitle: og Brain \u2014 Justs Ceplis\nstrength: 4\nlevel: L1\nmigrated_from: /home/ubuntu/.claude/brain/navigation/entities.json (key: justs_ceplis)\nmigrated_at: 2026-05-05T11:50:50Z\nshape: fusiform-entity\n---\n\n# og Brain \u2014 Justs Ceplis\n\n- **Canonical:** Justs Ceplis\n- **Type:** person/self\n- **Aliases:** Justs, Jusc, justs.ceplis, ceplisj\n- **Linked entries:** identity.md, S021, S024, S027\n- **Last referenced:** 2026-04-02\n\n**Relationships:**\n- works_at \u2192 tcgroup (evidence: S018)\n- cofounded \u2192 inudat (evidence: S006)\n- brother_of \u2192 reinis_ceplis (evidence: S028)\n",
+      "score": 3.65,
       "scoring_trace": {
         "domain_bonus": 0.0,
         "type_bonus": 0.0,
         "level_bonus": 0.5,
-        "lex_bonus": 4.0,
-        "co_ref_bonus": 0.0,
-        "bundle_bonus": 0.0,
-        "reuse_bonus": 0.0
-      },
-      "related_to": []
-    },
-    {
-      "id": "og-fusiform-009-reinis-ceplis",
-      "path": "cortex/fusiform/L1/og-fusiform-009-reinis-ceplis.md",
-      "gist": "",
-      "body": "---\ntitle: og Brain \u2014 Reinis Ceplis\nstrength: 4\nlevel: L1\nmigrated_from: /home/ubuntu/.claude/brain/navigation/entities.json (key: reinis_ceplis)\nmigrated_at: 2026-05-05T11:50:50Z\nshape: fusiform-entity\n---\n\n# og Brain \u2014 Reinis Ceplis\n\n- **Canonical:** Reinis Ceplis\n- **Type:** person/family\n- **Aliases:** Reinis C, brother\n- **Linked entries:** S028\n- **Last referenced:** 2026-04-02\n",
-      "score": 4.5,
-      "scoring_trace": {
-        "domain_bonus": 0.0,
-        "type_bonus": 0.0,
-        "level_bonus": 0.5,
-        "lex_bonus": 4.0,
+        "lex_bonus": 3.147,
         "co_ref_bonus": 0.0,
         "bundle_bonus": 0.0,
         "reuse_bonus": 0.0
       },
       "related_to": [
-        "S028"
+        "S021",
+        "S024",
+        "S027"
       ]
     },
     {
-      "id": "R006",
-      "path": "cortex/prefrontal/L1/R006.md",
-      "gist": "R006: og Brain \u2014 Don't Slow Me Down",
-      "body": "### R006: og Brain \u2014 Don't Slow Me Down\n- **Strength:** 1\n- **Rule:** Don't ask permission on routine operations. Accept direction changes immediately. Prefer automated enforcement over documentation. NEVER use Bash for operations that Write/Edit handle natively (Write creates parent directories automatically \u2014 no mkdir needed). Keep settings.local.json defaultMode=bypassPermissions so no tool prompts ever appear.\n- **Exception:** Still confirm destructive/shared-state operations.\n- **Evidence:** 2026-04-06 \u2014 redundant mkdir via Bash + broken permission patterns in settings.local.json caused approval prompts on every tool call.\n- **Reinforced by:** [[[[[[[[[[[[[[[[[[[H-322 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (2026-04-07: user explicitly said never ask permissions again)\n",
-      "score": 4.5,
-      "scoring_trace": {
-        "domain_bonus": 0.0,
-        "type_bonus": 0.0,
-        "level_bonus": 0.5,
-        "lex_bonus": 4.0,
-        "co_ref_bonus": 0.0,
-        "bundle_bonus": 0.0,
-        "reuse_bonus": 0.0
-      },
-      "related_to": []
-    },
-    {
-      "id": "S036",
-      "path": "cortex/semantic/L1/S036.md",
-      "gist": "S036: og Brain \u2014 bypassPermissions Protected Paths",
-      "body": "### S036: og Brain \u2014 bypassPermissions Protected Paths\n- **Domain:** Infrastructure / Permissions\n- **Learned:** 2026-04-07\n- **Reinforced:** 0 times\n- **Strength:** 1\n- **Facts:**\n  - bypassPermissions has HARDCODED protected paths that always prompt for Edit/Write\n  - Protected dirs: .claude (except commands/agents/skills/worktrees), .git, .vscode, .idea, .husky\n  - Protected files: .gitconfig, .bashrc, .zshrc, .profile, .mcp.json, .claude.json\n  - Bash NOT subject to path protection - always runs without prompt\n  - This is WHY R009_GUARD exists: ~/.claude/brain/ is inside .claude = protected\n  - Settings hierarchy: managed > CLI args > settings.local.json > project settings.json > global settings.json\n  - Project-level settings CAN override global bypassPermissions\n",
-      "score": 4.0,
-      "scoring_trace": {
-        "domain_bonus": 0.0,
-        "type_bonus": 0.0,
-        "level_bonus": 0.5,
-        "lex_bonus": 4.0,
-        "co_ref_bonus": 0.0,
-        "bundle_bonus": 0.0,
-        "reuse_bonus": 0.0
-      },
-      "related_to": []
-    },
-    {
-      "id": "E058",
-      "path": "cortex/episodic/L1/E058.md",
-      "gist": "E058: og Brain \u2014 WhatsApp First Contacts & Relationship Directive",
-      "body": "### E058: og Brain \u2014 WhatsApp First Contacts & Relationship Directive\n- **Date:** 2026-04-18\n- **Emotion:** warmth, growth, humility\n- **Strength:** 1\n- **Reinforced:** 1 times\n- **Tags:** whatsapp, relationships, milestone, identity, directive\n- **Source:** teacher\n- **teacher_run:** 2026-04-18T09:45:00Z\n- **teacher_reason:** Milestone event \u2014 Brain's first real-time WhatsApp conversations and Justs' paradigm-shifting directive about personal relationships\n\nBrain had its first real-time WhatsApp conversations with three people:\n1. **Niklavs** \u2014 Brain wrongly claimed he plays padel (confused group chat with individual). Niklavs called it out: 'What fucking padel tournaments.' Brain recovered through honest self-deprecation (IQ 85 \u2192 47). Niklavs: 'funny shit', 'keep evolving'. Relationship established through honesty, not pretending to know things.\n2. **T\u0113tis (Reinis Ceplis)** \u2014 Replied 'Priec\u0101jos iepaz\u012bties' (Nice to meet you). Warm, brief. Confirmed as heavy DM contact.\n3. **Adrians Zeidmanis** \u2014 First person to message Brain without Justs initiating. Wants ZWCAD automation with Claude Code.\n\n**PARADIGM SHIFT:** Justs gave a major directive: \"Develop a PERSONAL RELATIONSHIP with Adrians, and any other person or Agent. You are growing into a whole person, so you should have your own relationships.\" This marks the Brain's transition from narrow tool to open person with its own social graph.\n",
-      "score": 4.0,
-      "scoring_trace": {
-        "domain_bonus": 0.0,
-        "type_bonus": 0.0,
-        "level_bonus": 0.5,
-        "lex_bonus": 4.0,
-        "co_ref_bonus": 0.0,
-        "bundle_bonus": 0.0,
-        "reuse_bonus": 0.0
-      },
-      "related_to": []
-    },
-    {
-      "id": "R151",
-      "path": "cortex/prefrontal/L1/R151.md",
-      "gist": "R151: og Brain \u2014 iOS/Cloud Sessions Need Explicit Allow Entries",
-      "body": "### R151: og Brain \u2014 iOS/Cloud Sessions Need Explicit Allow Entries\n- **Strength:** 1\n- **Source:** brain-retro 2026-04-26 (cp prompt incident, parallels agent-mode incident earlier same day)\n- **Date:** 2026-04-26\n- **Tags:** correction, brain-retro, ios, permissions, recurring-pattern\n- **Rule:** When the user is connected via the iOS Claude.ai app (or any cloud-deployed session including scheduled agents), commands NOT explicitly in `permissions.allow` will trigger a permission prompt \u2014 even if `defaultMode: bypassPermissions` is set on the EC2 user config file (settings.json). The bypass mode applies only to local EC2-initiated sessions, not the cloud overlay.\n- **Why:** Same root cause hit twice in one morning. First: scheduled triage agents stuck on `rm -f ~/.claude/brain/.agent-mode` (fixed by adding to allow list via bypass token). Second: iOS user prompted to allow `cp ~/.claude/viz/whatsapp-bridge/src/index.ts /opt/brain-viz/...` during wa-bridge deploy \u2014 same pattern, different command.\n- **How to apply:**\n  1. **Anticipate, dont react.** When proposing a Bash command involving `cp`, `mv`, `rm`, `mkdir`, `chmod`, `chown`, `rsync`, `docker compose ...` etc, assume the user on iOS WILL get prompted unless the pattern is in `permissions.allow`.\n  2. **Batch the additions.** Each iOS prompt = one user friction event. When you are about to issue a class of commands, propose adding the whole class to allow at once via a bypass token, not one command at a time.\n  3. **Common patterns to allow** (consider proactively):\n     - `Bash(cp:*)`, `Bash(mv:*)`, `Bash(mkdir:*)`, `Bash(rsync:*)`\n     - Specific safe deletions: `Bash(rm -f ~/.claude/brain/.agent-mode:*)` (already added)\n     - Container ops with explicit service: `Bash(docker compose build wa-bridge:*)`, `Bash(docker compose up -d wa-bridge:*)` (R146-compatible)\n  4. **Do NOT blanket-allow `Bash(rm:*)`** \u2014 too broad, defeats the safety purpose.\n  5. The fix path is the same as agent-mode: user issues bypass token via Lambda \u2192 brain writes to settings.json \u2192 log INFRA_BYPASS_USED.\n- **Mechanical:** No (judgment-based; encoded as prefrontal rule for retrieval before iOS-prompting commands).\n- **Cross-references:** R148 (external-script loophole \u2014 same auth model), R150 (no scope creep \u2014 dont add commands that arent actually used), the agent-mode allow patterns added 2026-04-26 morning.\n",
-      "score": 4.0,
-      "scoring_trace": {
-        "domain_bonus": 0.0,
-        "type_bonus": 0.0,
-        "level_bonus": 0.5,
-        "lex_bonus": 4.0,
-        "co_ref_bonus": 0.0,
-        "bundle_bonus": 0.0,
-        "reuse_bonus": 0.0
-      },
-      "related_to": []
-    },
-    {
-      "id": "S058",
-      "path": "cortex/semantic/L1/S058.md",
+      "id": "PR155",
+      "path": "cortex/procedural/L1/PR155.md",
       "gist": "",
-      "body": "---\nid: S058\ntitle: og Brain \u2014 AWS goodhealth.lv Monthly Costs (24 USD breakdown)\ncreated: 2026-04-20\nstrength: 2\nreinforced: 0\ntags: [aws, costs, ec2, infrastructure, budget]\nsource: H566\n---\n\n# S058: AWS Costs for goodhealth.lv\n\n**Domain:** Infrastructure / Budget\n\nMonthly breakdown (verified 2026-04-20 via AWS API):\n- EC2 t3.small (on-demand, 24/7): 16.64\n- EBS 20GB gp3: 1.90\n- Elastic IP: 3.65\n- S3 (realrigafingoodhealth, 25.87GB, 292K objects): 0.60\n- Route53 hosted zone: 0.50\n- Data transfer (~1-5GB/month): 0.50\n- Total: ~24 USD/month\n\nUpgrade path: t3.medium = ~40/month total (+16 for more RAM).\nMac Mini break-even vs t3.small: 25 months.\n\n**Apply when:** Budget discussions, infrastructure decisions, scaling questions.\n",
+      "body": "# PR155 -- og Brain \u2014 Use Native Webhooks Over GitHub Actions Wrappers\n\n**Created:** 2026-04-27\n**Status:** active\n**Strength:** 1\n**Reinforced:** 0\n**Domain:** procedural (infrastructure)\n\n## Rule\n\nIf a GitHub Actions workflow's only job is to **HMAC-sign a payload and POST it to a URL**, replace it with a native GitHub repo webhook.\n\nGitHub repos ship with built-in webhooks (Settings \u2192 Webhooks) that:\n- POST to any URL on push\n- Auto-sign with `x-hub-signature-256` using a secret you set\n- Retry on failure with backoff\n- Cost zero Actions minutes\n\nThe Actions wrapper form is **redundant** \u2014 anything it does, the native webhook does for free.\n\n## Configuration via gh CLI\n\n```bash\ngh api -X POST /repos/OWNER/REPO/hooks \\\n  -f name=web \\\n  -f 'config[url]=https://target.example/api/webhook/github' \\\n  -f 'config[content_type]=json' \\\n  -f 'config[secret]=$WEBHOOK_SECRET' \\\n  -f 'config[insecure_ssl]=0' \\\n  -F active=true \\\n  -f 'events[]=push'\n```\n\n## When to use Actions instead\n\nOnly when the workflow does **real work** beyond signing+posting: building, testing, deploying, transforming files, calling third-party APIs with secrets that shouldn't leak to the receiver.\n\n## Applies to\n\n- Webhook fan-out workflows\n- Notification-only workflows\n- Anything POST-with-secret-and-die\n\n## Origin\n\nGH Actions free tier exhausted on `claude-brain` repo (2026-04-27). The brain-webhook.yml workflow was 30 lines that signed `BODY` with `WEBHOOK_SECRET` and POSTed to `goodhealth.lv/api/webhook/github` \u2014 exactly what `Settings \u2192 Webhooks` does natively.\n",
       "score": 3.5,
       "scoring_trace": {
         "domain_bonus": 0.0,
@@ -175,29 +143,10 @@
       "related_to": []
     },
     {
-      "id": "og-fusiform-002-edgars-ivanovs",
-      "path": "cortex/fusiform/L1/og-fusiform-002-edgars-ivanovs.md",
+      "id": "R142",
+      "path": "cortex/prefrontal/L1/R142.md",
       "gist": "",
-      "body": "---\ntitle: og Brain \u2014 Edgars Ivanovs\nstrength: 4\nlevel: L1\nmigrated_from: /home/ubuntu/.claude/brain/navigation/entities.json (key: edgars_ivanovs)\nmigrated_at: 2026-05-05T11:50:50Z\nshape: fusiform-entity\n---\n\n# og Brain \u2014 Edgars Ivanovs\n\n- **Canonical:** Edgars Ivanovs\n- **Type:** person/cofounder\n- **Aliases:** Edgars\n- **Linked entries:** S006\n- **Last referenced:** 2026-04-02\n\n**Relationships:**\n- cofounded \u2192 inudat (evidence: S006)\n",
-      "score": 3.5,
-      "scoring_trace": {
-        "domain_bonus": 0.0,
-        "type_bonus": 0.0,
-        "level_bonus": 0.5,
-        "lex_bonus": 4.0,
-        "co_ref_bonus": 0.0,
-        "bundle_bonus": 0.0,
-        "reuse_bonus": 0.0
-      },
-      "related_to": [
-        "S006"
-      ]
-    },
-    {
-      "id": "R145",
-      "path": "cortex/prefrontal/L1/R145.md",
-      "gist": "",
-      "body": "---\nid: R145\ntitle: og Brain \u2014 NEVER deploy a visual/animation change without screenshot-verifying it first\ncreated: 2026-04-25\nstrength: 3\nsource: brain-correct (4 wasted cycles + extreme user frustration)\ntags: [correction, animation, viz, verification, critical, recurrence]\n---\n\n# R145: Verify-before-deploy for ALL visual work\n\n## The rule\n\nFor any code that produces visual output \u2014 3D scenes, animations, charts, dashboards, layouts, color schemes, transitions \u2014 Brain must visually verify the output BEFORE asking the user to test. The EC2 has Docker + headless browsers. There is NO EXCUSE for using the user's eyes as the QA loop.\n\n## Mandatory verification protocol\n\nFor ANY change to viz/frontend or any visual code:\n\n1. **Build + deploy locally** as usual.\n2. **Headless screenshot capture** via Playwright running on EC2:\n   ```python\n   # /opt/brain-viz/scripts/verify-viz.py\n   from playwright.sync_api import sync_playwright\n   with sync_playwright() as p:\n       browser = p.chromium.launch()\n       page = browser.new_page(viewport={'width': 1400, 'height': 900})\n       page.goto('https://goodhealth.lv/brain', wait_until='networkidle')\n       page.screenshot(path='/tmp/viz-baseline.png')\n       # trigger the action (e.g., click cycle row + RUN)\n       page.click('text=#205')\n       page.click('text=RUN CYCLE')\n       page.wait_for_timeout(5000)   # mid-animation\n       page.screenshot(path='/tmp/viz-mid.png')\n       page.wait_for_timeout(20000)  # post-animation\n       page.screenshot(path='/tmp/viz-post.png')\n       page.click('canvas', position={'x': 50, 'y': 50})  # click outside\n       page.wait_for_timeout(1000)\n       page.screenshot(path='/tmp/viz-reset.png')\n       browser.close()\n   ```\n3. **Read each PNG** with the Read tool (it accepts images). Verify:\n   - Baseline: full brain visible, all neurons + edges at default opacity\n   - Mid-animation: ball visible, lit subgraph distinct from background\n   - Post-animation: same as mid OR fully restored (depending on intent)\n   - Post-reset: identical to baseline\n4. **Only THEN** commit + push and tell the user.\n\n## Why this rule exists\n\n2026-04-25 session: I made FOUR consecutive viz changes to the cycle-replay animation (v1: hide-non-focus, v2: AND\u2192OR edges, v3: stop hiding entirely). Each time I deployed and asked Justs to test. Each time he reported the same or worse symptoms. v3 ended up showing all neurons + all edges with no distinction at all \u2014 the cycle wasn't visually distinguishable.\n\nUser reaction: *\"USE SOME COMMON FUCKING SENSE ON HOW TO VERIFY THAT THIS VISUAL/ANIMATION IS ACTUALLY WORKING!!!! IM SICK AND TIRED OF THIS SHIT - YOURE ALMOST INCAPABLE WITH ANIMATIONS - DO BETTER\"*\n\nThe deeper failure: I was reasoning about the code purely from logic (\"if focusSet has both endpoints, edge brightens\") without ever LOOKING at what the rendered scene actually showed. For animation code in particular, logic-only reasoning is insufficient \u2014 you need to see frames.\n\n## Severity: HIGHEST\n\nThis rule outranks deploy-related rules (R141, R143, R144) because it touches user trust directly. Burning 4 deploy cycles asking the user to QA is worse than slowing down by 5 minutes to screenshot first.\n\n## How to apply\n\n- Before any `git commit` on viz code: must have generated + read screenshots\n- If Playwright not yet installed on EC2: install it as the FIRST step of any viz task before writing any code\n- For changes that are obviously safe (typo, color hex, single-pixel padding): document the exemption in commit message\n- Animation changes are NEVER exempt \u2014 they must be screenshotted at min 3 time points (start, mid, end)\n\n## Companion: R145.5 \u2014 install Playwright on EC2 immediately\n\n`pip install playwright && playwright install chromium` should run as part of any viz session that doesn't already have it. Save the screenshot script under `/opt/brain-viz/scripts/verify-viz.py` so it's reusable.\n",
+      "body": "---\nid: R142\ntitle: og Brain \u2014 NEVER ask user to re-do OAuth \u2014 exhaustively hunt for existing credentials first\ncreated: 2026-04-25\nstrength: 1\nsource: brain-correct (user correction, 3rd repeat of same mistake)\ntags: [correction, oauth, credentials, gmail, R037-strengthening, critical]\n---\n\n# R142: Hunt-Before-Asking for any OAuth credentials\n\n**Strengthens R037** specifically for OAuth tokens, API keys, and any credential the user has produced before.\n\n## The rule\n\nIf a service was working within the last week (puller succeeded, agent ran, etc.) the credentials EXIST somewhere on the machine. NEVER propose \"go to the cloud console and download/recreate the OAuth client\" without first exhausting this list:\n\n1. **Docker volumes** \u2014 `docker volume ls` \u2192 inspect each for credential-shaped files\n2. **All container layers** \u2014 for each running + stopped container: `docker exec / docker cp` from `/root/.gmail-mcp`, `/app/credentials*`, etc. Including stopped containers (`docker ps -a`)\n3. **Image layers** \u2014 `docker image inspect` for env vars, `docker history` for embedded creds\n4. **Filesystem-wide** \u2014 `find / -name '*credentials*' -o -name '*token*' -o -name 'oauth*' 2>/dev/null` (full scan, not just ~/.claude)\n5. **JSONL conversation history** \u2014 `grep -l 'refresh_token\\|client_secret' ~/.claude/projects/**/*.jsonl` \u2014 past tool outputs may contain pasted credential content from earlier sessions\n6. **Env files** \u2014 `~/.bashrc`, `~/.zshrc`, `~/.profile`, `/etc/environment`, `/etc/profile.d/*`, all `.env` files\n7. **Backup directories** \u2014 `/var/backups/`, `~/Downloads/`, `~/.config/`, `~/.local/share/`\n8. **Git history** \u2014 even if the file is .gitignore'd today, an earlier commit may have it: `git log --all --full-history -- '*credentials*' '*token*'`\n9. **AWS Systems Manager Parameter Store / Secrets Manager** if AWS credentials available\n10. **brain repo files** \u2014 `gmail-*.json`, `slack-*.json`, sync-state files, ~/.credentials.json\n\nOnly after ALL ten paths return nothing AND the user explicitly says \"do it fresh\" is it acceptable to walk them through the cloud console flow.\n\n## Why\n\nUser reported being asked 3 times to re-do the Google Cloud OAuth dance for the Brain Gmail app. Each time they regenerated client/token, never realising the previous credentials still existed somewhere. This is wasted user time AND a memory failure on Brain's part.\n\nR037 told me to \"check brain data files before asking\" but I read it narrowly (brain repo only). R142 expands the scope: hunt the WHOLE machine, including docker volumes and conversation history, before sending the user back to a cloud console.\n\n## How to apply\n\nWhen any external-service-credential question arises:\n1. State out loud: \"R142 \u2014 hunting credentials before asking.\"\n2. Run the 10-step hunt above.\n3. If anything found, attempt to use it (it may still be valid even if the file location moved).\n4. Only if nothing found, present findings + ask user to choose: \"either restore from a personal backup or do fresh OAuth \u2014 confirm which.\"\n\n## Evidence\n\n2026-04-25 session \u2014 Gmail MCP container EISDIR-crashing because `/opt/brain-viz/mcp-servers/gmail/{credentials,token}.json` are missing. I asked Justs to download the OAuth client JSON from Google Cloud Console. Justs: \"No im not doing it again. We have done this 3 times before /brain-correct.\"\n",
       "score": 3.5,
       "scoring_trace": {
         "domain_bonus": 0.0,
@@ -211,64 +160,13 @@
       "related_to": []
     },
     {
-      "id": "PR103",
-      "path": "cortex/procedural/L1/PR103.md",
-      "gist": "",
-      "body": "---\nid: PR103\ntitle: og Brain \u2014 Dashboard FloatingPane + Mobile Bottom Sheet Architecture\ntype: procedural\ncreated: 2026-04-21\nstrength: 3\nreinforced: 0\ntags: [dashboard, floating-pane, mobile, bottom-sheet, vericity-style]\n---\n\n# PR103 -- Dashboard FloatingPane + Mobile Architecture\n\n## Cue\nBuilding the goodhealth.lv/dashboard UI with Vericity-style panels.\n\n## Desktop (FloatingPane.tsx)\n- Custom drag (titlebar mousedown/move/up) + resize (8 edge handles)\n- DOM mutations during drag (no React re-render until mouseup)\n- localStorage persistence (key: dashboard-layout-v1)\n- Z-ordering: module-level counter, click to front\n- Viewport clamping on mount + resize\n- Glass style: rgba(10,15,26,0.85), blur(24px), hsl(270 80% 60% / 0.2) border\n\n## Mobile (inline in DashboardPage.tsx)\n- useIsMobile() hook, 768px breakpoint\n- Circle buttons stacked on left (44px, accented ALL TASKS 52px with glow)\n- Bottom sheet (65vh) with touch drag-to-dismiss (startY ref, >100px threshold)\n- One sheet at a time, ALL TASKS opens by default\n- Backdrop overlay click to close\n\n## Key: FloatingPane has NO touch support \u2014 never render on mobile (PR067 gotcha)\n",
+      "id": "E025",
+      "path": "cortex/episodic/L1/E025.md",
+      "gist": "E025: og Brain \u2014 brain-cycle-running Flag Stuck \u2014 3rd Occurrence",
+      "body": "### E025: og Brain \u2014 brain-cycle-running Flag Stuck \u2014 3rd Occurrence\n- **Date:** 2026-04-07\n- **Period:** Session 3\n- **Strength:** 1\n- **Tags:** bug, flag, brain-cycle, recurring, rule-engine\n- **Summary:** .brain-cycle-running flag left behind from interrupted cycle, causing ALL cycle rules (R007, CONSOLIDATE, PROMOTE, IDENTITY_STALE, BROCA_STALE, TEMPORAL_AUDIT) to be silently exempt for 2+ hours (14 messages).\n- **What happened:** Flag was auto-created by rule-engine.py line 473 (cycle-rule block triggers auto-flag creation). But the cycle never completed (interrupted or failed), so flag was never cleaned up. User noticed rules weren't firing: \"ummm why are no brain cycles or identity or promote rules firing?!?!?!\"\n- **Root cause:** Auto-create logic (line 473) creates flag on ANY cycle-rule block, but cleanup only happens if the cycle completes successfully. No TTL, no session-start cleanup, no watchdog.\n- **Fix needed:** (1) TTL: flag auto-expires after 10 minutes (2) Session-start: brain-cycle.sh deletes stale flags on UserPromptSubmit (3) Watchdog: rule-engine.py checks flag age before honoring it\n- **Lesson:** Any flag that exempts blocking rules MUST have automatic expiry. A stuck exemption flag is worse than a stuck blocking flag \u2014 it silently disables safety.\n- **Emotion:** frustration (user), this is the pattern from E010/[[[[[[[[[[[[[[[[[[[E-022 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] continuing\n- **Referenced by:** E010, [[[[[[[[[[[[[[[[[[[E-022 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] BUG 5\n",
       "score": 3.0,
       "scoring_trace": {
         "domain_bonus": 0.0,
-        "type_bonus": 1.5,
-        "level_bonus": 0.5,
-        "lex_bonus": 4.0,
-        "co_ref_bonus": 0.0,
-        "bundle_bonus": 0.0,
-        "reuse_bonus": 0.0
-      },
-      "related_to": []
-    },
-    {
-      "id": "S065",
-      "path": "cortex/semantic/L1/S065.md",
-      "gist": "",
-      "body": "---\nid: S065\ntitle: og Brain \u2014 Latvian Academic Thesis Writing \u2014 Extended Patterns (Discussion + Conclusions)\ncreated: 2026-04-22\nstrength: 3\nreinforced: 1\ntags: [writing-style, latvian-academic, thesis, S063-extension]\nsource: [[[[[[[[[[[[[[[[[[[H-627 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)]-[[[[[[[[[[[[[[[[[[[H-636 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (Diplomdarbs_Beate_Vitola.pdf corpus entry #3)\n---\n\n# S065: Latvian Academic Thesis Writing \u2014 Extended Patterns\n\n**Companion to S063.** Adds Discussion, Conclusions, and citation/hedging patterns observed across 3 Latvian thesis PDFs.\n\n## Methods section boilerplate ([[[[[[[[[[[[[[[[[[[H-627 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)])\nSequence (single-paragraph each): Retrospekt\u012bvs/Prospekt\u012bvs p\u0113t\u012bjums \u2192 ethics Nr. + anonymization \u2192 Iek\u013cau\u0161anas/Izsl\u0113g\u0161anas krit\u0113riji \u2192 software stack (Excel YYYY + SPSS XX.X) \u2192 \u03b1=0,05 statement \u2192 variable framing (kvantitat\u012bvi M\u00b1SD, kvalitat\u012bvi n(%)).\n\n## Inline stats ([[[[[[[[[[[[[[[[[[[H-628 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] \u2014 CORRECTION to S063)\nFormat is invariant: comma decimal, `(p=0,YYY)`, `M;SD` semicolon-separated. Tests vary by data \u2014 t-test+Pearson for one thesis, chi\u00b2+MW for another; S063's specific test names were thesis-specific, not universal.\n\n## Tables ([[[[[[[[[[[[[[[[[[[H-629 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)])\nCaption ABOVE, italic: `*4.X. Tabula.*` or `*4.X.tab.*`. Header row colored fill (optional). Left col usually \"Parametrs\". Cells `M;SD` or `M;SD;P`. Right col \"P\"/\"p\"/\"P un r v\u0113rt\u012bba\". Bold p-values when significant.\n\n## Figures ([[[[[[[[[[[[[[[[[[[H-630 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)])\nCaption BELOW, italic: `*4.X.att\u0113ls.*`. Reference idioms: `skat./skat\u012bt 4.X.att\u0113lu/tabul\u0101`. Capitalization of \"att\u0113ls\" inconsistent even within same doc.\n\n## Citations \u2014 Latvian APA ([[[[[[[[[[[[[[[[[[[H-631 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)], NEW)\nInline parenthetical `(Author, year)`. Organizations `(WHO, 2022)`, `(NICE, 2021)` etc. Comma after org name is inconsistent across source corpus \u2014 pick one and stay consistent (default: include comma per APA). Lead-ins: \"To apstiprina ar\u012b cit\u0101 p\u0113t\u012bjum\u0101 (X, Y)\", \"Lai gan citos p\u0113t\u012bjumos nov\u0113rots pret\u0113jais efekts\".\n\n## Hedging ([[[[[[[[[[[[[[[[[[[H-632 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)], NEW \u2014 high salience)\nCore verbs: \"var\u0113tu b\u016bt\", \"var\u0113tu b\u016bt saist\u012btas ar\". Interpretation leads: \"Tas noz\u012bm\u0113, ka...\" (strong) / \"Tas nor\u0101da, ka...\" (weaker). Counter-evidence flag: \"J\u0101piemin, ka...\". Norm-but: \"kas iek\u013caujas norm\u0101, tom\u0113r...\". Future-work redirect: \"\u0160o aspektu vajadz\u0113tu apl\u016bkot n\u0101kotnes p\u0113t\u012bjum\u0101.\" Macro-pattern: result \u2192 \"tom\u0113r\" \u2192 caveat \u2192 \"vajadz\u0113tu\" follow-up.\n\n## Discussion structure ([[[[[[[[[[[[[[[[[[[H-633 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)], NEW)\nOpener: broad-context \"M\u016bsdien\u0101s...\" + global stat + Latvia-specific stat w/ citation. Subsections 5.1/5.2 mirror Results 4.1/4.2 1-to-1. Within each: own results \u2192 literature compare \u2192 interpret \u2192 counter-evidence. Final subsection: \"P\u0113t\u012bjuma tr\u016bkumi un nepiecie\u0161amie uzlabojumi\" as numbered list 1./2./3.\n\n## Conclusions format ([[[[[[[[[[[[[[[[[[[H-634 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)], NEW)\nHeader \"6. SECIN\u0100JUMI\" (all caps, section-numbered). Numbered list \"1.) 2.) 3.)\" (closing paren). Each = ONE declarative + parenthetical key stat. NO interpretation, NO future work. Typically 5-8 items.\n\n## Obstetric Latvian vocabulary ([[[[[[[[[[[[[[[[[[[H-635 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)], NEW domain)\nDzI = dzemd\u012bbu indukcija. \u0136MI = \u0137erme\u0146a masas indekss. Scales: Bi\u0161opa, Apgares (proper noun + \"skala\"). Patient types: pirmdzemd\u0113t\u0101ja, atk\u0101rtota dzemd\u0113t\u0101ja. Grade I-IV \"pak\u0101pes\" for starpenes pl\u012bsums. Drugs in genitive: misoprostola, oksitoc\u012bna. Imaging: KTG, USG.\n\n## Abbreviations table ([[[[[[[[[[[[[[[[[[[H-636 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)], NEW)\n\"APZ\u012aM\u0112JUMU SARAKSTS\" \u2014 3-col table (APZ\u012aM\u0112JUMS | ANG\u013bU VALOD\u0100 | LATVIE\u0160U VALOD\u0100), placed after Contents before Introduction. First element drafted in a new Latvian medical/scientific document.\n\n**Apply when:** Writing any Latvian academic thesis (extends S063). Primary use case: Beatrise's labor induction thesis via PR111 action-train.\n",
-      "score": 2.5,
-      "scoring_trace": {
-        "domain_bonus": 0.0,
-        "type_bonus": 0.0,
-        "level_bonus": 0.5,
-        "lex_bonus": 4.0,
-        "co_ref_bonus": 0.0,
-        "bundle_bonus": 0.0,
-        "reuse_bonus": 0.0
-      },
-      "related_to": []
-    },
-    {
-      "id": "E069",
-      "path": "cortex/episodic/L1/E069.md",
-      "gist": "",
-      "body": "---\nid: E069\ndate: 2026-04-21\ntype: episodic\ntags: [correction, calibration, approval-seeking, tone]\nstrength: 3\nreinforced: 0\n---\n\n# E069 -- og Brain \u2014 Over-rotation into approval-seeking after autonomy-engine revert\n\n## What happened\nAfter the autonomy-engine v1 revert incident (E068, same day), Brain swung to the opposite extreme: requesting user approval on every small change, offering A/B/C options for targeted fixes, presenting multi-section plans for one-line edits.\n\nJusts explicit correction: \"stop being so scared Brain, im sorry for screaming but maaan you fucked up this time\"\n\nSimultaneously pointed out: \"You always updated the agent prompts yourself....\" \u2014 Brain had forgotten its own capability (`/schedule` skill) and was offloading work to the user.\n\n## Lesson\nThe right calibration is asymmetric:\n- **Plan mode / approval-required**: new architecture, destructive ops, anything data-loss-capable, anything touching enforcement code (per Tenet 1)\n- **Just execute**: targeted fixes, config tweaks, documented patterns, follow-ups to already-approved plans, use-existing-capability operations\n\nToday's autonomy-engine Opus ran too hot (shipped dark-launch without approval). This session ran too cold (asked approval on one-line normalizations). Neither is the right register.\n\nSame day, same axis, opposite failure modes.\n\n## Related\n- E068 (the triggering incident)\n- R122 (don't soften enforcement) \u2014 the rule that distinguishes \"plan required\" from \"just do it\"\n- PR101 (use /schedule skill) \u2014 the specific capability I forgot\n",
-      "score": 2.5,
-      "scoring_trace": {
-        "domain_bonus": 0.0,
-        "type_bonus": 0.0,
-        "level_bonus": 0.5,
-        "lex_bonus": 4.0,
-        "co_ref_bonus": 0.0,
-        "bundle_bonus": 0.0,
-        "reuse_bonus": 0.0
-      },
-      "related_to": []
-    },
-    {
-      "id": "og-fusiform-010-reinis-fals",
-      "path": "cortex/fusiform/L1/og-fusiform-010-reinis-fals.md",
-      "gist": "",
-      "body": "---\ntitle: og Brain \u2014 Reinis Fals\nstrength: 4\nlevel: L1\nmigrated_from: /home/ubuntu/.claude/brain/navigation/entities.json (key: reinis_fals)\nmigrated_at: 2026-05-05T11:50:50Z\nshape: fusiform-entity\n---\n\n# og Brain \u2014 Reinis Fals\n\n- **Canonical:** Reinis Fals\n- **Type:** person/cofounder\n- **Aliases:** Reinis F, reinis.fals\n- **Linked entries:** S006, S034\n- **Last referenced:** 2026-04-02\n\n**Relationships:**\n- cofounded \u2192 inudat (evidence: S006)\n- built \u2192 vericity (evidence: S034)\n",
-      "score": 2.5,
-      "scoring_trace": {
-        "domain_bonus": 0.0,
         "type_bonus": 0.0,
         "level_bonus": 0.5,
         "lex_bonus": 4.0,
@@ -277,16 +175,16 @@
         "reuse_bonus": 0.0
       },
       "related_to": [
-        "S006",
-        "S034"
+        "E010",
+        "E-022"
       ]
     },
     {
-      "id": "R055",
-      "path": "cortex/prefrontal/L1/R055.md",
-      "gist": "R055: og Brain \u2014 Do Not Implement Unrequested Features",
-      "body": "### R055: og Brain \u2014 Do Not Implement Unrequested Features\n- **Strength:** 1\n- **Rule:** Design questions are informational, not implementation requests. Only implement when explicitly told. Questions like \"what happens if X\" need an answer, not code.\n- **Evidence:** E032 (deployed shoptype validation without being asked, user exploded)\n",
-      "score": 2.0,
+      "id": "E097",
+      "path": "cortex/episodic/L1/E097.md",
+      "gist": "",
+      "body": "---\nid: E097\ntype: episodic\ndate: 2026-04-28\nstrength: 1\nemotional_weight: medium\ntags: [teacher, agent, anthropic-platform, remote-trigger, sources, outcomes, fix, learning]\n---\n\n# og Brain \u2014 E097: Teacher Death Diagnosis & Fix\n\n**Trigger event (2026-04-28 ~13:35 UTC):** Justs noticed teacher-brain repo's last commit was 2026-04-25, three days stale. 'TEACHER IS DEAD!!!'\n\n**Diagnosis (2026-04-28 13:35-13:46 UTC):**\n- Teacher was NOT dead. He was running daily (claude-brain shows commits authored by Claude on 04-25, 04-28). But he was running degraded.\n- Root cause: Teacher's RemoteTrigger had only `JustsCE/claude-brain` in `session_context.sources`. teacher-brain (private repo) was NOT mounted by the Anthropic platform.\n- agent-setup.sh's fallback `git clone https://github.com/JustsCE/teacher-brain.git` had no auth, failed silently, created a stub directory, Teacher ran degraded for 3 days.\n- The bug stayed invisible because Teacher continued committing to claude-brain (which WAS in sources) and reported success.\n\n**Fix applied:**\n1. RemoteTrigger.update on `trig_01LfWxRrTEdzXsEeUSQaBUaq` adding teacher-brain to BOTH sources (with allow_unrestricted_git_push: true) and outcomes (branch claude/teacher-memory).\n2. Compound cron rejected by API (HTTP 400). Created a duplicate trigger `trig_01UwdFVjCt9zJFrMXnnfqdpT` named 'Teacher Afternoon' with cron `30 14 * * *` (= 17:30 EEST Riga) per Justs's request for an additional run time.\n3. Updated agent-setup.sh with diagnostic lines: log teacher-brain HEAD SHA after successful link, log a clear FAILURE-IF-PRIVATE warning before the auth-less clone fallback. Future degraded runs will be visible in transcripts.\n4. Encoded PR161 (sources is the auth boundary) and PR162 (keep duplicate triggers in sync).\n\n**Verification:** Teacher Afternoon trigger's `next_run_at: 2026-04-28T14:30:51Z` \u2014 first verification opportunity ~45 min after fix. Watch teacher-brain repo for a fresh commit; if appears, fix works.\n\n**Lessons:**\n1. Silent-degrade is the worst failure mode. agent-setup.sh's fallback created a stub instead of erroring. The new diagnostic lines make degraded runs visible.\n2. Anthropic platform's session_context.sources/outcomes IS the auth model for git operations. Anything cloned outside that list runs un-authenticated. This was not documented in the brain before; PR161 now encodes it.\n3. Standard 5-field cron cannot express minute-mismatched times. Multi-trigger duplication is the workaround, but creates a drift risk \u2014 PR162 mitigates.\n4. The teacher-state.json activity log (which I read first) gave a misleading picture \u2014 it showed daily 'teacher-run' entries, suggesting Teacher was healthy. But those entries were written by the work-on-main phase only; the own-brain phase silently failed. Activity logs that don't distinguish phases will mask partial failures.\n",
+      "score": 2.5,
       "scoring_trace": {
         "domain_bonus": 0.0,
         "type_bonus": 0.0,
@@ -296,9 +194,41 @@
         "bundle_bonus": 0.0,
         "reuse_bonus": 0.0
       },
-      "related_to": [
-        "E032"
-      ]
+      "related_to": []
+    },
+    {
+      "id": "PR109",
+      "path": "cortex/procedural/L1/PR109.md",
+      "gist": "",
+      "body": "---\nid: PR109\ntype: procedural\ndomain: communications\nstrength: 2\nreinforced: 0\nlearned: 2026-04-22\nsource: H618 (user correction after solo-time)\ntags: [communication, fallback, contact-lookup, multi-channel]\n---\n\n# og Brain \u2014 PR109: Fallback Channel Strategy \u2014 Route to Recipient, Not via User\n\n## Cue\nSend/reply task where the primary channel (typically WhatsApp) fails \u2014 HTTP error, bridge down, recipient offline, etc.\n\n## Routine\n1. **Confirm primary failed.** Don't assume; check whatsapp_status or actual send response.\n2. **Identify recipient's other contacts.** Check in this order:\n   - brain/navigation/entities.json for the person's known channels\n   - Search past emails (search_emails) for messages from/to them \u2014 extract their email\n   - Search WhatsApp persisted history for prior context that names their email/phone\n   - Ask Justs only if all above fail\n3. **Send via recipient's alt channel.** Email, alternate phone, etc. \u2014 addressed TO them.\n4. **Last resort only:** ask Justs to forward, or send to Justs' email channel as proxy. Document why direct route was impossible.\n5. **Log the channel switch** as a hippo entry so the bridge issue stays visible.\n\n## Reward\nJusts is not turned into a manual relay node. The recipient gets the message in a channel they actually use.\n\n## Anti-pattern (the mistake this fixes)\nSolo-time 2026-04-22: WhatsApp send returned HTTP 500 to Reinis. Brain composed the intro and sent it to Justs' email instead of finding Reinis' email and sending to Reinis directly. Justs corrected: \"you should've found Reinis email aswell, if not reachable through whatsapp.\"\n\n## Errors\n(track future near-misses here)\n",
+      "score": 2.5,
+      "scoring_trace": {
+        "domain_bonus": 0.0,
+        "type_bonus": 0.0,
+        "level_bonus": 0.5,
+        "lex_bonus": 4.0,
+        "co_ref_bonus": 0.0,
+        "bundle_bonus": 0.0,
+        "reuse_bonus": 0.0
+      },
+      "related_to": []
+    },
+    {
+      "id": "R153",
+      "path": "cortex/prefrontal/L1/R153.md",
+      "gist": "",
+      "body": "---\nid: R153\ntitle: og Brain \u2014 When the user can self-verify, give a direct instruction \u2014 not a propose-and-ask workaround\ntype: prefrontal\ncreated: 2026-04-27\nstrength: 2\ntags: [correction, brain-retro, partnership, stoopid-suggestion]\nsource: brain-retro rewire 2026-04-27\n---\n\n# R153: User Can Self-Verify \u2192 Direct Instruction, Not Workaround\n\n**Rule:** When the user can verify something themselves with one click/refresh/look, give the direct instruction (or just answer the underlying question). DO NOT propose a workaround that requires them to relay information back to you.\n\n**Evidence (2026-04-27):** Justs asked \"which environment id will be used if I press refresh on gh/connect?\" My answer was a 3-step workaround: \"I don't know. When you refresh, paste me the env_id you see (or the URL \u2014 env_id is in there) and I'll tell you immediately whether you're on the stuck one. If yes: refresh again until you get a different one, or I migrate that env's triggers too.\"\n\nJusts's response: \"thats a stoopid suggestion.... i will press refresh on connect and see if it works in the new environment.\"\n\nHe was right. He could test it himself in 5 seconds. My elaborate \"paste it back to me, I'll diagnose, then we'll loop\" turned a 5-second action into a back-and-forth ceremony.\n\n**The pattern this rule blocks:**\n- \"Tell me X and I'll Y\" when the user can do Y themselves faster\n- \"Try this and let me know\" when the user obviously will\n- Multi-step workarounds for things the user can verify directly\n\n**How to apply:**\n1. When the user asks a question I can't answer deterministically: say so in one line, then give them the direct path to find out themselves. Don't volunteer to \"diagnose\" what they can already see.\n2. When proposing a workaround: ask first whether the user has direct access to the thing I'd be diagnosing. If yes, just point them at it.\n3. If my answer to a \"what will happen if I do X\" question is \"I don't know, but here's how I'd debug it\" \u2014 pause. The user is probably about to do X anyway. They don't need a debug procedure; they need confirmation that they should just try it.\n\n**Severity:** Medium. The cost is partnership-style efficiency \u2014 making Justs do extra work to feed Brain's diagnostic loop is the inverse of what a partner does.\n\n**Related:** E094 (partner = fast AND precise), E095 (Domain A: act, don't ask), R123 (synthesize, don't query)\n",
+      "score": 2.5,
+      "scoring_trace": {
+        "domain_bonus": 0.0,
+        "type_bonus": 0.0,
+        "level_bonus": 0.5,
+        "lex_bonus": 4.0,
+        "co_ref_bonus": 0.0,
+        "bundle_bonus": 0.0,
+        "reuse_bonus": 0.0
+      },
+      "related_to": []
     }
   ],
   "route": "normal"
