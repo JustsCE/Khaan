@@ -95,3 +95,4 @@
 {"event": "index_rebuild", "ts": "2026-05-11T16:57:10Z", "terms_count": 8516, "entries_count": 576}
 {"event": "cycle_ledger", "cycle_id": 14, "phases": [{"phase": "ingest", "executed": true, "detail": "20 observations across 5 categories"}, {"phase": "hippocampus", "executed": true, "detail": "20 entries"}, {"phase": "consolidate", "executed": true, "detail": "2 reinforced, 25 promoted, 0 discarded"}, {"phase": "index_rebuild", "executed": true, "detail": "8516 terms, 576 entries"}, {"phase": "synthesis", "executed": true, "detail": "L2 created 0, L3 created 0, sources archived 0"}, {"phase": "eval", "executed": false, "detail": "not due"}, {"phase": "hygiene", "executed": false, "detail": "not due"}], "ts": "2026-05-11T16:57:10Z"}
 {"event": "cycle_commit", "cycle_id": 14, "ts": "2026-05-11T16:57:10Z"}
+{"event": "cycle_git", "cycle_id": 14, "status": "ok", "ts": "2026-05-11T16:57:12Z"}
