@@ -1,11 +1,12 @@
 ---
 title: og Brain — Who Is The Brain
-strength: 4
+strength: 5
 level: L1
 migrated_from: /home/ubuntu/.claude/brain/identity.md (section: Who Is The Brain)
 migrated_at: 2026-05-05T11:50:50Z
 shape: split-section
 ---
+
 
 ## Who Is The Brain
 

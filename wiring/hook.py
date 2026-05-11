@@ -61,6 +61,7 @@ def handle_user_prompt_submit(payload):
         write_bin(b, 0)
     st = read_state()
     st["decision_consecutive_failures"] = 0
+    st["active_decision_nonce"] = None
     st["message_counter"] = st.get("message_counter", 0) + 1
     write_state(st)
 
@@ -69,14 +70,19 @@ def handle_user_prompt_submit(payload):
     user_message = payload.get("prompt") or payload.get("message") or payload.get("content", "")
     proceed = trigger()
     if proceed:
-        # Fire-and-forget: decision pipeline (recall + identity relay + decision
-        # subprocess) runs in a daemon thread so UserPromptSubmit returns instantly.
-        # _compose_turn_context() serves whatever navigation files already exist
-        # (previous turn's output). Fresh decision lands mid-response or is ready
-        # for the next turn — either way, the user is never blocked.
-        import threading
-        t = threading.Thread(target=dispatch, args=(user_message,), daemon=True)
-        t.start()
+        # Fire-and-forget: decision pipeline runs as a detached subprocess so it
+        # survives the hook process exit.  The subprocess inherits BRAIN_SKIP_HOOKS=1
+        # so its own tool calls don't recurse into the hook.
+        import subprocess as _sp
+        _sp.Popen(
+            [sys.executable, "-c",
+             f"import sys; sys.path.insert(0,'{BRAIN}'); "
+             f"from engines.decision import dispatch; "
+             f"dispatch({user_message!r})"],
+            env={**os.environ, "BRAIN_SKIP_HOOKS": "1"},
+            start_new_session=True,
+            stdout=_sp.DEVNULL, stderr=_sp.DEVNULL,
+        )
 
     ctx = _compose_turn_context()
     if ctx:

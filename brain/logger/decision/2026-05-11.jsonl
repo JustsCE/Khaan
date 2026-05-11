@@ -37,3 +37,5 @@
 {"event": "decision_dispatch", "ts": "2026-05-11T17:07:00Z", "query_hash": "f915fef528f34cc3", "sources_hash": "a9c842ad71769638:f8be05f40909b3c9", "model": "claude-cli", "system_prompt_hash": "662dd57fc909e9ff"}
 {"event": "subagent_complete", "ts": "2026-05-11T17:08:01Z", "query_hash": "f915fef528f34cc3", "subagent_id": "decision-0", "status": "returned", "latency_ms": 60635}
 {"event": "handoff", "ts": "2026-05-11T17:08:01Z", "query_hash": "f915fef528f34cc3", "payload_chars": 6830, "all_5_present": true}
+{"event": "decision_dispatch", "ts": "2026-05-11T18:07:05Z", "query_hash": "0de5ccca23b2c8b0", "sources_hash": "c2644a6a9a4b926f:ec17100f866e6a12", "model": "claude-cli", "system_prompt_hash": "662dd57fc909e9ff"}
+{"event": "decision_dispatch", "ts": "2026-05-11T18:07:35Z", "query_hash": "c48e07777f926b34", "sources_hash": "c2644a6a9a4b926f:da61d58c44f24a88", "model": "claude-cli", "system_prompt_hash": "662dd57fc909e9ff"}

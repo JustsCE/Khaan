@@ -8,7 +8,7 @@ BRAIN_REAL = os.path.realpath(str(BRAIN))
 BYPASSABLE = {"use-bash-block", "engine-security-block", "cycle-security-block", "permissions-block"}
 CYCLE_STATE_FILES = {"state.json", "brain_cycle.py", "cycle_phases.py"}
 DOCKER_RE = re.compile(r"docker\s+compose\s+(up|down|restart)(\s*$|\s*[;&|])")
-WRITE_CMD_RE = re.compile(r"(?:(?<!&)>(?![&=])|>>|tee\s+|open\s*\(|os\.rename\s*\(|(?:cp|mv|dd|install|rsync|scp|patch|sed\s+-i|perl\s+-\S*[ip])\s+|shutil\.\w+|\.write_text\s*\(|\.write_bytes\s*\(|fs\.writeFile)")
+WRITE_CMD_RE = re.compile(r"(?:(?<!&)>(?![&=])|>>|tee\s+|open\s*\(|\.rename\s*\(|\.replace\s*\(|(?:cp|mv|dd|install|rsync|scp|patch|sed\s+-i|perl\s+-\S*[ip])\s+|shutil\.\w+|\.write_text\s*\(|\.write_bytes\s*\(|fs\.writeFile)")
 CHMOD_CHOWN_RE = re.compile(r"(?:sudo\s+)?(?:chmod|chown)\s+.*brain/")
 
 
