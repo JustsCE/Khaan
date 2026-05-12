@@ -100,11 +100,11 @@ def dispatch(event, payload, repo_root):
                 tool_name = payload.get("tool_name", "")
                 if tool_name == "Skill":
                     skill = payload.get("tool_input", {}).get("skill", "")
-                    if skill == "decision-engine":
+                    if skill in ("decision-engine", "brain-cycle"):
                         continue
                 elif tool_name == "Bash":
                     cmd = payload.get("tool_input", {}).get("command", "")
-                    if re.match(r"python3\s+.*engines[./]decision", cmd):
+                    if re.match(r"python3\s+.*engines[./](decision|brain_cycle)", cmd):
                         continue
             raised.append(bname)
     raised.extend(per_call_gates)

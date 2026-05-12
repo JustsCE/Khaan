@@ -182,3 +182,29 @@
 {"event": "synthesis_event", "ts": "2026-05-12T11:13:22Z", "cycle_id": 20, "region": "semantic", "source_ids": ["og-semantic-entity-005-the-customization-group", "og-semantic-entity-001-forecast-pipeline", "og-semantic-entity-002-glc-report", "og-semantic-entity-003-goodhealth-lv", "og-semantic-entity-006-vericity-ai", "og-semantic-entity-004-sia-inudat"], "target_id": "S113", "trigger_strength": 5}
 {"event": "cycle_ledger", "cycle_id": 20, "phases": [{"phase": "ingest", "executed": true, "detail": "5 observations across 4 categories"}, {"phase": "hippocampus", "executed": true, "detail": "5 entries"}, {"phase": "consolidate", "executed": true, "detail": "0 reinforced, 5 promoted, 0 discarded"}, {"phase": "index_rebuild", "executed": true, "detail": "8616 terms, 669 entries"}, {"phase": "synthesis", "executed": true, "detail": "L2 created 1, L3 created 0, sources archived 6"}, {"phase": "eval", "executed": false, "detail": "not due"}, {"phase": "hygiene", "executed": false, "detail": "not due"}], "ts": "2026-05-12T11:13:22Z"}
 {"event": "cycle_commit", "cycle_id": 20, "ts": "2026-05-12T11:13:22Z"}
+{"event": "cycle_git", "cycle_id": 20, "status": "ok", "ts": "2026-05-12T11:13:25Z"}
+{"event": "cycle_start", "ts": "2026-05-12T12:23:38Z", "cycle_id": 21, "counter_at_start": 275}
+{"event": "cycle_start", "ts": "2026-05-12T12:23:53Z", "cycle_id": 21, "counter_at_start": 275}
+{"event": "cycle_start", "ts": "2026-05-12T12:24:21Z", "cycle_id": 21, "counter_at_start": 275}
+{"event": "cycle_empty", "ts": "2026-05-12T12:24:38Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T12:24:39Z", "terms_count": 8627, "entries_count": 664}
+{"event": "cycle_failed", "ts": "2026-05-12T12:24:39Z", "cycle_id": 21, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T12:24:39Z", "cycle_id": 21, "counter_at_start": 275}
+{"event": "cycle_empty", "ts": "2026-05-12T12:24:42Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T12:24:42Z", "terms_count": 8627, "entries_count": 664}
+{"event": "cycle_failed", "ts": "2026-05-12T12:24:43Z", "cycle_id": 21, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T12:24:43Z", "cycle_id": 21, "counter_at_start": 275}
+{"event": "cycle_empty", "ts": "2026-05-12T12:24:53Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T12:24:54Z", "terms_count": 8627, "entries_count": 664}
+{"event": "cycle_failed", "ts": "2026-05-12T12:24:54Z", "cycle_id": 21, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T12:25:07Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T12:25:08Z", "terms_count": 8627, "entries_count": 664}
+{"event": "cycle_failed", "ts": "2026-05-12T12:25:08Z", "cycle_id": 21, "attempt": 2, "reason": "invariant 3: nonce mismatch"}
+{"event": "consolidation_summary", "ts": "2026-05-12T12:25:15Z", "reinforced": 1, "promoted": 5, "discarded": 0}
+{"event": "index_rebuild", "ts": "2026-05-12T12:25:15Z", "terms_count": 8635, "entries_count": 669}
+{"event": "cycle_failed", "ts": "2026-05-12T12:25:15Z", "cycle_id": 21, "attempt": 2, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T12:43:00Z", "cycle_id": 21, "counter_at_start": 281}
+{"event": "cycle_empty", "ts": "2026-05-12T12:43:18Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T12:43:18Z", "terms_count": 8635, "entries_count": 669}
+{"event": "cycle_ledger", "cycle_id": 21, "phases": [{"phase": "ingest", "executed": true, "detail": "0 observations across 0 categories"}, {"phase": "hippocampus", "executed": true, "detail": "0 entries"}, {"phase": "consolidate", "executed": true, "detail": "0 reinforced, 0 promoted, 0 discarded"}, {"phase": "index_rebuild", "executed": true, "detail": "8635 terms, 669 entries"}, {"phase": "synthesis", "executed": true, "detail": "L2 created 0, L3 created 0, sources archived 0"}, {"phase": "eval", "executed": false, "detail": "not due"}, {"phase": "hygiene", "executed": false, "detail": "not due"}], "ts": "2026-05-12T12:43:19Z"}
+{"event": "cycle_commit", "cycle_id": 21, "ts": "2026-05-12T12:43:19Z"}

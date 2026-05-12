@@ -38,7 +38,7 @@ def cli_invoke(system_prompt, user_prompt, timeout=120, raw=False):
     # which hook.py checks before any engine import.
     env = {**os.environ, "BRAIN_SKIP_HOOKS": "1"}
     r = subprocess.run(
-        ["claude", "-p", "--system-prompt", system_prompt,
+        ["claude", "-p", "--model", "sonnet", "--system-prompt", system_prompt,
          "--output-format", "stream-json", "--verbose"],
         input=user_prompt, capture_output=True, text=True,
         timeout=timeout, env=env

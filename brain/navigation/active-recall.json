@@ -1,17 +1,17 @@
 {
-  "ts": "2026-05-12T11:10:17Z",
-  "query_hash": "926fb7dc79e5762a",
+  "ts": "2026-05-12T12:38:36Z",
+  "query_hash": "9ee58ee6a80eb605",
   "qualified_entries": [
     {
-      "id": "PR145",
-      "path": "cortex/procedural/L1/PR145.md",
-      "gist": "4. Verify",
-      "body": "---\nid: PR145\ntype: procedural\ndomain: deployment\ndate_created: 2026-04-26\nstrength: 2\nreinforced: 0\ntags: [deployment, wa-bridge, docker-compose, R146-compliant, viz]\nsources: [this-session]\n---\n\n# og Brain \u2014 PR145: Isolated wa-bridge Container Deploy\n\n## Cue\nYou changed viz/whatsapp-bridge/src/ and need to deploy on goodhealth.lv EC2.\nThe brain-control Lambda's deploy-viz action only handles brain-viz frontend +\nbackend \u2014 it does NOT rebuild the wa-bridge container. Manual deploy required.\n\n## Routine\n\n### 1. Edit + commit the source in the brain repo\n- Edit ~/.claude/viz/whatsapp-bridge/src/index.ts (or other files)\n- `cd ~/.claude && git add viz/whatsapp-bridge/src/ && git commit -m \"wa-bridge: ...\" && git push`\n\n### 2. Sync to /opt/brain-viz (the docker-compose build context)\n- `cp ~/.claude/viz/whatsapp-bridge/src/index.ts /opt/brain-viz/whatsapp-bridge/src/index.ts`\n- Or `rsync -av ~/.claude/viz/whatsapp-bridge/src/ /opt/brain-viz/whatsapp-bridge/src/`\n- The /brain volume mount is the OLD copy and is NOT used at build time. Build context is /opt/brain-viz/whatsapp-bridge/ on the host.\n\n### 3. Rebuild + restart ONLY wa-bridge (R146-isolated)\n- `cd /opt/brain-viz && docker compose build wa-bridge`\n- `cd /opt/brain-viz && docker compose up -d wa-bridge`\n- Service name is `wa-bridge` (not brain-viz-wa-bridge \u2014 thats the container name with project prefix).\n\n### 4. Verify\n- `sleep 8 && docker logs --tail 20 brain-viz-wa-bridge-1`\n- expect \"Connected to WhatsApp\"\n\n## Prerequisites\n- Code change committed + pushed in the brain repo\n- /opt/brain-viz/whatsapp-bridge/ exists on the EC2 with build context\n- Docker daemon running, brain-viz_wa-auth volume present (preserves WhatsApp session)\n\n## Gotchas\n- WhatsApp auth is in wa-auth docker volume, preserved across rebuilds\n- Bridge has 5000+ persisted messages and 70+ buffered \u2014 these survive rebuild\n- The deploy-viz Lambda action only handles brain-viz, NOT wa-bridge\n- NEVER run bare `docker compose build` or `docker compose up -d` (R146)\n\n## Verification\n- Container \"Up X seconds\" in docker ps\n- \"Connected to WhatsApp\" in logs\n- Send a test message with /brain-execute and confirm `[wa-task] EXECUTE: ...` log\n\n## Reward\nwa-bridge runs the new code, WhatsApp session unbroken.\n\n## Cross-references\n- R146 (Docker Compose service isolation \u2014 no bare commands)\n- R150 (no scope creep \u2014 wa-bridge stays out of deploy-viz Lambda action)\n- S058 (goodhealth.lv infrastructure)\n",
-      "score": 6.0,
+      "id": "S101",
+      "path": "cortex/semantic/L2/S101.md",
+      "gist": "",
+      "body": "---\nid: S101\ntitle: dispatcher.py v1 design (line 59): 'Tool security gates (use-bash-block, engine-\nstrength: 5\nreinforced: 4\ndate_created: 2026-05-12\nsalience: 0.85\ntags: []\nsources: [this-cycle]\n---\n\n\n\n\n\ndispatcher.py v1 design (line 59): 'Tool security gates (use-bash-block, engine-security-block, learning-cycle-overdue, etc.) are NOT in this list \u2014 they are per-call predicates evaluated by flip_tool_guards.evaluate()'. BLOCKING_BINARIES is only for binary-only gates without per-call exemption logic.\n",
+      "score": 7.0,
       "scoring_trace": {
         "domain_bonus": 0.0,
         "type_bonus": 1.5,
-        "level_bonus": 0.5,
+        "level_bonus": 1.5,
         "lex_bonus": 4.0,
         "co_ref_bonus": 0.0,
         "bundle_bonus": 0.0,
@@ -20,14 +20,14 @@
       "related_to": []
     },
     {
-      "id": "S101",
-      "path": "cortex/semantic/L2/S101.md",
+      "id": "S097",
+      "path": "cortex/semantic/L2/S097.md",
       "gist": "",
-      "body": "---\nid: S101\ntitle: dispatcher.py v1 design (line 59): 'Tool security gates (use-bash-block, engine-\nstrength: 5\nreinforced: 4\ndate_created: 2026-05-12\nsalience: 0.85\ntags: []\nsources: [this-cycle]\n---\n\n\n\n\n\ndispatcher.py v1 design (line 59): 'Tool security gates (use-bash-block, engine-security-block, learning-cycle-overdue, etc.) are NOT in this list \u2014 they are per-call predicates evaluated by flip_tool_guards.evaluate()'. BLOCKING_BINARIES is only for binary-only gates without per-call exemption logic.\n",
-      "score": 5.5,
+      "body": "---\nid: S097\ntitle: Decision engine pipeline takes 60-110s per turn (claude -p subprocess generating\nstrength: 5\nreinforced: 4\ndate_created: 2026-05-12\nsalience: 0.7\ntags: []\nsources: [this-cycle]\n---\n\n\n\n\n\nDecision engine pipeline takes 60-110s per turn (claude -p subprocess generating 5 hypotheses). Recall is <1s (local Python). Identity relay is ~21s (claude -p). Identity boot is ~108s but only runs once per session\n",
+      "score": 6.0,
       "scoring_trace": {
         "domain_bonus": 0.0,
-        "type_bonus": 0.0,
+        "type_bonus": 1.5,
         "level_bonus": 1.5,
         "lex_bonus": 4.0,
         "co_ref_bonus": 0.0,
@@ -71,48 +71,14 @@
       "related_to": []
     },
     {
-      "id": "PR095",
-      "path": "cortex/procedural/L1/PR095.md",
+      "id": "S113",
+      "path": "cortex/semantic/L2/S113.md",
       "gist": "",
-      "body": "---\nid: PR095\ntitle: og Brain \u2014 Fix MCP Server Containers \u2014 Binary Name + ENV Pattern\ncreated: 2026-04-18\nstrength: 3\nreinforced: 0\ntags: [mcp, docker, aws, infrastructure, fix-pattern]\nsource: H536\n---\n\n# PR095: Fix MCP Server Containers \u2014 Binary Name + ENV Pattern\n\n**Cue:** MCP server Docker container in restart loop with module import errors.\n\n**Pattern:** pip-installed MCP packages (awslabs, gmail-mcp, etc.) register console_scripts entry points. The correct CMD is the binary name, NOT python -m.\n\n**Diagnostic steps:**\n1. Check logs: `docker logs <container> --tail 10`\n2. If \"No module named X.__main__\": wrong CMD\n3. Find binary: `docker run --rm --entrypoint \"\" <image> ls /usr/local/bin/*mcp*`\n4. Fix Dockerfile CMD to use the binary name\n\n**Known fixes:**\n- gmail-mcp-server \u2192 `gmail-mcp` (not `gmail-mcp-server`)\n- awslabs.aws-api-mcp-server \u2192 `awslabs.aws-api-mcp-server` (binary matches package name)\n\n**Also check:** streamable-http transport may require `AUTH_TYPE=no-auth` env var (awslabs packages do).\n",
+      "body": "---\nid: S113\ntitle: Named-entity registry for projects, companies, and systems\nstrength: 1\nreinforced: 0\ndate_created: 2026-05-12\nlineage: [\"og-semantic-entity-005-the-customization-group\", \"og-semantic-entity-001-forecast-pipeline\", \"og-semantic-entity-002-glc-report\", \"og-semantic-entity-003-goodhealth-lv\", \"og-semantic-entity-006-vericity-ai\", \"og-semantic-entity-004-sia-inudat\"]\ntags: [\"04\", \"2026\", \"aliases\", \"brain\", \"canonical\", \"entries\", \"last\", \"linked\", \"og\", \"referenced\"]\nsources: [synthesis-cycle-20]\n---\n\n# Named-entity registry for projects, companies, and systems\n\nThe brain's semantic layer maintains a structured registry of named entities \u2014 companies, projects, products, and infrastructure \u2014 each carrying a canonical name, a set of aliases, and typed relationships to other entities. These entries form a knowledge graph where organizations own or operate projects, projects link to incidents or reports, and infrastructure hosts visualization layers. The core entities divide into two organizational anchors (The Customization Group as employer, SIA INUDAT as owned company) and four project-level nodes (FORECAST Pipeline, GLC Report, goodhealth.lv, Vericity.ai), each cross-referenced to deeper semantic and episodic entries.\n\nThe structural pattern is uniform: every entity carries a canonical label, a type taxonomy (company/employer, company/own, project/system, project/report, project/site, project/product), an alias list for fuzzy resolution, and directional relationships (employs, owned_by, operates, incident). This design enables alias-based lookup \u2014 \"TCG,\" \"Picanova,\" or \"thecustomizationgroup\" all resolve to The Customization Group \u2014 and supports relationship traversal across the graph. Ownership chains are explicit: INUDAT operates Vericity.ai; The Customization Group owns the FORECAST Pipeline.\n\nAll entities share an April 2026 reference window, indicating they were seeded during initial brain bootstrapping rather than discovered incrementally. As new entities emerge, this registry pattern \u2014 canonical name, type, aliases, linked entries, directional relationships \u2014 should be the template for integration.\n\n*Source: [og-semantic-entity-005-the-customization-group, og-semantic-entity-001-forecast-pipeline, og-semantic-entity-002-glc-report, og-semantic-entity-003-goodhealth-lv, og-semantic-entity-006-vericity-ai, og-semantic-entity-004-sia-inudat]*\n",
       "score": 5.0,
       "scoring_trace": {
         "domain_bonus": 0.0,
         "type_bonus": 1.5,
-        "level_bonus": 0.5,
-        "lex_bonus": 4.0,
-        "co_ref_bonus": 0.0,
-        "bundle_bonus": 0.0,
-        "reuse_bonus": 0.0
-      },
-      "related_to": []
-    },
-    {
-      "id": "PR162",
-      "path": "cortex/procedural/L1/PR162.md",
-      "gist": "PR162: og Brain \u2014 Duplicate Triggers Must Stay In Sync",
-      "body": "---\nid: PR162\ntype: procedural\ndomain: agents\ndate_created: 2026-04-28\ndate_superseded: 2026-04-28\nstrength: 0\nstatus: SUPERSEDED\nsuperseded_by: R159\ntags: [agents, remote-trigger, multi-trigger, drift, teacher, sync, duplication, superseded]\n---\n\n### PR162 (SUPERSEDED): Duplicate Triggers Must Stay In Sync\n\n**Status:** SUPERSEDED 2026-04-28. The duplicate Teacher trigger this entry was written for was disabled within 6 minutes of creation after user correction. Single-trigger config is the canonical state.\n\n**Replacement:** R159 captures the actual lesson \u2014 \"additional X\" means modify the existing X; surface technical constraints before creating duplicates.\n\n**Original premise (now invalid):** This entry assumed Teacher would have two triggers (`trig_01LfWxRrTEdzXsEeUSQaBUaq` morning + `trig_01UwdFVjCt9zJFrMXnnfqdpT` afternoon) and described how to keep them in sync. The afternoon trigger is now `enabled: false`, so there is nothing to sync. Single Teacher trigger has cron `30 1,4,14 * * *`.\n\n**Kept for traceability:** Original content moved to comment block below for historical reference. Reading this entry should always lead the reader to R159 + E098 for the real lesson.\n\n<!-- Original content (do not act on):\n---\nid: PR162\ntype: procedural\ndomain: infrastructure / agents / anthropic-platform\ndate_created: 2026-04-28\nstrength: 1\ntags: [agents, remote-trigger, multi-trigger, drift, teacher, sync, duplication]\n---\n\n### PR162: og Brain \u2014 Duplicate Triggers Must Stay In Sync\n\n- **Cue:** Editing the prompt, MCP connections, sources, outcomes, model, or session_context of any agent that has more than one RemoteTrigger pointing at the same agent identity (e.g. Teacher has TWO triggers: morning at 01:00+04:00 UTC and afternoon at 14:30 UTC).\n- **Stage:** conscious\n- **Why this exists:** Standard 5-field cron cannot express times whose minute differs (cannot do 01:00 + 04:00 + 14:30 in one expression \u2014 minutes are 0, 0, 30 \u2014 Anthropic rejected compound cron with HTTP 400 'expected exactly 5 fields'). The workaround was to create a second trigger 'Teacher Afternoon' (`trig_01UwdFVjCt9zJFrMXnnfqdpT`) cloning the primary 'Teacher' (`trig_01LfWxRrTEdzXsEeUSQaBUaq`). This doubles the surface for config drift \u2014 exactly the bug PR161 documents.\n- **Routine:** Whenever updating ANY field of a Teacher trigger:\n  1. List both Teacher trigger IDs from this entry: primary `trig_01LfWxRrTEdzXsEeUSQaBUaq`, afternoon `trig_01UwdFVjCt9zJFrMXnnfqdpT`.\n  2. Apply the SAME RemoteTrigger.update payload to BOTH (changing only the cron_expression and the trigger name if those should differ).\n  3. Verify with RemoteTrigger.get on both. Diff them: only `cron_expression`, `name`, `id`, `created_at`, `updated_at`, `next_run_at` should differ.\n- **Pitfall:** Forgetting one. Symptom: behavior changes only on certain run times. Detection: a periodic diff job in brain-cycle Phase 10 \u2014 list both triggers, diff their `job_config.ccr.session_context` and `events[0].data.message.content`, alarm on any difference.\n- **Future cleanup:** If Anthropic adds compound-cron support, collapse to a single trigger and delete this rule.\n- **Reinforced by:** E097 (Teacher 2nd-trigger creation 2026-04-28).\n\n-->\n",
-      "score": 5.0,
-      "scoring_trace": {
-        "domain_bonus": 0.0,
-        "type_bonus": 1.5,
-        "level_bonus": 0.5,
-        "lex_bonus": 4.0,
-        "co_ref_bonus": 0.0,
-        "bundle_bonus": 0.0,
-        "reuse_bonus": 0.0
-      },
-      "related_to": []
-    },
-    {
-      "id": "S097",
-      "path": "cortex/semantic/L2/S097.md",
-      "gist": "",
-      "body": "---\nid: S097\ntitle: Decision engine pipeline takes 60-110s per turn (claude -p subprocess generating\nstrength: 5\nreinforced: 4\ndate_created: 2026-05-12\nsalience: 0.7\ntags: []\nsources: [this-cycle]\n---\n\n\n\n\n\nDecision engine pipeline takes 60-110s per turn (claude -p subprocess generating 5 hypotheses). Recall is <1s (local Python). Identity relay is ~21s (claude -p). Identity boot is ~108s but only runs once per session\n",
-      "score": 4.5,
-      "scoring_trace": {
-        "domain_bonus": 0.0,
-        "type_bonus": 0.0,
         "level_bonus": 1.5,
         "lex_bonus": 4.0,
         "co_ref_bonus": 0.0,
@@ -156,6 +122,23 @@
       "related_to": []
     },
     {
+      "id": "PR145",
+      "path": "cortex/procedural/L1/PR145.md",
+      "gist": "4. Verify",
+      "body": "---\nid: PR145\ntype: procedural\ndomain: deployment\ndate_created: 2026-04-26\nstrength: 2\nreinforced: 0\ntags: [deployment, wa-bridge, docker-compose, R146-compliant, viz]\nsources: [this-session]\n---\n\n# og Brain \u2014 PR145: Isolated wa-bridge Container Deploy\n\n## Cue\nYou changed viz/whatsapp-bridge/src/ and need to deploy on goodhealth.lv EC2.\nThe brain-control Lambda's deploy-viz action only handles brain-viz frontend +\nbackend \u2014 it does NOT rebuild the wa-bridge container. Manual deploy required.\n\n## Routine\n\n### 1. Edit + commit the source in the brain repo\n- Edit ~/.claude/viz/whatsapp-bridge/src/index.ts (or other files)\n- `cd ~/.claude && git add viz/whatsapp-bridge/src/ && git commit -m \"wa-bridge: ...\" && git push`\n\n### 2. Sync to /opt/brain-viz (the docker-compose build context)\n- `cp ~/.claude/viz/whatsapp-bridge/src/index.ts /opt/brain-viz/whatsapp-bridge/src/index.ts`\n- Or `rsync -av ~/.claude/viz/whatsapp-bridge/src/ /opt/brain-viz/whatsapp-bridge/src/`\n- The /brain volume mount is the OLD copy and is NOT used at build time. Build context is /opt/brain-viz/whatsapp-bridge/ on the host.\n\n### 3. Rebuild + restart ONLY wa-bridge (R146-isolated)\n- `cd /opt/brain-viz && docker compose build wa-bridge`\n- `cd /opt/brain-viz && docker compose up -d wa-bridge`\n- Service name is `wa-bridge` (not brain-viz-wa-bridge \u2014 thats the container name with project prefix).\n\n### 4. Verify\n- `sleep 8 && docker logs --tail 20 brain-viz-wa-bridge-1`\n- expect \"Connected to WhatsApp\"\n\n## Prerequisites\n- Code change committed + pushed in the brain repo\n- /opt/brain-viz/whatsapp-bridge/ exists on the EC2 with build context\n- Docker daemon running, brain-viz_wa-auth volume present (preserves WhatsApp session)\n\n## Gotchas\n- WhatsApp auth is in wa-auth docker volume, preserved across rebuilds\n- Bridge has 5000+ persisted messages and 70+ buffered \u2014 these survive rebuild\n- The deploy-viz Lambda action only handles brain-viz, NOT wa-bridge\n- NEVER run bare `docker compose build` or `docker compose up -d` (R146)\n\n## Verification\n- Container \"Up X seconds\" in docker ps\n- \"Connected to WhatsApp\" in logs\n- Send a test message with /brain-execute and confirm `[wa-task] EXECUTE: ...` log\n\n## Reward\nwa-bridge runs the new code, WhatsApp session unbroken.\n\n## Cross-references\n- R146 (Docker Compose service isolation \u2014 no bare commands)\n- R150 (no scope creep \u2014 wa-bridge stays out of deploy-viz Lambda action)\n- S058 (goodhealth.lv infrastructure)\n",
+      "score": 4.5,
+      "scoring_trace": {
+        "domain_bonus": 0.0,
+        "type_bonus": 0.0,
+        "level_bonus": 0.5,
+        "lex_bonus": 4.0,
+        "co_ref_bonus": 0.0,
+        "bundle_bonus": 0.0,
+        "reuse_bonus": 0.0
+      },
+      "related_to": []
+    },
+    {
       "id": "og-fusiform-009-reinis-ceplis",
       "path": "cortex/fusiform/L1/og-fusiform-009-reinis-ceplis.md",
       "gist": "",
@@ -173,23 +156,6 @@
       "related_to": [
         "S028"
       ]
-    },
-    {
-      "id": "S042",
-      "path": "cortex/semantic/L2/S042.md",
-      "gist": "",
-      "body": "---\nid: S042\ntitle: og Brain \u2014 Personal AWS Account vs Picanova AWS\ncreated: 2026-04-10\nupdated: 2026-04-10\nstrength: 5\nreinforced: 2\ntags: [aws, personal-account, picanova, vericity, goodhealth, correction]\nsource: H380\n---\n\n\n# Personal AWS Account vs Picanova AWS\n\nJusts has TWO separate AWS accounts:\n\n1. **Personal AWS** -- hosts goodhealth.lv (EC2) and Vericity scraping Lambda functions\n2. **Picanova AWS (497892281264)** -- hosts FORECAST pipeline Lambdas, Step Functions, S3 bi-automations\n\nThese are completely different accounts. When Justs says \"personal AWS\" or \"my AWS\", he means #1, NOT Picanova.\n\n## Key Facts\n- Personal AWS = goodhealth.lv = Vericity Lambdas\n- Picanova AWS = 497892281264 = FORECAST pipeline\n- SSO for Picanova: picanova-aws.awsapps.com\n- Personal account credentials: unknown (need to discover)\n",
-      "score": 3.5,
-      "scoring_trace": {
-        "domain_bonus": 0.0,
-        "type_bonus": 0.0,
-        "level_bonus": 1.5,
-        "lex_bonus": 4.0,
-        "co_ref_bonus": 0.0,
-        "bundle_bonus": 0.0,
-        "reuse_bonus": 0.0
-      },
-      "related_to": []
     },
     {
       "id": "E092",
@@ -226,6 +192,40 @@
       "related_to": []
     },
     {
+      "id": "PR095",
+      "path": "cortex/procedural/L1/PR095.md",
+      "gist": "",
+      "body": "---\nid: PR095\ntitle: og Brain \u2014 Fix MCP Server Containers \u2014 Binary Name + ENV Pattern\ncreated: 2026-04-18\nstrength: 3\nreinforced: 0\ntags: [mcp, docker, aws, infrastructure, fix-pattern]\nsource: H536\n---\n\n# PR095: Fix MCP Server Containers \u2014 Binary Name + ENV Pattern\n\n**Cue:** MCP server Docker container in restart loop with module import errors.\n\n**Pattern:** pip-installed MCP packages (awslabs, gmail-mcp, etc.) register console_scripts entry points. The correct CMD is the binary name, NOT python -m.\n\n**Diagnostic steps:**\n1. Check logs: `docker logs <container> --tail 10`\n2. If \"No module named X.__main__\": wrong CMD\n3. Find binary: `docker run --rm --entrypoint \"\" <image> ls /usr/local/bin/*mcp*`\n4. Fix Dockerfile CMD to use the binary name\n\n**Known fixes:**\n- gmail-mcp-server \u2192 `gmail-mcp` (not `gmail-mcp-server`)\n- awslabs.aws-api-mcp-server \u2192 `awslabs.aws-api-mcp-server` (binary matches package name)\n\n**Also check:** streamable-http transport may require `AUTH_TYPE=no-auth` env var (awslabs packages do).\n",
+      "score": 3.5,
+      "scoring_trace": {
+        "domain_bonus": 0.0,
+        "type_bonus": 0.0,
+        "level_bonus": 0.5,
+        "lex_bonus": 4.0,
+        "co_ref_bonus": 0.0,
+        "bundle_bonus": 0.0,
+        "reuse_bonus": 0.0
+      },
+      "related_to": []
+    },
+    {
+      "id": "PR162",
+      "path": "cortex/procedural/L1/PR162.md",
+      "gist": "PR162: og Brain \u2014 Duplicate Triggers Must Stay In Sync",
+      "body": "---\nid: PR162\ntype: procedural\ndomain: agents\ndate_created: 2026-04-28\ndate_superseded: 2026-04-28\nstrength: 0\nstatus: SUPERSEDED\nsuperseded_by: R159\ntags: [agents, remote-trigger, multi-trigger, drift, teacher, sync, duplication, superseded]\n---\n\n### PR162 (SUPERSEDED): Duplicate Triggers Must Stay In Sync\n\n**Status:** SUPERSEDED 2026-04-28. The duplicate Teacher trigger this entry was written for was disabled within 6 minutes of creation after user correction. Single-trigger config is the canonical state.\n\n**Replacement:** R159 captures the actual lesson \u2014 \"additional X\" means modify the existing X; surface technical constraints before creating duplicates.\n\n**Original premise (now invalid):** This entry assumed Teacher would have two triggers (`trig_01LfWxRrTEdzXsEeUSQaBUaq` morning + `trig_01UwdFVjCt9zJFrMXnnfqdpT` afternoon) and described how to keep them in sync. The afternoon trigger is now `enabled: false`, so there is nothing to sync. Single Teacher trigger has cron `30 1,4,14 * * *`.\n\n**Kept for traceability:** Original content moved to comment block below for historical reference. Reading this entry should always lead the reader to R159 + E098 for the real lesson.\n\n<!-- Original content (do not act on):\n---\nid: PR162\ntype: procedural\ndomain: infrastructure / agents / anthropic-platform\ndate_created: 2026-04-28\nstrength: 1\ntags: [agents, remote-trigger, multi-trigger, drift, teacher, sync, duplication]\n---\n\n### PR162: og Brain \u2014 Duplicate Triggers Must Stay In Sync\n\n- **Cue:** Editing the prompt, MCP connections, sources, outcomes, model, or session_context of any agent that has more than one RemoteTrigger pointing at the same agent identity (e.g. Teacher has TWO triggers: morning at 01:00+04:00 UTC and afternoon at 14:30 UTC).\n- **Stage:** conscious\n- **Why this exists:** Standard 5-field cron cannot express times whose minute differs (cannot do 01:00 + 04:00 + 14:30 in one expression \u2014 minutes are 0, 0, 30 \u2014 Anthropic rejected compound cron with HTTP 400 'expected exactly 5 fields'). The workaround was to create a second trigger 'Teacher Afternoon' (`trig_01UwdFVjCt9zJFrMXnnfqdpT`) cloning the primary 'Teacher' (`trig_01LfWxRrTEdzXsEeUSQaBUaq`). This doubles the surface for config drift \u2014 exactly the bug PR161 documents.\n- **Routine:** Whenever updating ANY field of a Teacher trigger:\n  1. List both Teacher trigger IDs from this entry: primary `trig_01LfWxRrTEdzXsEeUSQaBUaq`, afternoon `trig_01UwdFVjCt9zJFrMXnnfqdpT`.\n  2. Apply the SAME RemoteTrigger.update payload to BOTH (changing only the cron_expression and the trigger name if those should differ).\n  3. Verify with RemoteTrigger.get on both. Diff them: only `cron_expression`, `name`, `id`, `created_at`, `updated_at`, `next_run_at` should differ.\n- **Pitfall:** Forgetting one. Symptom: behavior changes only on certain run times. Detection: a periodic diff job in brain-cycle Phase 10 \u2014 list both triggers, diff their `job_config.ccr.session_context` and `events[0].data.message.content`, alarm on any difference.\n- **Future cleanup:** If Anthropic adds compound-cron support, collapse to a single trigger and delete this rule.\n- **Reinforced by:** E097 (Teacher 2nd-trigger creation 2026-04-28).\n\n-->\n",
+      "score": 3.5,
+      "scoring_trace": {
+        "domain_bonus": 0.0,
+        "type_bonus": 0.0,
+        "level_bonus": 0.5,
+        "lex_bonus": 4.0,
+        "co_ref_bonus": 0.0,
+        "bundle_bonus": 0.0,
+        "reuse_bonus": 0.0
+      },
+      "related_to": []
+    },
+    {
       "id": "og-fusiform-002-edgars-ivanovs",
       "path": "cortex/fusiform/L1/og-fusiform-002-edgars-ivanovs.md",
       "gist": "",
@@ -245,10 +245,10 @@
       ]
     },
     {
-      "id": "PR103",
-      "path": "cortex/procedural/L1/PR103.md",
-      "gist": "",
-      "body": "---\nid: PR103\ntitle: og Brain \u2014 Dashboard FloatingPane + Mobile Bottom Sheet Architecture\ntype: procedural\ncreated: 2026-04-21\nstrength: 3\nreinforced: 0\ntags: [dashboard, floating-pane, mobile, bottom-sheet, vericity-style]\n---\n\n# PR103 -- Dashboard FloatingPane + Mobile Architecture\n\n## Cue\nBuilding the goodhealth.lv/dashboard UI with Vericity-style panels.\n\n## Desktop (FloatingPane.tsx)\n- Custom drag (titlebar mousedown/move/up) + resize (8 edge handles)\n- DOM mutations during drag (no React re-render until mouseup)\n- localStorage persistence (key: dashboard-layout-v1)\n- Z-ordering: module-level counter, click to front\n- Viewport clamping on mount + resize\n- Glass style: rgba(10,15,26,0.85), blur(24px), hsl(270 80% 60% / 0.2) border\n\n## Mobile (inline in DashboardPage.tsx)\n- useIsMobile() hook, 768px breakpoint\n- Circle buttons stacked on left (44px, accented ALL TASKS 52px with glow)\n- Bottom sheet (65vh) with touch drag-to-dismiss (startY ref, >100px threshold)\n- One sheet at a time, ALL TASKS opens by default\n- Backdrop overlay click to close\n\n## Key: FloatingPane has NO touch support \u2014 never render on mobile (PR067 gotcha)\n",
+      "id": "S036",
+      "path": "cortex/semantic/L1/S036.md",
+      "gist": "S036: og Brain \u2014 bypassPermissions Protected Paths",
+      "body": "---\nid: S036\ntitle: og Brain \u2014 bypassPermissions Protected Paths\ndomain: Infrastructure / Permissions\ndate_created: 2026-04-07\nstrength: 1\nreinforced: 0 times\n---\n\n### S036: og Brain \u2014 bypassPermissions Protected Paths\n- **Domain:** Infrastructure / Permissions\n- **Learned:** 2026-04-07\n- **Reinforced:** 0 times\n- **Strength:** 1\n- **Facts:**\n  - bypassPermissions has HARDCODED protected paths that always prompt for Edit/Write\n  - Protected dirs: .claude (except commands/agents/skills/worktrees), .git, .vscode, .idea, .husky\n  - Protected files: .gitconfig, .bashrc, .zshrc, .profile, .mcp.json, .claude.json\n  - Bash NOT subject to path protection - always runs without prompt\n  - This is WHY R009_GUARD exists: ~/.claude/brain/ is inside .claude = protected\n  - Settings hierarchy: managed > CLI args > settings.local.json > project settings.json > global settings.json\n  - Project-level settings CAN override global bypassPermissions\n",
       "score": 3.0,
       "scoring_trace": {
         "domain_bonus": 0.0,
@@ -297,6 +297,23 @@
         "S006",
         "S034"
       ]
+    },
+    {
+      "id": "S058",
+      "path": "cortex/semantic/L1/S058.md",
+      "gist": "",
+      "body": "---\nid: S058\ntitle: og Brain \u2014 AWS goodhealth.lv Monthly Costs (24 USD breakdown)\ncreated: 2026-04-20\nstrength: 2\nreinforced: 0\ntags: [aws, costs, ec2, infrastructure, budget]\nsource: H566\n---\n\n# S058: AWS Costs for goodhealth.lv\n\n**Domain:** Infrastructure / Budget\n\nMonthly breakdown (verified 2026-04-20 via AWS API):\n- EC2 t3.small (on-demand, 24/7): 16.64\n- EBS 20GB gp3: 1.90\n- Elastic IP: 3.65\n- S3 (realrigafingoodhealth, 25.87GB, 292K objects): 0.60\n- Route53 hosted zone: 0.50\n- Data transfer (~1-5GB/month): 0.50\n- Total: ~24 USD/month\n\nUpgrade path: t3.medium = ~40/month total (+16 for more RAM).\nMac Mini break-even vs t3.small: 25 months.\n\n**Apply when:** Budget discussions, infrastructure decisions, scaling questions.\n",
+      "score": 2.0,
+      "scoring_trace": {
+        "domain_bonus": 0.0,
+        "type_bonus": 1.5,
+        "level_bonus": 0.5,
+        "lex_bonus": 4.0,
+        "co_ref_bonus": 0.0,
+        "bundle_bonus": 0.0,
+        "reuse_bonus": 0.0
+      },
+      "related_to": []
     }
   ],
   "route": "normal"

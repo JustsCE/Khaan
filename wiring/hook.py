@@ -56,7 +56,6 @@ ANTI_LOCKOUT_BINS = [
 
 def handle_user_prompt_submit(payload):
     from engines.decision_engine.flip_decision_trigger import trigger
-    from engines.decision import dispatch
     from engines.learning_engine.flip_cycle_overdue import check_overdue
 
     for b in ANTI_LOCKOUT_BINS:
@@ -67,19 +66,28 @@ def handle_user_prompt_submit(payload):
     st["message_counter"] = st.get("message_counter", 0) + 1
     write_state(st)
 
-    check_overdue()
+    overdue = check_overdue()
+    if overdue:
+        try:
+            from engines.brain_cycle import run_cycle
+            run_cycle()
+        except Exception as e:
+            _safe_log(f"brain cycle: {e}")
 
     user_message = payload.get("prompt") or payload.get("message") or payload.get("content", "")
     trigger()
 
-    # Synchronous: blocks hook until decision pipeline completes.
-    # dispatch() runs recall + relay + decision inside this process,
-    # clears hypothesis bins on success. Anti-lockout clears on next
-    # UserPromptSubmit if this fails.
-    try:
-        dispatch(user_message)
-    except Exception as e:
-        _safe_log(f"decision dispatch: {e}")
+    # Async: decision runs as detached subprocess after cycle completes.
+    import subprocess as _sp
+    _sp.Popen(
+        [sys.executable, "-c",
+         f"import sys; sys.path.insert(0,'{BRAIN}'); "
+         f"from engines.decision import dispatch; "
+         f"dispatch({user_message!r})"],
+        env={**os.environ, "BRAIN_SKIP_HOOKS": "1"},
+        start_new_session=True,
+        stdout=_sp.DEVNULL, stderr=_sp.DEVNULL,
+    )
 
     ctx = _compose_turn_context()
     if ctx:
