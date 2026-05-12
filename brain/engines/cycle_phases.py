@@ -666,14 +666,15 @@ def _synthesize_level(region, src_level, dst_level, strength_thresh,
         })
 
         try:
-            resp = cli_invoke(SYNTH_SYSTEM_PROMPT, f"---INPUTS---\n{inputs_json}", timeout=120)
-            result_text = resp["result"]
-            if isinstance(result_text, dict) and "error" in result_text:
-                continue
-            if isinstance(result_text, str):
-                body = result_text
-            else:
-                body = json.dumps(result_text)
+            resp = cli_invoke(SYNTH_SYSTEM_PROMPT, f"---INPUTS---\n{inputs_json}", timeout=120, raw=True)
+            body = resp["result"]
+            if body.strip().startswith("{") and "error" in body:
+                try:
+                    err = json.loads(body)
+                    if "error" in err:
+                        continue
+                except json.JSONDecodeError:
+                    pass
         except Exception:
             continue
 

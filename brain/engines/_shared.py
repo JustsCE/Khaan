@@ -32,7 +32,7 @@ def file_hash(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()[:16]
 
 
-def cli_invoke(system_prompt, user_prompt, timeout=120):
+def cli_invoke(system_prompt, user_prompt, timeout=120, raw=False):
     # --bare was dropped in CLI 2.1.x: it now also skips OAuth credential
     # loading, breaking auth. Recursion is prevented by BRAIN_SKIP_HOOKS=1
     # which hook.py checks before any engine import.
@@ -68,6 +68,8 @@ def cli_invoke(system_prompt, user_prompt, timeout=120):
         s = s.strip()
     if not s:
         raise RuntimeError("empty result text from claude -p")
+    if raw:
+        return {"result": s, "tool_uses": tool_uses}
     # tolerate prose around the JSON: find first { or [ and parse from there;
     # raw_decode returns the first valid value and ignores trailing content.
     candidates = [i for i in (s.find("{"), s.find("[")) if i != -1]

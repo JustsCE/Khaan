@@ -1,0 +1,42 @@
+{
+  "event": "cycle_ledger",
+  "cycle_id": 20,
+  "phases": [
+    {
+      "phase": "ingest",
+      "executed": true,
+      "detail": "5 observations across 4 categories"
+    },
+    {
+      "phase": "hippocampus",
+      "executed": true,
+      "detail": "5 entries"
+    },
+    {
+      "phase": "consolidate",
+      "executed": true,
+      "detail": "0 reinforced, 5 promoted, 0 discarded"
+    },
+    {
+      "phase": "index_rebuild",
+      "executed": true,
+      "detail": "8616 terms, 669 entries"
+    },
+    {
+      "phase": "synthesis",
+      "executed": true,
+      "detail": "L2 created 1, L3 created 0, sources archived 6"
+    },
+    {
+      "phase": "eval",
+      "executed": false,
+      "detail": "not due"
+    },
+    {
+      "phase": "hygiene",
+      "executed": false,
+      "detail": "not due"
+    }
+  ],
+  "ts": "2026-05-12T11:13:22Z"
+}

@@ -7,7 +7,9 @@ level: L1
 migrated_from: /home/ubuntu/.claude/brain/navigation/entities.json (key: tcgroup)
 migrated_at: 2026-05-05T11:50:50Z
 shape: semantic-entity
+archived_in_cycle: 20
 ---
+
 
 # og Brain — The Customization Group
 

@@ -1,18 +1,18 @@
 {
-  "cycleCount": 19,
+  "cycleCount": 20,
   "nextIds": {
-    "H": 191,
-    "S": 111,
-    "E": 119,
-    "PR": 188,
+    "H": 196,
+    "S": 114,
+    "E": 120,
+    "PR": 189,
     "FUS": 17,
     "ID": 25,
     "BR": 23,
     "AM": 20,
-    "R": 190
+    "R": 191
   },
   "schedule": {
-    "last_promotion_scan_cycle": 19,
+    "last_promotion_scan_cycle": 20,
     "last_eval_cycle": 0,
     "last_hygiene_cycle": 0
   },
