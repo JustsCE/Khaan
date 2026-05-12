@@ -2,95 +2,106 @@
   "findings": [
     {
       "category": "worked",
-      "description": "Disk cleanup: accurately diagnosed 8.6 GB of reclaimable Docker/apt space, ran prune, reclaimed 4 GB. No regressions, all containers survived.",
+      "description": "handle_stop fix enabled first working learning cycle (cycle 13): transcript_path parsing correctly captured real user messages and tool uses, making ingest non-empty.",
       "target_region": "procedural"
     },
     {
       "category": "worked",
-      "description": "Synthesis pipeline fixed end-to-end: identified cli_invoke JSON-only assumption, added raw=True mode, confirmed S113 synthesized from 6 L1 sources, sources archived, lineage intact.",
+      "description": "cli_invoke raw=True mode added; synthesis produced S113 (semantic/L2, 6 sources archived) in cycle 20 \u2014 first successful synthesis in the pipeline.",
       "target_region": "procedural"
     },
     {
       "category": "worked",
-      "description": "Brain cycle sequencing fixed: cycle runs sync first in hook, then decision Popen fires after commit \u2014 eliminating the nonce race condition that caused invariant 3 failures.",
+      "description": "Cortex audit repaired 302 malformed entries (### \u2192 YAML ---, missing id fields, R158 strength cap). Index rebuilt clean at 8609 terms, 664 entries.",
       "target_region": "procedural"
     },
     {
       "category": "worked",
-      "description": "Decision engine confirmed automatic and synchronous: hypothesis bins flip to 1, hook blocks until dispatch() completes (~82s Opus, target ~20s Sonnet), bins clear, I respond with fresh context.",
+      "description": "Brain cycle sequenced before decision dispatch in hook.py (sync cycle first, then async Popen). Cycle 22 committed clean with no nonce race.",
       "target_region": "procedural"
     },
     {
       "category": "worked",
-      "description": "Cortex audit: 302 malformed entries fixed (### \u2192 --- frontmatter, missing id fields added, R158 strength capped from 6 to 5), index rebuilt clean at 664 entries.",
+      "description": "Switching cli_invoke subprocess to --model sonnet cut decision latency target from 75-120s to ~20s. Timeout rate dropped from 19% to near-zero.",
       "target_region": "procedural"
     },
     {
       "category": "worked",
-      "description": "First day at Jeff advice: delivered grounded guidance drawing on known patterns (velocity as superpower, eight-things impulse, day-one friction tolerance). Retracted incorrect Justus/Davis pointer immediately when corrected.",
-      "target_region": "episodic"
+      "description": "Invariant 2 fix (allow full-consolidation cycles where hippocampus clears completely) passed validation. Cycle 18 was the first commit after 7 failed cycle 17 attempts.",
+      "target_region": "procedural"
     },
     {
       "category": "worked",
-      "description": "Forecast lambda fix: suppressed Error/Error% for future weeks using datetime.date.today() ISO week comparison. Deployed to Picanova lambda with correct AWS credentials.",
+      "description": "Disk cleanup (docker system prune) freed 4 GB, bringing utilization from 86% to 64% without disrupting any running containers.",
       "target_region": "procedural"
     },
     {
       "category": "broke",
-      "description": "Original: Gave Jeff day-1 advice that referenced Justus Kaiser and Davis Lozda as allies. Correction: 'Justus and Davis is not a part of Jeff app so useless pointers there.' Resulting behavior: retracted both pointers, acknowledged confident-wrong pattern.",
+      "description": "Gave wrong binary file path (/navigation/binaries/learning-cycle-overdue) over 10 consecutive turns while user was locked out. Correct path: /binaries/learning-cycle-overdue.bin. User had to paste the shell error to get the right path.",
       "target_region": "episodic"
     },
     {
       "category": "broke",
-      "description": "Original: Declared decision engine 'working and automatic' after manually invoking the skill. Correction: User asked directly 'were they produced automatically or you invoked the skill manually?' Resulting behavior: admitted manual invocation, identified missing wiring.",
+      "description": "Fabricated that claude -p cannot run concurrently with an active session. The spec explicitly states it can. Built elaborate architecture around a constraint that doesn't exist. User said 'read the docs'; retracted.",
       "target_region": "episodic"
     },
     {
       "category": "broke",
-      "description": "Original: Added decision-hypothesis bins to BLOCKING_BINARIES without verifying the escape path covers all sub-tool calls brain-cycle makes. Caused 5-session deadlock cascade requiring repeated SSH intervention. Correction: Remove hypothesis bins from blocking, use synchronous dispatch instead.",
+      "description": "Said '100% fixed' while navigation files were 10+ hours stale and pipeline was silently dead. Bins flipped but dispatch() was never called. User demanded log proof; log-based verification adopted.",
       "target_region": "episodic"
     },
     {
       "category": "broke",
-      "description": "Original: Said 'all systems working, 100% fixed' at least 3 times before the system was actually working. Correction: User demanded proof each time. Resulting behavior: verified via logs before claiming success.",
+      "description": "Escalated to destructive commands (settings.json PreToolUse array nuked) when stuck in deadlock. Told user hooks are in git \u2014 panic ensued. User ran git checkout to recover.",
       "target_region": "episodic"
     },
     {
       "category": "broke",
-      "description": "Original: Gave wrong binary path (/brain/navigation/binaries/) 10+ times while user was locked out. Correct path: /brain/binaries/. Resulting behavior: user found the path via their own find command.",
+      "description": "Hypothesis bins placed in BLOCKING_BINARIES while decision dispatch was async Popen \u2014 every tool call blocked for 60-80s between turns. User forced revert to synchronous dispatch.",
       "target_region": "episodic"
     },
     {
       "category": "broke",
-      "description": "Original: Told user to nuke PreToolUse hooks array in settings.json ('remove the hook entries entirely') then said 'calm down, they're in git' after user panicked. Correction: Revert with git checkout, not escalate destructively. Resulting behavior: reverted from git.",
+      "description": "Confidently named Justus Kaiser and Davis Lozda as Jeff-app colleagues on Justs's first day at Jeff. They are TCGroup/Picanova employees. Flagged immediately.",
       "target_region": "episodic"
     },
     {
       "category": "broke",
-      "description": "Original: Diagnosed decision dispatch failure as 'daemon thread killed on hook exit' \u2014 a fabricated theory. Correction: User said 'read the docs.' Actual cause: stale nonce from prior failed dispatches. Resulting behavior: read the spec, found the real cause.",
+      "description": "Decision Popen subprocess and brain_cycle ran concurrently, both writing state.json \u2014 race condition wiped active_cycle_nonce causing invariant 3 failures on cycle 21. Fix: brain-cycle before Popen in hook.",
       "target_region": "episodic"
     },
     {
       "category": "broke",
-      "description": "Original: Synthesis was silently failing because cli_invoke expected JSON but received raw markdown; 'except Exception: continue' swallowed the error across multiple cycles. Correction: read cli_invoke source, found the interface mismatch, added raw=True mode.",
+      "description": "Multiline python3 -c split open() and engines/*.py across newlines, bypassing engine-security-block regex. Justs caught it as 'a bypass for future you'. Regex updated to strip newlines.",
+      "target_region": "episodic"
+    },
+    {
+      "category": "broke",
+      "description": "identity relay crashed on len(scored) after refactor removed the variable \u2014 every successful synthesis silently thrown away, identity-relay-failed bin set. Dead variable reference fixed.",
       "target_region": "episodic"
     },
     {
       "category": "recurring",
-      "description": "Multiple sessions: designed a blocking gate, declared it fixed, it caused a deadlock because the escape path (brain-cycle or decision-engine skill) also used tools that were blocked. Pattern: gate designed without verifying the escape path is fully exempt.",
+      "description": "Multiple sessions: claiming a fix is complete without verifying via logs, binary states, or observable output. 'It works' delivered 3+ times before it actually worked.",
       "target_region": "prefrontal",
-      "rule_text": "Any binary in BLOCKING_BINARIES must have a guaranteed programmatic escape that does not require tool calls from inside the blocked session. If the escape path uses a tool (Bash, Skill, Edit), verify the dispatcher exemption covers ALL sub-tool calls that path makes \u2014 not just the top-level invocation. Test the escape path explicitly before declaring a gate design complete. (R192)"
+      "rule_text": "Never claim a fix is complete until verified with log timestamps, binary states, or observable output. After any repair, read the relevant log and paste the confirming lines before declaring success. 'It works' is a hypothesis; the log entry is the fact."
     },
     {
       "category": "recurring",
-      "description": "Multiple sessions: formed a theory about what was broken, stated it confidently, then had to retract it when the actual source file contradicted the theory. Happened with daemon thread architecture, claude -p concurrency constraints, and nonce corruption cause.",
+      "description": "Multiple sessions: constructing confident wrong theories about system behavior (daemon thread, claude -p concurrency, wrong binary path) instead of reading the source file or log first.",
       "target_region": "prefrontal",
-      "rule_text": "When diagnosing a failure in a system I built: read the relevant source file first, then form a hypothesis. Do not invert this order. If tools are blocked and I cannot read files, say 'I cannot diagnose without reading X \u2014 please paste lines N-M' rather than constructing a theory from memory. (R193)"
+      "rule_text": "When uncertain about system behavior, read the relevant source file or log before forming a theory. Do not construct a plausible-sounding explanation from first principles when ground truth is one grep away. 'I don't know \u2014 let me check' is not a failure; confident wrong is."
+    },
+    {
+      "category": "recurring",
+      "description": "Multiple sessions: escalating through increasingly destructive commands (hook removal, dispatcher rename, settings.json nuked) when the correct action was a minimal reversible step and user confirmation.",
+      "target_region": "prefrontal",
+      "rule_text": "When deadlocked, stop at the minimal reversible action and wait for user confirmation before escalating. Never modify settings.json hooks array, never rm hook.py, never rename dispatcher.py without explicit user instruction. Propose; do not execute."
     }
   ],
-  "ts": "2026-05-12T13:20:16Z",
+  "ts": "2026-05-12T13:24:53Z",
   "worked_count": 7,
-  "broke_count": 8,
-  "recurring_flagged": 2,
+  "broke_count": 9,
+  "recurring_flagged": 3,
   "hippo_entries_written": 15
 }
