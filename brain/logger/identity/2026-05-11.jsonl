@@ -73,3 +73,23 @@
 {"event": "relay_start", "ts": "2026-05-11T18:06:44Z", "session_id": "", "query_hash": "c48e07777f926b34"}
 {"event": "relay_complete", "ts": "2026-05-11T18:07:05Z", "session_id": "", "query_hash": "0de5ccca23b2c8b0", "latency_ms": 39901, "entries_picked": 52}
 {"event": "relay_complete", "ts": "2026-05-11T18:07:34Z", "session_id": "", "query_hash": "c48e07777f926b34", "latency_ms": 50438, "entries_picked": 49}
+{"event": "relay_start", "ts": "2026-05-11T18:08:23Z", "session_id": "", "query_hash": "70b7af3f9f1afcf4"}
+{"event": "relay_complete", "ts": "2026-05-11T18:08:57Z", "session_id": "", "query_hash": "70b7af3f9f1afcf4", "latency_ms": 34453, "entries_picked": 49}
+{"event": "relay_start", "ts": "2026-05-11T18:10:53Z", "session_id": "", "query_hash": "e67132fba83f88ba"}
+{"event": "identity_timeout", "ts": "2026-05-11T18:11:53Z", "skill": "relay", "latency_ms": 60053}
+{"event": "relay_start", "ts": "2026-05-11T18:15:21Z", "session_id": "", "query_hash": "7cf50287706eca95"}
+{"event": "relay_complete", "ts": "2026-05-11T18:15:39Z", "session_id": "", "query_hash": "7cf50287706eca95", "latency_ms": 18703, "entries_picked": 53}
+{"event": "relay_start", "ts": "2026-05-11T19:22:13Z", "session_id": "", "query_hash": "4693218214e20466"}
+{"event": "relay_complete", "ts": "2026-05-11T19:22:35Z", "session_id": "", "query_hash": "4693218214e20466", "latency_ms": 21292, "entries_picked": 51}
+{"event": "relay_start", "ts": "2026-05-11T19:30:29Z", "session_id": "", "query_hash": "1ef281ccd0a6331c"}
+{"event": "identity_timeout", "ts": "2026-05-11T19:31:30Z", "skill": "relay", "latency_ms": 60090}
+{"event": "relay_start", "ts": "2026-05-11T19:34:02Z", "session_id": "", "query_hash": "9f86d081884c7d65"}
+{"event": "relay_complete", "ts": "2026-05-11T19:34:14Z", "session_id": "", "query_hash": "9f86d081884c7d65", "latency_ms": 11943, "entries_picked": 49}
+{"event": "relay_start", "ts": "2026-05-11T19:39:09Z", "session_id": "", "query_hash": "fbed10d40832ae69"}
+{"event": "relay_failed", "ts": "2026-05-11T19:39:58Z", "session_id": "", "query_hash": "fbed10d40832ae69", "attempt": 1, "reason": "no JSON object in result: Here are all scored entries for this turn, organized by region and relevance:\n\n---\n\n## Identity (15 entries)\n\n| Score | ID | Title |\n|---|---|---|\n| **5.0** | `og-identity-012` | **Who Is The Brain** "}
+{"event": "relay_failed", "ts": "2026-05-11T19:40:56Z", "session_id": "", "query_hash": "fbed10d40832ae69", "attempt": 2, "reason": "no JSON object in result: Here are all scored entries for this turn, grouped by region and sorted by score:\n\n---\n\n## Identity (score 5.0)\n\n| Entry | Score | Gist |\n|-------|-------|------|\n| `og-identity-012-who-is-the-brain` "}
+{"event": "identity_timeout", "ts": "2026-05-11T19:41:56Z", "skill": "relay", "latency_ms": 167273}
+{"event": "relay_start", "ts": "2026-05-11T19:43:50Z", "session_id": "", "query_hash": "f17333f7509397cd"}
+{"event": "relay_complete", "ts": "2026-05-11T19:44:23Z", "session_id": "", "query_hash": "f17333f7509397cd", "latency_ms": 32571, "entries_picked": 49}
+{"event": "relay_start", "ts": "2026-05-11T19:52:01Z", "session_id": "", "query_hash": "946b6d5fb9d0d4df"}
+{"event": "relay_complete", "ts": "2026-05-11T19:52:23Z", "session_id": "", "query_hash": "946b6d5fb9d0d4df", "latency_ms": 21571, "entries_picked": 49}

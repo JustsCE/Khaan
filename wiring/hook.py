@@ -45,6 +45,8 @@ def handle_session_start(payload):
 
 ANTI_LOCKOUT_BINS = [
     "decision-failed", "decision-timeout", "decision-source-missing",
+    "decision-hypothesis-1", "decision-hypothesis-2", "decision-hypothesis-3",
+    "decision-hypothesis-4", "decision-hypothesis-5",
     "recall-failed", "recall-timeout", "recall-stale", "recall-dispatch-failed",
     "identity-boot-failed", "identity-boot-timeout",
     "identity-relay-failed", "identity-relay-timeout",
@@ -54,7 +56,6 @@ ANTI_LOCKOUT_BINS = [
 
 def handle_user_prompt_submit(payload):
     from engines.decision_engine.flip_decision_trigger import trigger
-    from engines.decision import dispatch
     from engines.learning_engine.flip_cycle_overdue import check_overdue
 
     for b in ANTI_LOCKOUT_BINS:
@@ -68,21 +69,7 @@ def handle_user_prompt_submit(payload):
     check_overdue()
 
     user_message = payload.get("prompt") or payload.get("message") or payload.get("content", "")
-    proceed = trigger()
-    if proceed:
-        # Fire-and-forget: decision pipeline runs as a detached subprocess so it
-        # survives the hook process exit.  The subprocess inherits BRAIN_SKIP_HOOKS=1
-        # so its own tool calls don't recurse into the hook.
-        import subprocess as _sp
-        _sp.Popen(
-            [sys.executable, "-c",
-             f"import sys; sys.path.insert(0,'{BRAIN}'); "
-             f"from engines.decision import dispatch; "
-             f"dispatch({user_message!r})"],
-            env={**os.environ, "BRAIN_SKIP_HOOKS": "1"},
-            start_new_session=True,
-            stdout=_sp.DEVNULL, stderr=_sp.DEVNULL,
-        )
+    trigger()  # sets hypothesis bins 1-5 to 1; parent must run /decision-engine to clear
 
     ctx = _compose_turn_context()
     if ctx:

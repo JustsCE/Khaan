@@ -105,3 +105,10 @@
 {"event": "index_rebuild", "ts": "2026-05-11T18:07:56Z", "terms_count": 8502, "entries_count": 581}
 {"event": "cycle_ledger", "cycle_id": 15, "phases": [{"phase": "ingest", "executed": true, "detail": "0 observations across 0 categories"}, {"phase": "hippocampus", "executed": true, "detail": "0 entries"}, {"phase": "consolidate", "executed": true, "detail": "0 reinforced, 0 promoted, 0 discarded"}, {"phase": "index_rebuild", "executed": true, "detail": "8502 terms, 581 entries"}, {"phase": "synthesis", "executed": true, "detail": "L2 created 0, L3 created 0, sources archived 0"}, {"phase": "eval", "executed": false, "detail": "not due"}, {"phase": "hygiene", "executed": false, "detail": "not due"}], "ts": "2026-05-11T18:07:56Z"}
 {"event": "cycle_commit", "cycle_id": 15, "ts": "2026-05-11T18:07:56Z"}
+{"event": "cycle_git", "cycle_id": 15, "status": "ok", "ts": "2026-05-11T18:07:58Z"}
+{"event": "retro_summary", "ts": "2026-05-11T20:00:48Z", "worked_count": 5, "broke_count": 6, "recurring_flagged": 4, "hippo_entries_written": 11}
+{"event": "cycle_start", "ts": "2026-05-12T05:15:26Z", "cycle_id": 16, "counter_at_start": 212}
+{"event": "consolidation_summary", "ts": "2026-05-12T05:16:03Z", "reinforced": 5, "promoted": 17, "discarded": 0}
+{"event": "index_rebuild", "ts": "2026-05-12T05:16:03Z", "terms_count": 8508, "entries_count": 597}
+{"event": "cycle_ledger", "cycle_id": 16, "phases": [{"phase": "ingest", "executed": true, "detail": "11 observations across 5 categories"}, {"phase": "hippocampus", "executed": true, "detail": "11 entries"}, {"phase": "consolidate", "executed": true, "detail": "5 reinforced, 17 promoted, 0 discarded"}, {"phase": "index_rebuild", "executed": true, "detail": "8508 terms, 597 entries"}, {"phase": "synthesis", "executed": true, "detail": "L2 created 0, L3 created 0, sources archived 0"}, {"phase": "eval", "executed": false, "detail": "not due"}, {"phase": "hygiene", "executed": false, "detail": "not due"}], "ts": "2026-05-12T05:16:03Z"}
+{"event": "cycle_commit", "cycle_id": 16, "ts": "2026-05-12T05:16:03Z"}

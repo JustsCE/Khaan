@@ -12,6 +12,11 @@ BLOCKING_BINARIES = [
     "learning-cycle-running",
     "consolidation-pending",
     "promote-scan-stale",
+    "decision-hypothesis-1",
+    "decision-hypothesis-2",
+    "decision-hypothesis-3",
+    "decision-hypothesis-4",
+    "decision-hypothesis-5",
 ]
 
 ROUTING = {
@@ -65,10 +70,20 @@ def dispatch(event, payload, repo_root):
     if spec is None:
         return 0
 
+    # When brain cycle is actively running, all tools must pass through —
+    # the cycle itself needs Read, Write, Edit, Agent, etc. to do its work.
+    cycle_running = False
+    try:
+        cycle_running = read_binary(repo_root, "learning-cycle-running") == 1
+    except Exception:
+        pass
+
     raised = []
     for bname in spec["blocking_binaries"]:
         if read_binary(repo_root, bname) == 1:
-            if bname == "learning-cycle-overdue":
+            if bname in ("learning-cycle-overdue", "learning-cycle-running",
+                         "consolidation-pending", "promote-scan-stale"):
+                # Always let the brain-cycle skill / bash invocation through
                 tool_name = payload.get("tool_name", "")
                 if tool_name == "Skill":
                     skill = payload.get("tool_input", {}).get("skill", "")
@@ -77,6 +92,19 @@ def dispatch(event, payload, repo_root):
                 elif tool_name == "Bash":
                     cmd = payload.get("tool_input", {}).get("command", "")
                     if re.match(r"python3\s+(-m\s+engines\.brain_cycle|.*engines/brain_cycle\.py|-c\s+.*brain_cycle)", cmd):
+                        continue
+                # When cycle is running, let ALL tools through (cycle uses them internally)
+                if cycle_running:
+                    continue
+            if bname.startswith("decision-hypothesis-"):
+                tool_name = payload.get("tool_name", "")
+                if tool_name == "Skill":
+                    skill = payload.get("tool_input", {}).get("skill", "")
+                    if skill == "decision-engine":
+                        continue
+                elif tool_name == "Bash":
+                    cmd = payload.get("tool_input", {}).get("command", "")
+                    if re.match(r"python3\s+.*engines[./]decision", cmd):
                         continue
             raised.append(bname)
     raised.extend(per_call_gates)

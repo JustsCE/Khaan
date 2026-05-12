@@ -1,0 +1,10 @@
+{"event": "boot_start", "ts": "2026-05-12T04:08:39Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-12T04:10:22Z", "session_id": "", "latency_ms": 103626, "entries_picked": 50}
+{"event": "boot_start", "ts": "2026-05-12T04:24:13Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-12T04:25:55Z", "session_id": "", "latency_ms": 102326, "entries_picked": 50}
+{"event": "boot_start", "ts": "2026-05-12T04:33:37Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-12T04:35:30Z", "session_id": "", "latency_ms": 113789, "entries_picked": 50}
+{"event": "boot_start", "ts": "2026-05-12T04:40:43Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-12T04:42:19Z", "session_id": "", "latency_ms": 96072, "entries_picked": 50}
+{"event": "boot_start", "ts": "2026-05-12T04:52:23Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-12T04:54:21Z", "session_id": "", "latency_ms": 118152, "entries_picked": 50}
