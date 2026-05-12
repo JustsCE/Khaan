@@ -1,4 +1,6 @@
 ---
+id: og-identity-016-state-snapshot-refreshed-2026-04-28-cycle-338
+
 title: og Brain — State Snapshot (refreshed 2026-04-28, cycle 338)
 strength: 4
 level: L1

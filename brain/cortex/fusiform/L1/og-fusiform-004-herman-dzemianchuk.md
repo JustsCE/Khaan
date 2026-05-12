@@ -1,4 +1,6 @@
 ---
+id: og-fusiform-004-herman-dzemianchuk
+
 title: og Brain — Herman Dzemianchuk
 strength: 4
 level: L1

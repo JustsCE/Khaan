@@ -1,4 +1,6 @@
 ---
+id: og-identity-001-who-is-justs-ceplis
+
 title: og Brain — Who Is Justs Ceplis
 strength: 4
 level: L1

@@ -1,4 +1,6 @@
 ---
+id: og-broca-001-output-format
+
 title: og Brain — Output Format
 strength: 4
 level: L1

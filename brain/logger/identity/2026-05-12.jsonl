@@ -83,3 +83,34 @@
 {"event": "relay_failed", "ts": "2026-05-12T09:50:44Z", "session_id": "", "query_hash": "638079ad4dc48586", "attempt": 1, "reason": "no JSON object in result: The hypothesis bins are **already there** (lines 15-19). The patch was trying to add what already exists. No change needed.\n\nThe first two patches succeeded:\n1. \u2705 Invariant 2 in `cycle_phases.py` \u2014 fi"}
 {"event": "relay_failed", "ts": "2026-05-12T09:51:06Z", "session_id": "", "query_hash": "638079ad4dc48586", "attempt": 2, "reason": "no JSON object in result: The hypothesis bins are **already there** (lines 15-19). The assert failed because the old string you searched for didn't include them \u2014 meaning a previous run already applied this patch.\n\nAll three f"}
 {"event": "relay_failed", "ts": "2026-05-12T09:51:26Z", "session_id": "", "query_hash": "638079ad4dc48586", "attempt": 3, "reason": "no JSON object in result: The hypothesis bins are already there (lines 15-19). Your patch didn't fail because the content is wrong \u2014 it failed because the content already matches the *new* state. The fix was already applied.\n\n"}
+{"event": "relay_start", "ts": "2026-05-12T09:54:38Z", "session_id": "", "query_hash": "347aaf1263715859"}
+{"event": "identity_timeout", "ts": "2026-05-12T09:55:38Z", "skill": "relay", "latency_ms": 60061}
+{"event": "relay_start", "ts": "2026-05-12T10:10:29Z", "session_id": "", "query_hash": "f74b2190decbe9fb"}
+{"event": "relay_failed", "ts": "2026-05-12T10:11:03Z", "session_id": "", "query_hash": "f74b2190decbe9fb", "attempt": 1, "reason": "'list' object has no attribute 'get'"}
+{"event": "relay_failed", "ts": "2026-05-12T10:11:47Z", "session_id": "", "query_hash": "f74b2190decbe9fb", "attempt": 2, "reason": "'list' object has no attribute 'get'"}
+{"event": "relay_failed", "ts": "2026-05-12T10:12:36Z", "session_id": "", "query_hash": "f74b2190decbe9fb", "attempt": 3, "reason": "'list' object has no attribute 'get'"}
+{"event": "relay_start", "ts": "2026-05-12T10:13:46Z", "session_id": "", "query_hash": "6a0f8cc99d3718fa"}
+{"event": "relay_failed", "ts": "2026-05-12T10:14:25Z", "session_id": "", "query_hash": "6a0f8cc99d3718fa", "attempt": 1, "reason": "no JSON object in result: No. The old entries that were synthesized into L2 were **not** archived. Here's what I found:\n\n- **`cortex/archive/`** exists with subdirectories for all regions (identity, amygdala, broca, etc.)\n- **"}
+{"event": "relay_failed", "ts": "2026-05-12T10:15:03Z", "session_id": "", "query_hash": "6a0f8cc99d3718fa", "attempt": 2, "reason": "no JSON object in result: No. The old L1 entries that were synthesized into the L2 (`og-identity-012-who-is-the-brain.md`) were **not** archived. They're still sitting in `cortex/identity/L1/` \u2014 all 23 of them, unchanged.\n\nThe"}
+{"event": "identity_timeout", "ts": "2026-05-12T10:16:03Z", "skill": "relay", "latency_ms": 137414}
+{"event": "relay_start", "ts": "2026-05-12T10:18:39Z", "session_id": "", "query_hash": "c56b14794b16dfb8"}
+{"event": "identity_timeout", "ts": "2026-05-12T10:19:39Z", "skill": "relay", "latency_ms": 60124}
+{"event": "relay_start", "ts": "2026-05-12T10:22:21Z", "session_id": "", "query_hash": "7b0e96a657b6aff8"}
+{"event": "identity_timeout", "ts": "2026-05-12T10:23:21Z", "skill": "relay", "latency_ms": 60062}
+{"event": "relay_start", "ts": "2026-05-12T10:26:47Z", "session_id": "", "query_hash": "5e0928021a2618d3"}
+{"event": "identity_timeout", "ts": "2026-05-12T10:27:47Z", "skill": "relay", "latency_ms": 60068}
+{"event": "relay_start", "ts": "2026-05-12T10:31:14Z", "session_id": "", "query_hash": "a790b7a2a5a4d5f3"}
+{"event": "relay_complete", "ts": "2026-05-12T10:31:33Z", "session_id": "", "query_hash": "a790b7a2a5a4d5f3", "latency_ms": 19327, "entries_picked": 49}
+{"event": "relay_start", "ts": "2026-05-12T10:34:44Z", "session_id": "", "query_hash": "d329d9488e36ed50"}
+{"event": "relay_complete", "ts": "2026-05-12T10:35:03Z", "session_id": "", "query_hash": "d329d9488e36ed50", "latency_ms": 18640, "entries_picked": 49}
+{"event": "relay_start", "ts": "2026-05-12T10:38:12Z", "session_id": "", "query_hash": "c08354c454f0b499"}
+{"event": "relay_failed", "ts": "2026-05-12T10:38:29Z", "session_id": "", "query_hash": "c08354c454f0b499", "attempt": 1, "reason": "no JSON object in result: Two things:\n\n**1. Strength cap rule \u2014 understood.**\n- Strength capped at 5 per level.\n- Stays at 5 until synthesized to next level.\n- Resets to 1 when promoted.\n\nSo an L1 entry scoring 5.0 is maxed \u2014 "}
+{"event": "identity_timeout", "ts": "2026-05-12T10:39:29Z", "skill": "relay", "latency_ms": 76930}
+{"event": "relay_start", "ts": "2026-05-12T10:41:49Z", "session_id": "", "query_hash": "5acb2e75bd9b12c1"}
+{"event": "identity_timeout", "ts": "2026-05-12T10:42:49Z", "skill": "relay", "latency_ms": 60113}
+{"event": "relay_start", "ts": "2026-05-12T10:47:06Z", "session_id": "", "query_hash": "a4928356f02e009f"}
+{"event": "identity_timeout", "ts": "2026-05-12T10:48:07Z", "skill": "relay", "latency_ms": 60057}
+{"event": "relay_start", "ts": "2026-05-12T10:52:31Z", "session_id": "", "query_hash": "6fa43bbb29da2e60"}
+{"event": "identity_timeout", "ts": "2026-05-12T10:53:31Z", "skill": "relay", "latency_ms": 60062}
+{"event": "relay_start", "ts": "2026-05-12T10:56:55Z", "session_id": "", "query_hash": "7284f7e7a9d3e92a"}
+{"event": "relay_complete", "ts": "2026-05-12T10:57:26Z", "session_id": "", "query_hash": "7284f7e7a9d3e92a", "latency_ms": 30561, "entries_picked": 52}

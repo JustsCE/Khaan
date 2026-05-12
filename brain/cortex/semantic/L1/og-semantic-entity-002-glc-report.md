@@ -1,6 +1,8 @@
 ---
+id: og-semantic-entity-002-glc-report
+
 title: og Brain — GLC Report
-strength: 4
+strength: 5
 level: L1
 migrated_from: /home/ubuntu/.claude/brain/navigation/entities.json (key: glc)
 migrated_at: 2026-05-05T11:50:50Z

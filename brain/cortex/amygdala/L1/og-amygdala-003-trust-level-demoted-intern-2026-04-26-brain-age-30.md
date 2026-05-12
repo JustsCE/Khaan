@@ -1,4 +1,6 @@
 ---
+id: og-amygdala-003-trust-level-demoted-intern-2026-04-26-brain-age-30
+
 title: og Brain — Trust Level: DEMOTED → INTERN (2026-04-26, brain age: 30 days)
 strength: 4
 level: L1

@@ -1,4 +1,6 @@
 ---
+id: og-identity-007-the-vision-equals
+
 title: og Brain — The Vision: Equals
 strength: 4
 level: L1

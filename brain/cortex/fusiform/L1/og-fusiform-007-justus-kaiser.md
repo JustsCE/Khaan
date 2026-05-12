@@ -1,4 +1,6 @@
 ---
+id: og-fusiform-007-justus-kaiser
+
 title: og Brain — Justus Kaiser
 strength: 4
 level: L1

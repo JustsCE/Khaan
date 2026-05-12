@@ -1,4 +1,6 @@
 ---
+id: og-broca-010-session-2026-04-11-12-patterns-cycle-135-149
+
 title: og Brain — Session 2026-04-11/12 Patterns (cycle 135-149)
 strength: 4
 level: L1

@@ -1,4 +1,6 @@
 ---
+id: og-broca-003-language-rules
+
 title: og Brain — Language Rules
 strength: 4
 level: L1

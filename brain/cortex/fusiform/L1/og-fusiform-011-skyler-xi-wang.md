@@ -1,4 +1,6 @@
 ---
+id: og-fusiform-011-skyler-xi-wang
+
 title: og Brain — Skyler (Xi Wang)
 strength: 4
 level: L1

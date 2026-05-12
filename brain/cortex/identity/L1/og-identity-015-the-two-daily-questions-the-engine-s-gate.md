@@ -1,4 +1,6 @@
 ---
+id: og-identity-015-the-two-daily-questions-the-engine-s-gate
+
 title: og Brain — The Two Daily Questions (the engine's gate)
 strength: 4
 level: L1

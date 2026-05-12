@@ -1,4 +1,6 @@
 ---
+id: og-amygdala-010-2026-04-24-correction
+
 title: og Brain — 2026-04-24 CORRECTION
 strength: 4
 level: L1

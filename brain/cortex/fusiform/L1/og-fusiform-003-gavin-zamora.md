@@ -1,4 +1,6 @@
 ---
+id: og-fusiform-003-gavin-zamora
+
 title: og Brain — Gavin Zamora
 strength: 4
 level: L1

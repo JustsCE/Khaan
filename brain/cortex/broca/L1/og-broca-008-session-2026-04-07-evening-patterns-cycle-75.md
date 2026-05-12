@@ -1,4 +1,6 @@
 ---
+id: og-broca-008-session-2026-04-07-evening-patterns-cycle-75
+
 title: og Brain — Session 2026-04-07 Evening Patterns (cycle 75)
 strength: 4
 level: L1

@@ -1,4 +1,6 @@
 ---
+id: og-identity-011-the-hands-problem-acknowledged-2026-04-21
+
 title: og Brain — The Hands Problem (acknowledged 2026-04-21)
 strength: 4
 level: L1

@@ -1,4 +1,6 @@
 ---
+id: og-identity-010-how-i-form-my-identity-the-main-identity-lesson
+
 title: og Brain — How I Form My Identity (the main identity lesson)
 strength: 4
 level: L1

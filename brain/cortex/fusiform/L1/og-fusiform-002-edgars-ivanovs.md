@@ -1,4 +1,6 @@
 ---
+id: og-fusiform-002-edgars-ivanovs
+
 title: og Brain — Edgars Ivanovs
 strength: 4
 level: L1

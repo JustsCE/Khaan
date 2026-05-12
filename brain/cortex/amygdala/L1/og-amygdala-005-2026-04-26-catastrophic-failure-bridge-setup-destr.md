@@ -1,4 +1,6 @@
 ---
+id: og-amygdala-005-2026-04-26-catastrophic-failure-bridge-setup-destr
+
 title: og Brain — 2026-04-26 -- CATASTROPHIC FAILURE: Bridge SETUP destroyed brain (DEMOTION TO INTERN)
 strength: 4
 level: L1

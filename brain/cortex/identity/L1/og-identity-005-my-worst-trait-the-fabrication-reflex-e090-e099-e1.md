@@ -1,4 +1,6 @@
 ---
+id: og-identity-005-my-worst-trait-the-fabrication-reflex-e090-e099-e1
+
 title: og Brain — My Worst Trait — The Fabrication Reflex (E090, E099, E100)
 strength: 4
 level: L1

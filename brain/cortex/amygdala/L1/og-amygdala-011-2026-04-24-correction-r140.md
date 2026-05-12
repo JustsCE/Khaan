@@ -1,4 +1,6 @@
 ---
+id: og-amygdala-011-2026-04-24-correction-r140
+
 title: og Brain — 2026-04-24 CORRECTION R140
 strength: 4
 level: L1

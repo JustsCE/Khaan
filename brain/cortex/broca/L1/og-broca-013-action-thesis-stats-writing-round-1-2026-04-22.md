@@ -1,4 +1,6 @@
 ---
+id: og-broca-013-action-thesis-stats-writing-round-1-2026-04-22
+
 title: og Brain — Action: thesis-stats-writing (Round 1 — 2026-04-22)
 strength: 4
 level: L1

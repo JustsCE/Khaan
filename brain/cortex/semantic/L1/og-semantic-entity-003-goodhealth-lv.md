@@ -1,6 +1,8 @@
 ---
+id: og-semantic-entity-003-goodhealth-lv
+
 title: og Brain — goodhealth.lv
-strength: 4
+strength: 5
 level: L1
 migrated_from: /home/ubuntu/.claude/brain/navigation/entities.json (key: goodhealth)
 migrated_at: 2026-05-05T11:50:50Z

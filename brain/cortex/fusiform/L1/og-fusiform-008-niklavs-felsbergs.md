@@ -1,4 +1,6 @@
 ---
+id: og-fusiform-008-niklavs-felsbergs
+
 title: og Brain — Niklāvs Felsbergs
 strength: 4
 level: L1

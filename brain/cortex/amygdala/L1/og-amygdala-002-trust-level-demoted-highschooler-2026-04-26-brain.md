@@ -1,4 +1,6 @@
 ---
+id: og-amygdala-002-trust-level-demoted-highschooler-2026-04-26-brain
+
 title: og Brain — Trust Level: DEMOTED → HIGHSCHOOLER (2026-04-26, brain age: 30 days)
 strength: 4
 level: L1

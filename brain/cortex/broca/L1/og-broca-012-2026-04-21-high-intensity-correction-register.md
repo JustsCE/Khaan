@@ -1,4 +1,6 @@
 ---
+id: og-broca-012-2026-04-21-high-intensity-correction-register
+
 title: og Brain — 2026-04-21 -- High-intensity correction register
 strength: 4
 level: L1

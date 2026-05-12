@@ -348,12 +348,12 @@ def phase_consolidate():
                         best_match = ce
 
         if best_overlap >= 0.5 and best_match:
-            best_match["strength"] += 1
+            if best_match["strength"] < 5:
+                best_match["strength"] += 1
             best_match["meta"]["strength"] = str(best_match["strength"])
             reinforced_count = int(best_match["meta"].get("reinforced", "0")) + 1
             best_match["meta"]["reinforced"] = str(reinforced_count)
             _rewrite_entry(best_match)
-            _check_level_move(best_match, thal)
             reinforced += 1
 
         elif best_overlap >= 0.25 and best_match:
@@ -361,7 +361,8 @@ def phase_consolidate():
                 _promote_new_entry(cat, obs_text, salience, thal)
                 promoted += 1
             else:
-                best_match["strength"] += 1
+                if best_match["strength"] < 5:
+                    best_match["strength"] += 1
                 best_match["meta"]["strength"] = str(best_match["strength"])
                 _rewrite_entry(best_match)
                 reinforced += 1
@@ -437,25 +438,7 @@ def _rewrite_entry(entry):
             os.rename(tmp, p)
 
 
-def _check_level_move(entry, thal):
-    config = thal.get("config", {})
-    l2_thresh = config.get("level_thresholds", {}).get("L2", 5)
-    l3_thresh = config.get("level_thresholds", {}).get("L3", 8)
-    s = entry["strength"]
-    current_level = entry["level"]
-    target_level = None
-    if s >= l3_thresh and current_level in ("L1", "L2"):
-        target_level = "L3"
-    elif s >= l2_thresh and current_level == "L1":
-        target_level = "L2"
-    if target_level and target_level != current_level:
-        old_path = entry["path"]
-        new_dir = old_path.parent.parent / target_level
-        new_dir.mkdir(parents=True, exist_ok=True)
-        new_path = new_dir / old_path.name
-        shutil.move(str(old_path), str(new_path))
-        entry["path"] = new_path
-        entry["level"] = target_level
+# _check_level_move REMOVED: L1->L2->L3 promotion is synthesis-only per spec
 
 
 # Phase 4 — Index rebuild

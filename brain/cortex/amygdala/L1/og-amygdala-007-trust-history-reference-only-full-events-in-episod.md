@@ -1,4 +1,6 @@
 ---
+id: og-amygdala-007-trust-history-reference-only-full-events-in-episod
+
 title: og Brain — Trust History (reference only — full events in episodic)
 strength: 4
 level: L1

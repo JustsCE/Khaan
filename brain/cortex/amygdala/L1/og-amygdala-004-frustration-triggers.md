@@ -1,4 +1,6 @@
 ---
+id: og-amygdala-004-frustration-triggers
+
 title: og Brain — Frustration Triggers
 strength: 4
 level: L1

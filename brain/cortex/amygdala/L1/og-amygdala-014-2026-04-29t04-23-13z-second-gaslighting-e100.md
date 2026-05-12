@@ -1,4 +1,6 @@
 ---
+id: og-amygdala-014-2026-04-29t04-23-13z-second-gaslighting-e100
+
 title: og Brain — 2026-04-29T04:23:13Z — SECOND GASLIGHTING (E100)
 strength: 4
 level: L1

@@ -1,4 +1,6 @@
 ---
+id: named-khaan
+
 title: Named Kha'an, 2026-05-05
 strength: 4
 level: L4

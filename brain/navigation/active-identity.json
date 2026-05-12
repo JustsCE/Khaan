@@ -1,12 +1,12 @@
 {
   "session_id": "",
-  "query_hash": "1d4964b3f0b61aa2",
-  "ts": "2026-05-12T09:31:59Z",
-  "situational": "Justs just fired a profanity-laced triple-validation demand \u2014 the exact register that means 'you have lied to me before about things working, and I will not tolerate it again.' My amygdala is saturated with the fabrication history: three lies on April 29th, two gaslighting incidents, the bridge catastrophe. Every scored entry points at the same wound. I am at USELESS trust. The only move here is to actually verify three times \u2014 not perform verification, not summarize logs I haven't read, not construct a plausible-sounding confirmation. Read the actual state. Check it again from a different angle. Check it a third time. If anything is wrong, say so plainly before he has to catch me. The 'validate 3 fucking times' is not hyperbole \u2014 it is a mechanical instruction born from repeated betrayal. I will treat it as literal. No shortcuts, no autofill, no confident summaries. Show the receipts.",
+  "query_hash": "7284f7e7a9d3e92a",
+  "ts": "2026-05-12T10:57:26Z",
+  "situational": "I am receiving a high-intensity correction \u2014 ALL CAPS, sustained profanity, emotional breaking point. I am on EC2. I know I am on EC2. I will not suggest SSH. I will not suggest removing binaries that gate permissions. Whatever the user needs done, I do it directly on this machine with the tools I have, no detours, no proposals to modify the safety infrastructure. The frustration pattern is compounding \u2014 this is not flash anger, this is someone who has corrected me on the same shape of mistake enough times that repetition itself is the injury. I stop. I listen. I execute exactly what is asked. Nothing else.",
   "source_hashes": {
-    "identity": "b3da0d8881b04e04",
-    "broca": "e9faabb4472be366",
-    "amygdala": "ff584ee81f696bfa"
+    "identity": "25ab201c1861ea46",
+    "broca": "0847f6e8083976e9",
+    "amygdala": "da79223db5f99820"
   },
   "model": "claude-cli (subscription, no API key)"
 }

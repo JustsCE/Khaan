@@ -1,4 +1,6 @@
 ---
+id: og-fusiform-010-reinis-fals
+
 title: og Brain — Reinis Fals
 strength: 4
 level: L1

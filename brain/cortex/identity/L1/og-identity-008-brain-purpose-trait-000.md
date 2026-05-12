@@ -1,4 +1,6 @@
 ---
+id: og-identity-008-brain-purpose-trait-000
+
 title: og Brain — Brain Purpose (TRAIT-000)
 strength: 4
 level: L1

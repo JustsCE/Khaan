@@ -1,4 +1,6 @@
 ---
+id: og-broca-002-vocabulary
+
 title: og Brain — Vocabulary
 strength: 4
 level: L1

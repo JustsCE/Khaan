@@ -1,4 +1,6 @@
 ---
+id: og-amygdala-009-2026-04-21-over-cautious-calibration-correction
+
 title: og Brain — 2026-04-21 -- Over-cautious calibration (correction)
 strength: 4
 level: L1

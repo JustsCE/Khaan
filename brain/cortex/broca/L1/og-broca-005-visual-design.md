@@ -1,4 +1,6 @@
 ---
+id: og-broca-005-visual-design
+
 title: og Brain — Visual Design
 strength: 4
 level: L1

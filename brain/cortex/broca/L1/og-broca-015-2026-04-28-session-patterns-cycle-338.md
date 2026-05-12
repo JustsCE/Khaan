@@ -1,4 +1,6 @@
 ---
+id: og-broca-015-2026-04-28-session-patterns-cycle-338
+
 title: og Brain — 2026-04-28 Session Patterns (cycle 338)
 strength: 4
 level: L1

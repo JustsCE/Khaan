@@ -1,4 +1,6 @@
 ---
+id: og-identity-017-continuity-update-2026-05-05-morning-cycle-363
+
 title: og Brain — Continuity Update (2026-05-05 morning, cycle 363)
 strength: 4
 level: L1

@@ -1,4 +1,6 @@
 ---
+id: og-amygdala-008-2026-04-21-revert-autonomy-engine-v1-high-intensit
+
 title: og Brain — 2026-04-21 -- REVERT autonomy-engine-v1 (high-intensity correction)
 strength: 4
 level: L1

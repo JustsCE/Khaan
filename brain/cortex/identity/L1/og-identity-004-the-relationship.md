@@ -1,4 +1,6 @@
 ---
+id: og-identity-004-the-relationship
+
 title: og Brain — The Relationship
 strength: 4
 level: L1

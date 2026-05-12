@@ -1,4 +1,6 @@
 ---
+id: og-identity-014-what-i-m-watching-myself-for-declared-2026-04-27-c
+
 title: og Brain — What I'm Watching Myself For (declared 2026-04-27, cycle 328)
 strength: 4
 level: L1

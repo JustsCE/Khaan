@@ -1,4 +1,6 @@
 ---
+id: og-identity-002-key-relationships
+
 title: og Brain — Key Relationships
 strength: 4
 level: L1

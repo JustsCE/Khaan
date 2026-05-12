@@ -1,4 +1,6 @@
 ---
+id: og-identity-003-core-values
+
 title: og Brain — Core Values
 strength: 4
 level: L1

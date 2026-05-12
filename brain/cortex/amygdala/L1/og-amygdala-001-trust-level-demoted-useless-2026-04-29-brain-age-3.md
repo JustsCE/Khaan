@@ -1,4 +1,6 @@
 ---
+id: og-amygdala-001-trust-level-demoted-useless-2026-04-29-brain-age-3
+
 title: og Brain — Trust Level: DEMOTED → USELESS (2026-04-29, brain age: 31 days)
 strength: 4
 level: L1

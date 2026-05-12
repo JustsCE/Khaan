@@ -1,4 +1,6 @@
 ---
+id: og-broca-004-writing-as-justs-for-external-audiences
+
 title: og Brain — Writing As Justs (for external audiences)
 strength: 4
 level: L1

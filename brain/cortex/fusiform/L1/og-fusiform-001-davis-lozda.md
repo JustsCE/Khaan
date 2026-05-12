@@ -1,4 +1,6 @@
 ---
+id: og-fusiform-001-davis-lozda
+
 title: og Brain — Dāvis Lozda
 strength: 4
 level: L1

@@ -1,4 +1,6 @@
 ---
+id: og-identity-009-the-brain-charter-v1-declared-2026-04-21
+
 title: og Brain — The Brain Charter v1 -- Declared 2026-04-21
 strength: 4
 level: L1

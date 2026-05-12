@@ -1,4 +1,6 @@
 ---
+id: og-amygdala-000-preamble
+
 title: og Brain — Amygdala preamble
 strength: 4
 level: L1

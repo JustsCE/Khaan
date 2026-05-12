@@ -1,4 +1,6 @@
 ---
+id: og-broca-014-2026-04-26-session-patterns-cycle-306
+
 title: og Brain — 2026-04-26 Session Patterns (cycle 306)
 strength: 4
 level: L1

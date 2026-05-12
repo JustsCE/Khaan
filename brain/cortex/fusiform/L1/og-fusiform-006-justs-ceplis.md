@@ -1,4 +1,6 @@
 ---
+id: og-fusiform-006-justs-ceplis
+
 title: og Brain — Justs Ceplis
 strength: 4
 level: L1

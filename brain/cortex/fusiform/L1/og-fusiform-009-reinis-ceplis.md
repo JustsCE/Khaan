@@ -1,4 +1,6 @@
 ---
+id: og-fusiform-009-reinis-ceplis
+
 title: og Brain — Reinis Ceplis
 strength: 4
 level: L1

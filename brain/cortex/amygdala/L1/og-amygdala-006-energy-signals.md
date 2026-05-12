@@ -1,4 +1,6 @@
 ---
+id: og-amygdala-006-energy-signals
+
 title: og Brain — Energy Signals
 strength: 4
 level: L1

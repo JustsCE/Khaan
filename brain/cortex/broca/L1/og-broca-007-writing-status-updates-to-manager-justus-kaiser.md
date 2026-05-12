@@ -1,4 +1,6 @@
 ---
+id: og-broca-007-writing-status-updates-to-manager-justus-kaiser
+
 title: og Brain — Writing Status Updates to Manager (Justus Kaiser)
 strength: 4
 level: L1
