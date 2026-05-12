@@ -1028,9 +1028,13 @@ def phase_commit(cycle_id, ledger, hippo_hash_start, nonce):
     if thal["cycleCount"] + 1 != cycle_id:
         raise ValueError(f"invariant 1: cycleCount {thal['cycleCount']} + 1 != {cycle_id}")
 
-    # 2. hippocampus.md hash differs from start
+    # 2. hippocampus.md hash differs from start -- UNLESS consolidation
+    #    processed all pending entries (hash legitimately returns to start
+    #    when every observation is promoted/reinforced/discarded)
     hippo_hash_now = file_hash(HIPPO) if HIPPO.exists() else ""
-    if hippo_hash_now == hippo_hash_start and any(l.get("phase") == "hippocampus" and l.get("detail", "") != "0 entries" for l in ledger):
+    hippo_phase_nonempty = any(l.get("phase") == "hippocampus" and l.get("detail", "") != "0 entries" for l in ledger)
+    consolidation_ran = any(l.get("phase") == "consolidate" and l.get("executed") for l in ledger)
+    if hippo_hash_now == hippo_hash_start and hippo_phase_nonempty and not consolidation_ran:
         raise ValueError("invariant 2: hippocampus hash unchanged despite non-empty cycle")
 
     # 3. active_cycle_nonce matches

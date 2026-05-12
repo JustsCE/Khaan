@@ -8,3 +8,78 @@
 {"event": "boot_complete", "ts": "2026-05-12T04:42:19Z", "session_id": "", "latency_ms": 96072, "entries_picked": 50}
 {"event": "boot_start", "ts": "2026-05-12T04:52:23Z", "session_id": ""}
 {"event": "boot_complete", "ts": "2026-05-12T04:54:21Z", "session_id": "", "latency_ms": 118152, "entries_picked": 50}
+{"event": "boot_start", "ts": "2026-05-12T05:27:50Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-12T05:29:39Z", "session_id": "", "latency_ms": 108814, "entries_picked": 50}
+{"event": "relay_start", "ts": "2026-05-12T07:56:45Z", "session_id": "", "query_hash": "a43c46af5563fb64"}
+{"event": "identity_timeout", "ts": "2026-05-12T07:57:45Z", "skill": "relay", "latency_ms": 60143}
+{"event": "relay_start", "ts": "2026-05-12T08:09:19Z", "session_id": "", "query_hash": "ed5eb9a37e2d8231"}
+{"event": "relay_complete", "ts": "2026-05-12T08:09:33Z", "session_id": "", "query_hash": "ed5eb9a37e2d8231", "latency_ms": 13949, "entries_picked": 49}
+{"event": "relay_start", "ts": "2026-05-12T08:09:51Z", "session_id": "", "query_hash": "60bc941e1c7561ac"}
+{"event": "relay_start", "ts": "2026-05-12T08:10:10Z", "session_id": "", "query_hash": "40eda2814274f8e1"}
+{"event": "relay_start", "ts": "2026-05-12T08:10:15Z", "session_id": "", "query_hash": "4f4677d1f7c09fe3"}
+{"event": "relay_complete", "ts": "2026-05-12T08:10:18Z", "session_id": "", "query_hash": "60bc941e1c7561ac", "latency_ms": 27251, "entries_picked": 51}
+{"event": "relay_start", "ts": "2026-05-12T08:10:29Z", "session_id": "", "query_hash": "1c5a6d333ab4b5a5"}
+{"event": "relay_complete", "ts": "2026-05-12T08:10:32Z", "session_id": "", "query_hash": "4f4677d1f7c09fe3", "latency_ms": 17835, "entries_picked": 49}
+{"event": "relay_failed", "ts": "2026-05-12T08:10:40Z", "session_id": "", "query_hash": "1c5a6d333ab4b5a5", "attempt": 1, "reason": "no JSON object in result: What docs? Give me the path or URL."}
+{"event": "relay_failed", "ts": "2026-05-12T08:10:57Z", "session_id": "", "query_hash": "40eda2814274f8e1", "attempt": 1, "reason": "no JSON object in result: The dispatcher \u2192 **`gate_router`** (that's what it does: routes events through gates).\n\nHere's the full rename \u2014 file + all references:\n\n```bash\ncd /home/ubuntu/Brain\n\n# 1. Rename the file\nmv engines/"}
+{"event": "relay_failed", "ts": "2026-05-12T08:11:03Z", "session_id": "", "query_hash": "1c5a6d333ab4b5a5", "attempt": 2, "reason": "no JSON object in result: I'm in `~/.claude`. Tell me what docs you want me to read \u2014 a specific file, a URL, project docs? I'll read them right now."}
+{"event": "relay_start", "ts": "2026-05-12T08:11:08Z", "session_id": "", "query_hash": "e18d7a5913548a96"}
+{"event": "relay_failed", "ts": "2026-05-12T08:11:17Z", "session_id": "", "query_hash": "1c5a6d333ab4b5a5", "attempt": 3, "reason": "no JSON object in result: Which docs? Give me the target."}
+{"event": "relay_start", "ts": "2026-05-12T08:11:53Z", "session_id": "", "query_hash": "e73ce6c925e375f0"}
+{"event": "identity_timeout", "ts": "2026-05-12T08:11:58Z", "skill": "relay", "latency_ms": 107827}
+{"event": "identity_timeout", "ts": "2026-05-12T08:12:08Z", "skill": "relay", "latency_ms": 60329}
+{"event": "relay_failed", "ts": "2026-05-12T08:12:27Z", "session_id": "", "query_hash": "e73ce6c925e375f0", "attempt": 1, "reason": "no JSON object in result: It IS automatic. Here's the proof \u2014 your message just triggered it:\n\n**`active-decision.json`** \u2014 generated `2026-05-12T08:10:35Z` (seconds before I started responding):\n\nThe hook chain:\n1. **`setting"}
+{"event": "relay_failed", "ts": "2026-05-12T08:12:58Z", "session_id": "", "query_hash": "e73ce6c925e375f0", "attempt": 2, "reason": "no JSON object in result: Here's the proof:\n\n**The decision engine IS automatic.** It fires on every `UserPromptSubmit` hook \u2014 your message just now at ~08:11 UTC triggered it, and `active-decision.json` was written at `08:12:"}
+{"event": "relay_failed", "ts": "2026-05-12T08:13:37Z", "session_id": "", "query_hash": "e73ce6c925e375f0", "attempt": 3, "reason": "no JSON object in result: It's automatic. Here's the proof \u2014 I didn't invoke anything, your message just triggered it:\n\n**Hook chain:**\n1. `settings.json` \u2192 `UserPromptSubmit` hook \u2192 `hook.py UserPromptSubmit`\n2. `hook.py` lin"}
+{"event": "relay_start", "ts": "2026-05-12T08:15:24Z", "session_id": "", "query_hash": "c9c49b2fb18cd492"}
+{"event": "relay_complete", "ts": "2026-05-12T08:15:38Z", "session_id": "", "query_hash": "c9c49b2fb18cd492", "latency_ms": 14083, "entries_picked": 52}
+{"event": "relay_start", "ts": "2026-05-12T08:16:38Z", "session_id": "", "query_hash": "72f985322829b211"}
+{"event": "relay_start", "ts": "2026-05-12T08:17:26Z", "session_id": "", "query_hash": "19561bee622a6ea2"}
+{"event": "relay_failed", "ts": "2026-05-12T08:17:30Z", "session_id": "", "query_hash": "72f985322829b211", "attempt": 1, "reason": "no JSON object in result: Unblocked. The cause:\n\n- `learning-cycle-overdue.bin` was set to `1` (message counter 233 vs last brain update 212 = gap of 21)\n- Last brain cycle **failed** (`last_cycle_outcome: \"failed\"`, FSM: `MAI"}
+{"event": "relay_start", "ts": "2026-05-12T08:17:45Z", "session_id": "", "query_hash": "120f6e5b4ea32f65"}
+{"event": "relay_complete", "ts": "2026-05-12T08:18:01Z", "session_id": "", "query_hash": "120f6e5b4ea32f65", "latency_ms": 15635, "entries_picked": 49}
+{"event": "identity_timeout", "ts": "2026-05-12T08:18:26Z", "skill": "relay", "latency_ms": 60303}
+{"event": "identity_timeout", "ts": "2026-05-12T08:18:30Z", "skill": "relay", "latency_ms": 112270}
+{"event": "relay_start", "ts": "2026-05-12T08:19:32Z", "session_id": "", "query_hash": "8949fe5169d9ed1f"}
+{"event": "relay_complete", "ts": "2026-05-12T08:19:48Z", "session_id": "", "query_hash": "8949fe5169d9ed1f", "latency_ms": 16204, "entries_picked": 49}
+{"event": "relay_start", "ts": "2026-05-12T08:20:45Z", "session_id": "", "query_hash": "d8e087eb7ec8eef1"}
+{"event": "relay_complete", "ts": "2026-05-12T08:21:04Z", "session_id": "", "query_hash": "d8e087eb7ec8eef1", "latency_ms": 18879, "entries_picked": 54}
+{"event": "relay_start", "ts": "2026-05-12T08:21:20Z", "session_id": "", "query_hash": "01cbb3db3d2ff968"}
+{"event": "relay_complete", "ts": "2026-05-12T08:21:47Z", "session_id": "", "query_hash": "01cbb3db3d2ff968", "latency_ms": 26587, "entries_picked": 52}
+{"event": "relay_start", "ts": "2026-05-12T08:22:04Z", "session_id": "", "query_hash": "217b86cdb7948b64"}
+{"event": "relay_failed", "ts": "2026-05-12T08:22:29Z", "session_id": "", "query_hash": "217b86cdb7948b64", "attempt": 1, "reason": "no JSON object in result: I don't have the prior context of what I called a \"warning.\" What was the hard block \u2014 what exactly did I get wrong? Give me the specifics and I'll correct it immediately."}
+{"event": "relay_failed", "ts": "2026-05-12T08:22:54Z", "session_id": "", "query_hash": "217b86cdb7948b64", "attempt": 2, "reason": "no JSON object in result: I don't have the previous conversation context. What was the hard block \u2014 what did I wrongly call a warning? I'll fix it right now."}
+{"event": "relay_start", "ts": "2026-05-12T08:23:10Z", "session_id": "", "query_hash": "cdc4e134a191a146"}
+{"event": "relay_failed", "ts": "2026-05-12T08:23:20Z", "session_id": "", "query_hash": "217b86cdb7948b64", "attempt": 3, "reason": "no JSON object in result: I hear you. Hard block, not a warning. I don't have the previous conversation loaded \u2014 what specifically was the hard block so I can fix it right now?"}
+{"event": "relay_complete", "ts": "2026-05-12T08:23:22Z", "session_id": "", "query_hash": "cdc4e134a191a146", "latency_ms": 12303, "entries_picked": 49}
+{"event": "relay_start", "ts": "2026-05-12T08:24:08Z", "session_id": "", "query_hash": "6deac29fa6701eba"}
+{"event": "identity_timeout", "ts": "2026-05-12T08:25:08Z", "skill": "relay", "latency_ms": 60052}
+{"event": "relay_start", "ts": "2026-05-12T08:29:08Z", "session_id": "", "query_hash": "08e4e05bf343ec68"}
+{"event": "identity_timeout", "ts": "2026-05-12T08:30:08Z", "skill": "relay", "latency_ms": 60089}
+{"event": "relay_start", "ts": "2026-05-12T08:32:28Z", "session_id": "", "query_hash": "bff3f9af0f4005cc"}
+{"event": "identity_timeout", "ts": "2026-05-12T08:33:28Z", "skill": "relay", "latency_ms": 60073}
+{"event": "relay_start", "ts": "2026-05-12T08:35:35Z", "session_id": "", "query_hash": "51da915608bcc41b"}
+{"event": "relay_failed", "ts": "2026-05-12T08:36:05Z", "session_id": "", "query_hash": "51da915608bcc41b", "attempt": 1, "reason": "no JSON object in result: Here are all 3 active navigation entries that get automatically decided by the Decision Engine on every `UserPromptSubmit`:\n\n---\n\n### 1. `active-recall.json`\n**Last fired:** `2026-05-12T08:35:35Z`\n**R"}
+{"event": "relay_failed", "ts": "2026-05-12T08:36:32Z", "session_id": "", "query_hash": "51da915608bcc41b", "attempt": 2, "reason": "no JSON object in result: Here are all 3 active entries that get automatically decided by the Decision Engine on every `UserPromptSubmit`:\n\n---\n\n### 1. `active-decision.json`\n**Written by:** Decision Engine subprocess (claude "}
+{"event": "relay_failed", "ts": "2026-05-12T08:37:05Z", "session_id": "", "query_hash": "51da915608bcc41b", "attempt": 3, "reason": "no JSON object in result: Here are the 3 active navigation entries that get automatically decided by the Decision Engine on every `UserPromptSubmit`:\n\n---\n\n### 1. `active-recall.json`\n**Last fired:** `2026-05-12T08:35:35Z`\n\nRe"}
+{"event": "relay_start", "ts": "2026-05-12T09:14:23Z", "session_id": "", "query_hash": "f7cc6c4756cc21f0"}
+{"event": "identity_timeout", "ts": "2026-05-12T09:15:23Z", "skill": "relay", "latency_ms": 60058}
+{"event": "relay_start", "ts": "2026-05-12T09:17:32Z", "session_id": "", "query_hash": "eca38f7c491c1129"}
+{"event": "identity_timeout", "ts": "2026-05-12T09:18:32Z", "skill": "relay", "latency_ms": 60060}
+{"event": "relay_start", "ts": "2026-05-12T09:20:19Z", "session_id": "", "query_hash": "8b0ca7b658554a9e"}
+{"event": "relay_failed", "ts": "2026-05-12T09:21:08Z", "session_id": "", "query_hash": "8b0ca7b658554a9e", "attempt": 1, "reason": "no JSON object in result: **Schedule:** No. Zero cron jobs registered. Whatever was set up previously didn't persist.\n\n**FSM state:** `MAINTENANCE_FAILED`\n- Escalation count: **6** (repeated failures)\n- Last cycle outcome: **f"}
+{"event": "relay_failed", "ts": "2026-05-12T09:21:55Z", "session_id": "", "query_hash": "8b0ca7b658554a9e", "attempt": 2, "reason": "no JSON object in result: **Schedule:** No. Zero cron jobs active. Whatever was set up didn't persist.\n\n**FSM state:** `MAINTENANCE_FAILED`\n- Escalation count: 6\n- Last cycle (#16): failed, ended 2026-05-12 05:29:23 UTC\n- Mess"}
+{"event": "relay_failed", "ts": "2026-05-12T09:22:51Z", "session_id": "", "query_hash": "8b0ca7b658554a9e", "attempt": 3, "reason": "no JSON object in result: **Schedule:** No. Zero cron jobs registered. Whatever was set up didn't persist.\n\n**FSM state:** `MAINTENANCE_FAILED` \u2014 stuck. 6 escalations, no active cycle, `active_cycle_nonce` is null. Last cycle "}
+{"event": "relay_start", "ts": "2026-05-12T09:24:10Z", "session_id": "", "query_hash": "28e45a43c06b879e"}
+{"event": "relay_start", "ts": "2026-05-12T09:24:33Z", "session_id": "", "query_hash": "4e17bf3c2a97bf5e"}
+{"event": "identity_timeout", "ts": "2026-05-12T09:25:33Z", "skill": "relay", "latency_ms": 60072}
+{"event": "relay_start", "ts": "2026-05-12T09:31:30Z", "session_id": "", "query_hash": "1d4964b3f0b61aa2"}
+{"event": "relay_complete", "ts": "2026-05-12T09:31:59Z", "session_id": "", "query_hash": "1d4964b3f0b61aa2", "latency_ms": 29359, "entries_picked": 54}
+{"event": "relay_start", "ts": "2026-05-12T09:35:01Z", "session_id": "", "query_hash": "98e0c4fe7625163b"}
+{"event": "relay_failed", "ts": "2026-05-12T09:35:41Z", "session_id": "", "query_hash": "98e0c4fe7625163b", "attempt": 1, "reason": "no JSON object in result: Commands for what? I don't have context on what you need set up or fixed right now. Give me the target and I'll give you copy-paste-ready commands that work first try."}
+{"event": "relay_failed", "ts": "2026-05-12T09:36:10Z", "session_id": "", "query_hash": "98e0c4fe7625163b", "attempt": 2, "reason": "no JSON object in result: What commands for what? No prior context in this session \u2014 I need the target."}
+{"event": "identity_timeout", "ts": "2026-05-12T09:37:10Z", "skill": "relay", "latency_ms": 129323}
+{"event": "relay_start", "ts": "2026-05-12T09:50:25Z", "session_id": "", "query_hash": "638079ad4dc48586"}
+{"event": "relay_failed", "ts": "2026-05-12T09:50:44Z", "session_id": "", "query_hash": "638079ad4dc48586", "attempt": 1, "reason": "no JSON object in result: The hypothesis bins are **already there** (lines 15-19). The patch was trying to add what already exists. No change needed.\n\nThe first two patches succeeded:\n1. \u2705 Invariant 2 in `cycle_phases.py` \u2014 fi"}
+{"event": "relay_failed", "ts": "2026-05-12T09:51:06Z", "session_id": "", "query_hash": "638079ad4dc48586", "attempt": 2, "reason": "no JSON object in result: The hypothesis bins are **already there** (lines 15-19). The assert failed because the old string you searched for didn't include them \u2014 meaning a previous run already applied this patch.\n\nAll three f"}
+{"event": "relay_failed", "ts": "2026-05-12T09:51:26Z", "session_id": "", "query_hash": "638079ad4dc48586", "attempt": 3, "reason": "no JSON object in result: The hypothesis bins are already there (lines 15-19). Your patch didn't fail because the content is wrong \u2014 it failed because the content already matches the *new* state. The fix was already applied.\n\n"}

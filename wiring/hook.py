@@ -56,6 +56,7 @@ ANTI_LOCKOUT_BINS = [
 
 def handle_user_prompt_submit(payload):
     from engines.decision_engine.flip_decision_trigger import trigger
+    from engines.decision import dispatch
     from engines.learning_engine.flip_cycle_overdue import check_overdue
 
     for b in ANTI_LOCKOUT_BINS:
@@ -69,7 +70,16 @@ def handle_user_prompt_submit(payload):
     check_overdue()
 
     user_message = payload.get("prompt") or payload.get("message") or payload.get("content", "")
-    trigger()  # sets hypothesis bins 1-5 to 1; parent must run /decision-engine to clear
+    trigger()
+
+    # Synchronous: blocks hook until decision pipeline completes.
+    # dispatch() runs recall + relay + decision inside this process,
+    # clears hypothesis bins on success. Anti-lockout clears on next
+    # UserPromptSubmit if this fails.
+    try:
+        dispatch(user_message)
+    except Exception as e:
+        _safe_log(f"decision dispatch: {e}")
 
     ctx = _compose_turn_context()
     if ctx:

@@ -112,3 +112,53 @@
 {"event": "index_rebuild", "ts": "2026-05-12T05:16:03Z", "terms_count": 8508, "entries_count": 597}
 {"event": "cycle_ledger", "cycle_id": 16, "phases": [{"phase": "ingest", "executed": true, "detail": "11 observations across 5 categories"}, {"phase": "hippocampus", "executed": true, "detail": "11 entries"}, {"phase": "consolidate", "executed": true, "detail": "5 reinforced, 17 promoted, 0 discarded"}, {"phase": "index_rebuild", "executed": true, "detail": "8508 terms, 597 entries"}, {"phase": "synthesis", "executed": true, "detail": "L2 created 0, L3 created 0, sources archived 0"}, {"phase": "eval", "executed": false, "detail": "not due"}, {"phase": "hygiene", "executed": false, "detail": "not due"}], "ts": "2026-05-12T05:16:03Z"}
 {"event": "cycle_commit", "cycle_id": 16, "ts": "2026-05-12T05:16:03Z"}
+{"event": "cycle_git", "cycle_id": 16, "status": "ok", "ts": "2026-05-12T05:16:06Z"}
+{"event": "correct_applied", "ts": "2026-05-12T05:25:42Z", "rule_id": "R171", "action": "created", "source_message_hash": "1d01561ad6f8d02b"}
+{"event": "correct_verification_failed", "ts": "2026-05-12T05:25:52Z", "reason": "no JSON object in result: **Correction encoded \u2192 `R171` (strength 1, fresh).**\n\n**What was wrong:** I previously diagnosed a brain-cycle deadlock as a dispatcher/gating bug without reading the actual exemption code in `hook.py"}
+{"event": "correct_verification_failed", "ts": "2026-05-12T05:26:07Z", "reason": "no JSON object in result: I'm here. What do you need?"}
+{"event": "correct_verification_failed", "ts": "2026-05-12T05:26:21Z", "reason": "no JSON object in result: I'm here. What do you need?"}
+{"event": "cycle_start", "ts": "2026-05-12T08:12:46Z", "cycle_id": 17, "counter_at_start": 231}
+{"event": "consolidation_summary", "ts": "2026-05-12T08:13:21Z", "reinforced": 2, "promoted": 9, "discarded": 0}
+{"event": "index_rebuild", "ts": "2026-05-12T08:13:22Z", "terms_count": 8529, "entries_count": 607}
+{"event": "cycle_failed", "ts": "2026-05-12T08:13:22Z", "cycle_id": 17, "attempt": 1, "reason": "invariant 2: hippocampus hash unchanged despite non-empty cycle"}
+{"event": "cycle_start", "ts": "2026-05-12T08:13:22Z", "cycle_id": 17, "counter_at_start": 231}
+{"event": "consolidation_summary", "ts": "2026-05-12T08:13:56Z", "reinforced": 4, "promoted": 6, "discarded": 0}
+{"event": "index_rebuild", "ts": "2026-05-12T08:13:57Z", "terms_count": 8534, "entries_count": 613}
+{"event": "cycle_failed", "ts": "2026-05-12T08:13:57Z", "cycle_id": 17, "attempt": 2, "reason": "invariant 2: hippocampus hash unchanged despite non-empty cycle"}
+{"event": "cycle_start", "ts": "2026-05-12T08:13:57Z", "cycle_id": 17, "counter_at_start": 231}
+{"event": "consolidation_summary", "ts": "2026-05-12T08:14:26Z", "reinforced": 6, "promoted": 4, "discarded": 0}
+{"event": "index_rebuild", "ts": "2026-05-12T08:14:26Z", "terms_count": 8540, "entries_count": 617}
+{"event": "cycle_failed", "ts": "2026-05-12T08:14:26Z", "cycle_id": 17, "attempt": 3, "reason": "invariant 2: hippocampus hash unchanged despite non-empty cycle"}
+{"event": "cycle_start", "ts": "2026-05-12T08:24:55Z", "cycle_id": 17, "counter_at_start": 241}
+{"event": "consolidation_summary", "ts": "2026-05-12T08:25:30Z", "reinforced": 4, "promoted": 7, "discarded": 0}
+{"event": "index_rebuild", "ts": "2026-05-12T08:25:31Z", "terms_count": 8553, "entries_count": 624}
+{"event": "cycle_failed", "ts": "2026-05-12T08:25:31Z", "cycle_id": 17, "attempt": 1, "reason": "invariant 2: hippocampus hash unchanged despite non-empty cycle"}
+{"event": "cycle_start", "ts": "2026-05-12T08:25:31Z", "cycle_id": 17, "counter_at_start": 241}
+{"event": "consolidation_summary", "ts": "2026-05-12T08:26:08Z", "reinforced": 5, "promoted": 6, "discarded": 0}
+{"event": "index_rebuild", "ts": "2026-05-12T08:26:09Z", "terms_count": 8558, "entries_count": 630}
+{"event": "cycle_failed", "ts": "2026-05-12T08:26:09Z", "cycle_id": 17, "attempt": 2, "reason": "invariant 2: hippocampus hash unchanged despite non-empty cycle"}
+{"event": "cycle_start", "ts": "2026-05-12T08:26:09Z", "cycle_id": 17, "counter_at_start": 241}
+{"event": "consolidation_summary", "ts": "2026-05-12T08:26:46Z", "reinforced": 7, "promoted": 4, "discarded": 0}
+{"event": "index_rebuild", "ts": "2026-05-12T08:26:47Z", "terms_count": 8562, "entries_count": 634}
+{"event": "cycle_failed", "ts": "2026-05-12T08:26:47Z", "cycle_id": 17, "attempt": 3, "reason": "invariant 2: hippocampus hash unchanged despite non-empty cycle"}
+{"event": "cycle_start", "ts": "2026-05-12T08:27:15Z", "cycle_id": 17, "counter_at_start": 241}
+{"event": "consolidation_summary", "ts": "2026-05-12T08:27:50Z", "reinforced": 4, "promoted": 7, "discarded": 0}
+{"event": "index_rebuild", "ts": "2026-05-12T08:27:50Z", "terms_count": 8572, "entries_count": 641}
+{"event": "cycle_failed", "ts": "2026-05-12T08:27:50Z", "cycle_id": 17, "attempt": 1, "reason": "invariant 2: hippocampus hash unchanged despite non-empty cycle"}
+{"event": "cycle_start", "ts": "2026-05-12T08:30:21Z", "cycle_id": 17, "counter_at_start": 242}
+{"event": "consolidation_summary", "ts": "2026-05-12T08:31:00Z", "reinforced": 3, "promoted": 8, "discarded": 0}
+{"event": "index_rebuild", "ts": "2026-05-12T08:31:00Z", "terms_count": 8583, "entries_count": 649}
+{"event": "cycle_failed", "ts": "2026-05-12T08:31:00Z", "cycle_id": 17, "attempt": 1, "reason": "invariant 2: hippocampus hash unchanged despite non-empty cycle"}
+{"event": "cycle_start", "ts": "2026-05-12T09:16:42Z", "cycle_id": 17, "counter_at_start": 245}
+{"event": "consolidation_summary", "ts": "2026-05-12T09:17:19Z", "reinforced": 5, "promoted": 6, "discarded": 0}
+{"event": "index_rebuild", "ts": "2026-05-12T09:17:20Z", "terms_count": 8591, "entries_count": 655}
+{"event": "cycle_failed", "ts": "2026-05-12T09:17:20Z", "cycle_id": 17, "attempt": 1, "reason": "invariant 2: hippocampus hash unchanged despite non-empty cycle"}
+{"event": "cycle_start", "ts": "2026-05-12T09:23:11Z", "cycle_id": 17, "counter_at_start": 247}
+{"event": "consolidation_summary", "ts": "2026-05-12T09:23:47Z", "reinforced": 7, "promoted": 4, "discarded": 0}
+{"event": "index_rebuild", "ts": "2026-05-12T09:23:47Z", "terms_count": 8603, "entries_count": 659}
+{"event": "cycle_failed", "ts": "2026-05-12T09:23:47Z", "cycle_id": 17, "attempt": 1, "reason": "invariant 2: hippocampus hash unchanged despite non-empty cycle"}
+{"event": "cycle_start", "ts": "2026-05-12T09:52:36Z", "cycle_id": 17, "counter_at_start": 252}
+{"event": "consolidation_summary", "ts": "2026-05-12T09:53:03Z", "reinforced": 7, "promoted": 5, "discarded": 0}
+{"event": "index_rebuild", "ts": "2026-05-12T09:53:04Z", "terms_count": 8609, "entries_count": 664}
+{"event": "cycle_ledger", "cycle_id": 17, "phases": [{"phase": "ingest", "executed": true, "detail": "12 observations across 5 categories"}, {"phase": "hippocampus", "executed": true, "detail": "12 entries"}, {"phase": "consolidate", "executed": true, "detail": "7 reinforced, 5 promoted, 0 discarded"}, {"phase": "index_rebuild", "executed": true, "detail": "8609 terms, 664 entries"}, {"phase": "synthesis", "executed": true, "detail": "L2 created 0, L3 created 0, sources archived 0"}, {"phase": "eval", "executed": false, "detail": "not due"}, {"phase": "hygiene", "executed": false, "detail": "not due"}], "ts": "2026-05-12T09:53:04Z"}
+{"event": "cycle_commit", "cycle_id": 17, "ts": "2026-05-12T09:53:04Z"}
