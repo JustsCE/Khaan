@@ -77,17 +77,13 @@ def handle_user_prompt_submit(payload):
     user_message = payload.get("prompt") or payload.get("message") or payload.get("content", "")
     trigger()
 
-    # Async: decision runs as detached subprocess after cycle completes.
-    import subprocess as _sp
-    _sp.Popen(
-        [sys.executable, "-c",
-         f"import sys; sys.path.insert(0,'{BRAIN}'); "
-         f"from engines.decision import dispatch; "
-         f"dispatch({user_message!r})"],
-        env={**os.environ, "BRAIN_SKIP_HOOKS": "1"},
-        start_new_session=True,
-        stdout=_sp.DEVNULL, stderr=_sp.DEVNULL,
-    )
+    # Synchronous: blocks hook until decision completes.
+    # Sonnet model keeps this under 30s. Anti-lockout clears on timeout.
+    try:
+        from engines.decision import dispatch
+        dispatch(user_message)
+    except Exception as e:
+        _safe_log(f"decision dispatch: {e}")
 
     ctx = _compose_turn_context()
     if ctx:

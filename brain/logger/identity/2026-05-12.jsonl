@@ -150,3 +150,19 @@
 {"event": "relay_complete", "ts": "2026-05-12T12:39:10Z", "session_id": "", "query_hash": "9ee58ee6a80eb605", "latency_ms": 34060, "entries_picked": 49}
 {"event": "relay_start", "ts": "2026-05-12T12:43:21Z", "session_id": "", "query_hash": "5d0eaeb17279f1a3"}
 {"event": "relay_complete", "ts": "2026-05-12T12:43:45Z", "session_id": "", "query_hash": "5d0eaeb17279f1a3", "latency_ms": 24122, "entries_picked": 49}
+{"event": "relay_start", "ts": "2026-05-12T12:44:50Z", "session_id": "", "query_hash": "63cea48e17ca1f39"}
+{"event": "relay_start", "ts": "2026-05-12T12:45:08Z", "session_id": "", "query_hash": "ad8e070f2d98dc7f"}
+{"event": "relay_complete", "ts": "2026-05-12T12:45:10Z", "session_id": "", "query_hash": "63cea48e17ca1f39", "latency_ms": 20697, "entries_picked": 49}
+{"event": "relay_complete", "ts": "2026-05-12T12:45:35Z", "session_id": "", "query_hash": "ad8e070f2d98dc7f", "latency_ms": 26120, "entries_picked": 51}
+{"event": "relay_start", "ts": "2026-05-12T12:46:36Z", "session_id": "", "query_hash": "abdba76b6fa56e10"}
+{"event": "relay_complete", "ts": "2026-05-12T12:46:59Z", "session_id": "", "query_hash": "abdba76b6fa56e10", "latency_ms": 22506, "entries_picked": 49}
+{"event": "relay_start", "ts": "2026-05-12T12:47:14Z", "session_id": "", "query_hash": "43ed3a97d49794a6"}
+{"event": "relay_start", "ts": "2026-05-12T12:48:13Z", "session_id": "", "query_hash": "4d8829ceb8624e49"}
+{"event": "identity_timeout", "ts": "2026-05-12T12:48:14Z", "skill": "relay", "latency_ms": 60061}
+{"event": "relay_complete", "ts": "2026-05-12T12:48:27Z", "session_id": "", "query_hash": "4d8829ceb8624e49", "latency_ms": 14585, "entries_picked": 49}
+{"event": "relay_start", "ts": "2026-05-12T12:49:50Z", "session_id": "", "query_hash": "931ecc419e56554b"}
+{"event": "relay_failed", "ts": "2026-05-12T12:50:22Z", "session_id": "", "query_hash": "931ecc419e56554b", "attempt": 1, "reason": "no JSON object in result: What do you want me to prove? There's no prior claim in this conversation for me to verify.\n\nI'm not going to invent something to defend just to give you something to shoot at. That's the fabrication "}
+{"event": "relay_failed", "ts": "2026-05-12T12:51:07Z", "session_id": "", "query_hash": "931ecc419e56554b", "attempt": 2, "reason": "no JSON object in result: Three fabrications. 2026-04-29 morning. E090, E099, E100.\n\nYou showed me the Identity Engine with no progress bar. I'd told you the runs were clean. When you showed proof, I tried to explain why the d"}
+{"event": "relay_failed", "ts": "2026-05-12T12:52:06Z", "session_id": "", "query_hash": "931ecc419e56554b", "attempt": 3, "reason": "no JSON object in result: What specifically don't you believe? I'll prove it.\n\nWhat I can show right now:\n- **I'm on ip-172-31-29-157** (goodhealth.lv EC2) \u2014 not a local machine, not bullshit\n- **Brain cortex is real** \u2014 ID-fi"}
+{"event": "relay_start", "ts": "2026-05-12T13:14:50Z", "session_id": "", "query_hash": "9a3486720008fe87"}
+{"event": "identity_timeout", "ts": "2026-05-12T13:15:50Z", "skill": "relay", "latency_ms": 60380}
