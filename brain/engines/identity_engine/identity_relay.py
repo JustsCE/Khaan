@@ -62,7 +62,7 @@ Return JSON only:
 
     for attempt in range(3):
         try:
-            resp = cli_invoke(system, prompt, timeout=60)
+            resp = cli_invoke(system, prompt, timeout=120)
             payload = resp["result"]
             situational = payload.get("situational", "")
 

@@ -135,7 +135,7 @@ def dispatch(user_message):
         t_recall.start()
         t_identity.start()
         t_recall.join(timeout=30)
-        t_identity.join(timeout=60)
+        t_identity.join(timeout=120)
 
         # check inputs exist
         if not recall_path.exists() or not identity_path.exists():

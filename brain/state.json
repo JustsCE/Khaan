@@ -1,15 +1,15 @@
 {
   "fsm": "NORMAL",
-  "message_counter": 307,
-  "last_brain_update": 307,
-  "active_decision_nonce": null,
-  "last_decision_start_ts": 1778595773.253,
+  "message_counter": 312,
+  "last_brain_update": 312,
+  "active_decision_nonce": "157907fea384ed94d55d1cff4ac28ef5",
+  "last_decision_start_ts": 1778597512.416085,
   "decision_consecutive_failures": 0,
   "active_cycle_nonce": null,
   "escalation_count": 0,
   "last_session_start": null,
   "last_transition": null,
-  "last_cycle_end_ts": 1778595967.698261,
+  "last_cycle_end_ts": 1778597573.1429975,
   "last_cycle_outcome": "success",
   "bypass_expiry": {}
 }
