@@ -152,3 +152,4 @@
 {"event": "decision_dispatch", "ts": "2026-05-12T12:39:10Z", "query_hash": "9ee58ee6a80eb605", "sources_hash": "f688998907077fd9:34c00dfab2031c22", "model": "claude-cli", "system_prompt_hash": "662dd57fc909e9ff"}
 {"event": "subagent_complete", "ts": "2026-05-12T12:40:28Z", "query_hash": "9ee58ee6a80eb605", "subagent_id": "decision-0", "status": "returned", "latency_ms": 77714}
 {"event": "handoff", "ts": "2026-05-12T12:40:28Z", "query_hash": "9ee58ee6a80eb605", "payload_chars": 9330, "all_5_present": true}
+{"event": "decision_dispatch", "ts": "2026-05-12T12:43:45Z", "query_hash": "5d0eaeb17279f1a3", "sources_hash": "4268e62b132bc73b:f8f46360d08d0fb2", "model": "claude-cli", "system_prompt_hash": "662dd57fc909e9ff"}
