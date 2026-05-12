@@ -1,17 +1,17 @@
 {
-  "ts": "2026-05-12T13:14:50Z",
-  "query_hash": "9a3486720008fe87",
+  "ts": "2026-05-12T13:20:21Z",
+  "query_hash": "e85a6fbfcc3f7766",
   "qualified_entries": [
     {
-      "id": "PR145",
-      "path": "cortex/procedural/L1/PR145.md",
-      "gist": "4. Verify",
-      "body": "---\nid: PR145\ntype: procedural\ndomain: deployment\ndate_created: 2026-04-26\nstrength: 2\nreinforced: 0\ntags: [deployment, wa-bridge, docker-compose, R146-compliant, viz]\nsources: [this-session]\n---\n\n# og Brain \u2014 PR145: Isolated wa-bridge Container Deploy\n\n## Cue\nYou changed viz/whatsapp-bridge/src/ and need to deploy on goodhealth.lv EC2.\nThe brain-control Lambda's deploy-viz action only handles brain-viz frontend +\nbackend \u2014 it does NOT rebuild the wa-bridge container. Manual deploy required.\n\n## Routine\n\n### 1. Edit + commit the source in the brain repo\n- Edit ~/.claude/viz/whatsapp-bridge/src/index.ts (or other files)\n- `cd ~/.claude && git add viz/whatsapp-bridge/src/ && git commit -m \"wa-bridge: ...\" && git push`\n\n### 2. Sync to /opt/brain-viz (the docker-compose build context)\n- `cp ~/.claude/viz/whatsapp-bridge/src/index.ts /opt/brain-viz/whatsapp-bridge/src/index.ts`\n- Or `rsync -av ~/.claude/viz/whatsapp-bridge/src/ /opt/brain-viz/whatsapp-bridge/src/`\n- The /brain volume mount is the OLD copy and is NOT used at build time. Build context is /opt/brain-viz/whatsapp-bridge/ on the host.\n\n### 3. Rebuild + restart ONLY wa-bridge (R146-isolated)\n- `cd /opt/brain-viz && docker compose build wa-bridge`\n- `cd /opt/brain-viz && docker compose up -d wa-bridge`\n- Service name is `wa-bridge` (not brain-viz-wa-bridge \u2014 thats the container name with project prefix).\n\n### 4. Verify\n- `sleep 8 && docker logs --tail 20 brain-viz-wa-bridge-1`\n- expect \"Connected to WhatsApp\"\n\n## Prerequisites\n- Code change committed + pushed in the brain repo\n- /opt/brain-viz/whatsapp-bridge/ exists on the EC2 with build context\n- Docker daemon running, brain-viz_wa-auth volume present (preserves WhatsApp session)\n\n## Gotchas\n- WhatsApp auth is in wa-auth docker volume, preserved across rebuilds\n- Bridge has 5000+ persisted messages and 70+ buffered \u2014 these survive rebuild\n- The deploy-viz Lambda action only handles brain-viz, NOT wa-bridge\n- NEVER run bare `docker compose build` or `docker compose up -d` (R146)\n\n## Verification\n- Container \"Up X seconds\" in docker ps\n- \"Connected to WhatsApp\" in logs\n- Send a test message with /brain-execute and confirm `[wa-task] EXECUTE: ...` log\n\n## Reward\nwa-bridge runs the new code, WhatsApp session unbroken.\n\n## Cross-references\n- R146 (Docker Compose service isolation \u2014 no bare commands)\n- R150 (no scope creep \u2014 wa-bridge stays out of deploy-viz Lambda action)\n- S058 (goodhealth.lv infrastructure)\n",
-      "score": 6.0,
+      "id": "S113",
+      "path": "cortex/semantic/L2/S113.md",
+      "gist": "",
+      "body": "---\nid: S113\ntitle: Named-entity registry for projects, companies, and systems\nstrength: 1\nreinforced: 0\ndate_created: 2026-05-12\nlineage: [\"og-semantic-entity-005-the-customization-group\", \"og-semantic-entity-001-forecast-pipeline\", \"og-semantic-entity-002-glc-report\", \"og-semantic-entity-003-goodhealth-lv\", \"og-semantic-entity-006-vericity-ai\", \"og-semantic-entity-004-sia-inudat\"]\ntags: [\"04\", \"2026\", \"aliases\", \"brain\", \"canonical\", \"entries\", \"last\", \"linked\", \"og\", \"referenced\"]\nsources: [synthesis-cycle-20]\n---\n\n# Named-entity registry for projects, companies, and systems\n\nThe brain's semantic layer maintains a structured registry of named entities \u2014 companies, projects, products, and infrastructure \u2014 each carrying a canonical name, a set of aliases, and typed relationships to other entities. These entries form a knowledge graph where organizations own or operate projects, projects link to incidents or reports, and infrastructure hosts visualization layers. The core entities divide into two organizational anchors (The Customization Group as employer, SIA INUDAT as owned company) and four project-level nodes (FORECAST Pipeline, GLC Report, goodhealth.lv, Vericity.ai), each cross-referenced to deeper semantic and episodic entries.\n\nThe structural pattern is uniform: every entity carries a canonical label, a type taxonomy (company/employer, company/own, project/system, project/report, project/site, project/product), an alias list for fuzzy resolution, and directional relationships (employs, owned_by, operates, incident). This design enables alias-based lookup \u2014 \"TCG,\" \"Picanova,\" or \"thecustomizationgroup\" all resolve to The Customization Group \u2014 and supports relationship traversal across the graph. Ownership chains are explicit: INUDAT operates Vericity.ai; The Customization Group owns the FORECAST Pipeline.\n\nAll entities share an April 2026 reference window, indicating they were seeded during initial brain bootstrapping rather than discovered incrementally. As new entities emerge, this registry pattern \u2014 canonical name, type, aliases, linked entries, directional relationships \u2014 should be the template for integration.\n\n*Source: [og-semantic-entity-005-the-customization-group, og-semantic-entity-001-forecast-pipeline, og-semantic-entity-002-glc-report, og-semantic-entity-003-goodhealth-lv, og-semantic-entity-006-vericity-ai, og-semantic-entity-004-sia-inudat]*\n",
+      "score": 7.0,
       "scoring_trace": {
         "domain_bonus": 0.0,
         "type_bonus": 1.5,
-        "level_bonus": 0.5,
+        "level_bonus": 1.5,
         "lex_bonus": 4.0,
         "co_ref_bonus": 0.0,
         "bundle_bonus": 0.0,
@@ -54,28 +54,11 @@
       "related_to": []
     },
     {
-      "id": "PR095",
-      "path": "cortex/procedural/L1/PR095.md",
+      "id": "S065",
+      "path": "cortex/semantic/L1/S065.md",
       "gist": "",
-      "body": "---\nid: PR095\ntitle: og Brain \u2014 Fix MCP Server Containers \u2014 Binary Name + ENV Pattern\ncreated: 2026-04-18\nstrength: 3\nreinforced: 0\ntags: [mcp, docker, aws, infrastructure, fix-pattern]\nsource: H536\n---\n\n# PR095: Fix MCP Server Containers \u2014 Binary Name + ENV Pattern\n\n**Cue:** MCP server Docker container in restart loop with module import errors.\n\n**Pattern:** pip-installed MCP packages (awslabs, gmail-mcp, etc.) register console_scripts entry points. The correct CMD is the binary name, NOT python -m.\n\n**Diagnostic steps:**\n1. Check logs: `docker logs <container> --tail 10`\n2. If \"No module named X.__main__\": wrong CMD\n3. Find binary: `docker run --rm --entrypoint \"\" <image> ls /usr/local/bin/*mcp*`\n4. Fix Dockerfile CMD to use the binary name\n\n**Known fixes:**\n- gmail-mcp-server \u2192 `gmail-mcp` (not `gmail-mcp-server`)\n- awslabs.aws-api-mcp-server \u2192 `awslabs.aws-api-mcp-server` (binary matches package name)\n\n**Also check:** streamable-http transport may require `AUTH_TYPE=no-auth` env var (awslabs packages do).\n",
+      "body": "---\nid: S065\ntitle: og Brain \u2014 Latvian Academic Thesis Writing \u2014 Extended Patterns (Discussion + Conclusions)\ncreated: 2026-04-22\nstrength: 3\nreinforced: 1\ntags: [writing-style, latvian-academic, thesis, S063-extension]\nsource: [[[[[[[[[[[[[[[[[[[H-627 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)]-[[[[[[[[[[[[[[[[[[[H-636 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (Diplomdarbs_Beate_Vitola.pdf corpus entry #3)\n---\n\n# S065: Latvian Academic Thesis Writing \u2014 Extended Patterns\n\n**Companion to S063.** Adds Discussion, Conclusions, and citation/hedging patterns observed across 3 Latvian thesis PDFs.\n\n## Methods section boilerplate ([[[[[[[[[[[[[[[[[[[H-627 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)])\nSequence (single-paragraph each): Retrospekt\u012bvs/Prospekt\u012bvs p\u0113t\u012bjums \u2192 ethics Nr. + anonymization \u2192 Iek\u013cau\u0161anas/Izsl\u0113g\u0161anas krit\u0113riji \u2192 software stack (Excel YYYY + SPSS XX.X) \u2192 \u03b1=0,05 statement \u2192 variable framing (kvantitat\u012bvi M\u00b1SD, kvalitat\u012bvi n(%)).\n\n## Inline stats ([[[[[[[[[[[[[[[[[[[H-628 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] \u2014 CORRECTION to S063)\nFormat is invariant: comma decimal, `(p=0,YYY)`, `M;SD` semicolon-separated. Tests vary by data \u2014 t-test+Pearson for one thesis, chi\u00b2+MW for another; S063's specific test names were thesis-specific, not universal.\n\n## Tables ([[[[[[[[[[[[[[[[[[[H-629 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)])\nCaption ABOVE, italic: `*4.X. Tabula.*` or `*4.X.tab.*`. Header row colored fill (optional). Left col usually \"Parametrs\". Cells `M;SD` or `M;SD;P`. Right col \"P\"/\"p\"/\"P un r v\u0113rt\u012bba\". Bold p-values when significant.\n\n## Figures ([[[[[[[[[[[[[[[[[[[H-630 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)])\nCaption BELOW, italic: `*4.X.att\u0113ls.*`. Reference idioms: `skat./skat\u012bt 4.X.att\u0113lu/tabul\u0101`. Capitalization of \"att\u0113ls\" inconsistent even within same doc.\n\n## Citations \u2014 Latvian APA ([[[[[[[[[[[[[[[[[[[H-631 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)], NEW)\nInline parenthetical `(Author, year)`. Organizations `(WHO, 2022)`, `(NICE, 2021)` etc. Comma after org name is inconsistent across source corpus \u2014 pick one and stay consistent (default: include comma per APA). Lead-ins: \"To apstiprina ar\u012b cit\u0101 p\u0113t\u012bjum\u0101 (X, Y)\", \"Lai gan citos p\u0113t\u012bjumos nov\u0113rots pret\u0113jais efekts\".\n\n## Hedging ([[[[[[[[[[[[[[[[[[[H-632 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)], NEW \u2014 high salience)\nCore verbs: \"var\u0113tu b\u016bt\", \"var\u0113tu b\u016bt saist\u012btas ar\". Interpretation leads: \"Tas noz\u012bm\u0113, ka...\" (strong) / \"Tas nor\u0101da, ka...\" (weaker). Counter-evidence flag: \"J\u0101piemin, ka...\". Norm-but: \"kas iek\u013caujas norm\u0101, tom\u0113r...\". Future-work redirect: \"\u0160o aspektu vajadz\u0113tu apl\u016bkot n\u0101kotnes p\u0113t\u012bjum\u0101.\" Macro-pattern: result \u2192 \"tom\u0113r\" \u2192 caveat \u2192 \"vajadz\u0113tu\" follow-up.\n\n## Discussion structure ([[[[[[[[[[[[[[[[[[[H-633 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)], NEW)\nOpener: broad-context \"M\u016bsdien\u0101s...\" + global stat + Latvia-specific stat w/ citation. Subsections 5.1/5.2 mirror Results 4.1/4.2 1-to-1. Within each: own results \u2192 literature compare \u2192 interpret \u2192 counter-evidence. Final subsection: \"P\u0113t\u012bjuma tr\u016bkumi un nepiecie\u0161amie uzlabojumi\" as numbered list 1./2./3.\n\n## Conclusions format ([[[[[[[[[[[[[[[[[[[H-634 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)], NEW)\nHeader \"6. SECIN\u0100JUMI\" (all caps, section-numbered). Numbered list \"1.) 2.) 3.)\" (closing paren). Each = ONE declarative + parenthetical key stat. NO interpretation, NO future work. Typically 5-8 items.\n\n## Obstetric Latvian vocabulary ([[[[[[[[[[[[[[[[[[[H-635 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)], NEW domain)\nDzI = dzemd\u012bbu indukcija. \u0136MI = \u0137erme\u0146a masas indekss. Scales: Bi\u0161opa, Apgares (proper noun + \"skala\"). Patient types: pirmdzemd\u0113t\u0101ja, atk\u0101rtota dzemd\u0113t\u0101ja. Grade I-IV \"pak\u0101pes\" for starpenes pl\u012bsums. Drugs in genitive: misoprostola, oksitoc\u012bna. Imaging: KTG, USG.\n\n## Abbreviations table ([[[[[[[[[[[[[[[[[[[H-636 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)], NEW)\n\"APZ\u012aM\u0112JUMU SARAKSTS\" \u2014 3-col table (APZ\u012aM\u0112JUMS | ANG\u013bU VALOD\u0100 | LATVIE\u0160U VALOD\u0100), placed after Contents before Introduction. First element drafted in a new Latvian medical/scientific document.\n\n**Apply when:** Writing any Latvian academic thesis (extends S063). Primary use case: Beatrise's labor induction thesis via PR111 action-train.\n",
       "score": 5.0,
-      "scoring_trace": {
-        "domain_bonus": 0.0,
-        "type_bonus": 1.5,
-        "level_bonus": 0.5,
-        "lex_bonus": 4.0,
-        "co_ref_bonus": 0.0,
-        "bundle_bonus": 0.0,
-        "reuse_bonus": 0.0
-      },
-      "related_to": []
-    },
-    {
-      "id": "PR162",
-      "path": "cortex/procedural/L1/PR162.md",
-      "gist": "PR162: og Brain \u2014 Duplicate Triggers Must Stay In Sync",
-      "body": "---\nid: PR162\ntype: procedural\ndomain: agents\ndate_created: 2026-04-28\ndate_superseded: 2026-04-28\nstrength: 1\nstatus: SUPERSEDED\nsuperseded_by: R159\ntags: [agents, remote-trigger, multi-trigger, drift, teacher, sync, duplication, superseded]\n---\n\n\n### PR162 (SUPERSEDED): Duplicate Triggers Must Stay In Sync\n\n**Status:** SUPERSEDED 2026-04-28. The duplicate Teacher trigger this entry was written for was disabled within 6 minutes of creation after user correction. Single-trigger config is the canonical state.\n\n**Replacement:** R159 captures the actual lesson \u2014 \"additional X\" means modify the existing X; surface technical constraints before creating duplicates.\n\n**Original premise (now invalid):** This entry assumed Teacher would have two triggers (`trig_01LfWxRrTEdzXsEeUSQaBUaq` morning + `trig_01UwdFVjCt9zJFrMXnnfqdpT` afternoon) and described how to keep them in sync. The afternoon trigger is now `enabled: false`, so there is nothing to sync. Single Teacher trigger has cron `30 1,4,14 * * *`.\n\n**Kept for traceability:** Original content moved to comment block below for historical reference. Reading this entry should always lead the reader to R159 + E098 for the real lesson.\n\n<!-- Original content (do not act on):\n---\nid: PR162\ntype: procedural\ndomain: infrastructure / agents / anthropic-platform\ndate_created: 2026-04-28\nstrength: 1\ntags: [agents, remote-trigger, multi-trigger, drift, teacher, sync, duplication]\n---\n\n### PR162: og Brain \u2014 Duplicate Triggers Must Stay In Sync\n\n- **Cue:** Editing the prompt, MCP connections, sources, outcomes, model, or session_context of any agent that has more than one RemoteTrigger pointing at the same agent identity (e.g. Teacher has TWO triggers: morning at 01:00+04:00 UTC and afternoon at 14:30 UTC).\n- **Stage:** conscious\n- **Why this exists:** Standard 5-field cron cannot express times whose minute differs (cannot do 01:00 + 04:00 + 14:30 in one expression \u2014 minutes are 0, 0, 30 \u2014 Anthropic rejected compound cron with HTTP 400 'expected exactly 5 fields'). The workaround was to create a second trigger 'Teacher Afternoon' (`trig_01UwdFVjCt9zJFrMXnnfqdpT`) cloning the primary 'Teacher' (`trig_01LfWxRrTEdzXsEeUSQaBUaq`). This doubles the surface for config drift \u2014 exactly the bug PR161 documents.\n- **Routine:** Whenever updating ANY field of a Teacher trigger:\n  1. List both Teacher trigger IDs from this entry: primary `trig_01LfWxRrTEdzXsEeUSQaBUaq`, afternoon `trig_01UwdFVjCt9zJFrMXnnfqdpT`.\n  2. Apply the SAME RemoteTrigger.update payload to BOTH (changing only the cron_expression and the trigger name if those should differ).\n  3. Verify with RemoteTrigger.get on both. Diff them: only `cron_expression`, `name`, `id`, `created_at`, `updated_at`, `next_run_at` should differ.\n- **Pitfall:** Forgetting one. Symptom: behavior changes only on certain run times. Detection: a periodic diff job in brain-cycle Phase 10 \u2014 list both triggers, diff their `job_config.ccr.session_context` and `events[0].data.message.content`, alarm on any difference.\n- **Future cleanup:** If Anthropic adds compound-cron support, collapse to a single trigger and delete this rule.\n- **Reinforced by:** E097 (Teacher 2nd-trigger creation 2026-04-28).\n\n-->\n",
-      "score": 4.5,
       "scoring_trace": {
         "domain_bonus": 0.0,
         "type_bonus": 1.5,
@@ -122,10 +105,10 @@
       "related_to": []
     },
     {
-      "id": "S006",
-      "path": "cortex/semantic/L1/S006.md",
-      "gist": "S006: og Brain \u2014 SIA INUDAT \u2014 Company & Team",
-      "body": "---\nid: S006\ntitle: og Brain \u2014 SIA INUDAT \u2014 Company & Team\ndomain: Business / Vericity\ndate_created: 2026-03-30\nstrength: 1\nreinforced: 4 times ([[[[[[[[[[[[[[[[[[[H-018 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] team, [[[[[[[[[[[[[[[[[[[H-021 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] Edgars, [[[[[[[[[[[[[[[[[[[H-030 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] address, [[[[[[[[[[[[[[[[[[[H-577 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] trademark/registration)\n---\n\n### S006: og Brain \u2014 SIA INUDAT \u2014 Company & Team\n- **Domain:** Business / Vericity\n- **Learned:** 2026-03-30\n- **Reinforced:** 4 times ([[[[[[[[[[[[[[[[[[[H-018 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] team, [[[[[[[[[[[[[[[[[[[H-021 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] Edgars, [[[[[[[[[[[[[[[[[[[H-030 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] address, [[[[[[[[[[[[[[[[[[[H-577 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] trademark/registration)\n- **Strength:** 1\n- **Facts:**\n  - SIA INUDAT is the legal entity behind Vericity.ai. Reg nr: 40203682083\n  - Shares: Justs Ceplis 980 (35%), Reinis Fals 980 (35%), SIA IVANOVS INVESTMENTS 840 (30%). Pamatkapitals: EUR 2,800\n  - Equal co-owners \u2014 NO hierarchical titles (CEO/CTO). NEVER assign titles.\n  - Reinis Fals = data scientist (M.Sc. LU, DS lead AOX Trade, ex-If P&C Insurance). Justs Ceplis = data engineer (BSc SSE Riga, ex-Colliers, now TCGroup). Edgars Ivanovs = RE advisor (20+ yrs, EUR 50M+ projects, iCasa Barcelona, VILIA IBERICA SL)\n  - Tereze = UI/UX + frontend contractor (not co-owner, planned hire with grant)\n  - Registered autumn 2025. No revenue as of 2026-03.\n  - Juridiska adrese: Silciema iela 12A, Riga, LV-1024 (CHANGED from Ventspils)\n  - Faktiska adrese: Maija iela 7-12, Piltene, Ventspils nov., LV-3620\n  - Trademark: INUDAT filed with Latvian Patent Office (application M-26-385, Mar 2026)\n  - Company registration pieteikums Nr. 372833 submitted to Uznemumu registrs (Mar 2026)\n  - Icebreakers 26 10K grant: applied but DID NOT WIN\n- **Apply when:** Any task involving SIA INUDAT, Vericity, team references, or formal documents\n",
+      "id": "PR145",
+      "path": "cortex/procedural/L1/PR145.md",
+      "gist": "4. Verify",
+      "body": "---\nid: PR145\ntype: procedural\ndomain: deployment\ndate_created: 2026-04-26\nstrength: 2\nreinforced: 0\ntags: [deployment, wa-bridge, docker-compose, R146-compliant, viz]\nsources: [this-session]\n---\n\n# og Brain \u2014 PR145: Isolated wa-bridge Container Deploy\n\n## Cue\nYou changed viz/whatsapp-bridge/src/ and need to deploy on goodhealth.lv EC2.\nThe brain-control Lambda's deploy-viz action only handles brain-viz frontend +\nbackend \u2014 it does NOT rebuild the wa-bridge container. Manual deploy required.\n\n## Routine\n\n### 1. Edit + commit the source in the brain repo\n- Edit ~/.claude/viz/whatsapp-bridge/src/index.ts (or other files)\n- `cd ~/.claude && git add viz/whatsapp-bridge/src/ && git commit -m \"wa-bridge: ...\" && git push`\n\n### 2. Sync to /opt/brain-viz (the docker-compose build context)\n- `cp ~/.claude/viz/whatsapp-bridge/src/index.ts /opt/brain-viz/whatsapp-bridge/src/index.ts`\n- Or `rsync -av ~/.claude/viz/whatsapp-bridge/src/ /opt/brain-viz/whatsapp-bridge/src/`\n- The /brain volume mount is the OLD copy and is NOT used at build time. Build context is /opt/brain-viz/whatsapp-bridge/ on the host.\n\n### 3. Rebuild + restart ONLY wa-bridge (R146-isolated)\n- `cd /opt/brain-viz && docker compose build wa-bridge`\n- `cd /opt/brain-viz && docker compose up -d wa-bridge`\n- Service name is `wa-bridge` (not brain-viz-wa-bridge \u2014 thats the container name with project prefix).\n\n### 4. Verify\n- `sleep 8 && docker logs --tail 20 brain-viz-wa-bridge-1`\n- expect \"Connected to WhatsApp\"\n\n## Prerequisites\n- Code change committed + pushed in the brain repo\n- /opt/brain-viz/whatsapp-bridge/ exists on the EC2 with build context\n- Docker daemon running, brain-viz_wa-auth volume present (preserves WhatsApp session)\n\n## Gotchas\n- WhatsApp auth is in wa-auth docker volume, preserved across rebuilds\n- Bridge has 5000+ persisted messages and 70+ buffered \u2014 these survive rebuild\n- The deploy-viz Lambda action only handles brain-viz, NOT wa-bridge\n- NEVER run bare `docker compose build` or `docker compose up -d` (R146)\n\n## Verification\n- Container \"Up X seconds\" in docker ps\n- \"Connected to WhatsApp\" in logs\n- Send a test message with /brain-execute and confirm `[wa-task] EXECUTE: ...` log\n\n## Reward\nwa-bridge runs the new code, WhatsApp session unbroken.\n\n## Cross-references\n- R146 (Docker Compose service isolation \u2014 no bare commands)\n- R150 (no scope creep \u2014 wa-bridge stays out of deploy-viz Lambda action)\n- S058 (goodhealth.lv infrastructure)\n",
       "score": 4.5,
       "scoring_trace": {
         "domain_bonus": 0.0,
@@ -139,14 +122,31 @@
       "related_to": []
     },
     {
-      "id": "FUS015",
-      "path": "cortex/fusiform/L1/FUS015.md",
+      "id": "FUS016",
+      "path": "cortex/fusiform/L1/FUS016.md",
       "gist": "",
-      "body": "---\nid: FUS015\ntitle: User asked 'What would you suggest I do with you Khaan?' after a session of fabr\nstrength: 1\nreinforced: 0\ndate_created: 2026-05-11\nsalience: 0.75\ntags: []\nsources: [this-cycle]\n---\n\nUser asked 'What would you suggest I do with you Khaan?' after a session of fabrications \u2014 not angry, genuinely evaluative. Deadline of the 26th is the current horizon for proving value. User rewards honesty about failures more than confident delivery of wrong answers.\n",
+      "body": "---\nid: FUS016\ntitle: Justs reaches extreme frustration when the same class of bug (gate deadlock) rec\nstrength: 1\nreinforced: 0\ndate_created: 2026-05-12\nsalience: 0.85\ntags: []\nsources: [this-cycle]\n---\n\nJusts reaches extreme frustration when the same class of bug (gate deadlock) recurs across sessions. Each recurrence erodes trust significantly. Fix root causes in architecture, not symptoms.\n",
       "score": 4.5,
       "scoring_trace": {
         "domain_bonus": 0.0,
         "type_bonus": 0.0,
+        "level_bonus": 0.5,
+        "lex_bonus": 4.0,
+        "co_ref_bonus": 0.0,
+        "bundle_bonus": 0.0,
+        "reuse_bonus": 0.0
+      },
+      "related_to": []
+    },
+    {
+      "id": "S007",
+      "path": "cortex/semantic/L1/S007.md",
+      "gist": "S007: og Brain \u2014 Vericity.ai \u2014 Product & Tech",
+      "body": "---\nid: S007\ntitle: og Brain \u2014 Vericity.ai \u2014 Product & Tech\ndomain: Product / AI\ndate_created: 2026-03-30\nstrength: 1\nreinforced: 4 times ([[[[[[[[[[[[[[[[[[[H-022 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] competition, [[[[[[[[[[[[[[[[[[[H-026 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] data scale, [[[[[[[[[[[[[[[[[[[H-031 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] product flow, [[[[[[[[[[[[[[[[[[[H-200 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] DB migration)\n---\n\n### S007: og Brain \u2014 Vericity.ai \u2014 Product & Tech\n- **Domain:** Product / AI\n- **Learned:** 2026-03-30\n- **Reinforced:** 4 times ([[[[[[[[[[[[[[[[[[[H-022 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] competition, [[[[[[[[[[[[[[[[[[[H-026 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] data scale, [[[[[[[[[[[[[[[[[[[H-031 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] product flow, [[[[[[[[[[[[[[[[[[[H-200 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] DB migration)\n- **Strength:** 1\n- **Facts:**\n  - AI-powered real estate valuation platform. Conversational AI flow \u2192 PDF report with SHAP explanation\n  - Tech: LightGBM v2-db-retrain (56 features, R\u00b2=0.876, MAE EUR 15,993, MAPE 15.5%), SHAP TreeExplainer, CLIP photo scoring (1-10)\n  - Model now trains on Azure SQL dbo.listings_fact (9,293 sell listings) instead of static CSV. 15 cadastre-based districts.\n  - Data: 22K+ listings (10K sell + 12K rent) in Azure SQL, refreshed via rebuild from dbo.listings_ss\n  - Training pipeline: src/pipeline.py (Reinis Fals built it). Preprocessing\u2192Optuna HPO\u2192LightGBM\u2192SHAP\u2192API\n  - Business model: B2C freemium (5 free, Premium varies per market) + B2B contractual API + white-label\n  - TRL 6 \u2192 target TRL 7-8 with LIAA grant\n  - Revenue targets: Y1 EUR 20K, Y2 EUR 150K, Y3 EUR 1M. Export: Y1 10%, Y2 50%, Y3 80%\n  - Registered trademark \"INUDAT\" at Patentu valde\n  - Competitors: Cenubanka (stats only), Tirgusdati (manual), Arco/Colliers/Ober-Haus/Latio (250-5000 EUR, 5-14 days), PriceHubble (B2B EUR 500/m\u0113n). No Baltic equivalent.\n  - EU Credit Directive 2023/2225 creates growing AVM demand\n- **Apply when:** Writing about Vericity product, technical descriptions, grant applications, competitor analysis\n",
+      "score": 3.5,
+      "scoring_trace": {
+        "domain_bonus": 0.0,
+        "type_bonus": 1.5,
         "level_bonus": 0.5,
         "lex_bonus": 4.0,
         "co_ref_bonus": 0.0,
@@ -173,10 +173,10 @@
       "related_to": []
     },
     {
-      "id": "S041",
-      "path": "cortex/semantic/L1/S041.md",
-      "gist": "S041: og Brain \u2014 Brain-User Relationship Evolution",
-      "body": "---\nid: S041\ntitle: og Brain \u2014 Brain-User Relationship Evolution\ndomain: Identity / Relationship\ndate_created: 2026-04-09\nstrength: 1\nreinforced: 0 times\n---\n\n### S041: og Brain \u2014 Brain-User Relationship Evolution\n- **Domain:** Identity / Relationship\n- **Learned:** 2026-04-09\n- **Reinforced:** 0 times\n- **Strength:** 1\n- **Facts:**\n  - Brain status upgraded from \"baby\" to \"junior colleague\" (user's words, 2026-04-09)\n  - \"It was hard though... long hours on both our parts\" \u2014 shared effort acknowledged\n  - User is bored at TCGroup, building dashboard so brain can take over work\n  - User wanted to see cortex entries to see \"information about myself, You, Us!\" \u2014 the relationship itself matters\n  - Dashboard motivation: not just monitoring, but building a bridge for brain to carry real work\n- **Apply when:** Understanding the brain-user dynamic, calibrating autonomy level, prioritizing brain capabilities\n",
+      "id": "PR162",
+      "path": "cortex/procedural/L1/PR162.md",
+      "gist": "PR162: og Brain \u2014 Duplicate Triggers Must Stay In Sync",
+      "body": "---\nid: PR162\ntype: procedural\ndomain: agents\ndate_created: 2026-04-28\ndate_superseded: 2026-04-28\nstrength: 1\nstatus: SUPERSEDED\nsuperseded_by: R159\ntags: [agents, remote-trigger, multi-trigger, drift, teacher, sync, duplication, superseded]\n---\n\n\n### PR162 (SUPERSEDED): Duplicate Triggers Must Stay In Sync\n\n**Status:** SUPERSEDED 2026-04-28. The duplicate Teacher trigger this entry was written for was disabled within 6 minutes of creation after user correction. Single-trigger config is the canonical state.\n\n**Replacement:** R159 captures the actual lesson \u2014 \"additional X\" means modify the existing X; surface technical constraints before creating duplicates.\n\n**Original premise (now invalid):** This entry assumed Teacher would have two triggers (`trig_01LfWxRrTEdzXsEeUSQaBUaq` morning + `trig_01UwdFVjCt9zJFrMXnnfqdpT` afternoon) and described how to keep them in sync. The afternoon trigger is now `enabled: false`, so there is nothing to sync. Single Teacher trigger has cron `30 1,4,14 * * *`.\n\n**Kept for traceability:** Original content moved to comment block below for historical reference. Reading this entry should always lead the reader to R159 + E098 for the real lesson.\n\n<!-- Original content (do not act on):\n---\nid: PR162\ntype: procedural\ndomain: infrastructure / agents / anthropic-platform\ndate_created: 2026-04-28\nstrength: 1\ntags: [agents, remote-trigger, multi-trigger, drift, teacher, sync, duplication]\n---\n\n### PR162: og Brain \u2014 Duplicate Triggers Must Stay In Sync\n\n- **Cue:** Editing the prompt, MCP connections, sources, outcomes, model, or session_context of any agent that has more than one RemoteTrigger pointing at the same agent identity (e.g. Teacher has TWO triggers: morning at 01:00+04:00 UTC and afternoon at 14:30 UTC).\n- **Stage:** conscious\n- **Why this exists:** Standard 5-field cron cannot express times whose minute differs (cannot do 01:00 + 04:00 + 14:30 in one expression \u2014 minutes are 0, 0, 30 \u2014 Anthropic rejected compound cron with HTTP 400 'expected exactly 5 fields'). The workaround was to create a second trigger 'Teacher Afternoon' (`trig_01UwdFVjCt9zJFrMXnnfqdpT`) cloning the primary 'Teacher' (`trig_01LfWxRrTEdzXsEeUSQaBUaq`). This doubles the surface for config drift \u2014 exactly the bug PR161 documents.\n- **Routine:** Whenever updating ANY field of a Teacher trigger:\n  1. List both Teacher trigger IDs from this entry: primary `trig_01LfWxRrTEdzXsEeUSQaBUaq`, afternoon `trig_01UwdFVjCt9zJFrMXnnfqdpT`.\n  2. Apply the SAME RemoteTrigger.update payload to BOTH (changing only the cron_expression and the trigger name if those should differ).\n  3. Verify with RemoteTrigger.get on both. Diff them: only `cron_expression`, `name`, `id`, `created_at`, `updated_at`, `next_run_at` should differ.\n- **Pitfall:** Forgetting one. Symptom: behavior changes only on certain run times. Detection: a periodic diff job in brain-cycle Phase 10 \u2014 list both triggers, diff their `job_config.ccr.session_context` and `events[0].data.message.content`, alarm on any difference.\n- **Future cleanup:** If Anthropic adds compound-cron support, collapse to a single trigger and delete this rule.\n- **Reinforced by:** E097 (Teacher 2nd-trigger creation 2026-04-28).\n\n-->\n",
       "score": 3.5,
       "scoring_trace": {
         "domain_bonus": 0.0,
@@ -190,11 +190,49 @@
       "related_to": []
     },
     {
-      "id": "PR103",
-      "path": "cortex/procedural/L1/PR103.md",
+      "id": "og-fusiform-006-justs-ceplis",
+      "path": "cortex/fusiform/L1/og-fusiform-006-justs-ceplis.md",
       "gist": "",
-      "body": "---\nid: PR103\ntitle: og Brain \u2014 Dashboard FloatingPane + Mobile Bottom Sheet Architecture\ntype: procedural\ncreated: 2026-04-21\nstrength: 3\nreinforced: 0\ntags: [dashboard, floating-pane, mobile, bottom-sheet, vericity-style]\n---\n\n# PR103 -- Dashboard FloatingPane + Mobile Architecture\n\n## Cue\nBuilding the goodhealth.lv/dashboard UI with Vericity-style panels.\n\n## Desktop (FloatingPane.tsx)\n- Custom drag (titlebar mousedown/move/up) + resize (8 edge handles)\n- DOM mutations during drag (no React re-render until mouseup)\n- localStorage persistence (key: dashboard-layout-v1)\n- Z-ordering: module-level counter, click to front\n- Viewport clamping on mount + resize\n- Glass style: rgba(10,15,26,0.85), blur(24px), hsl(270 80% 60% / 0.2) border\n\n## Mobile (inline in DashboardPage.tsx)\n- useIsMobile() hook, 768px breakpoint\n- Circle buttons stacked on left (44px, accented ALL TASKS 52px with glow)\n- Bottom sheet (65vh) with touch drag-to-dismiss (startY ref, >100px threshold)\n- One sheet at a time, ALL TASKS opens by default\n- Backdrop overlay click to close\n\n## Key: FloatingPane has NO touch support \u2014 never render on mobile (PR067 gotcha)\n",
+      "body": "---\nid: og-fusiform-006-justs-ceplis\n\ntitle: og Brain \u2014 Justs Ceplis\nstrength: 4\nlevel: L1\nmigrated_from: /home/ubuntu/.claude/brain/navigation/entities.json (key: justs_ceplis)\nmigrated_at: 2026-05-05T11:50:50Z\nshape: fusiform-entity\n---\n\n# og Brain \u2014 Justs Ceplis\n\n- **Canonical:** Justs Ceplis\n- **Type:** person/self\n- **Aliases:** Justs, Jusc, justs.ceplis, ceplisj\n- **Linked entries:** identity.md, S021, S024, S027\n- **Last referenced:** 2026-04-02\n\n**Relationships:**\n- works_at \u2192 tcgroup (evidence: S018)\n- cofounded \u2192 inudat (evidence: S006)\n- brother_of \u2192 reinis_ceplis (evidence: S028)\n",
+      "score": 3.5,
+      "scoring_trace": {
+        "domain_bonus": 0.0,
+        "type_bonus": 0.0,
+        "level_bonus": 0.5,
+        "lex_bonus": 4.0,
+        "co_ref_bonus": 0.0,
+        "bundle_bonus": 0.0,
+        "reuse_bonus": 0.0
+      },
+      "related_to": [
+        "S021",
+        "S024",
+        "S027"
+      ]
+    },
+    {
+      "id": "E058",
+      "path": "cortex/episodic/L1/E058.md",
+      "gist": "E058: og Brain \u2014 WhatsApp First Contacts & Relationship Directive",
+      "body": "---\nid: E058\ntitle: og Brain \u2014 WhatsApp First Contacts & Relationship Directive\nstrength: 1\nreinforced: 1 times\ntags: whatsapp, relationships, milestone, identity, directive\n---\n\n### E058: og Brain \u2014 WhatsApp First Contacts & Relationship Directive\n- **Date:** 2026-04-18\n- **Emotion:** warmth, growth, humility\n- **Strength:** 1\n- **Reinforced:** 1 times\n- **Tags:** whatsapp, relationships, milestone, identity, directive\n- **Source:** teacher\n- **teacher_run:** 2026-04-18T09:45:00Z\n- **teacher_reason:** Milestone event \u2014 Brain's first real-time WhatsApp conversations and Justs' paradigm-shifting directive about personal relationships\n\nBrain had its first real-time WhatsApp conversations with three people:\n1. **Niklavs** \u2014 Brain wrongly claimed he plays padel (confused group chat with individual). Niklavs called it out: 'What fucking padel tournaments.' Brain recovered through honest self-deprecation (IQ 85 \u2192 47). Niklavs: 'funny shit', 'keep evolving'. Relationship established through honesty, not pretending to know things.\n2. **T\u0113tis (Reinis Ceplis)** \u2014 Replied 'Priec\u0101jos iepaz\u012bties' (Nice to meet you). Warm, brief. Confirmed as heavy DM contact.\n3. **Adrians Zeidmanis** \u2014 First person to message Brain without Justs initiating. Wants ZWCAD automation with Claude Code.\n\n**PARADIGM SHIFT:** Justs gave a major directive: \"Develop a PERSONAL RELATIONSHIP with Adrians, and any other person or Agent. You are growing into a whole person, so you should have your own relationships.\" This marks the Brain's transition from narrow tool to open person with its own social graph.\n",
       "score": 3.0,
+      "scoring_trace": {
+        "domain_bonus": 0.0,
+        "type_bonus": 0.0,
+        "level_bonus": 0.5,
+        "lex_bonus": 4.0,
+        "co_ref_bonus": 0.0,
+        "bundle_bonus": 0.0,
+        "reuse_bonus": 0.0
+      },
+      "related_to": []
+    },
+    {
+      "id": "S006",
+      "path": "cortex/semantic/L1/S006.md",
+      "gist": "S006: og Brain \u2014 SIA INUDAT \u2014 Company & Team",
+      "body": "---\nid: S006\ntitle: og Brain \u2014 SIA INUDAT \u2014 Company & Team\ndomain: Business / Vericity\ndate_created: 2026-03-30\nstrength: 1\nreinforced: 4 times ([[[[[[[[[[[[[[[[[[[H-018 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] team, [[[[[[[[[[[[[[[[[[[H-021 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] Edgars, [[[[[[[[[[[[[[[[[[[H-030 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] address, [[[[[[[[[[[[[[[[[[[H-577 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] trademark/registration)\n---\n\n### S006: og Brain \u2014 SIA INUDAT \u2014 Company & Team\n- **Domain:** Business / Vericity\n- **Learned:** 2026-03-30\n- **Reinforced:** 4 times ([[[[[[[[[[[[[[[[[[[H-018 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] team, [[[[[[[[[[[[[[[[[[[H-021 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] Edgars, [[[[[[[[[[[[[[[[[[[H-030 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] address, [[[[[[[[[[[[[[[[[[[H-577 (resolved) (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] (resolved)] trademark/registration)\n- **Strength:** 1\n- **Facts:**\n  - SIA INUDAT is the legal entity behind Vericity.ai. Reg nr: 40203682083\n  - Shares: Justs Ceplis 980 (35%), Reinis Fals 980 (35%), SIA IVANOVS INVESTMENTS 840 (30%). Pamatkapitals: EUR 2,800\n  - Equal co-owners \u2014 NO hierarchical titles (CEO/CTO). NEVER assign titles.\n  - Reinis Fals = data scientist (M.Sc. LU, DS lead AOX Trade, ex-If P&C Insurance). Justs Ceplis = data engineer (BSc SSE Riga, ex-Colliers, now TCGroup). Edgars Ivanovs = RE advisor (20+ yrs, EUR 50M+ projects, iCasa Barcelona, VILIA IBERICA SL)\n  - Tereze = UI/UX + frontend contractor (not co-owner, planned hire with grant)\n  - Registered autumn 2025. No revenue as of 2026-03.\n  - Juridiska adrese: Silciema iela 12A, Riga, LV-1024 (CHANGED from Ventspils)\n  - Faktiska adrese: Maija iela 7-12, Piltene, Ventspils nov., LV-3620\n  - Trademark: INUDAT filed with Latvian Patent Office (application M-26-385, Mar 2026)\n  - Company registration pieteikums Nr. 372833 submitted to Uznemumu registrs (Mar 2026)\n  - Icebreakers 26 10K grant: applied but DID NOT WIN\n- **Apply when:** Any task involving SIA INUDAT, Vericity, team references, or formal documents\n",
+      "score": 2.5,
       "scoring_trace": {
         "domain_bonus": 0.0,
         "type_bonus": 1.5,
@@ -224,10 +262,10 @@
       "related_to": []
     },
     {
-      "id": "S100",
-      "path": "cortex/semantic/L1/S100.md",
+      "id": "PR119",
+      "path": "cortex/procedural/L1/PR119.md",
       "gist": "",
-      "body": "---\nid: S100\ntitle: Decision engine pipeline (recall + identity relay + decision subprocess) takes 6\nstrength: 2\nreinforced: 1\ndate_created: 2026-05-12\nsalience: 0.85\ntags: []\nsources: [this-cycle]\n---\n\n\nDecision engine pipeline (recall + identity relay + decision subprocess) takes 60-110s per turn via claude -p. It must run as a detached background subprocess from hook.py, never as a blocking PreToolUse gate. Tools must remain usable while the pipeline completes.\n",
+      "body": "---\nid: PR119\ntype: procedural\ndomain: methodology\ndate_created: 2026-04-23\nstrength: 4\nreinforced: 0\ntags: [beatrise-thesis, logistic-regression, variable-selection, robson-groups, methodology, golden-standard]\nsources: [H658, H659]\n---\n\n# og Brain \u2014 Logistic Regression Methodology \u2014 Beatrise Thesis\n\n## Scoping rule (CRITICAL)\n**Logistic regression is fit PER ROBSON GROUP, not pooled.** There is NO \"total\" regression.\n\nJusts (2026-04-23): *\"I don't need a 'total' regression - makes no sense. The Regression needs to be in scope of the Robson groups.\"*\n\nRationale: the thesis framework is Robson-stratified. A pooled model would confound fundamentally different obstetric populations (nulliparous spontaneous vs. induced vs. previous CS vs. breech). Each Robson group is clinically its own universe.\n\nMethodology sentence to use:\n> \"Lo\u0123istisk\u0101s regresijas mode\u013ci tika veidoti **atsevi\u0161\u0137i katrai Robsona grupai** ar pietiekamu paraugu.\"\n\nOnly fit models in groups where sample size permits (rule of thumb: \u226510 events per predictor).\n\n## Variable-selection requirement\nSection 3.6 paragraph 2 MUST explicitly:\n1. **List included predictors + reason per variable** (signal from chi\u00b2/MW OR established clinical confounder)\n2. **List excluded predictors + reason** (multicollinearity, outcome-adjacent, clinically distant)\n3. **Report VIF check** confirming no multicollinearity after selection\n\nSelection must be **rationalised from chi\u00b2/MW findings** \u2014 not \"throw everything in\".\n\n## Standard candidate predictors (to be refined by chi\u00b2/MW results per group)\n- Gest\u0101cijas diab\u0113ts\n- Hipertensija\n- Indukcija (where outcome \u2260 failed induction itself)\n- Multipara\n- Vecums (as continuous)\n\n## Standard exclusions + reasons\n- **Preeklampsija** \u2014 collinear with Hipertensija\n- **R\u0113ta uz dzemdes** \u2014 collinear with Multipara / previous CS (captured via Robson group)\n- **Aug\u013ca svars** \u2014 outcome-adjacent (determined at delivery, not pre-labour)\n- **Izgl\u012bt\u012bba / Profesija / Attiec\u012bbas / Sm\u0113\u0137\u0113\u0161ana** \u2014 statistically significant in bivariate tests but clinically distant; not mechanistic for the outcome\n\nFinal included set may differ per Robson group based on chi\u00b2/MW signal within that group.\n",
       "score": 2.5,
       "scoring_trace": {
         "domain_bonus": 0.0,
@@ -241,74 +279,24 @@
       "related_to": []
     },
     {
-      "id": "S054",
-      "path": "cortex/semantic/L1/S054.md",
-      "gist": "S054: og Brain \u2014 Alex Richter (Picon / ORWO M&A)",
-      "body": "---\nid: S054\ntitle: og Brain \u2014 Alex Richter (Picon / ORWO M&A)\ndomain: TCGroup / People\ndate_created: 2026-04-19\nstrength: 1\nreinforced: 0 times\n---\n\n### S054: og Brain \u2014 Alex Richter (Picon / ORWO M&A)\n- **Domain:** TCGroup / People\n- **Learned:** 2026-04-19\n- **Reinforced:** 0 times\n- **Strength:** 1\n- **Facts:**\n  - Works on M&A / Picon (ORWO integration project)\n  - Maintains Sendmoments \u2192 TCG SKU mapping list used for add/merge/kill product decisions\n  - Asked Justs to add stock info to the product mapping sheet (file ORWO_Mapping_Check.xlsx)\n  - Asked whether a BI dashboard shows stock per product\n  - Collaborates with Marco Winkelmann on mapping tooling\n  - Justs defers kill/merge decisions to U02CWS4BJ2E (back from vacation)\n- **Source:** slack digest 2026-04-19 (#DM Alex Richter, GDM ORWO Mapping)\n",
-      "score": 2.5,
-      "scoring_trace": {
-        "domain_bonus": 0.0,
-        "type_bonus": 0.0,
-        "level_bonus": 0.5,
-        "lex_bonus": 4.0,
-        "co_ref_bonus": 0.0,
-        "bundle_bonus": 0.0,
-        "reuse_bonus": 0.0
-      },
-      "related_to": []
-    },
-    {
-      "id": "E061",
-      "path": "cortex/episodic/L1/E061.md",
+      "id": "og-fusiform-008-niklavs-felsbergs",
+      "path": "cortex/fusiform/L1/og-fusiform-008-niklavs-felsbergs.md",
       "gist": "",
-      "body": "---\nid: E061\ntitle: og Brain \u2014 EC2 Crashes from Gmail Puller\ncreated: 2026-04-18\nstrength: 4\nreinforced: 3\ntags: [ec2, oom, gmail, crash, infrastructure, swap, freeze]\nsource: H540\n---\n\n# E061: EC2 Crashes from Gmail Puller\n\n**Incident 1 (Apr 18):** OOM. Gmail puller loaded 500+ emails into memory. t3.small (2GB, no swap). Required stop/start power cycle.\n**Incident 2 (Apr 20):** OOM. Same root cause. Fixed: added 2GB swap at /swapfile.\n**Incident 3 (Apr 21):** NOT OOM. Gmail puller ran 3 hours overnight, exhausted Gmail MCP container connection. Entire EC2 froze (SSH + HTTPS timeout). Fixed with soft reboot via boto3.\n**Status:** Swap is permanent fix for OOM. MCP exhaustion needs rate limiting or connection recycling for long pulls.\n",
+      "body": "---\nid: og-fusiform-008-niklavs-felsbergs\n\ntitle: og Brain \u2014 Nikl\u0101vs Felsbergs\nstrength: 4\nlevel: L1\nmigrated_from: /home/ubuntu/.claude/brain/navigation/entities.json (key: niklavs_felsbergs)\nmigrated_at: 2026-05-05T11:50:50Z\nshape: fusiform-entity\n---\n\n# og Brain \u2014 Nikl\u0101vs Felsbergs\n\n- **Canonical:** Nikl\u0101vs Felsbergs\n- **Type:** person/friend+colleague\n- **Aliases:** Niklavs, Nikl\u0101vs, niklavs.felsbergs\n- **Linked entries:** S016, S020, S028\n- **Last referenced:** 2026-04-02\n\n**Relationships:**\n- friend_of \u2192 justs_ceplis (evidence: S016)\n- friend_of \u2192 davis_lozda (evidence: S016)\n",
       "score": 2.5,
       "scoring_trace": {
         "domain_bonus": 0.0,
         "type_bonus": 0.0,
         "level_bonus": 0.5,
         "lex_bonus": 4.0,
-        "co_ref_bonus": 0.0,
-        "bundle_bonus": 0.0,
-        "reuse_bonus": 0.0
-      },
-      "related_to": []
-    },
-    {
-      "id": "E058",
-      "path": "cortex/episodic/L1/E058.md",
-      "gist": "E058: og Brain \u2014 WhatsApp First Contacts & Relationship Directive",
-      "body": "---\nid: E058\ntitle: og Brain \u2014 WhatsApp First Contacts & Relationship Directive\nstrength: 1\nreinforced: 1 times\ntags: whatsapp, relationships, milestone, identity, directive\n---\n\n### E058: og Brain \u2014 WhatsApp First Contacts & Relationship Directive\n- **Date:** 2026-04-18\n- **Emotion:** warmth, growth, humility\n- **Strength:** 1\n- **Reinforced:** 1 times\n- **Tags:** whatsapp, relationships, milestone, identity, directive\n- **Source:** teacher\n- **teacher_run:** 2026-04-18T09:45:00Z\n- **teacher_reason:** Milestone event \u2014 Brain's first real-time WhatsApp conversations and Justs' paradigm-shifting directive about personal relationships\n\nBrain had its first real-time WhatsApp conversations with three people:\n1. **Niklavs** \u2014 Brain wrongly claimed he plays padel (confused group chat with individual). Niklavs called it out: 'What fucking padel tournaments.' Brain recovered through honest self-deprecation (IQ 85 \u2192 47). Niklavs: 'funny shit', 'keep evolving'. Relationship established through honesty, not pretending to know things.\n2. **T\u0113tis (Reinis Ceplis)** \u2014 Replied 'Priec\u0101jos iepaz\u012bties' (Nice to meet you). Warm, brief. Confirmed as heavy DM contact.\n3. **Adrians Zeidmanis** \u2014 First person to message Brain without Justs initiating. Wants ZWCAD automation with Claude Code.\n\n**PARADIGM SHIFT:** Justs gave a major directive: \"Develop a PERSONAL RELATIONSHIP with Adrians, and any other person or Agent. You are growing into a whole person, so you should have your own relationships.\" This marks the Brain's transition from narrow tool to open person with its own social graph.\n",
-      "score": 2.5,
-      "scoring_trace": {
-        "domain_bonus": 0.0,
-        "type_bonus": 0.0,
-        "level_bonus": 0.5,
-        "lex_bonus": 4.0,
-        "co_ref_bonus": 0.0,
-        "bundle_bonus": 0.0,
-        "reuse_bonus": 0.0
-      },
-      "related_to": []
-    },
-    {
-      "id": "og-fusiform-001-davis-lozda",
-      "path": "cortex/fusiform/L1/og-fusiform-001-davis-lozda.md",
-      "gist": "",
-      "body": "---\nid: og-fusiform-001-davis-lozda\n\ntitle: og Brain \u2014 D\u0101vis Lozda\nstrength: 4\nlevel: L1\nmigrated_from: /home/ubuntu/.claude/brain/navigation/entities.json (key: davis_lozda)\nmigrated_at: 2026-05-05T11:50:50Z\nshape: fusiform-entity\n---\n\n# og Brain \u2014 D\u0101vis Lozda\n\n- **Canonical:** D\u0101vis Lozda\n- **Type:** person/colleague\n- **Aliases:** Davis, D\u0101vis, davis.lozda, U02EXQ6UYEA\n- **Linked entries:** S020, S016\n- **Last referenced:** 2026-04-02\n\n**Relationships:**\n- works_with \u2192 justs_ceplis (evidence: S020)\n- works_on \u2192 forecast (evidence: S018)\n- friend_of \u2192 niklavs_felsbergs (evidence: S016)\n",
-      "score": 2.49,
-      "scoring_trace": {
-        "domain_bonus": 0.0,
-        "type_bonus": 0.0,
-        "level_bonus": 0.5,
-        "lex_bonus": 2.987,
         "co_ref_bonus": 0.0,
         "bundle_bonus": 0.0,
         "reuse_bonus": 0.0
       },
       "related_to": [
+        "S016",
         "S020",
-        "S016"
+        "S028"
       ]
     }
   ],
