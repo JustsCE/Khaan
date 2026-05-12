@@ -241,3 +241,10 @@
 {"event": "synthesis_event", "ts": "2026-05-12T13:42:35Z", "cycle_id": 24, "region": "prefrontal", "source_ids": ["R193", "R158"], "target_id": "R211", "trigger_strength": 5}
 {"event": "cycle_ledger", "cycle_id": 24, "phases": [{"phase": "ingest", "executed": true, "detail": "7 observations across 4 categories"}, {"phase": "hippocampus", "executed": true, "detail": "7 entries"}, {"phase": "consolidate", "executed": true, "detail": "1 reinforced, 5 promoted, 0 discarded"}, {"phase": "index_rebuild", "executed": true, "detail": "8692 terms, 729 entries"}, {"phase": "synthesis", "executed": true, "detail": "L2 created 2, L3 created 0, sources archived 5"}, {"phase": "eval", "executed": false, "detail": "not due"}, {"phase": "hygiene", "executed": false, "detail": "not due"}], "ts": "2026-05-12T13:42:35Z"}
 {"event": "cycle_commit", "cycle_id": 24, "ts": "2026-05-12T13:42:35Z"}
+{"event": "cycle_git", "cycle_id": 24, "status": "ok", "ts": "2026-05-12T13:42:37Z"}
+{"event": "cycle_start", "ts": "2026-05-12T14:25:12Z", "cycle_id": 25, "counter_at_start": 306}
+{"event": "cycle_start", "ts": "2026-05-12T14:25:33Z", "cycle_id": 25, "counter_at_start": 307}
+{"event": "cycle_empty", "ts": "2026-05-12T14:26:07Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T14:26:07Z", "terms_count": 8564, "entries_count": 726}
+{"event": "cycle_ledger", "cycle_id": 25, "phases": [{"phase": "ingest", "executed": true, "detail": "0 observations across 0 categories"}, {"phase": "hippocampus", "executed": true, "detail": "0 entries"}, {"phase": "consolidate", "executed": true, "detail": "0 reinforced, 0 promoted, 0 discarded"}, {"phase": "index_rebuild", "executed": true, "detail": "8564 terms, 726 entries"}, {"phase": "synthesis", "executed": true, "detail": "L2 created 0, L3 created 0, sources archived 0"}, {"phase": "eval", "executed": false, "detail": "not due"}, {"phase": "hygiene", "executed": false, "detail": "not due"}], "ts": "2026-05-12T14:26:07Z"}
+{"event": "cycle_commit", "cycle_id": 25, "ts": "2026-05-12T14:26:07Z"}

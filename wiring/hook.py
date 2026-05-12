@@ -163,7 +163,8 @@ def _compose_turn_context():
                 elif name == "active-recall.json" and "qualified_entries" in data:
                     parts.append("## Recall\n")
                     for e in data["qualified_entries"][:5]:
-                        parts.append(f"- **{e.get('id', '')}**: {e.get('gist', '')}\n")
+                        gist = e.get('gist') or e.get('id', '')
+                        parts.append(f"- **{e.get('id', '')}**: {gist}\n")
                     parts.append("\n")
                 elif name == "active-identity.json":
                     sit = data.get("situational", "")
@@ -172,6 +173,9 @@ def _compose_turn_context():
                         parts.append(f"{sit}\n\n")
             except Exception:
                 pass
+    # Clear hypothesis bins after consumption into additionalContext
+    for i in range(1, 6):
+        write_bin(f"decision-hypothesis-{i}", 0)
     return "".join(parts) if parts else None
 
 

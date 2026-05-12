@@ -71,6 +71,12 @@ def _parse_entry(path):
     domain = ""
     learned = ""
     related = []
+    # Fallback: extract gist from YAML frontmatter title if no ### header found
+    for line in lines:
+        l = line.strip()
+        if l.startswith("title:"):
+            gist = l[6:].strip().strip('"').strip("'")
+            break
     for line in lines:
         l = line.strip()
         if l.startswith("### "):
