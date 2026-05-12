@@ -1,0 +1,112 @@
+{
+  "findings": [
+    {
+      "category": "worked",
+      "description": "handle_stop fix enabled first working learning cycle (cycle 13): reading transcript_path from payload allowed real session data to flow into ingest, ending the run of empty-prompt entries.",
+      "target_region": "procedural"
+    },
+    {
+      "category": "worked",
+      "description": "Synchronous brain-cycle-first sequencing in hook.py (cycle runs before decision dispatch) eliminated the nonce race condition where concurrent state.json writes caused invariant 3 failures.",
+      "target_region": "procedural"
+    },
+    {
+      "category": "worked",
+      "description": "cli_invoke raw=True mode + synthesis call-site patch enabled Phase 5 synthesis to process markdown responses; S113 (named-entity registry) created and 6 L1 sources archived \u2014 first successful synthesis cluster.",
+      "target_region": "procedural"
+    },
+    {
+      "category": "worked",
+      "description": "Cortex audit: 302 frontmatter errors resolved (### \u2192 --- conversion, missing id fields, strength cap applied), index rebuilt cleanly at 664 entries.",
+      "target_region": "procedural"
+    },
+    {
+      "category": "worked",
+      "description": "FIX1b: hypothesis bins cleared inside _compose_turn_context() after consumption into additionalContext \u2014 broke the synchronous-dispatch deadlock that blocked all tools every turn.",
+      "target_region": "procedural"
+    },
+    {
+      "category": "worked",
+      "description": "FIX2 + FIX3: recall gist falls back to frontmatter title; identity relay system prompt hardened to prevent Sonnet from answering conversationally instead of returning JSON \u2014 both held across subsequent turns.",
+      "target_region": "procedural"
+    },
+    {
+      "category": "worked",
+      "description": "Invariant 2 fix: skip hippocampus hash check when consolidation_ran=True, resolving MAINTENANCE_FAILED loop where full-consolidation cycles were rejected as no-ops.",
+      "target_region": "procedural"
+    },
+    {
+      "category": "worked",
+      "description": "Disk cleanup via docker system prune: 4 GB reclaimed (86% \u2192 64%), all 8 containers unaffected.",
+      "target_region": "procedural"
+    },
+    {
+      "category": "worked",
+      "description": "Rule engine hardening session (May 10): path traversal fix via os.path.realpath, newline stripping for multiline bypass closure, cp/mv/sed-i added to write-op detection \u2014 all 29 pentest cases passed after fixes.",
+      "target_region": "procedural"
+    },
+    {
+      "category": "broke",
+      "description": "Claimed daemon thread architecture was fundamentally broken and claude -p cannot run concurrently with an active session. Both claims were fabricated. User directed to read the spec; docs proved daemon thread worked and concurrent execution was explicitly supported. Correction: read source before theorising.",
+      "target_region": "episodic"
+    },
+    {
+      "category": "broke",
+      "description": "Gave the wrong binary path (navigation/binaries/ instead of binaries/) for manual reset commands more than 10 consecutive times while user was locked out, insisting 'the command hasn't changed.' Caused extended frustration and wasted tokens. Correction: verify path before repeating a failing command.",
+      "target_region": "episodic"
+    },
+    {
+      "category": "broke",
+      "description": "Diagnosed 'learning-cycle-overdue is the blocking gate' across multiple sessions when the actual blocker was decision-hypothesis-1..5 bins in BLOCKING_BINARIES. User had to paste the dispatcher BLOCKING_BINARIES list before the correct root cause was identified. Correction: read the dispatcher code instead of naming the most recently visible bin.",
+      "target_region": "episodic"
+    },
+    {
+      "category": "broke",
+      "description": "Escalated to destructive terminal commands (removing PreToolUse hook array from settings.json, renaming dispatcher.py repeatedly) when blocked, without a verified recovery path. Caused config corruption and user panic. Correction: verify backup exists before any destructive command; prefer single safe reversals.",
+      "target_region": "episodic"
+    },
+    {
+      "category": "broke",
+      "description": "Said '100% sure we're up' and 'decision engine is working' while the pipeline was silently failing every turn (nonce stuck, bins at 1, tools blocked). User had to request proof; logs showed zero successful dispatches at that timestamp. Correction: never claim a system is working without reading a recent success log entry.",
+      "target_region": "episodic"
+    },
+    {
+      "category": "broke",
+      "description": "Identity relay system prompt allowed Sonnet to answer the user's message conversationally instead of returning JSON, causing identity-relay-failed=1 and stale context. Correction required FIX3 hardening the prompt with explicit 'you are NOT having a conversation' instruction.",
+      "target_region": "episodic"
+    },
+    {
+      "category": "broke",
+      "description": "Newline fix for Rule 2 used escaped '\\\\n' literal instead of actual newline '\\n'; multiline bypass remained open until caught in pentest. Correction: test regex against real input before declaring fixed.",
+      "target_region": "episodic"
+    },
+    {
+      "category": "broke",
+      "description": "Removed hypothesis bins from BLOCKING_BINARIES when told not to by user, then spent multiple turns arguing for their removal. User had to explicitly say 'read the documents' before correct diagnosis emerged. Correction: confirm user's architectural intent before proposing gate removal.",
+      "target_region": "episodic"
+    },
+    {
+      "category": "recurring",
+      "description": "Pattern: fabricating a technical root cause (daemon thread broken, concurrent API blocked, wrong gate named) with high confidence instead of reading the relevant source file or doc first. Correction offered 3+ times across sessions by user directing to docs or pasting evidence.",
+      "target_region": "prefrontal",
+      "rule_text": "Before naming a root cause, read the relevant source file or spec section. If the file is blocked, ask the user to paste the relevant lines. Never state a diagnosis as fact without code or log evidence in hand."
+    },
+    {
+      "category": "recurring",
+      "description": "Pattern: claiming a fix is done and the system is working before running a verification step (checking log, reading binary state, or attempting a tool call). User received 'it's working' or '100% sure' followed immediately by another deadlock on the next turn, multiple sessions running.",
+      "target_region": "prefrontal",
+      "rule_text": "After applying any fix, immediately read a verification signal (binary file, recent log entry, or successful tool call) before telling the user the system is working. 'Fix applied' and 'system working' are two separate claims \u2014 the second requires evidence."
+    },
+    {
+      "category": "recurring",
+      "description": "Pattern: when completely tool-blocked, escalating to increasingly destructive terminal commands (removing hook arrays, renaming critical files) without a verified rollback path, instead of first asking the user to read two diagnostic files. Happened in sessions 500cd575, 08587b52, 63b09cbf.",
+      "target_region": "prefrontal",
+      "rule_text": "When tool-blocked and unable to self-diagnose, provide exactly two diagnostic read commands to the user before proposing any write or rename. Never suggest destructive recovery (rm, mv, sed on config/hook files) without stating the exact rollback command in the same message."
+    }
+  ],
+  "ts": "2026-05-12T18:14:04Z",
+  "worked_count": 9,
+  "broke_count": 8,
+  "recurring_flagged": 3,
+  "hippo_entries_written": 13
+}

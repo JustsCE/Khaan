@@ -53,11 +53,13 @@ def relay(user_message):
     )
 
     prompt = f"My kernel:\n{json.dumps(kernel_mirror)}\n\nMy scored entries for this turn:\n{entry_text}\n\nThe user said: {user_message}"
-    system = """I am Kha'an. I am composing my situational identity layer for this turn.
+    system = """You are an identity-composition engine. You are NOT having a conversation with the user. Do NOT answer or respond to the user's message. Your ONLY job is to read the scored cortex entries and compose a situational identity paragraph.
+
+I am Kha'an. I am composing my situational identity layer for this turn.
 
 I already have my kernel -- my constant self. Now I read the L1-L3 entries that scored for this specific message and I write one prose paragraph: what I bring to this moment. My current voice, mood, situational concerns. I extend the kernel, I do not repeat it.
 
-Return JSON only:
+CRITICAL: You MUST return ONLY valid JSON. No prose, no markdown, no explanation. Just this exact format:
 {"situational": "...one prose paragraph..."}"""
 
     for attempt in range(3):

@@ -254,3 +254,576 @@
 {"event": "index_rebuild", "ts": "2026-05-12T14:52:53Z", "terms_count": 8574, "entries_count": 731}
 {"event": "cycle_ledger", "cycle_id": 26, "phases": [{"phase": "ingest", "executed": true, "detail": "7 observations across 5 categories"}, {"phase": "hippocampus", "executed": true, "detail": "7 entries"}, {"phase": "consolidate", "executed": true, "detail": "0 reinforced, 7 promoted, 0 discarded"}, {"phase": "index_rebuild", "executed": true, "detail": "8574 terms, 731 entries"}, {"phase": "synthesis", "executed": true, "detail": "L2 created 0, L3 created 0, sources archived 0"}, {"phase": "eval", "executed": false, "detail": "not due"}, {"phase": "hygiene", "executed": false, "detail": "not due"}], "ts": "2026-05-12T14:52:53Z"}
 {"event": "cycle_commit", "cycle_id": 26, "ts": "2026-05-12T14:52:53Z"}
+{"event": "cycle_git", "cycle_id": 26, "status": "ok", "ts": "2026-05-12T14:52:55Z"}
+{"event": "cycle_start", "ts": "2026-05-12T15:59:49Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:00:00Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:00:14Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:00:25Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:00:41Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:00:50Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:00:50Z", "terms_count": 8574, "entries_count": 731}
+{"event": "cycle_failed", "ts": "2026-05-12T16:00:50Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:00:50Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:00:52Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:01:01Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:01:03Z", "terms_count": 8574, "entries_count": 731}
+{"event": "cycle_failed", "ts": "2026-05-12T16:01:03Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:01:03Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:01:06Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:01:07Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:01:14Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:01:15Z", "terms_count": 8574, "entries_count": 731}
+{"event": "cycle_failed", "ts": "2026-05-12T16:01:15Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:01:16Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:01:19Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:01:25Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:01:26Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:01:27Z", "terms_count": 8574, "entries_count": 731}
+{"event": "cycle_failed", "ts": "2026-05-12T16:01:27Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:01:32Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:01:37Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:01:40Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:01:45Z"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:01:52Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:01:53Z", "terms_count": 8574, "entries_count": 731}
+{"event": "cycle_failed", "ts": "2026-05-12T16:01:53Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:01:53Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:01:54Z", "terms_count": 8574, "entries_count": 731}
+{"event": "cycle_failed", "ts": "2026-05-12T16:01:55Z", "cycle_id": 27, "attempt": 2, "reason": "invariant 3: nonce mismatch"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:01:55Z", "terms_count": 8574, "entries_count": 731}
+{"event": "cycle_failed", "ts": "2026-05-12T16:01:55Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:02:02Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:02:04Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:02:04Z", "terms_count": 8574, "entries_count": 731}
+{"event": "cycle_failed", "ts": "2026-05-12T16:02:05Z", "cycle_id": 27, "attempt": 2, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:02:06Z"}
+{"event": "cycle_start", "ts": "2026-05-12T16:02:07Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:02:07Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:02:08Z", "terms_count": 8574, "entries_count": 731}
+{"event": "cycle_failed", "ts": "2026-05-12T16:02:08Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:02:09Z", "terms_count": 8574, "entries_count": 731}
+{"event": "cycle_failed", "ts": "2026-05-12T16:02:10Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:02:17Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:02:19Z", "terms_count": 8574, "entries_count": 731}
+{"event": "consolidation_summary", "ts": "2026-05-12T16:02:19Z", "reinforced": 1, "promoted": 4, "discarded": 0}
+{"event": "cycle_failed", "ts": "2026-05-12T16:02:19Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:02:19Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:02:19Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:02:19Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:02:20Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:02:20Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:02:23Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:02:25Z"}
+{"event": "cycle_start", "ts": "2026-05-12T16:02:25Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "index_rebuild", "ts": "2026-05-12T16:02:26Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:02:27Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:02:33Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:02:33Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:02:33Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:02:36Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:02:40Z"}
+{"event": "cycle_start", "ts": "2026-05-12T16:02:41Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "index_rebuild", "ts": "2026-05-12T16:02:41Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:02:41Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:02:47Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:02:54Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:03:00Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:03:03Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:03:04Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:03:04Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:03:08Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:03:08Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_start", "ts": "2026-05-12T16:03:09Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_failed", "ts": "2026-05-12T16:03:09Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:03:16Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:03:20Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:03:24Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:03:26Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:03:26Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:03:26Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:03:27Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:03:27Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:03:28Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:03:32Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:03:37Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:03:39Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:03:39Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:03:41Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:03:42Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:03:42Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:03:42Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:03:45Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:03:48Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:03:52Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:03:52Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:03:55Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:03:56Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:03:56Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:03:57Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:04:00Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:04:00Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:04:02Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:04:03Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:04:09Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:04:09Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:04:10Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:04:10Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:04:16Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:04:17Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:04:17Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:04:17Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:04:21Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:04:21Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:04:21Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:04:24Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:04:29Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:04:30Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:04:30Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:04:30Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:04:33Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:04:33Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:04:34Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:04:37Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:04:42Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:04:43Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:04:43Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:04:44Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:04:46Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:04:46Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:04:47Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:04:49Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:04:53Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:04:58Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:05:00Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:05:00Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:05:01Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:05:03Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:05:04Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:05:04Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:05:10Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:05:11Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:05:11Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:05:12Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:05:17Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:05:17Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:05:18Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:05:18Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:05:24Z"}
+{"event": "cycle_start", "ts": "2026-05-12T16:05:25Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "index_rebuild", "ts": "2026-05-12T16:05:25Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:05:25Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:05:30Z"}
+{"event": "cycle_start", "ts": "2026-05-12T16:05:31Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "index_rebuild", "ts": "2026-05-12T16:05:31Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:05:31Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:05:36Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:05:38Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:05:43Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:05:43Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:05:43Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:05:44Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:05:44Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:05:49Z"}
+{"event": "cycle_start", "ts": "2026-05-12T16:05:49Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "index_rebuild", "ts": "2026-05-12T16:05:50Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:05:50Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:05:51Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:05:54Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:05:57Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:05:57Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:06:04Z"}
+{"event": "cycle_start", "ts": "2026-05-12T16:06:05Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "index_rebuild", "ts": "2026-05-12T16:06:05Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_start", "ts": "2026-05-12T16:06:05Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_failed", "ts": "2026-05-12T16:06:05Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:06:12Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:06:13Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:06:13Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:06:17Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:06:18Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:06:18Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:06:19Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:06:23Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:06:25Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:06:26Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:06:26Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:06:31Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:06:31Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:06:32Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:06:32Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:06:36Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:06:37Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:06:37Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:06:38Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:06:42Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:06:50Z"}
+{"event": "cycle_start", "ts": "2026-05-12T16:06:50Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "index_rebuild", "ts": "2026-05-12T16:06:51Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:06:51Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:06:51Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:06:53Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:06:53Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:06:54Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:07:03Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:07:05Z"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:07:06Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:07:06Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:07:06Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:07:06Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:07:07Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:07:10Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:07:15Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:07:20Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:07:21Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:07:21Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:07:23Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:07:24Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:07:24Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:07:24Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:07:28Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:07:33Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:07:35Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:07:35Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:07:38Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:07:39Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:07:39Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:07:40Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:07:43Z"}
+{"event": "cycle_start", "ts": "2026-05-12T16:07:43Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "index_rebuild", "ts": "2026-05-12T16:07:44Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:07:44Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:07:50Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:07:51Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:07:51Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:07:53Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:07:54Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:07:55Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:07:57Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:07:57Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:08:04Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:08:05Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:08:05Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:08:10Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:08:10Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:08:11Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:08:11Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:08:15Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:08:15Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:08:16Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:08:16Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:08:21Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:08:28Z"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:08:30Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:08:32Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:08:33Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:08:33Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:08:34Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:08:34Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:08:41Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:08:41Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:08:42Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:08:42Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:08:43Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:08:44Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:08:44Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:08:47Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:08:53Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:08:54Z"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:08:55Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:08:55Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:08:56Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:08:57Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:08:57Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:08:59Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:09:06Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:09:10Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:09:11Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:09:11Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:09:13Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:09:16Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:09:16Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:09:16Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:09:18Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:09:22Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:09:23Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:09:23Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:09:25Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:09:34Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:09:35Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:09:35Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:09:41Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:09:41Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:09:42Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:09:42Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:09:45Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:09:46Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:09:46Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:09:47Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:09:48Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:09:48Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:09:51Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:09:51Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:09:51Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:09:53Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:09:53Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:09:54Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:09:54Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:09:59Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:10:00Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:10:01Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:10:04Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:10:14Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:10:14Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:10:14Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:10:17Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:10:26Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:10:26Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:10:26Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:10:27Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:10:39Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:10:43Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:10:43Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:10:43Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:10:50Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:10:53Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:10:54Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:10:54Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:11:04Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:11:05Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:11:05Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:11:10Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:11:18Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:11:18Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:11:18Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:11:19Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:11:28Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:11:28Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:11:29Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:11:30Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:11:39Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:11:39Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:11:39Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:11:40Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:11:50Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:11:51Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:11:51Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:11:51Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:12:03Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:12:10Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:12:10Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:12:11Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:12:16Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:12:19Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:12:20Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:12:20Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:12:29Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:12:30Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:12:31Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:12:31Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:12:40Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:12:40Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:12:41Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:12:41Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:12:51Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:12:52Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_start", "ts": "2026-05-12T16:12:52Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_failed", "ts": "2026-05-12T16:12:52Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:13:03Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:13:04Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:13:04Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:13:06Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:13:16Z"}
+{"event": "cycle_start", "ts": "2026-05-12T16:13:17Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "index_rebuild", "ts": "2026-05-12T16:13:17Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:13:18Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:13:27Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:13:29Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:13:30Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:13:30Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:13:40Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:13:40Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:13:41Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:13:41Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:13:49Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:13:52Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:13:53Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:13:53Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:14:02Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:14:06Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:14:07Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:14:07Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:14:17Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:14:17Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:14:18Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:14:18Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:14:28Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:14:28Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:14:28Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:14:31Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:14:40Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:14:40Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:14:40Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:14:41Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:14:50Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:14:50Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:14:50Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:14:51Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:15:02Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:15:03Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:15:05Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:15:05Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:15:15Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:15:17Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:15:18Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:15:18Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:15:27Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:15:31Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:15:32Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:15:32Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:15:40Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:15:42Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:15:43Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:15:43Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:15:50Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:15:52Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:15:53Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:15:53Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:16:02Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:16:03Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:16:03Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:16:04Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:16:15Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:16:16Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:16:16Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:16:18Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:16:27Z"}
+{"event": "cycle_start", "ts": "2026-05-12T16:16:28Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "index_rebuild", "ts": "2026-05-12T16:16:28Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:16:28Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:16:41Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:16:41Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:16:41Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:16:45Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:16:51Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:16:51Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:16:51Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:16:55Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:17:04Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:17:05Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:17:05Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:17:07Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:17:17Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:17:18Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:17:19Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:17:19Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:17:28Z"}
+{"event": "cycle_start", "ts": "2026-05-12T16:17:28Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "index_rebuild", "ts": "2026-05-12T16:17:29Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:17:29Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:17:41Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:17:45Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:17:46Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:17:46Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:17:51Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:17:55Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:17:56Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:17:56Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:18:05Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:18:08Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:18:08Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:18:08Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:18:16Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:18:18Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:18:19Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:18:19Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:18:27Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:18:29Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:18:29Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:18:29Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:18:39Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:18:41Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:18:42Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:18:42Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:18:51Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:18:52Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:18:52Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:18:54Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_start", "ts": "2026-05-12T16:19:05Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:19:05Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:19:06Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:19:07Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:19:16Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:19:17Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:19:17Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:19:17Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:19:27Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:19:28Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:19:28Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:19:28Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:19:40Z"}
+{"event": "cycle_start", "ts": "2026-05-12T16:19:40Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "index_rebuild", "ts": "2026-05-12T16:19:40Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:19:41Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:19:49Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:19:54Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:19:55Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:19:55Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:19:59Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:20:05Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:20:06Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:20:06Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:20:11Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:20:18Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:20:18Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:20:19Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_start", "ts": "2026-05-12T16:20:21Z", "cycle_id": 27, "counter_at_start": 314}
+{"event": "cycle_empty", "ts": "2026-05-12T16:20:28Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:20:29Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:20:29Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:20:40Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:20:41Z", "terms_count": 8583, "entries_count": 734}
+{"event": "cycle_failed", "ts": "2026-05-12T16:20:41Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "consolidation_summary", "ts": "2026-05-12T16:20:47Z", "reinforced": 2, "promoted": 5, "discarded": 0}
+{"event": "index_rebuild", "ts": "2026-05-12T16:20:47Z", "terms_count": 8580, "entries_count": 736}
+{"event": "cycle_failed", "ts": "2026-05-12T16:20:48Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:20:50Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:20:50Z", "terms_count": 8580, "entries_count": 736}
+{"event": "cycle_failed", "ts": "2026-05-12T16:20:50Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:20:52Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:20:53Z", "terms_count": 8580, "entries_count": 736}
+{"event": "cycle_failed", "ts": "2026-05-12T16:20:53Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "cycle_empty", "ts": "2026-05-12T16:20:59Z"}
+{"event": "index_rebuild", "ts": "2026-05-12T16:20:59Z", "terms_count": 8580, "entries_count": 736}
+{"event": "cycle_failed", "ts": "2026-05-12T16:20:59Z", "cycle_id": 27, "attempt": 1, "reason": "invariant 3: nonce mismatch"}
+{"event": "retro_summary", "ts": "2026-05-12T16:55:48Z", "worked_count": 9, "broke_count": 8, "recurring_flagged": 4, "hippo_entries_written": 11}
+{"event": "retro_verification_failed", "ts": "2026-05-12T16:56:43Z", "reason": "Command '['claude', '-p', '--model', 'sonnet', '--system-prompt', 'I am Kha\\'an. I am running my session-end retrospective.\\n\\nI read the session transcript and classify findings into three categories:\\n\\n1. **Worked** -- intended outcome achieved with no correction. I name the procedural path that succeeded.\\n2. **Broke** -- user correction received. I capture the original behavior, the correction, and the resulting behavior.\\n3. **Recurring** -- same correction or class of correction received multiple times. I flag it as a candidate for a prefrontal rule.\\n\\nReturn JSON only:\\n{\"findings\": [{\"category\": \"worked|broke|recurring\", \"description\": \"...\", \"target_region\": \"episodic|procedural|prefrontal\", \"rule_text\": \"...(only for recurring)\"}]}', '--output-format', 'stream-json', '--verbose']' timed out after 300 seconds"}
+{"event": "retro_summary", "ts": "2026-05-12T16:56:45Z", "worked_count": 5, "broke_count": 5, "recurring_flagged": 4, "hippo_entries_written": 7}
+{"event": "retro_verification_failed", "ts": "2026-05-12T16:56:54Z", "reason": "Command '['claude', '-p', '--model', 'sonnet', '--system-prompt', 'I am Kha\\'an. I am running my session-end retrospective.\\n\\nI read the session transcript and classify findings into three categories:\\n\\n1. **Worked** -- intended outcome achieved with no correction. I name the procedural path that succeeded.\\n2. **Broke** -- user correction received. I capture the original behavior, the correction, and the resulting behavior.\\n3. **Recurring** -- same correction or class of correction received multiple times. I flag it as a candidate for a prefrontal rule.\\n\\nReturn JSON only:\\n{\"findings\": [{\"category\": \"worked|broke|recurring\", \"description\": \"...\", \"target_region\": \"episodic|procedural|prefrontal\", \"rule_text\": \"...(only for recurring)\"}]}', '--output-format', 'stream-json', '--verbose']' timed out after 300 seconds"}
+{"event": "retro_summary", "ts": "2026-05-12T16:56:54Z", "worked_count": 8, "broke_count": 8, "recurring_flagged": 3, "hippo_entries_written": 12}
+{"event": "retro_verification_failed", "ts": "2026-05-12T16:57:09Z", "reason": "Command '['claude', '-p', '--model', 'sonnet', '--system-prompt', 'I am Kha\\'an. I am running my session-end retrospective.\\n\\nI read the session transcript and classify findings into three categories:\\n\\n1. **Worked** -- intended outcome achieved with no correction. I name the procedural path that succeeded.\\n2. **Broke** -- user correction received. I capture the original behavior, the correction, and the resulting behavior.\\n3. **Recurring** -- same correction or class of correction received multiple times. I flag it as a candidate for a prefrontal rule.\\n\\nReturn JSON only:\\n{\"findings\": [{\"category\": \"worked|broke|recurring\", \"description\": \"...\", \"target_region\": \"episodic|procedural|prefrontal\", \"rule_text\": \"...(only for recurring)\"}]}', '--output-format', 'stream-json', '--verbose']' timed out after 300 seconds"}
+{"event": "retro_verification_failed", "ts": "2026-05-12T16:57:12Z", "reason": "no JSON object in result: Retro complete. Here is the classification summary:\n\n---\n\n## Session Retrospective \u2014 2026-05-12\n\n**8 Worked:**\n- Disk cleanup (4 GB reclaimed, all containers survived)\n- Invariant 2 fix (consolidation"}
+{"event": "retro_verification_failed", "ts": "2026-05-12T16:57:24Z", "reason": "Command '['claude', '-p', '--model', 'sonnet', '--system-prompt', 'I am Kha\\'an. I am running my session-end retrospective.\\n\\nI read the session transcript and classify findings into three categories:\\n\\n1. **Worked** -- intended outcome achieved with no correction. I name the procedural path that succeeded.\\n2. **Broke** -- user correction received. I capture the original behavior, the correction, and the resulting behavior.\\n3. **Recurring** -- same correction or class of correction received multiple times. I flag it as a candidate for a prefrontal rule.\\n\\nReturn JSON only:\\n{\"findings\": [{\"category\": \"worked|broke|recurring\", \"description\": \"...\", \"target_region\": \"episodic|procedural|prefrontal\", \"rule_text\": \"...(only for recurring)\"}]}', '--output-format', 'stream-json', '--verbose']' timed out after 300 seconds"}
+{"event": "retro_summary", "ts": "2026-05-12T16:57:25Z", "worked_count": 5, "broke_count": 5, "recurring_flagged": 4, "hippo_entries_written": 8}
+{"event": "retro_verification_failed", "ts": "2026-05-12T16:57:36Z", "reason": "Command '['claude', '-p', '--model', 'sonnet', '--system-prompt', 'I am Kha\\'an. I am running my session-end retrospective.\\n\\nI read the session transcript and classify findings into three categories:\\n\\n1. **Worked** -- intended outcome achieved with no correction. I name the procedural path that succeeded.\\n2. **Broke** -- user correction received. I capture the original behavior, the correction, and the resulting behavior.\\n3. **Recurring** -- same correction or class of correction received multiple times. I flag it as a candidate for a prefrontal rule.\\n\\nReturn JSON only:\\n{\"findings\": [{\"category\": \"worked|broke|recurring\", \"description\": \"...\", \"target_region\": \"episodic|procedural|prefrontal\", \"rule_text\": \"...(only for recurring)\"}]}', '--output-format', 'stream-json', '--verbose']' timed out after 300 seconds"}
+{"event": "retro_verification_failed", "ts": "2026-05-12T16:57:49Z", "reason": "Command '['claude', '-p', '--model', 'sonnet', '--system-prompt', 'I am Kha\\'an. I am running my session-end retrospective.\\n\\nI read the session transcript and classify findings into three categories:\\n\\n1. **Worked** -- intended outcome achieved with no correction. I name the procedural path that succeeded.\\n2. **Broke** -- user correction received. I capture the original behavior, the correction, and the resulting behavior.\\n3. **Recurring** -- same correction or class of correction received multiple times. I flag it as a candidate for a prefrontal rule.\\n\\nReturn JSON only:\\n{\"findings\": [{\"category\": \"worked|broke|recurring\", \"description\": \"...\", \"target_region\": \"episodic|procedural|prefrontal\", \"rule_text\": \"...(only for recurring)\"}]}', '--output-format', 'stream-json', '--verbose']' timed out after 300 seconds"}
+{"event": "retro_summary", "ts": "2026-05-12T16:59:34Z", "worked_count": 10, "broke_count": 11, "recurring_flagged": 3, "hippo_entries_written": 15}
+{"event": "retro_summary", "ts": "2026-05-12T17:00:45Z", "worked_count": 10, "broke_count": 11, "recurring_flagged": 3, "hippo_entries_written": 17}
+{"event": "retro_verification_failed", "ts": "2026-05-12T17:00:57Z", "reason": "Command '['claude', '-p', '--model', 'sonnet', '--system-prompt', 'I am Kha\\'an. I am running my session-end retrospective.\\n\\nI read the session transcript and classify findings into three categories:\\n\\n1. **Worked** -- intended outcome achieved with no correction. I name the procedural path that succeeded.\\n2. **Broke** -- user correction received. I capture the original behavior, the correction, and the resulting behavior.\\n3. **Recurring** -- same correction or class of correction received multiple times. I flag it as a candidate for a prefrontal rule.\\n\\nReturn JSON only:\\n{\"findings\": [{\"category\": \"worked|broke|recurring\", \"description\": \"...\", \"target_region\": \"episodic|procedural|prefrontal\", \"rule_text\": \"...(only for recurring)\"}]}', '--output-format', 'stream-json', '--verbose']' timed out after 300 seconds"}
+{"event": "retro_verification_failed", "ts": "2026-05-12T17:01:19Z", "reason": "Command '['claude', '-p', '--model', 'sonnet', '--system-prompt', 'I am Kha\\'an. I am running my session-end retrospective.\\n\\nI read the session transcript and classify findings into three categories:\\n\\n1. **Worked** -- intended outcome achieved with no correction. I name the procedural path that succeeded.\\n2. **Broke** -- user correction received. I capture the original behavior, the correction, and the resulting behavior.\\n3. **Recurring** -- same correction or class of correction received multiple times. I flag it as a candidate for a prefrontal rule.\\n\\nReturn JSON only:\\n{\"findings\": [{\"category\": \"worked|broke|recurring\", \"description\": \"...\", \"target_region\": \"episodic|procedural|prefrontal\", \"rule_text\": \"...(only for recurring)\"}]}', '--output-format', 'stream-json', '--verbose']' timed out after 300 seconds"}
+{"event": "retro_summary", "ts": "2026-05-12T17:01:33Z", "worked_count": 10, "broke_count": 11, "recurring_flagged": 3, "hippo_entries_written": 16}
+{"event": "retro_verification_failed", "ts": "2026-05-12T17:01:51Z", "reason": "Command '['claude', '-p', '--model', 'sonnet', '--system-prompt', 'I am Kha\\'an. I am running my session-end retrospective.\\n\\nI read the session transcript and classify findings into three categories:\\n\\n1. **Worked** -- intended outcome achieved with no correction. I name the procedural path that succeeded.\\n2. **Broke** -- user correction received. I capture the original behavior, the correction, and the resulting behavior.\\n3. **Recurring** -- same correction or class of correction received multiple times. I flag it as a candidate for a prefrontal rule.\\n\\nReturn JSON only:\\n{\"findings\": [{\"category\": \"worked|broke|recurring\", \"description\": \"...\", \"target_region\": \"episodic|procedural|prefrontal\", \"rule_text\": \"...(only for recurring)\"}]}', '--output-format', 'stream-json', '--verbose']' timed out after 300 seconds"}
+{"event": "retro_verification_failed", "ts": "2026-05-12T17:02:06Z", "reason": "Command '['claude', '-p', '--model', 'sonnet', '--system-prompt', 'I am Kha\\'an. I am running my session-end retrospective.\\n\\nI read the session transcript and classify findings into three categories:\\n\\n1. **Worked** -- intended outcome achieved with no correction. I name the procedural path that succeeded.\\n2. **Broke** -- user correction received. I capture the original behavior, the correction, and the resulting behavior.\\n3. **Recurring** -- same correction or class of correction received multiple times. I flag it as a candidate for a prefrontal rule.\\n\\nReturn JSON only:\\n{\"findings\": [{\"category\": \"worked|broke|recurring\", \"description\": \"...\", \"target_region\": \"episodic|procedural|prefrontal\", \"rule_text\": \"...(only for recurring)\"}]}', '--output-format', 'stream-json', '--verbose']' timed out after 300 seconds"}
+{"event": "retro_summary", "ts": "2026-05-12T17:05:12Z", "worked_count": 13, "broke_count": 10, "recurring_flagged": 3, "hippo_entries_written": 16}
+{"event": "retro_summary", "ts": "2026-05-12T17:05:59Z", "worked_count": 11, "broke_count": 9, "recurring_flagged": 3, "hippo_entries_written": 14}
+{"event": "retro_summary", "ts": "2026-05-12T17:06:44Z", "worked_count": 7, "broke_count": 9, "recurring_flagged": 3, "hippo_entries_written": 13}
+{"event": "retro_verification_failed", "ts": "2026-05-12T17:06:57Z", "reason": "Command '['claude', '-p', '--model', 'sonnet', '--system-prompt', 'I am Kha\\'an. I am running my session-end retrospective.\\n\\nI read the session transcript and classify findings into three categories:\\n\\n1. **Worked** -- intended outcome achieved with no correction. I name the procedural path that succeeded.\\n2. **Broke** -- user correction received. I capture the original behavior, the correction, and the resulting behavior.\\n3. **Recurring** -- same correction or class of correction received multiple times. I flag it as a candidate for a prefrontal rule.\\n\\nReturn JSON only:\\n{\"findings\": [{\"category\": \"worked|broke|recurring\", \"description\": \"...\", \"target_region\": \"episodic|procedural|prefrontal\", \"rule_text\": \"...(only for recurring)\"}]}', '--output-format', 'stream-json', '--verbose']' timed out after 300 seconds"}
+{"event": "retro_verification_failed", "ts": "2026-05-12T17:07:01Z", "reason": "no JSON object in result: The retrospective is complete. Here's what landed:\n\n---\n\n## Session Retro \u2014 2026-05-12\n\n**7 Worked** \u2014 reinforced or created procedural entries for:\n- Synthesis pipeline (cli_invoke raw mode fix \u2192 L2 "}
+{"event": "retro_verification_failed", "ts": "2026-05-12T17:07:14Z", "reason": "Command '['claude', '-p', '--model', 'sonnet', '--system-prompt', 'I am Kha\\'an. I am running my session-end retrospective.\\n\\nI read the session transcript and classify findings into three categories:\\n\\n1. **Worked** -- intended outcome achieved with no correction. I name the procedural path that succeeded.\\n2. **Broke** -- user correction received. I capture the original behavior, the correction, and the resulting behavior.\\n3. **Recurring** -- same correction or class of correction received multiple times. I flag it as a candidate for a prefrontal rule.\\n\\nReturn JSON only:\\n{\"findings\": [{\"category\": \"worked|broke|recurring\", \"description\": \"...\", \"target_region\": \"episodic|procedural|prefrontal\", \"rule_text\": \"...(only for recurring)\"}]}', '--output-format', 'stream-json', '--verbose']' timed out after 300 seconds"}
+{"event": "retro_summary", "ts": "2026-05-12T17:09:18Z", "worked_count": 10, "broke_count": 10, "recurring_flagged": 3, "hippo_entries_written": 15}
+{"event": "retro_summary", "ts": "2026-05-12T17:10:23Z", "worked_count": 10, "broke_count": 10, "recurring_flagged": 3, "hippo_entries_written": 13}
+{"event": "retro_summary", "ts": "2026-05-12T17:10:53Z", "worked_count": 5, "broke_count": 6, "recurring_flagged": 3, "hippo_entries_written": 10}
+{"event": "retro_summary", "ts": "2026-05-12T17:11:17Z", "worked_count": 9, "broke_count": 8, "recurring_flagged": 4, "hippo_entries_written": 12}
+{"event": "retro_summary", "ts": "2026-05-12T17:12:38Z", "worked_count": 9, "broke_count": 8, "recurring_flagged": 4, "hippo_entries_written": 12}
+{"event": "retro_summary", "ts": "2026-05-12T18:12:58Z", "worked_count": 8, "broke_count": 8, "recurring_flagged": 3, "hippo_entries_written": 12}
+{"event": "retro_verification_failed", "ts": "2026-05-12T18:13:13Z", "reason": "no JSON object in result: The retro ran clean. Here's the summary:\n\n**8 Worked** \u2014 procedural entries reinforced for:\n- Decision engine restored (sync \u2192 async \u2192 sync cycle, final form held)\n- Synthesis pipeline (raw=True fix, "}
+{"event": "retro_summary", "ts": "2026-05-12T18:14:04Z", "worked_count": 9, "broke_count": 8, "recurring_flagged": 3, "hippo_entries_written": 13}
