@@ -2,7 +2,7 @@ import os, sys, re, json, hashlib, time, tempfile
 from pathlib import Path
 
 sys.path.insert(0, os.path.join(os.path.expanduser("~"), ".claude", "brain"))
-from engines._shared import BRAIN, cli_invoke, write_bin
+from engines._shared import BRAIN, cli_invoke, write_bin, AGENT_NAME
 from engines.cycle_phases import _read_thalamus, _write_thalamus, _parse_cortex_entry, _overlap_coeff, _entry_terms, _rewrite_entry, REGION_PREFIX, CORTEX
 from logger.api import write_learning_log
 
@@ -11,7 +11,7 @@ HIPPO = BRAIN / "hippocampus.md"
 # [DEVIATES FROM SPEC: skills.html]
 # Spec does not provide a pinned prompt for Brain Retro.
 # Framed as Kha'an per user instruction.
-RETRO_PROMPT = """I am Kha'an. I am running my session-end retrospective.
+RETRO_PROMPT = f"""I am {AGENT_NAME}. I am running my session-end retrospective.
 
 I read the session transcript and classify findings into three categories:
 
@@ -20,7 +20,7 @@ I read the session transcript and classify findings into three categories:
 3. **Recurring** -- same correction or class of correction received multiple times. I flag it as a candidate for a prefrontal rule.
 
 Return JSON only:
-{"findings": [{"category": "worked|broke|recurring", "description": "...", "target_region": "episodic|procedural|prefrontal", "rule_text": "...(only for recurring)"}]}"""
+{{"findings": [{{"category": "worked|broke|recurring", "description": "...", "target_region": "episodic|procedural|prefrontal", "rule_text": "...(only for recurring)"}}]}}"""
 
 
 def _verify_payload(payload):

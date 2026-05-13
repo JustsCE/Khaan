@@ -2,19 +2,19 @@ import os, sys, re, json, hashlib, time, tempfile
 from pathlib import Path
 
 sys.path.insert(0, os.path.join(os.path.expanduser("~"), ".claude", "brain"))
-from engines._shared import BRAIN, cli_invoke
+from engines._shared import BRAIN, cli_invoke, AGENT_NAME
 from engines.cycle_phases import _read_thalamus, _write_thalamus, _parse_cortex_entry, _overlap_coeff, _entry_terms, _rewrite_entry, CORTEX
 from logger.api import write_learning_log
 
 # [DEVIATES FROM SPEC: skills.html]
 # Spec does not provide a pinned prompt for Brain Correct.
 # Framed as Kha'an per user instruction.
-CORRECT_PROMPT = """I am Kha'an. I am encoding an immediate correction as a prefrontal rule.
+CORRECT_PROMPT = f"""I am {AGENT_NAME}. I am encoding an immediate correction as a prefrontal rule.
 
 I identify the failure pattern: what did I do, what should I have done, what is the rule that would have prevented this.
 
 Return JSON only:
-{"rule": {"title": "...", "body": "Rule: ... Exception: ... Evidence: ..."}}"""
+{{"rule": {{"title": "...", "body": "Rule: ... Exception: ... Evidence: ..."}}}}"""
 
 
 def _verify_payload(payload):

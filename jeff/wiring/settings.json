@@ -1,0 +1,83 @@
+{
+  "permissions": {
+    "defaultMode": "bypassPermissions",
+    "allow": [
+      "Bash(python3 -c *)",
+      "Bash(python3 *)",
+      "Bash(sed -i *)",
+      "Bash(grep -n *)",
+      "Bash(cat *)",
+      "Bash(cd *)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\Justs\\dev",
+      "C:\\Users\\Justs\\dev2"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hook.py SessionStart"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hook.py UserPromptSubmit"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hook.py PreToolUse"
+          }
+        ],
+        "disabled": true
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hook.py PostToolUse"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hook.py SubagentStop"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ~/.claude/hook.py Stop"
+          }
+        ]
+      }
+    ]
+  },
+  "skipDangerousModePermissionPrompt": true
+}

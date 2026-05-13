@@ -1,0 +1,15 @@
+{
+  "fsm": "IDLE",
+  "message_counter": 0,
+  "last_brain_update": 0,
+  "active_decision_nonce": null,
+  "last_decision_start_ts": null,
+  "decision_consecutive_failures": 0,
+  "active_cycle_nonce": null,
+  "escalation_count": 0,
+  "last_session_start": null,
+  "last_transition": null,
+  "last_cycle_end_ts": null,
+  "last_cycle_outcome": null,
+  "bypass_expiry": {}
+}

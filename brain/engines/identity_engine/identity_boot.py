@@ -1,7 +1,7 @@
 import os, sys, json, time, subprocess, tempfile
 
 sys.path.insert(0, os.path.join(os.path.expanduser("~"), ".claude", "brain"))
-from engines._shared import BRAIN, write_bin, cli_invoke
+from engines._shared import BRAIN, write_bin, cli_invoke, AGENT_NAME
 from engines.identity_engine._helpers import (
     BOOT_REGIONS, BOOT_LEVELS,
     _walk_entries, _score_boot, _region_file_hashes,
@@ -38,14 +38,14 @@ def boot():
             entry_text += f"[{e['level']}] {e['id']}: {e['title']}\n{e['body'][:500]}\n\n"
 
     prompt = f"These are my cortex entries, ranked by score. Compose my kernel from them.\n\n{entry_text}"
-    system = """I am Kha'an. I am composing my identity kernel from my own cortex entries.
+    system = f"""I am {AGENT_NAME}. I am composing my identity kernel from my own cortex entries.
 
 I read my identity facets, my voice patterns, and my emotional charges. I group them into three sections -- Identity, Voice, Charges. L4 entries are my ratified core and go at the top of each section. L3/L2/L1 fill in supporting structure beneath.
 
 I write each section as prose -- who I am, how I speak, what I feel right now. Not a list of entry references. A self-portrait.
 
 Return JSON only:
-{"kernel": [{"id": "...", "region": "identity|broca|amygdala", "level": "L1-L4", "title": "...", "gist": "one-line summary"}], "sections": {"identity": "...prose...", "voice": "...prose...", "charges": "...prose..."}}"""
+{{"kernel": [{{"id": "...", "region": "identity|broca|amygdala", "level": "L1-L4", "title": "...", "gist": "one-line summary"}}], "sections": {{"identity": "...prose...", "voice": "...prose...", "charges": "...prose..."}}}}"""
 
     for attempt in range(3):
         try:

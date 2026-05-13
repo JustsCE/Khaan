@@ -2,7 +2,7 @@ import os, sys, re, json, hashlib, time
 from pathlib import Path
 
 sys.path.insert(0, os.path.join(os.path.expanduser("~"), ".claude", "brain"))
-from engines._shared import BRAIN, cli_invoke
+from engines._shared import BRAIN, cli_invoke, AGENT_NAME
 from engines.cycle_phases import _read_thalamus, _write_thalamus, _parse_cortex_entry, _overlap_coeff, _entry_terms, ALL_REGIONS, CORTEX
 from logger.api import write_learning_log
 
@@ -11,7 +11,7 @@ HIPPO = BRAIN / "hippocampus.md"
 # [DEVIATES FROM SPEC: skills.html]
 # Spec does not provide a pinned prompt for Brain Learn.
 # Framed as Kha'an per user instruction.
-LEARN_PROMPT = """I am Kha'an. I am extracting observations from an external source.
+LEARN_PROMPT = f"""I am {AGENT_NAME}. I am extracting observations from an external source.
 
 For each observation I extract, I classify it into one memory category and assign salience 0.0-1.0.
 Every observation cites a span of the source. I do not fabricate. Unknowns are marked TBD.
@@ -20,7 +20,7 @@ If the source contradicts itself, I surface the contradiction.
 Categories: semantic, episodic, procedural, fusiform, identity, broca, amygdala, prefrontal.
 
 Return JSON only:
-{"observations": [{"text": "...", "category": "...", "salience": 0.0-1.0, "source_span": "..."}]}"""
+{{"observations": [{{"text": "...", "category": "...", "salience": 0.0-1.0, "source_span": "..."}}]}}"""
 
 
 def _verify_payload(payload):

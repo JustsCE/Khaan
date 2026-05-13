@@ -4,6 +4,17 @@ from pathlib import Path
 BRAIN = Path.home() / ".claude" / "brain"
 
 
+def _read_agent_name() -> str:
+    try:
+        data = json.loads((BRAIN / "thalamus.json").read_text())
+        return data.get("agent_name", "Kha'an")
+    except Exception:
+        return "Kha'an"
+
+
+AGENT_NAME: str = _read_agent_name()
+
+
 def read_bin(name):
     return int((BRAIN / "binaries" / f"{name}.bin").read_text().strip())
 

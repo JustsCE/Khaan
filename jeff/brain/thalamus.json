@@ -1,19 +1,19 @@
 {
-  "agent_name": "Kha'an",
-  "cycleCount": 28,
+  "agent_name": "Jeff",
+  "cycleCount": 0,
   "nextIds": {
-    "H": 2039,
-    "S": 200,
-    "E": 269,
-    "PR": 330,
-    "FUS": 49,
-    "ID": 42,
-    "BR": 37,
-    "AM": 25,
-    "R": 374
+    "H": 1,
+    "S": 2,
+    "E": 1,
+    "PR": 1,
+    "FUS": 2,
+    "ID": 4,
+    "BR": 1,
+    "AM": 1,
+    "R": 1
   },
   "schedule": {
-    "last_promotion_scan_cycle": 28,
+    "last_promotion_scan_cycle": 0,
     "last_eval_cycle": 0,
     "last_hygiene_cycle": 0
   },

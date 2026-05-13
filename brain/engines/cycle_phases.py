@@ -2,19 +2,32 @@ import os, sys, re, json, hashlib, time, math, tempfile, subprocess, shutil
 from pathlib import Path
 
 sys.path.insert(0, os.path.join(os.path.expanduser("~"), ".claude", "brain"))
-from engines._shared import BRAIN, write_bin, read_bin, cli_invoke, file_hash, read_state, write_state
+from engines._shared import BRAIN, write_bin, read_bin, cli_invoke, file_hash, read_state, write_state, AGENT_NAME
 from logger.api import write_learning_log
 
 CORTEX = BRAIN / "cortex"
 NAV = BRAIN / "navigation"
 HIPPO = BRAIN / "hippocampus.md"
 THALAMUS = BRAIN / "thalamus.json"
-KHAAN_REPO = Path("/home/ubuntu/Khaan")
+def _find_repo_root() -> Path:
+    try:
+        r = subprocess.run(
+            ["git", "rev-parse", "--show-toplevel"],
+            cwd=str(BRAIN.resolve()),
+            capture_output=True, text=True, timeout=10
+        )
+        if r.returncode == 0:
+            return Path(r.stdout.strip())
+    except Exception:
+        pass
+    return BRAIN.resolve().parent
+
+REPO_ROOT = _find_repo_root()
 ALL_REGIONS = ["semantic", "episodic", "procedural", "fusiform", "identity", "broca", "amygdala", "prefrontal"]
 REGION_PREFIX = {"semantic": "S", "episodic": "E", "procedural": "PR", "fusiform": "FUS",
                  "identity": "ID", "broca": "BR", "amygdala": "AM", "prefrontal": "R"}
 
-INGEST_PROMPT = """I am Kha'an. I am ingesting observations from my recent conversation transcript.
+INGEST_PROMPT = f"""I am {AGENT_NAME}. I am ingesting observations from my recent conversation transcript.
 
 For each candidate observation, I classify it into one memory category and assign salience 0.0-1.0.
 
@@ -37,7 +50,7 @@ Salience heuristics:
 I discard ephemeral or already-known observations.
 
 Return JSON only:
-{"observations": [{"text": "...", "category": "...", "salience": 0.0-1.0}]}"""
+{{"observations": [{{"text": "...", "category": "...", "salience": 0.0-1.0}}]}}"""
 
 SYNTH_SYSTEM_PROMPT = """You are synthesizing a cluster of source cortex entries
 into a single canonical, abstracted entry one level higher in the
@@ -1064,26 +1077,26 @@ def phase_commit(cycle_id, ledger, hippo_hash_start, nonce):
     # git commit + push in Khaan repo
     git_status = "ok"
     try:
-        a = subprocess.run(["git", "add", "-A"], cwd=str(KHAAN_REPO),
+        a = subprocess.run(["git", "add", "-A"], cwd=str(REPO_ROOT),
                            capture_output=True, text=True, timeout=30)
         if a.returncode != 0:
             git_status = f"add failed: {a.stderr[:200]}"
         else:
             c = subprocess.run(["git", "commit", "-m", f"brain cycle {cycle_id}"],
-                               cwd=str(KHAAN_REPO), capture_output=True, text=True, timeout=30)
+                               cwd=str(REPO_ROOT), capture_output=True, text=True, timeout=30)
             if c.returncode != 0:
                 if "nothing to commit" in (c.stdout + c.stderr):
                     git_status = "nothing to commit"
                 else:
                     git_status = f"commit failed: {c.stderr[:200]}"
             else:
-                p = subprocess.run(["git", "push"], cwd=str(KHAAN_REPO),
+                p = subprocess.run(["git", "push"], cwd=str(REPO_ROOT),
                                    capture_output=True, text=True, timeout=60)
                 if p.returncode != 0:
-                    subprocess.run(["git", "stash"], cwd=str(KHAAN_REPO), capture_output=True, timeout=30)
-                    subprocess.run(["git", "pull", "--rebase"], cwd=str(KHAAN_REPO), capture_output=True, timeout=60)
-                    subprocess.run(["git", "stash", "pop"], cwd=str(KHAAN_REPO), capture_output=True, timeout=30)
-                    p2 = subprocess.run(["git", "push"], cwd=str(KHAAN_REPO),
+                    subprocess.run(["git", "stash"], cwd=str(REPO_ROOT), capture_output=True, timeout=30)
+                    subprocess.run(["git", "pull", "--rebase"], cwd=str(REPO_ROOT), capture_output=True, timeout=60)
+                    subprocess.run(["git", "stash", "pop"], cwd=str(REPO_ROOT), capture_output=True, timeout=30)
+                    p2 = subprocess.run(["git", "push"], cwd=str(REPO_ROOT),
                                         capture_output=True, text=True, timeout=60)
                     git_status = "ok (after rebase)" if p2.returncode == 0 else f"push failed: {p2.stderr[:200]}"
     except Exception as e:
