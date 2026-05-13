@@ -40,12 +40,30 @@ def run():
     if not tc_path.exists():
         return None
 
-    transcript = tc_path.read_text()
+    lines = tc_path.read_text().strip().splitlines()
+    if not lines:
+        return None
+    # Truncate to last 40 entries, trim each to essentials
+    # Full transcripts (284KB+) timeout Sonnet at 300s
+    import json as _json
+    trimmed = []
+    for line in lines[-40:]:
+        try:
+            d = _json.loads(line)
+            entry = _json.dumps({
+                "ts": d.get("ts", ""),
+                "user": (d.get("user_prompt", "") or "")[:600],
+                "response": (d.get("final_response", "") or "")[:600],
+            })
+            trimmed.append(entry)
+        except Exception:
+            trimmed.append(line[:1000])
+    transcript = "\n".join(trimmed)
     if not transcript.strip():
         return None
 
     try:
-        resp = cli_invoke(RETRO_PROMPT, transcript, timeout=300)
+        resp = cli_invoke(RETRO_PROMPT, transcript, timeout=300, model="opus")
         payload = resp["result"]
         _verify_payload(payload)
     except Exception as e:

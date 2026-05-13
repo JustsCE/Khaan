@@ -78,14 +78,22 @@ def run_cycle():
             l8 = phase_commit(cycle_id, ledger, hippo_hash_start, nonce)
             ledger.append(l8)
 
-            # success -- clear escalation
+            # success -- clear escalation and ALL stale failure flags
+            write_bin("learning-cycle-overdue", 0)
+            write_bin("learning-cycle-running", 0)
+            write_bin("learning-cycle-failed", 0)
+            write_bin("learning-cycle-timeout", 0)
+            write_bin("cycle-empty", 0)
             st = read_state()
             st["escalation_count"] = 0
+            st["last_cycle_outcome"] = "success"
+            st["fsm"] = "NORMAL"
             write_state(st)
             return ledger
 
         except TimeoutError:
             write_bin("learning-cycle-timeout", 1)
+            write_bin("learning-cycle-overdue", 0)
             write_learning_log("cycle_timeout", {
                 "ts": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
                 "cycle_id": cycle_id, "latency_ms": int((time.time() - t0) * 1000)
@@ -111,6 +119,7 @@ def run_cycle():
 
             if esc >= 3:
                 write_bin("learning-cycle-failed", 1)
+                write_bin("learning-cycle-overdue", 0)
                 st["fsm"] = "MAINTENANCE_FAILED"
                 write_state(st)
                 write_bin("learning-cycle-running", 0)
@@ -119,4 +128,6 @@ def run_cycle():
             write_bin("learning-cycle-running", 0)
             continue
 
+    write_bin("learning-cycle-overdue", 0)
+    write_bin("learning-cycle-running", 0)
     return None

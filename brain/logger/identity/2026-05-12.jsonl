@@ -236,3 +236,132 @@
 {"event": "relay_complete", "ts": "2026-05-12T18:04:09Z", "session_id": "", "query_hash": "d38b23dd1705510b", "latency_ms": 24223, "entries_picked": 52}
 {"event": "relay_start", "ts": "2026-05-12T18:07:31Z", "session_id": "", "query_hash": "18c8096db93c9fb3"}
 {"event": "relay_complete", "ts": "2026-05-12T18:07:53Z", "session_id": "", "query_hash": "18c8096db93c9fb3", "latency_ms": 21370, "entries_picked": 52}
+{"event": "relay_start", "ts": "2026-05-12T18:41:37Z", "session_id": "", "query_hash": "9dc11d32e5329a63"}
+{"event": "identity_timeout", "ts": "2026-05-12T18:43:42Z", "skill": "relay", "latency_ms": 124809}
+{"event": "relay_start", "ts": "2026-05-12T18:52:47Z", "session_id": "", "query_hash": "0da7b0148182695b"}
+{"event": "relay_start", "ts": "2026-05-12T18:52:55Z", "session_id": "", "query_hash": "866102a3f169003a"}
+{"event": "relay_complete", "ts": "2026-05-12T18:53:18Z", "session_id": "", "query_hash": "866102a3f169003a", "latency_ms": 22557, "entries_picked": 64}
+{"event": "relay_start", "ts": "2026-05-12T18:55:57Z", "session_id": "", "query_hash": "ff4d59a8e05ed1d7"}
+{"event": "relay_complete", "ts": "2026-05-12T18:56:15Z", "session_id": "", "query_hash": "ff4d59a8e05ed1d7", "latency_ms": 18593, "entries_picked": 51}
+{"event": "relay_start", "ts": "2026-05-12T18:59:39Z", "session_id": "", "query_hash": "b45895f1c1ef0f69"}
+{"event": "relay_complete", "ts": "2026-05-12T19:00:04Z", "session_id": "", "query_hash": "b45895f1c1ef0f69", "latency_ms": 25353, "entries_picked": 49}
+{"event": "relay_start", "ts": "2026-05-12T19:05:25Z", "session_id": "", "query_hash": "8d3ddc970edd820c"}
+{"event": "relay_complete", "ts": "2026-05-12T19:05:45Z", "session_id": "", "query_hash": "8d3ddc970edd820c", "latency_ms": 20534, "entries_picked": 51}
+{"event": "relay_start", "ts": "2026-05-12T19:10:08Z", "session_id": "", "query_hash": "0969409c6e372bba"}
+{"event": "relay_complete", "ts": "2026-05-12T19:10:36Z", "session_id": "", "query_hash": "0969409c6e372bba", "latency_ms": 27874, "entries_picked": 50}
+{"event": "relay_start", "ts": "2026-05-12T19:16:00Z", "session_id": "", "query_hash": "221bbb7daaa88893"}
+{"event": "relay_complete", "ts": "2026-05-12T19:16:24Z", "session_id": "", "query_hash": "221bbb7daaa88893", "latency_ms": 23901, "entries_picked": 57}
+{"event": "relay_start", "ts": "2026-05-12T19:19:31Z", "session_id": "", "query_hash": "ee1cc883cd277a00"}
+{"event": "relay_complete", "ts": "2026-05-12T19:19:50Z", "session_id": "", "query_hash": "ee1cc883cd277a00", "latency_ms": 19293, "entries_picked": 49}
+{"event": "relay_start", "ts": "2026-05-12T19:24:15Z", "session_id": "", "query_hash": "f15a7f307fd1cbb9"}
+{"event": "relay_complete", "ts": "2026-05-12T19:24:38Z", "session_id": "", "query_hash": "f15a7f307fd1cbb9", "latency_ms": 23619, "entries_picked": 53}
+{"event": "relay_start", "ts": "2026-05-12T19:31:19Z", "session_id": "", "query_hash": "63c66c07a00d7d9d"}
+{"event": "relay_complete", "ts": "2026-05-12T19:31:40Z", "session_id": "", "query_hash": "63c66c07a00d7d9d", "latency_ms": 20402, "entries_picked": 49}
+{"event": "relay_start", "ts": "2026-05-12T19:41:45Z", "session_id": "", "query_hash": "d50ad07cdd635983"}
+{"event": "relay_complete", "ts": "2026-05-12T19:42:16Z", "session_id": "", "query_hash": "d50ad07cdd635983", "latency_ms": 30626, "entries_picked": 56}
+{"event": "relay_start", "ts": "2026-05-12T19:51:50Z", "session_id": "", "query_hash": "5ab62277047fc99a"}
+{"event": "relay_failed", "ts": "2026-05-12T19:52:14Z", "session_id": "", "query_hash": "5ab62277047fc99a", "attempt": 1, "reason": "claude -p exited 1: "}
+{"event": "relay_complete", "ts": "2026-05-12T19:52:37Z", "session_id": "", "query_hash": "5ab62277047fc99a", "latency_ms": 47195, "entries_picked": 49}
+{"event": "relay_start", "ts": "2026-05-12T20:00:46Z", "session_id": "", "query_hash": "070c160a6299c543"}
+{"event": "relay_complete", "ts": "2026-05-12T20:01:12Z", "session_id": "", "query_hash": "070c160a6299c543", "latency_ms": 25579, "entries_picked": 49}
+{"event": "relay_start", "ts": "2026-05-12T20:04:21Z", "session_id": "", "query_hash": "2802370fcd08add2"}
+{"event": "relay_complete", "ts": "2026-05-12T20:04:41Z", "session_id": "", "query_hash": "2802370fcd08add2", "latency_ms": 20675, "entries_picked": 49}
+{"event": "relay_start", "ts": "2026-05-12T20:08:49Z", "session_id": "", "query_hash": "5abd784938507d24"}
+{"event": "relay_complete", "ts": "2026-05-12T20:09:04Z", "session_id": "", "query_hash": "5abd784938507d24", "latency_ms": 14984, "entries_picked": 49}
+{"event": "boot_start", "ts": "2026-05-12T20:10:23Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-12T20:12:14Z", "session_id": "", "latency_ms": 111270, "entries_picked": 50}
+{"event": "relay_start", "ts": "2026-05-12T20:13:04Z", "session_id": "", "query_hash": "e3f2e736cb87f116"}
+{"event": "relay_complete", "ts": "2026-05-12T20:13:31Z", "session_id": "", "query_hash": "e3f2e736cb87f116", "latency_ms": 27156, "entries_picked": 58}
+{"event": "boot_start", "ts": "2026-05-12T20:18:10Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-12T20:20:00Z", "session_id": "", "latency_ms": 109706, "entries_picked": 50}
+{"event": "relay_start", "ts": "2026-05-12T20:20:41Z", "session_id": "", "query_hash": "e3f2e736cb87f116"}
+{"event": "relay_complete", "ts": "2026-05-12T20:21:02Z", "session_id": "", "query_hash": "e3f2e736cb87f116", "latency_ms": 21710, "entries_picked": 59}
+{"event": "boot_start", "ts": "2026-05-12T20:28:10Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-12T20:29:48Z", "session_id": "", "latency_ms": 97758, "entries_picked": 50}
+{"event": "relay_start", "ts": "2026-05-12T20:30:47Z", "session_id": "", "query_hash": "e3f2e736cb87f116"}
+{"event": "relay_complete", "ts": "2026-05-12T20:31:10Z", "session_id": "", "query_hash": "e3f2e736cb87f116", "latency_ms": 22931, "entries_picked": 59}
+{"event": "boot_start", "ts": "2026-05-12T20:38:11Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-12T20:40:10Z", "session_id": "", "latency_ms": 118790, "entries_picked": 50}
+{"event": "relay_start", "ts": "2026-05-12T20:40:53Z", "session_id": "", "query_hash": "e3f2e736cb87f116"}
+{"event": "relay_complete", "ts": "2026-05-12T20:41:21Z", "session_id": "", "query_hash": "e3f2e736cb87f116", "latency_ms": 28045, "entries_picked": 60}
+{"event": "boot_start", "ts": "2026-05-12T20:48:13Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-12T20:49:59Z", "session_id": "", "latency_ms": 106493, "entries_picked": 51}
+{"event": "relay_start", "ts": "2026-05-12T20:50:44Z", "session_id": "", "query_hash": "e3f2e736cb87f116"}
+{"event": "relay_complete", "ts": "2026-05-12T20:51:08Z", "session_id": "", "query_hash": "e3f2e736cb87f116", "latency_ms": 24014, "entries_picked": 61}
+{"event": "boot_start", "ts": "2026-05-12T20:58:13Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-12T20:59:48Z", "session_id": "", "latency_ms": 95314, "entries_picked": 52}
+{"event": "relay_start", "ts": "2026-05-12T21:00:36Z", "session_id": "", "query_hash": "e3f2e736cb87f116"}
+{"event": "relay_complete", "ts": "2026-05-12T21:00:58Z", "session_id": "", "query_hash": "e3f2e736cb87f116", "latency_ms": 21914, "entries_picked": 61}
+{"event": "boot_start", "ts": "2026-05-12T21:07:35Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-12T21:09:29Z", "session_id": "", "latency_ms": 113838, "entries_picked": 52}
+{"event": "relay_start", "ts": "2026-05-12T21:10:31Z", "session_id": "", "query_hash": "e3f2e736cb87f116"}
+{"event": "relay_complete", "ts": "2026-05-12T21:10:56Z", "session_id": "", "query_hash": "e3f2e736cb87f116", "latency_ms": 25357, "entries_picked": 62}
+{"event": "boot_start", "ts": "2026-05-12T21:18:30Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-12T21:19:42Z", "session_id": "", "latency_ms": 71873, "entries_picked": 53}
+{"event": "relay_start", "ts": "2026-05-12T21:20:44Z", "session_id": "", "query_hash": "e3f2e736cb87f116"}
+{"event": "relay_complete", "ts": "2026-05-12T21:21:07Z", "session_id": "", "query_hash": "e3f2e736cb87f116", "latency_ms": 22696, "entries_picked": 62}
+{"event": "boot_start", "ts": "2026-05-12T21:28:30Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-12T21:30:29Z", "session_id": "", "latency_ms": 118550, "entries_picked": 53}
+{"event": "relay_start", "ts": "2026-05-12T21:31:23Z", "session_id": "", "query_hash": "e3f2e736cb87f116"}
+{"event": "relay_complete", "ts": "2026-05-12T21:31:44Z", "session_id": "", "query_hash": "e3f2e736cb87f116", "latency_ms": 20977, "entries_picked": 62}
+{"event": "boot_start", "ts": "2026-05-12T21:38:30Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-12T21:40:23Z", "session_id": "", "latency_ms": 112358, "entries_picked": 53}
+{"event": "relay_start", "ts": "2026-05-12T21:41:26Z", "session_id": "", "query_hash": "e3f2e736cb87f116"}
+{"event": "relay_complete", "ts": "2026-05-12T21:41:50Z", "session_id": "", "query_hash": "e3f2e736cb87f116", "latency_ms": 23669, "entries_picked": 62}
+{"event": "boot_start", "ts": "2026-05-12T21:48:30Z", "session_id": ""}
+{"event": "boot_failed", "ts": "2026-05-12T21:50:24Z", "session_id": "", "attempt": 1, "reason": "Expecting value: line 53 column 3 (char 10311)"}
+{"event": "boot_complete", "ts": "2026-05-12T21:52:14Z", "session_id": "", "latency_ms": 223546, "entries_picked": 54}
+{"event": "relay_start", "ts": "2026-05-12T21:53:11Z", "session_id": "", "query_hash": "e3f2e736cb87f116"}
+{"event": "relay_complete", "ts": "2026-05-12T21:53:34Z", "session_id": "", "query_hash": "e3f2e736cb87f116", "latency_ms": 22131, "entries_picked": 62}
+{"event": "boot_start", "ts": "2026-05-12T21:58:30Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-12T22:00:03Z", "session_id": "", "latency_ms": 92716, "entries_picked": 54}
+{"event": "relay_start", "ts": "2026-05-12T22:01:07Z", "session_id": "", "query_hash": "e3f2e736cb87f116"}
+{"event": "relay_complete", "ts": "2026-05-12T22:01:26Z", "session_id": "", "query_hash": "e3f2e736cb87f116", "latency_ms": 19088, "entries_picked": 62}
+{"event": "boot_start", "ts": "2026-05-12T22:08:31Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-12T22:10:17Z", "session_id": "", "latency_ms": 106098, "entries_picked": 54}
+{"event": "relay_start", "ts": "2026-05-12T22:11:10Z", "session_id": "", "query_hash": "e3f2e736cb87f116"}
+{"event": "relay_complete", "ts": "2026-05-12T22:11:31Z", "session_id": "", "query_hash": "e3f2e736cb87f116", "latency_ms": 21540, "entries_picked": 63}
+{"event": "boot_start", "ts": "2026-05-12T22:18:31Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-12T22:20:17Z", "session_id": "", "latency_ms": 105689, "entries_picked": 54}
+{"event": "relay_start", "ts": "2026-05-12T22:21:05Z", "session_id": "", "query_hash": "e3f2e736cb87f116"}
+{"event": "relay_complete", "ts": "2026-05-12T22:21:29Z", "session_id": "", "query_hash": "e3f2e736cb87f116", "latency_ms": 23613, "entries_picked": 63}
+{"event": "boot_start", "ts": "2026-05-12T22:26:20Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-12T22:28:17Z", "session_id": "", "latency_ms": 117280, "entries_picked": 54}
+{"event": "relay_start", "ts": "2026-05-12T22:29:28Z", "session_id": "", "query_hash": "e3f2e736cb87f116"}
+{"event": "relay_complete", "ts": "2026-05-12T22:29:53Z", "session_id": "", "query_hash": "e3f2e736cb87f116", "latency_ms": 25194, "entries_picked": 63}
+{"event": "boot_start", "ts": "2026-05-12T22:35:38Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-12T22:37:27Z", "session_id": "", "latency_ms": 108942, "entries_picked": 55}
+{"event": "relay_start", "ts": "2026-05-12T22:38:19Z", "session_id": "", "query_hash": "e3f2e736cb87f116"}
+{"event": "relay_complete", "ts": "2026-05-12T22:38:40Z", "session_id": "", "query_hash": "e3f2e736cb87f116", "latency_ms": 20265, "entries_picked": 64}
+{"event": "boot_start", "ts": "2026-05-12T22:45:37Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-12T22:47:05Z", "session_id": "", "latency_ms": 88372, "entries_picked": 55}
+{"event": "relay_start", "ts": "2026-05-12T22:48:16Z", "session_id": "", "query_hash": "e3f2e736cb87f116"}
+{"event": "relay_complete", "ts": "2026-05-12T22:48:33Z", "session_id": "", "query_hash": "e3f2e736cb87f116", "latency_ms": 17098, "entries_picked": 65}
+{"event": "boot_start", "ts": "2026-05-12T22:54:49Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-12T22:56:36Z", "session_id": "", "latency_ms": 106413, "entries_picked": 56}
+{"event": "relay_start", "ts": "2026-05-12T22:57:30Z", "session_id": "", "query_hash": "e3f2e736cb87f116"}
+{"event": "relay_complete", "ts": "2026-05-12T22:57:51Z", "session_id": "", "query_hash": "e3f2e736cb87f116", "latency_ms": 21763, "entries_picked": 65}
+{"event": "boot_start", "ts": "2026-05-12T23:03:52Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-12T23:05:27Z", "session_id": "", "latency_ms": 94883, "entries_picked": 57}
+{"event": "relay_start", "ts": "2026-05-12T23:05:48Z", "session_id": "", "query_hash": "e3f2e736cb87f116"}
+{"event": "relay_complete", "ts": "2026-05-12T23:06:05Z", "session_id": "", "query_hash": "e3f2e736cb87f116", "latency_ms": 16680, "entries_picked": 65}
+{"event": "boot_start", "ts": "2026-05-12T23:13:52Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-12T23:15:26Z", "session_id": "", "latency_ms": 93699, "entries_picked": 57}
+{"event": "relay_start", "ts": "2026-05-12T23:15:51Z", "session_id": "", "query_hash": "e3f2e736cb87f116"}
+{"event": "relay_complete", "ts": "2026-05-12T23:16:11Z", "session_id": "", "query_hash": "e3f2e736cb87f116", "latency_ms": 19733, "entries_picked": 65}
+{"event": "boot_start", "ts": "2026-05-12T23:24:59Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-12T23:27:03Z", "session_id": "", "latency_ms": 123534, "entries_picked": 57}
+{"event": "relay_start", "ts": "2026-05-12T23:28:05Z", "session_id": "", "query_hash": "e3f2e736cb87f116"}
+{"event": "relay_complete", "ts": "2026-05-12T23:28:21Z", "session_id": "", "query_hash": "e3f2e736cb87f116", "latency_ms": 15788, "entries_picked": 65}
+{"event": "boot_start", "ts": "2026-05-12T23:35:48Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-12T23:37:36Z", "session_id": "", "latency_ms": 107749, "entries_picked": 57}
+{"event": "relay_start", "ts": "2026-05-12T23:38:33Z", "session_id": "", "query_hash": "e3f2e736cb87f116"}
+{"event": "relay_complete", "ts": "2026-05-12T23:38:56Z", "session_id": "", "query_hash": "e3f2e736cb87f116", "latency_ms": 23913, "entries_picked": 65}
+{"event": "boot_start", "ts": "2026-05-12T23:43:26Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-12T23:45:14Z", "session_id": "", "latency_ms": 107923, "entries_picked": 57}
+{"event": "relay_start", "ts": "2026-05-12T23:46:10Z", "session_id": "", "query_hash": "e3f2e736cb87f116"}
+{"event": "relay_complete", "ts": "2026-05-12T23:46:36Z", "session_id": "", "query_hash": "e3f2e736cb87f116", "latency_ms": 26343, "entries_picked": 65}
+{"event": "boot_start", "ts": "2026-05-12T23:53:15Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-12T23:55:17Z", "session_id": "", "latency_ms": 122522, "entries_picked": 57}
+{"event": "relay_start", "ts": "2026-05-12T23:56:06Z", "session_id": "", "query_hash": "e3f2e736cb87f116"}
+{"event": "relay_complete", "ts": "2026-05-12T23:56:24Z", "session_id": "", "query_hash": "e3f2e736cb87f116", "latency_ms": 17314, "entries_picked": 66}

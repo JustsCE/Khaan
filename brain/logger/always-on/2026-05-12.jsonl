@@ -1,0 +1,94 @@
+{"ts": "2026-05-12T20:08:17Z", "event": "daemon_start", "pid": 383570}
+{"ts": "2026-05-12T20:08:37Z", "event": "iteration_skipped", "reason": "cycle_in_flight"}
+{"ts": "2026-05-12T20:08:52Z", "event": "iteration_skipped", "reason": "decision_in_flight"}
+{"ts": "2026-05-12T20:09:07Z", "event": "iteration_skipped", "reason": "decision_in_flight"}
+{"ts": "2026-05-12T20:09:22Z", "event": "iteration_skipped", "reason": "decision_in_flight"}
+{"ts": "2026-05-12T20:09:37Z", "event": "iteration_skipped", "reason": "decision_in_flight"}
+{"ts": "2026-05-12T20:09:52Z", "event": "iteration_skipped", "reason": "decision_in_flight"}
+{"ts": "2026-05-12T20:10:07Z", "event": "iteration_skipped", "reason": "decision_in_flight"}
+{"ts": "2026-05-12T20:10:22Z", "event": "iteration_start", "source": "self", "prompt": "Iterate. Find what matters most. Move on it."}
+{"ts": "2026-05-12T20:16:38Z", "event": "iteration_complete", "source": "self", "latency_ms": 376691, "exit_code": 0, "stdout_chars": 1424, "stderr_chars": 0}
+{"ts": "2026-05-12T20:16:38Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T20:17:08Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T20:17:38Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T20:18:08Z", "event": "iteration_start", "source": "self", "prompt": "Iterate. Find what matters most. Move on it."}
+{"ts": "2026-05-12T20:28:09Z", "event": "iteration_timeout", "source": "self", "latency_ms": 600095}
+{"ts": "2026-05-12T20:28:09Z", "event": "iteration_start", "source": "self", "prompt": "Iterate. Find what matters most. Move on it."}
+{"ts": "2026-05-12T20:38:09Z", "event": "iteration_timeout", "source": "self", "latency_ms": 600166}
+{"ts": "2026-05-12T20:38:09Z", "event": "iteration_start", "source": "self", "prompt": "Iterate. Find what matters most. Move on it."}
+{"ts": "2026-05-12T20:46:41Z", "event": "iteration_complete", "source": "self", "latency_ms": 512403, "exit_code": 0, "stdout_chars": 2211, "stderr_chars": 0}
+{"ts": "2026-05-12T20:46:41Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T20:47:11Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T20:47:41Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T20:48:11Z", "event": "iteration_start", "source": "self", "prompt": "Iterate. Find what matters most. Move on it."}
+{"ts": "2026-05-12T20:58:11Z", "event": "iteration_timeout", "source": "self", "latency_ms": 600060}
+{"ts": "2026-05-12T20:58:11Z", "event": "iteration_start", "source": "self", "prompt": "Iterate. Find what matters most. Move on it."}
+{"ts": "2026-05-12T21:06:04Z", "event": "iteration_complete", "source": "self", "latency_ms": 472520, "exit_code": 0, "stdout_chars": 1166, "stderr_chars": 0}
+{"ts": "2026-05-12T21:06:04Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T21:06:34Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T21:07:04Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T21:07:34Z", "event": "iteration_start", "source": "self", "prompt": "Iterate. Find what matters most. Move on it."}
+{"ts": "2026-05-12T21:16:59Z", "event": "iteration_complete", "source": "self", "latency_ms": 564767, "exit_code": 0, "stdout_chars": 1094, "stderr_chars": 0}
+{"ts": "2026-05-12T21:16:59Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T21:17:29Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T21:17:59Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T21:18:29Z", "event": "iteration_start", "source": "self", "prompt": "Iterate. Find what matters most. Move on it."}
+{"ts": "2026-05-12T21:28:29Z", "event": "iteration_timeout", "source": "self", "latency_ms": 600083}
+{"ts": "2026-05-12T21:28:29Z", "event": "iteration_start", "source": "self", "prompt": "Iterate. Find what matters most. Move on it."}
+{"ts": "2026-05-12T21:38:29Z", "event": "iteration_timeout", "source": "self", "latency_ms": 600123}
+{"ts": "2026-05-12T21:38:29Z", "event": "iteration_start", "source": "self", "prompt": "Iterate. Find what matters most. Move on it."}
+{"ts": "2026-05-12T21:48:29Z", "event": "iteration_timeout", "source": "self", "latency_ms": 600094}
+{"ts": "2026-05-12T21:48:29Z", "event": "iteration_start", "source": "self", "prompt": "Iterate. Find what matters most. Move on it."}
+{"ts": "2026-05-12T21:58:29Z", "event": "iteration_timeout", "source": "self", "latency_ms": 600113}
+{"ts": "2026-05-12T21:58:29Z", "event": "iteration_start", "source": "self", "prompt": "Iterate. Find what matters most. Move on it."}
+{"ts": "2026-05-12T22:08:29Z", "event": "iteration_timeout", "source": "self", "latency_ms": 600120}
+{"ts": "2026-05-12T22:08:29Z", "event": "iteration_start", "source": "self", "prompt": "Iterate. Find what matters most. Move on it."}
+{"ts": "2026-05-12T22:18:29Z", "event": "iteration_timeout", "source": "self", "latency_ms": 600093}
+{"ts": "2026-05-12T22:18:29Z", "event": "iteration_start", "source": "self", "prompt": "Iterate. Find what matters most. Move on it."}
+{"ts": "2026-05-12T22:24:48Z", "event": "iteration_complete", "source": "self", "latency_ms": 379156, "exit_code": 0, "stdout_chars": 1149, "stderr_chars": 0}
+{"ts": "2026-05-12T22:24:48Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T22:25:18Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T22:25:48Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T22:26:18Z", "event": "iteration_start", "source": "self", "prompt": "Iterate. Find what matters most. Move on it."}
+{"ts": "2026-05-12T22:34:06Z", "event": "iteration_complete", "source": "self", "latency_ms": 467914, "exit_code": 0, "stdout_chars": 999, "stderr_chars": 0}
+{"ts": "2026-05-12T22:34:06Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T22:34:36Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T22:35:06Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T22:35:36Z", "event": "iteration_start", "source": "self", "prompt": "Iterate. Find what matters most. Move on it."}
+{"ts": "2026-05-12T22:44:06Z", "event": "iteration_complete", "source": "self", "latency_ms": 509263, "exit_code": 0, "stdout_chars": 1226, "stderr_chars": 0}
+{"ts": "2026-05-12T22:44:06Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T22:44:36Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T22:45:06Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T22:45:36Z", "event": "iteration_start", "source": "self", "prompt": "Iterate. Find what matters most. Move on it."}
+{"ts": "2026-05-12T22:53:18Z", "event": "iteration_complete", "source": "self", "latency_ms": 462095, "exit_code": 0, "stdout_chars": 516, "stderr_chars": 0}
+{"ts": "2026-05-12T22:53:18Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T22:53:48Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T22:54:18Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T22:54:48Z", "event": "iteration_start", "source": "self", "prompt": "Iterate. Find what matters most. Move on it."}
+{"ts": "2026-05-12T23:02:20Z", "event": "iteration_complete", "source": "self", "latency_ms": 452711, "exit_code": 0, "stdout_chars": 176, "stderr_chars": 0}
+{"ts": "2026-05-12T23:02:20Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T23:02:50Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T23:03:20Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T23:03:50Z", "event": "iteration_start", "source": "self", "prompt": "Iterate. Find what matters most. Move on it."}
+{"ts": "2026-05-12T23:13:51Z", "event": "iteration_timeout", "source": "self", "latency_ms": 600120}
+{"ts": "2026-05-12T23:13:51Z", "event": "iteration_start", "source": "self", "prompt": "Iterate. Find what matters most. Move on it."}
+{"ts": "2026-05-12T23:23:28Z", "event": "iteration_complete", "source": "self", "latency_ms": 577529, "exit_code": 0, "stdout_chars": 1092, "stderr_chars": 0}
+{"ts": "2026-05-12T23:23:28Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T23:23:58Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T23:24:28Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T23:24:58Z", "event": "iteration_start", "source": "self", "prompt": "Iterate. Find what matters most. Move on it."}
+{"ts": "2026-05-12T23:34:17Z", "event": "iteration_complete", "source": "self", "latency_ms": 558611, "exit_code": 0, "stdout_chars": 892, "stderr_chars": 0}
+{"ts": "2026-05-12T23:34:17Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T23:34:47Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T23:35:17Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T23:35:47Z", "event": "iteration_start", "source": "self", "prompt": "Iterate. Find what matters most. Move on it."}
+{"ts": "2026-05-12T23:41:55Z", "event": "iteration_complete", "source": "self", "latency_ms": 368169, "exit_code": 0, "stdout_chars": 1209, "stderr_chars": 0}
+{"ts": "2026-05-12T23:41:55Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T23:42:25Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T23:42:55Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T23:43:25Z", "event": "iteration_start", "source": "self", "prompt": "Iterate. Find what matters most. Move on it."}
+{"ts": "2026-05-12T23:51:43Z", "event": "iteration_complete", "source": "self", "latency_ms": 498314, "exit_code": 0, "stdout_chars": 523, "stderr_chars": 0}
+{"ts": "2026-05-12T23:51:43Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T23:52:13Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T23:52:43Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-12T23:53:13Z", "event": "iteration_start", "source": "self", "prompt": "Iterate. Find what matters most. Move on it."}

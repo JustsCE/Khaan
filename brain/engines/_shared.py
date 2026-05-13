@@ -32,13 +32,13 @@ def file_hash(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()[:16]
 
 
-def cli_invoke(system_prompt, user_prompt, timeout=120, raw=False):
+def cli_invoke(system_prompt, user_prompt, timeout=120, raw=False, model="sonnet"):
     # --bare was dropped in CLI 2.1.x: it now also skips OAuth credential
     # loading, breaking auth. Recursion is prevented by BRAIN_SKIP_HOOKS=1
     # which hook.py checks before any engine import.
     env = {**os.environ, "BRAIN_SKIP_HOOKS": "1"}
     r = subprocess.run(
-        ["claude", "-p", "--model", "sonnet", "--system-prompt", system_prompt,
+        ["claude", "-p", "--model", model, "--system-prompt", system_prompt,
          "--output-format", "stream-json", "--verbose"],
         input=user_prompt, capture_output=True, text=True,
         timeout=timeout, env=env

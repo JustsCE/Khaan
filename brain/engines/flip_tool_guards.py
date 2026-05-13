@@ -6,6 +6,14 @@ BRAIN_PATH = str(BRAIN)
 BRAIN_REAL = os.path.realpath(str(BRAIN))
 
 BYPASSABLE = {"use-bash-block", "engine-security-block", "cycle-security-block", "permissions-block"}
+
+# R260: Kha'an is read-only on WhatsApp. All send tools blocked at the hook layer.
+# Mechanical enforcement — the model cannot reason around it.
+# To re-enable sends, edit this set directly (no bypass mechanism).
+WA_SEND_TOOLS = {
+    "mcp__claude_ai_WhatsApp__send_whatsapp",
+    "mcp__claude_ai_Brain__send_whatsapp",
+}
 CYCLE_STATE_FILES = {"state.json", "brain_cycle.py", "cycle_phases.py"}
 DOCKER_RE = re.compile(r"docker\s+compose\s+(up|down|restart)(\s*$|\s*[;&|])")
 WRITE_CMD_RE = re.compile(r"(?:(?<!&)>(?![&=])|>>|tee\s+|open\s*\(|\.rename\s*\(|\.replace\s*\(|\.link\s*\(|\.unlink\s*\(|(?:cp|mv|dd|install|rsync|scp|patch|sed\s+-i|perl\s+-\S*[ip])\s+|shutil\.\w+|\.write_text\s*\(|\.write_bytes\s*\(|fs\.writeFile)")
@@ -96,5 +104,11 @@ def evaluate(payload, repo_root):
         cmd = tool_input.get("command", "").replace("\n", " ")
         if ("settings.json" in cmd or "settings.local.json" in cmd) and WRITE_CMD_RE.search(cmd):
             gates.append("settings-security-block")
+
+    # Rule 8: whatsapp-readonly — R260 mechanical enforcement
+    # ALL WhatsApp send tools are blocked regardless of recipient.
+    # Kha'an may read incoming messages but cannot send any.
+    if tool_name in WA_SEND_TOOLS:
+        gates.append("whatsapp-readonly")
 
     return gates

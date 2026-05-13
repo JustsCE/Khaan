@@ -230,7 +230,7 @@ def phase_ingest():
     )
 
     try:
-        resp = cli_invoke(INGEST_PROMPT, transcript, timeout=60)
+        resp = cli_invoke(INGEST_PROMPT, transcript, timeout=60, model="opus")
         observations = resp["result"].get("observations", [])
     except Exception:
         observations = []
@@ -553,9 +553,9 @@ def phase_synthesis(cycle_id):
             "detail": f"L2 created {l2_created}, L3 created {l3_created}, sources archived {archived}"}
 
 
-def _recursive_median_split(eligible, cohesion_thresh, cluster_max, cluster_min):
+def _recursive_median_split(eligible, cohesion_thresh, cluster_max, cluster_min, _depth=0):
     """Split oversized cluster by recursive median-overlap per spec."""
-    if len(eligible) <= cluster_max:
+    if _depth >= 20 or len(eligible) <= cluster_max:
         return [eligible] if len(eligible) >= cluster_min else []
     # compute median pairwise overlap
     overlaps = []
@@ -593,7 +593,11 @@ def _recursive_median_split(eligible, cohesion_thresh, cluster_max, cluster_min)
         if len(sub) <= cluster_max and len(sub) >= cluster_min:
             result.append(sub)
         elif len(sub) > cluster_max:
-            result.extend(_recursive_median_split(sub, cohesion_thresh, cluster_max, cluster_min))
+            if len(sub) >= len(eligible):
+                # No progress — force-chunk to avoid infinite recursion
+                result.extend([sub[i:i+cluster_max] for i in range(0, len(sub), cluster_max) if len(sub[i:i+cluster_max]) >= cluster_min])
+            else:
+                result.extend(_recursive_median_split(sub, cohesion_thresh, cluster_max, cluster_min, _depth + 1))
         # drop if < cluster_min
     return result
 
@@ -666,7 +670,7 @@ def _synthesize_level(region, src_level, dst_level, strength_thresh,
         })
 
         try:
-            resp = cli_invoke(SYNTH_SYSTEM_PROMPT, f"---INPUTS---\n{inputs_json}", timeout=120, raw=True)
+            resp = cli_invoke(SYNTH_SYSTEM_PROMPT, f"---INPUTS---\n{inputs_json}", timeout=120, raw=True, model="opus")
             body = resp["result"]
             if body.strip().startswith("{") and "error" in body:
                 try:

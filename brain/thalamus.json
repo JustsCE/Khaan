@@ -1,15 +1,15 @@
 {
-  "cycleCount": 26,
+  "cycleCount": 27,
   "nextIds": {
-    "H": 549,
-    "S": 129,
-    "E": 122,
-    "PR": 195,
-    "FUS": 19,
-    "ID": 25,
-    "BR": 24,
-    "AM": 21,
-    "R": 268
+    "H": 2039,
+    "S": 200,
+    "E": 269,
+    "PR": 330,
+    "FUS": 49,
+    "ID": 42,
+    "BR": 37,
+    "AM": 25,
+    "R": 374
   },
   "schedule": {
     "last_promotion_scan_cycle": 27,

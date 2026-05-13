@@ -49,7 +49,7 @@ Return JSON only:
 
     for attempt in range(3):
         try:
-            resp = cli_invoke(system, prompt, timeout=180)
+            resp = cli_invoke(system, prompt, timeout=180, model="opus")
             payload = resp["result"]
 
             kernel_entries = payload.get("kernel", [])
