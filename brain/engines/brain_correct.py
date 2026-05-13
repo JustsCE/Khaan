@@ -8,7 +8,7 @@ from logger.api import write_learning_log
 
 # [DEVIATES FROM SPEC: skills.html]
 # Spec does not provide a pinned prompt for Brain Correct.
-# Framed as Kha'an per user instruction.
+# Framed per user instruction.
 CORRECT_PROMPT = f"""I am {AGENT_NAME}. I am encoding an immediate correction as a prefrontal rule.
 
 I identify the failure pattern: what did I do, what should I have done, what is the rule that would have prevented this.

@@ -10,7 +10,7 @@ HIPPO = BRAIN / "hippocampus.md"
 
 # [DEVIATES FROM SPEC: skills.html]
 # Spec does not provide a pinned prompt for Brain Retro.
-# Framed as Kha'an per user instruction.
+# Framed per user instruction.
 RETRO_PROMPT = f"""I am {AGENT_NAME}. I am running my session-end retrospective.
 
 I read the session transcript and classify findings into three categories:

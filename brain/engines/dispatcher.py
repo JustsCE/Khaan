@@ -80,7 +80,11 @@ def dispatch(event, payload, repo_root):
 
     raised = []
     for bname in spec["blocking_binaries"]:
-        if read_binary(repo_root, bname) == 1:
+        try:
+            val = read_binary(repo_root, bname)
+        except Exception:
+            continue
+        if val == 1:
             if bname in ("learning-cycle-overdue", "learning-cycle-running",
                          "consolidation-pending", "promote-scan-stale"):
                 # Always let the brain-cycle skill / bash invocation through

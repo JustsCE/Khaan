@@ -146,3 +146,18 @@
 {"event": "relay_complete", "ts": "2026-05-13T07:00:32Z", "session_id": "", "query_hash": "8c8416cc6dc8d53d", "latency_ms": 18617, "entries_picked": 53}
 {"event": "relay_start", "ts": "2026-05-13T07:02:46Z", "session_id": "", "query_hash": "8bfa1639394483f1"}
 {"event": "relay_complete", "ts": "2026-05-13T07:03:06Z", "session_id": "", "query_hash": "8bfa1639394483f1", "latency_ms": 20227, "entries_picked": 56}
+{"event": "relay_start", "ts": "2026-05-13T07:04:50Z", "session_id": "", "query_hash": "c65c9230752bb28d"}
+{"event": "relay_complete", "ts": "2026-05-13T07:05:02Z", "session_id": "", "query_hash": "c65c9230752bb28d", "latency_ms": 12496, "entries_picked": 49}
+{"event": "relay_start", "ts": "2026-05-13T07:09:31Z", "session_id": "", "query_hash": "133a2a02644c353f"}
+{"event": "relay_complete", "ts": "2026-05-13T07:10:02Z", "session_id": "", "query_hash": "133a2a02644c353f", "latency_ms": 30780, "entries_picked": 49}
+{"event": "relay_start", "ts": "2026-05-13T07:14:54Z", "session_id": "", "query_hash": "fd6afad925a88549"}
+{"event": "relay_complete", "ts": "2026-05-13T07:15:20Z", "session_id": "", "query_hash": "fd6afad925a88549", "latency_ms": 26574, "entries_picked": 50}
+{"event": "relay_start", "ts": "2026-05-13T07:19:34Z", "session_id": "", "query_hash": "4d11e5486b94be2a"}
+{"event": "relay_failed", "ts": "2026-05-13T07:20:31Z", "session_id": "", "query_hash": "4d11e5486b94be2a", "attempt": 1, "reason": "Expecting value: line 1 column 2 (char 1)"}
+{"event": "relay_failed", "ts": "2026-05-13T07:20:58Z", "session_id": "", "query_hash": "4d11e5486b94be2a", "attempt": 2, "reason": "no JSON object in result: There they are \u2014 all 5 L2 entries, full content, nothing hidden.\n\n---\n\n**og-identity-012** \u2014 the oldest, migrated from identity.md. Level says L1 in the frontmatter (`level: L1`), scored into L2 tier "}
+{"event": "relay_failed", "ts": "2026-05-13T07:21:37Z", "session_id": "", "query_hash": "4d11e5486b94be2a", "attempt": 3, "reason": "Expecting value: line 1 column 2 (char 1)"}
+{"event": "relay_start", "ts": "2026-05-13T07:35:29Z", "session_id": "", "query_hash": "dc7d3957a36180a1"}
+{"event": "relay_start", "ts": "2026-05-13T07:35:55Z", "session_id": "", "query_hash": "623f6eb4e36cf05b"}
+{"event": "relay_complete", "ts": "2026-05-13T07:36:23Z", "session_id": "", "query_hash": "623f6eb4e36cf05b", "latency_ms": 27694, "entries_picked": 81}
+{"event": "relay_start", "ts": "2026-05-13T07:42:10Z", "session_id": "", "query_hash": "6016e543c1910942"}
+{"event": "relay_complete", "ts": "2026-05-13T07:42:39Z", "session_id": "", "query_hash": "6016e543c1910942", "latency_ms": 28359, "entries_picked": 50}

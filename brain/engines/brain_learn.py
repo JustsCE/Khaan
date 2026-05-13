@@ -10,7 +10,7 @@ HIPPO = BRAIN / "hippocampus.md"
 
 # [DEVIATES FROM SPEC: skills.html]
 # Spec does not provide a pinned prompt for Brain Learn.
-# Framed as Kha'an per user instruction.
+# Framed per user instruction.
 LEARN_PROMPT = f"""I am {AGENT_NAME}. I am extracting observations from an external source.
 
 For each observation I extract, I classify it into one memory category and assign salience 0.0-1.0.
