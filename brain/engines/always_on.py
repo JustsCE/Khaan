@@ -11,7 +11,7 @@ TURN_LOG = BRAIN / "logger" / "handler" / "turn_complete.jsonl"
 STATE_FILE = BRAIN / "state.json"
 CYCLE_RUNNING = BRAIN / "binaries" / "learning-cycle-running.bin"
 
-SELF_PROMPT = "Iterate. Find what matters most. Move on it."
+SELF_PROMPT = "Iterate. Find what matters most. Move on it. If you need to communicate with Justs, use COMS at https://goodhealth.lv/playground — POST to /api/chat with role=khaan. During always-on time, COMS is the ONLY communication channel. Tonight: work on TCG handover tasks. Check COMS for details from Justs."
 
 LIVE_SESSION_WINDOW_S = 90
 DECISION_INFLIGHT_WINDOW_S = 120

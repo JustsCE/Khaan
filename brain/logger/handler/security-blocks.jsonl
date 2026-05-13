@@ -1,3 +1,4 @@
 {"ts": "2026-05-13T15:49:24Z", "gate": "script-content-block", "script": "/tmp/test_block.py", "reason": "tier1_write_to_brain"}
 {"ts": "2026-05-13T15:49:36Z", "gate": "script-content-block", "script": "/tmp/fix_pr326.py", "reason": "tier1_write_to_brain"}
 {"ts": "2026-05-13T18:07:28Z", "gate": "script-content-block", "script": "~/brain/autonomy-engine/engine.py", "reason": "unreadable"}
+{"ts": "2026-05-13T20:12:33Z", "gate": "script-content-block", "script": "/opt/brain-viz/scripts/verify-viz.py", "reason": "unreadable"}

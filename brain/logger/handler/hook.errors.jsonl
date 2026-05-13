@@ -350,3 +350,4 @@
 {"ts": "2026-05-12T08:10:52Z", "error": "PreToolUse: No module named 'engines.dispatcher'"}
 {"ts": "2026-05-12T08:11:21Z", "error": "PreToolUse: No module named 'engines.dispatcher'"}
 {"ts": "2026-05-13T15:09:47Z", "error": "decision dispatch: no JSON object in result: Retro complete. Here's what landed:\n\n---\n\n## Brain Retro \u2014 Session Summary\n\n**9 hippocampus entries** written (H2056\u2013H2064). **3 recurring patterns** promoted directly to prefrontal L1.\n\n### \u2705 Worked "}
+{"ts": "2026-05-13T20:07:10Z", "error": "decision dispatch: cannot access local variable 'result' where it is not associated with a value"}
