@@ -50,6 +50,7 @@ tr:nth-child(even) td { background: #fafafa; }
   <li><a href="#overview">Overview</a></li>
   <li><a href="#cadence">Cadence</a></li>
   <li><a href="#source">Source Data</a></li>
+  <li><a href="#loading">Loading Procedure (SQL)</a></li>
   <li><a href="#distribution">Personnel Distribution Tables</a></li>
   <li><a href="#maintenance">Yearly Maintenance — Adding a New Period</a></li>
   <li><a href="#coefficient">Labor Coefficient Adjustment</a></li>
@@ -88,6 +89,37 @@ tr:nth-child(even) td { background: #fafafa; }
   <li>Cost center assignments</li>
 </ul>
 <p>Shemek prepares and updates this file. Justs reviews it with Shemek in the Wednesday session before processing. The Wednesday coordination also ensures any months that have not yet been loaded (e.g. Q1 has not been loaded as of late April 2026) are identified and prioritized.</p>
+
+
+<hr>
+
+<h2 id="loading">Loading Procedure (SQL)</h2>
+<p>The actual labor cost load runs as a 6-step SQL sequence. Steps 1–2 insert or correct the raw input values; steps 3–6 run the stored procedures that distribute costs across products, packages, and reorder items.</p>
+<p>For each month being loaded, substitute the correct <code>month label</code> (e.g. <code>Mar 26</code>), <code>date range</code>, and <code>amount</code> from the Base for Labor costs.xlsx file.</p>
+<pre><code>-- Step 1: Remove any existing incorrect value for the month/cost type
+DELETE FROM bi_stage_dev_dbo.xls_labour_costs_entity
+WHERE mon = 'Mar 26'
+  AND description = 'Production Direct';
+
+-- Step 2: Insert the correct absolute value for US Production Direct labor
+INSERT INTO bi_stage_dev_dbo.xls_labour_costs_entity
+  (description, mon, amount, dw_sourcecode, dw_timestamp, region)
+VALUES
+  ('Production Direct', 'Mar 26', 83010, NULL, current_timestamp, 'US');
+
+-- Step 3: Product-level cost share distribution
+CALL asa.sp_labourcost_product_cost_share('2026-03-01', '2026-03-31', 1.0, 'Mar', '26');
+
+-- Step 4: Packaging-level cost share distribution
+CALL asa.sp_labourcost_package_cost_share('2026-03-01', '2026-03-31', 1.0, 'Mar', '26');
+
+-- Step 5: Finalize labor cost items
+CALL asa.sp_temp_labor_costs_items();
+
+-- Step 6: Finalize labor cost items for reorders
+CALL asa.sp_temp_labor_costs_reorders_items();</code></pre>
+<blockquote><p><strong>Notes:</strong> The coefficient parameter in steps 3–4 (the <code>1.0</code> value) scales the cost. Changing this adjusts the absolute amount distributed — leave at <code>1.0</code> for a clean load aligned to the Base file. If aligning to LucaNet rather than the Base file, recalculate the coefficient accordingly (see Labor Coefficient Adjustment section).</p></blockquote>
+<p>This sequence is repeated per <strong>region</strong> (US, EU) and per <strong>month</strong> that needs to be loaded. Multiple unloaded months (e.g. full Q1) require running the full sequence for each month in order.</p>
 
 <hr>
 
