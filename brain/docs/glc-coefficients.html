@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>GLC Coefficients Process</title>
+<style>
+@page { size: A4; margin: 14mm 14mm 16mm 14mm; }
+* { box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; font-size: 10.5pt; line-height: 1.5; color: #1a1a1a; margin: 0; background: #f7f7f5; }
+.page-wrap { max-width: 200mm; margin: 0 auto; padding: 8mm; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+@media print { body { background: #fff; } .page-wrap { box-shadow: none; max-width: none; padding: 0; } }
+h1 { font-size: 26pt; margin: 0 0 4mm; letter-spacing: -.02em; line-height: 1.1; border-bottom: 2px solid #1a1a1a; padding-bottom: 3mm; }
+h2 { font-size: 16pt; margin: 8mm 0 3mm; letter-spacing: -.01em; border-bottom: 1px solid #ddd; padding-bottom: 2mm; page-break-after: avoid; }
+h3 { font-size: 12.5pt; margin: 5mm 0 2mm; color: #333; page-break-after: avoid; }
+h4 { font-size: 11pt; margin: 3mm 0 1.5mm; color: #555; page-break-after: avoid; }
+p { margin: 1.5mm 0 2.5mm; }
+hr { border: none; border-top: 1px solid #ddd; margin: 5mm 0; }
+blockquote { border-left: 3px solid #1a1a1a; padding: 2mm 4mm; margin: 3mm 0; background: #fafafa; font-style: italic; font-size: 11.5pt; }
+blockquote p { margin: 1mm 0; }
+strong, b { color: #000; }
+code { font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: 9.5pt; background: #f1f1ef; padding: .3mm 1mm; border-radius: 1mm; color: #b91c1c; }
+pre { background: #f8f8f6; border-left: 2px solid #ddd; padding: 3mm 4mm; margin: 3mm 0; font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: 9pt; line-height: 1.4; overflow-x: auto; white-space: pre-wrap; word-break: break-word; page-break-inside: avoid; }
+pre code { background: transparent; color: #1a1a1a; padding: 0; }
+ul, ol { margin: 1.5mm 0 3mm 6mm; padding: 0; }
+li { margin: .5mm 0; }
+table { width: 100%; border-collapse: collapse; margin: 3mm 0; font-size: 9.5pt; page-break-inside: avoid; }
+th, td { padding: 1.5mm 2mm; border-bottom: 1px solid #e5e5e5; vertical-align: top; text-align: left; }
+th { background: #1a1a1a; color: #fff; font-weight: 600; }
+tr:nth-child(even) td { background: #fafafa; }
+.cover { text-align: center; padding: 30mm 0 8mm; border-bottom: 1px solid #ddd; margin-bottom: 6mm; }
+.cover .subtitle { color: #666; font-size: 11pt; margin-top: 2mm; }
+.cover .meta { color: #999; font-size: 9pt; margin-top: 4mm; letter-spacing: .04em; }
+.toc { background: #fafafa; border-left: 2px solid #1a1a1a; padding: 4mm 6mm; margin: 4mm 0 8mm; page-break-inside: avoid; }
+.toc h3 { margin: 0 0 2mm; font-size: 10pt; text-transform: uppercase; letter-spacing: .12em; color: #555; }
+.toc ol { margin: 0 0 0 5mm; }
+.toc li { font-size: 9.5pt; padding: .3mm 0; }
+.toc a { color: #1a1a1a; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+<div class="cover">
+  <h1 style="border:none">GLC Coefficients Process</h1>
+  <div class="subtitle">Monthly cost coefficient adjustment for GEO Controlling (material, shipping, labor).</div>
+  <div class="meta">Documented 2026-05-13 &middot; Source: glc-process-guide.md, Fireflies 2026-04-27 &middot; Handover: Justus Kaiser</div>
+</div>
+
+<div class="toc"><h3>Contents</h3><ol>
+  <li><a href="#overview">Overview</a></li>
+  <li><a href="#when">When to Run</a></li>
+  <li><a href="#reference">Reference Benchmarks</a></li>
+  <li><a href="#process">Step-by-Step Process</a></li>
+  <li><a href="#months">LucaNet vs. Non-LucaNet Months</a></li>
+  <li><a href="#validation">Validation</a></li>
+  <li><a href="#files">Files &amp; Access</a></li>
+  <li><a href="#issues">Known Issues</a></li>
+</ol></div>
+
+<h2 id="overview">Overview</h2>
+<p>The GEO Controlling (GLC) Power BI report shows NGO Controlling P&amp;L lines for material, shipping, and labor costs. For months where LucaNet actuals are not yet loaded, the model uses <strong>coefficient targets</strong> — percentage-of-revenue quotas that approximate the real costs. Once LucaNet actuals arrive, the coefficients for those months are updated to reflect the real quota.</p>
+<p>The coefficient update runs on the same day as the LucaNet load (~22nd–23rd of the month) and does not depend on the overnight ETL run — it can be done immediately after the SP runs.</p>
+<blockquote><p><strong>Reference source:</strong> Alisa Lobodenkov's Global Reporting file → <em>period-shift adjusted</em> tab. Always confirm the file is up to date with Alisa before using the benchmarks.</p></blockquote>
+
+<hr>
+
+<h2 id="when">When to Run</h2>
+<p>Coefficient targets are updated on two occasions:</p>
+<ol>
+  <li><strong>After the monthly LucaNet load</strong> — update the loaded month's coefficient to reflect the actual quota (or set the absolute cost directly for labor).</li>
+  <li><strong>Proactively for future months</strong> — populate dummy targets for months not yet in LucaNet so GLC always shows plausible estimates rather than stale coefficients.</li>
+</ol>
+<p>The update can be done <strong>same day as the LucaNet load</strong> — it does not wait for the overnight ETL run.</p>
+
+<hr>
+
+<h2 id="reference">Reference Benchmarks</h2>
+<p>Targets below are from March 2026. Confirm with Alisa before using for other months — especially December 2025 (not finalized as of April 2026).</p>
+
+<table>
+<tr><th>Cost type</th><th>Alisa's figure</th><th>Notes</th></tr>
+<tr><td>Material</td><td>15.6–15.8%</td><td>Includes ORVO intercompany margin charged to TCG Classic. Actual GLC target is slightly lower (~0.5–1pp lower). Exact margin pending confirmation from Tobias.</td></tr>
+<tr><td>Shipping</td><td>~20.5%</td><td>GLC was at ~20.0% — small gap, acceptable.</td></tr>
+<tr><td>Labor</td><td>~9.4%</td><td>For months with real LucaNet data: check against absolute amounts, not just %.</td></tr>
+</table>
+
+<p><strong>ORVO intercompany note:</strong> Alisa's material cost benchmark includes the ORVO production margin (invoiced to TCG Classic as if external). From a GEO Controlling perspective this overstates material costs by ~0.5–1pp. Deduct the margin from Alisa's absolute figure to get the clean target. Exact margin % pending confirmation from Tobias.</p>
+
+<p><strong>Dummy targets for future months (no LucaNet data):</strong></p>
+<ul>
+  <li>Material: ~16%</li>
+  <li>Shipping: ~20%</li>
+  <li>Labor: ~9%</li>
+</ul>
+
+<hr>
+
+<h2 id="process">Step-by-Step Process</h2>
+
+<h3>1. Get current GEO Controlling data</h3>
+<ol>
+  <li>Open the <strong>GEO Controlling BI report</strong> (BI SharePoint — standard report location).</li>
+  <li>Copy the current state to clipboard.</li>
+  <li>Open <strong>GLC Alerts Controlling Excel</strong> (BI SharePoint → Power BI alerts folder).</li>
+  <li>Go to the <strong>GLC export tab</strong> → paste → Text to Columns → Delimited by comma.</li>
+</ol>
+
+<h3>2. Compare current coefficients vs. Alisa's targets</h3>
+<ol>
+  <li>Open Alisa's Global Reporting file → go to the <strong>period-shift adjusted</strong> tab.</li>
+  <li>Confirm Alisa has updated the file for the month you are loading (ask her directly if unsure).</li>
+  <li>Compare current GLC coefficient values against the benchmark targets for material, shipping, and labor.</li>
+</ol>
+
+<h3>3. Update coefficients in the model</h3>
+<ul>
+  <li>For <strong>months with real LucaNet values</strong>: leave absolute costs as-is; set the coefficient to reflect the actual quota from LucaNet. For labor: use absolute amounts as the primary check (see Labor Costs doc).</li>
+  <li>For <strong>future months without real data</strong>: populate dummy targets (material ~16%, shipping ~20%, labor ~9%).</li>
+</ul>
+
+<blockquote><p><strong>Labor coefficient warning:</strong> The Excel formula for the labor coefficient is not fully optimized. Watch for accidental absolute-vs-percentage confusion — a coefficient of 3,000,000 instead of 3.0 is a real failure mode. Double-check labor rows after every update.</p></blockquote>
+
+<hr>
+
+<h2 id="months">LucaNet vs. Non-LucaNet Months</h2>
+<table>
+<tr><th>Month type</th><th>Coefficient approach</th></tr>
+<tr><td>Past month — LucaNet loaded</td><td>Set coefficient to reflect actual quota from LucaNet data. For labor: verify absolute amount matches LucaNet.</td></tr>
+<tr><td>Current month — partial LucaNet</td><td>Use dummy target initially; update once LucaNet data is confirmed loaded (~22nd–23rd).</td></tr>
+<tr><td>Future months — no LucaNet</td><td>Populate dummy targets: material ~16%, shipping ~20%, labor ~9%.</td></tr>
+</table>
+<p>The SP_CM2 stored procedure handles the mechanics of applying these coefficients at the shop/day level — see the LucaNet Load Process doc for how it distributes costs internally.</p>
+
+<hr>
+
+<h2 id="validation">Validation</h2>
+<p>After updating coefficients and waiting for the overnight ETL run (or asking Davis to rerun manually):</p>
+
+<h3>GCS alerts Slack channel</h3>
+<p>Alerts fire if daily values drop below historical minimums defined in the <strong>Anchors tab</strong> of GLC Alerts Controlling Excel. After a coefficient update, verify no false alerts are triggering. If thresholds are outdated (anchors not updated recently), update the Anchors tab from SQL or GEO Controlling and re-check.</p>
+
+<h3>Data Quality tab in GEO Controlling BI report</h3>
+<p>Shows actual vs. target cost quotas per position and per affiliate. Use this to confirm the coefficient update landed correctly:</p>
+<ul>
+  <li>Material / shipping: compare % quota against Alisa's benchmarks.</li>
+  <li>Labor: compare absolute amounts for months with LucaNet data.</li>
+  <li>Small deviations (~0.5–2% per affiliate) are normal; flag anything larger.</li>
+</ul>
+
+<hr>
+
+<h2 id="files">Files &amp; Access</h2>
+<table>
+<tr><th>File</th><th>Location</th><th>Purpose</th></tr>
+<tr><td>GLC Alerts Controlling Excel</td><td>BI SharePoint → Power BI alerts folder</td><td>GLC export paste target; Anchors tab (alert thresholds); coefficient update target</td></tr>
+<tr><td>Alisa's Global Reporting file</td><td>Alisa to confirm link — confirm with Justus Kaiser that he has access</td><td>Period-shift adjusted cost quota benchmarks (material, shipping, labor)</td></tr>
+<tr><td>GEO Controlling BI report</td><td>BI SharePoint — standard report location</td><td>Current cost state; Data Quality tab</td></tr>
+</table>
+<table>
+<tr><th>Person</th><th>Role</th></tr>
+<tr><td>Justs Ceplis</td><td>Process owner</td></tr>
+<tr><td>Justus Kaiser</td><td>Handover target — needs access to Alisa's file confirmed</td></tr>
+<tr><td>Alisa Lobodenkov</td><td>Provides benchmarks; confirm file is up to date before each use</td></tr>
+<tr><td>Tobias</td><td>Pending confirmation of ORVO intercompany margin % (affects material target by ~0.5–1pp)</td></tr>
+</table>
+
+<hr>
+
+<h2 id="issues">Known Issues</h2>
+<table>
+<tr><th>Issue</th><th>Detail</th></tr>
+<tr><td>ORVO intercompany margin in material</td><td>Alisa's benchmark overstates material cost by ~0.5–1pp. Exact margin % pending confirmation from Tobias before it can be cleanly deducted.</td></tr>
+<tr><td>December 2025 targets not finalized</td><td>Alisa had not confirmed Dec 2025 cost quotas as of April 2026. Follow up before using those months' benchmarks.</td></tr>
+<tr><td>Labor coefficient formula risk</td><td>Absolute vs. percentage confusion in the Excel formula — can produce wildly wrong coefficients (e.g. 3,000,000 instead of 3.0). Double-check labor rows after every coefficient update.</td></tr>
+<tr><td>Alisa's file access for Justus Kaiser</td><td>Not yet confirmed as of April 2026. Must be resolved before handover is complete.</td></tr>
+<tr><td>TikTok and Other Social Networks gaps</td><td>TikTok costs partially missing (Vyral/Rest invoices as PDFs only, not via API). Other Social Networks line currently 0 for Jan–Feb. TikTok fix: apply coefficients. Other Social Networks: TBD.</td></tr>
+<tr><td>Other Paid Services position change</td><td>Previously included Amazon SPA &amp; SBA costs unintentionally. Now separate — requires additional dw column (Jira BTM-2226) for correct reporting.</td></tr>
+</table>
+
+</div>
+</body>
+</html>

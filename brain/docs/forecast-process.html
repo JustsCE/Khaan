@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Forecast Process</title>
+<style>
+@page { size: A4; margin: 14mm 14mm 16mm 14mm; }
+* { box-sizing: border-box; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.5;
+    color: #1a1a1a;
+    margin: 0;
+    background: #f7f7f5;
+}
+.page-wrap {
+    max-width: 200mm;
+    margin: 0 auto;
+    padding: 8mm;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,.08);
+}
+@media print {
+    body { background: #fff; }
+    .page-wrap { box-shadow: none; max-width: none; padding: 0; }
+}
+h1 { font-size: 26pt; margin: 0 0 4mm; letter-spacing: -.02em; line-height: 1.1; border-bottom: 2px solid #1a1a1a; padding-bottom: 3mm; }
+h2 { font-size: 16pt; margin: 8mm 0 3mm; letter-spacing: -.01em; border-bottom: 1px solid #ddd; padding-bottom: 2mm; page-break-after: avoid; }
+h3 { font-size: 12.5pt; margin: 5mm 0 2mm; color: #333; page-break-after: avoid; }
+h4 { font-size: 11pt; margin: 3mm 0 1.5mm; color: #555; page-break-after: avoid; }
+p { margin: 1.5mm 0 2.5mm; }
+hr { border: none; border-top: 1px solid #ddd; margin: 5mm 0; }
+blockquote { border-left: 3px solid #1a1a1a; padding: 2mm 4mm; margin: 3mm 0; background: #fafafa; font-style: italic; font-size: 11.5pt; }
+blockquote p { margin: 1mm 0; }
+strong, b { color: #000; }
+code { font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: 9.5pt; background: #f1f1ef; padding: .3mm 1mm; border-radius: 1mm; color: #b91c1c; }
+pre { background: #f8f8f6; border-left: 2px solid #ddd; padding: 3mm 4mm; margin: 3mm 0; font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: 9pt; line-height: 1.4; overflow-x: auto; white-space: pre-wrap; word-break: break-word; page-break-inside: avoid; }
+pre code { background: transparent; color: #1a1a1a; padding: 0; }
+ul, ol { margin: 1.5mm 0 3mm 6mm; padding: 0; }
+li { margin: .5mm 0; }
+table { width: 100%; border-collapse: collapse; margin: 3mm 0; font-size: 9.5pt; page-break-inside: avoid; }
+th, td { padding: 1.5mm 2mm; border-bottom: 1px solid #e5e5e5; vertical-align: top; text-align: left; }
+th { background: #1a1a1a; color: #fff; font-weight: 600; }
+tr:nth-child(even) td { background: #fafafa; }
+.cover { text-align: center; padding: 30mm 0 8mm; border-bottom: 1px solid #ddd; margin-bottom: 6mm; }
+.cover .subtitle { color: #666; font-size: 11pt; margin-top: 2mm; }
+.cover .meta { color: #999; font-size: 9pt; margin-top: 4mm; letter-spacing: .04em; }
+.toc { background: #fafafa; border-left: 2px solid #1a1a1a; padding: 4mm 6mm; margin: 4mm 0 8mm; page-break-inside: avoid; }
+.toc h3 { margin: 0 0 2mm; font-size: 10pt; text-transform: uppercase; letter-spacing: .12em; color: #555; }
+.toc ol { margin: 0 0 0 5mm; }
+.toc li { font-size: 9.5pt; padding: .3mm 0; }
+.toc a { color: #1a1a1a; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+<div class="cover">
+  <h1 style="border:none">Forecast Process</h1>
+  <div class="subtitle">Demand forecasting pipeline for Picanova — Slack-triggered AWS Lambdas.</div>
+  <div class="meta">Documented 2026-05-13 &middot; JustsCE/Forecast &middot; Handover: Justus Kaiser</div>
+</div>
+
+<div class="toc"><h3>Contents</h3><ol>
+  <li><a href="#overview">Overview</a></li>
+  <li><a href="#architecture">Architecture</a></li>
+  <li><a href="#data">Data Sources &amp; Storage</a></li>
+  <li><a href="#schedule">Daily Schedule</a></li>
+  <li><a href="#commands">Slack Commands</a></li>
+  <li><a href="#lambdas">Lambda Functions</a></li>
+  <li><a href="#forecast-input">Forecast_Input.xlsx</a></li>
+  <li><a href="#submit">Submit Flow</a></li>
+  <li><a href="#calculate">Calculate Flow</a></li>
+  <li><a href="#review">Review Flow</a></li>
+  <li><a href="#verify">Verify Flow</a></li>
+  <li><a href="#runtime">Runtime &amp; Infrastructure</a></li>
+</ol></div>
+
+<h2 id="overview">Overview</h2>
+<p>The Forecast pipeline ingests daily actuals from Redshift, accepts manual forecasts submitted by demand planners as Excel files via Slack, validates and combines those submissions, calculates a full daily <code>forecast.csv</code> for all unforecasted products, and generates review workbooks at shop, shoptype, and region level. Everything is triggered by Slack slash commands backed by AWS Lambda functions.</p>
+<blockquote><p><strong>Source repo:</strong> <code>JustsCE/Forecast</code> — 11 Lambda functions, Python 3.12, S3 as the data bus.</p></blockquote>
+
+<hr>
+
+<h2 id="architecture">Architecture</h2>
+<pre><code>Slack slash commands
+        |
+  FORECAST-review-trigger  (API Gateway → Lambda dispatcher)
+        |
+        ├── /submit_forecast    → FORECAST-submit-verify → FORECAST-submit
+        ├── /review_shop        → FORECAST-review-trigger-verify → FORECAST-review
+        ├── /review_shoptype    → FORECAST-review-shoptype
+        ├── /review_region      → FORECAST-review-region
+        ├── /calculate_forecast → FORECAST-calculate
+        └── /verify_forecast    → FORECAST-verify
+
+Daily (EventBridge → Step Functions):
+  FORECAST-actuals → FORECAST-inputs</code></pre>
+<p>All 11 Lambdas are independent. <code>FORECAST-review-trigger</code> is the Slack entry point — it routes and returns HTTP 200 within 3 seconds to satisfy Slack's timeout, then invokes workers asynchronously.</p>
+
+<hr>
+
+<h2 id="data">Data Sources &amp; Storage</h2>
+<p>All data lives in <code>s3://bi-automations/Forecast/</code>.</p>
+<table>
+<tr><th>S3 path</th><th>Contents</th><th>Written by</th></tr>
+<tr><td><code>actuals.csv</code></td><td>Mapped daily actuals from Redshift (2024-01-01 to yesterday). Raw columns: actuals, fulldate, dayname, week, yyyy-mm, year, destination_region, pcs_region, format_db, frame_color, msf_product, shop, shoptype, revenuenet, revenuenet_ship. Mapped columns added by FORECAST-inputs: forecast_product, forecasted_shop, format_clean, frame.</td><td>FORECAST-actuals (raw) then FORECAST-inputs (mapped)</td></tr>
+<tr><td><code>Forecast_Input.xlsx</code></td><td>Master config: products, shop groupings, format clean mapping, ignored formats, current_month, cutoff_week.</td><td>Manual (demand planners), synced from SharePoint daily</td></tr>
+<tr><td><code>Seperate Forecasts/submit_*.xlsx</code></td><td>Individual forecast submissions. One file per shop/shoptype/region, timestamped.</td><td>FORECAST-submit-verify (from Slack)</td></tr>
+<tr><td><code>Seperate Forecasts/seperate_forecasts_combined.csv</code></td><td>All validated submissions combined. Fields: forecasted_shop, shoptype, destination, period, product, format, frame, forecast, forecast_type, source_file, source_timestamp.</td><td>FORECAST-submit</td></tr>
+<tr><td><code>forecast.csv</code></td><td>Final daily forecast — submitted forecasts + calculated remaining products. Uploaded to S3 and SharePoint.</td><td>FORECAST-calculate</td></tr>
+<tr><td><code>new_products.csv</code>, <code>new_formats.csv</code></td><td>Unmapped items that fell through Forecast_Input.xlsx. Demand planners should add these to the config file.</td><td>FORECAST-inputs</td></tr>
+</table>
+
+<hr>
+
+<h2 id="schedule">Daily Schedule</h2>
+<p>A Step Functions state machine <strong>FORECAST-steps</strong> runs every morning at 08:00 local time (05:00 UTC):</p>
+<pre><code>Start → FORECAST-actuals → FORECAST-inputs → End</code></pre>
+<ul>
+  <li><strong>FORECAST-actuals</strong> — Streams raw actuals from Redshift into <code>actuals.csv</code> via S3 multipart upload. Batches of 50,000 rows, 6 MB minimum part size. Aborts the multipart upload cleanly on any failure (no orphaned MPU state).</li>
+  <li><strong>FORECAST-inputs</strong> — Syncs <code>Forecast_Input.xlsx</code> from SharePoint via Microsoft Graph API, then reads both the Excel and <code>actuals.csv</code> and applies all three mapping passes (product → forecast_product, shop → forecasted_shop, format/frame → format_clean). Overwrites <code>actuals.csv</code> with the fully-mapped version. Also writes <code>new_products.csv</code> and <code>new_formats.csv</code> surfacing unmapped items.</li>
+</ul>
+<table>
+<tr><th>Resource</th><th>Value</th></tr>
+<tr><td>State machine ARN</td><td><code>arn:aws:states:eu-central-1:497892281264:execution:FORECAST-steps</code></td></tr>
+<tr><td>EventBridge cron</td><td><code>0 8 * * ? *</code> (daily 08:00 UTC+3 / 05:00 UTC)</td></tr>
+<tr><td>IAM role</td><td><code>arn:aws:iam::497892281264:role/service-role/StepFunctions-FORECAST-steps-role-n6ik54ptu</code></td></tr>
+</table>
+
+<hr>
+
+<h2 id="commands">Slack Commands</h2>
+<table>
+<tr><th>Command</th><th>What it does</th></tr>
+<tr><td><code>/submit_forecast</code></td><td>Download the Excel attached to the Slack message, validate it, process into combined CSV. On failure: post grouped errors to Slack, delete bad file from S3.</td></tr>
+<tr><td><code>/review_shop &lt;name&gt;</code></td><td>Generate a shop-level review workbook (summary + per-product sheets) and upload to Slack.</td></tr>
+<tr><td><code>/review_shoptype &lt;name&gt;</code></td><td>Generate a shoptype-level review workbook with dual-region (EU+RoW / US+CA) summary.</td></tr>
+<tr><td><code>/review_region &lt;name&gt;</code></td><td>Generate a region-level review workbook with weekly + monthly tables by shoptype and shop.</td></tr>
+<tr><td><code>/calculate_forecast</code></td><td>Compute remaining (unforecasted) products, distribute by format/PCS/DOW/shoptype shares, produce daily <code>forecast.csv</code>, upload to S3 + SharePoint.</td></tr>
+<tr><td><code>/verify_forecast</code></td><td>Generate an Actuals vs Forecast comparison Excel workbook at weekly level. Summary + per-product sheets, split by region.</td></tr>
+</table>
+
+<hr>
+
+<h2 id="lambdas">Lambda Functions</h2>
+<table>
+<tr><th>Function</th><th>Memory</th><th>Timeout</th><th>Role</th></tr>
+<tr><td><code>FORECAST-actuals</code></td><td>—</td><td>—</td><td>Streams Redshift actuals → <code>actuals.csv</code> via multipart S3 upload</td></tr>
+<tr><td><code>FORECAST-inputs</code></td><td>—</td><td>—</td><td>Syncs Forecast_Input.xlsx from SharePoint; applies product/shop/format mappings</td></tr>
+<tr><td><code>FORECAST-review-trigger</code></td><td>128 MB</td><td>30 s</td><td>API Gateway entry point — parses Slack slash command, dispatches workers</td></tr>
+<tr><td><code>FORECAST-review-trigger-verify</code></td><td>—</td><td>—</td><td>Validates shop name against actuals before dispatching FORECAST-review</td></tr>
+<tr><td><code>FORECAST-submit-verify</code></td><td>3000 MB</td><td>120 s</td><td>Downloads Slack file to S3; validates forecast Excel; on success invokes FORECAST-submit</td></tr>
+<tr><td><code>FORECAST-submit</code></td><td>—</td><td>—</td><td>Reads all submit files; resolves shop/shoptype/region priority; writes combined CSV</td></tr>
+<tr><td><code>FORECAST-calculate</code></td><td>—</td><td>—</td><td>Computes remaining products, distributes shares, produces forecast.csv, uploads to S3 + SharePoint</td></tr>
+<tr><td><code>FORECAST-review</code></td><td>5000 MB</td><td>303 s</td><td>Shop-level Excel: summary + per-product (actuals, forecast, YoY, last 6w, formats)</td></tr>
+<tr><td><code>FORECAST-review-shoptype</code></td><td>5000 MB</td><td>303 s</td><td>Shoptype-level Excel: dual-region summary + per-product with top-5 shop breakdowns</td></tr>
+<tr><td><code>FORECAST-review-region</code></td><td>3000 MB</td><td>303 s</td><td>Region-level Excel: weekly + monthly tables by shoptype and shop (grouped columns)</td></tr>
+<tr><td><code>FORECAST-verify</code></td><td>3000 MB</td><td>183 s</td><td>Actuals vs Forecast comparison; residual shop remapping; cutoff-week border</td></tr>
+</table>
+
+<hr>
+
+<h2 id="forecast-input">Forecast_Input.xlsx</h2>
+<p>The master configuration file. Synced daily from SharePoint. All Lambdas that need mappings read it from S3.</p>
+<table>
+<tr><th>Sheet</th><th>Contents</th></tr>
+<tr><td><code>products</code></td><td><code>msf_product</code> → <code>forecast_product</code> mapping. Unmapped → <code>NEW PRODUCT</code>.</td></tr>
+<tr><td><code>adhoc</code> (col E)</td><td>Ignored formats — set <code>format_clean = "na"</code> in actuals (along with EXCLUDED PRODUCT and NEW PRODUCT).</td></tr>
+<tr><td><code>adhoc</code> (cols G:H)</td><td>Shop groupings: <code>shop</code> → <code>forecasted_shop</code>. Unmapped shops keep their original name.</td></tr>
+<tr><td><code>EU formats</code> / <code>US formats</code></td><td>Format clean mapping: <code>destination × msf_product × format_db × frame_color</code> → <code>format_clean</code>. Unmapped → <code>NEW FORMAT</code>.</td></tr>
+<tr><td><code>info</code></td><td><code>C2</code>: cutoff week (used by FORECAST-verify). Also: current_month (used by FORECAST-submit-verify).</td></tr>
+</table>
+<blockquote><p><strong>Maintenance:</strong> When <code>new_products.csv</code> or <code>new_formats.csv</code> are non-empty after the daily run, add the items to the appropriate sheets in Forecast_Input.xlsx. New products that are ignored or excluded should be tagged accordingly rather than left as NEW PRODUCT.</p></blockquote>
+
+<hr>
+
+<h2 id="submit">Submit Flow</h2>
+<ol>
+  <li>Planner uploads an Excel file to the Slack forecast channel and types <code>/submit_forecast</code>.</li>
+  <li><code>FORECAST-review-trigger</code> routes to <code>FORECAST-submit-verify</code>.</li>
+  <li><strong>FORECAST-submit-verify</strong> downloads the file from Slack using the bot token, timestamps it (<code>YYYYMMDD_HHMMSS</code>), uploads to <code>s3://bi-automations/Forecast/Seperate Forecasts/submit_[shop|shoptype|region]_NAME_timestamp.xlsx</code>.</li>
+  <li>Validation (shop files): forecast for current month ≥ actuals; format row totals match Forecast row when both exist; no gaps in the forecasted month range.</li>
+  <li>Validation (shoptype files): partial coverage check (shops with some months filled, others <code>na</code>); forecast ≥ actuals for current month.</li>
+  <li>Validation (region files): pass through — no validation.</li>
+  <li>On failure: post grouped error report to Slack, delete bad file from S3.</li>
+  <li>On success: post summary (per-product forecast totals, YoY %, delta vs. previous version) to Slack, then invoke <strong>FORECAST-submit</strong>.</li>
+  <li><strong>FORECAST-submit</strong> reads all valid submit files, resolves priority (shop overrides shoptype overrides region for the same product/shop/period), distributes forecasts to format/frame level, extrapolates missing months, writes <code>seperate_forecasts_combined.csv</code>.</li>
+</ol>
+<blockquote><p>File naming regex: <code>^submit_(shop|shoptype|region)_NAME(_YYYYMMDD_HHMMSS)?( (\d+))*.xlsx$</code>. Files without a timestamp are still accepted (older uploads). Latest file per shop wins.</p></blockquote>
+
+<hr>
+
+<h2 id="calculate">Calculate Flow</h2>
+<ol>
+  <li>Reads <code>actuals.csv</code>, <code>Forecast_Input.xlsx</code> (anchor weeks, current month), and <code>seperate_forecasts_combined.csv</code>.</li>
+  <li><strong>Remaining products:</strong> identifies all products not covered by any submit file for the forecast period.</li>
+  <li>Computes distribution shares from the last 3 full months of actuals (and a Q4 reference window for stability):
+    <ul>
+      <li>Format shares per product × destination × shoptype</li>
+      <li>PCS region shares per product × format × destination</li>
+      <li>Day-of-week (DOW) shares per product × destination</li>
+      <li>Shoptype shares per product × destination</li>
+    </ul>
+  </li>
+  <li>Share stability check: compares last-N-months vs. last-Q4 shares. Combinations present in only one window are flagged — signals that a format or shoptype mix may have changed significantly.</li>
+  <li>Applies shares to monthly totals → daily rows for remaining products.</li>
+  <li>Combines remaining-product rows with submitted forecasts.</li>
+  <li>Uploads <code>forecast.csv</code> to S3 and to SharePoint via Microsoft Graph API.</li>
+  <li>Posts completion summary to Slack via <code>response_url</code>.</li>
+</ol>
+
+<hr>
+
+<h2 id="review">Review Flow</h2>
+
+<h3>Shop-level (<code>/review_shop &lt;name&gt;</code>)</h3>
+<p>Validates shop name against actuals (via FORECAST-review-trigger-verify) before generating. Workbook uploaded to Slack:</p>
+<ul>
+  <li><strong>Summary sheet:</strong> top 15 products by YTD volume (FY t-1 ≥ 1,000). Columns: % of Total YTD, YTD t, YTD t-1, YTD % growth, FY t-1, FY t-2, FY % growth, Last 3W % growth, last 3 months MoM growth. "Other products" row + TOTAL. Destination row below. Revenue-weighted % of Total when revenue data is available.</li>
+  <li><strong>Per-product sheets:</strong> Calculations block (metrics transposed); Last 6 weeks block (weekly actuals, LY, YoY %); Monthly block M-2 to M+11 (Actuals, Actuals LY, YoY %, F-YoY %, Forecast — blue fill for forecast months); Available formats block (format/frame breakdown with blue-cell forecast values).</li>
+</ul>
+
+<h3>Shoptype-level (<code>/review_shoptype &lt;name&gt;</code>)</h3>
+<p>Same structure but with dual-region (EU+RoW / US+CA) summary tables and top-5 shop breakdowns per product sheet. Shop-level forecast rows use <code>=IFERROR((1+F-YoY%)*Actuals LY, 0)</code>. "Other [shoptype]" aggregates shops not individually listed. Blue fill convention: direct user-input cells only; derived rows (Other, product totals) do not get blue.</p>
+
+<h3>Region-level (<code>/review_region &lt;name&gt;</code>)</h3>
+<p>Supports <code>EU+RoW</code> and <code>US+CA</code>. Column layout per product sheet: <code>TOTAL | gap | TOTAL shoptype1 | shop1 | shop2 | Other shoptype1 | gap | TOTAL shoptype2 | ...</code>. Shop columns are grouped (collapsible, hidden by default). Both week table (last 15 weeks) and month table (M-2 to M+5). Conditional formatting: red &lt; −10% YoY, green &gt; +10%.</p>
+
+<hr>
+
+<h2 id="verify">Verify Flow</h2>
+<ol>
+  <li>Reads cutoff week from <code>Forecast_Input.xlsx</code> info sheet C2.</li>
+  <li>Reads <code>forecast.csv</code> (all rows — both "remaining" and "separate" source types).</li>
+  <li>Reads <code>actuals.csv</code>; determines current year t.</li>
+  <li>Actuals shop remapping (residual approach): named shops get their own rows; "Other [shoptype]" = shoptype total actuals minus sum of named shops. Handles cases like ORWO where FORECAST-inputs groups sub-shops into a single <code>forecasted_shop</code>.</li>
+  <li>Builds aggregations by <code>(destination_region, forecasted_shop, forecast_product, week)</code>: Actuals t, Actuals LY (week-shifted to align with t), Forecast t.</li>
+  <li>Products sorted by YTD actuals (descending). Only shops present in <code>forecast.csv</code> shown.</li>
+  <li>Summary sheet: product × destination (no shop), split by region. Pre-cutoff cells grayed; cutoff-week border marker.</li>
+  <li>Per-product sheets: shop breakdown per region.</li>
+</ol>
+
+<hr>
+
+<h2 id="runtime">Runtime &amp; Infrastructure</h2>
+<table>
+<tr><th>Property</th><th>Value</th></tr>
+<tr><td>Runtime</td><td>Python 3.12 (all functions)</td></tr>
+<tr><td>Common dependencies</td><td><code>boto3</code>, <code>pandas</code>, <code>numpy</code>, <code>openpyxl</code></td></tr>
+<tr><td>FORECAST-actuals only</td><td><code>psycopg2</code> (Redshift, SSL required, keepalives enabled)</td></tr>
+<tr><td>FORECAST-inputs, FORECAST-calculate</td><td><code>urllib3</code> (Microsoft Graph API for SharePoint)</td></tr>
+<tr><td>Redshift env vars</td><td><code>DB_HOST</code>, <code>DB_PORT</code>, <code>DB_DATABASE</code>, <code>DB_USER</code>, <code>DB_PASSWORD</code></td></tr>
+<tr><td>SharePoint env vars</td><td><code>CLIENT_ID</code>, <code>CLIENT_SECRET</code>, <code>TENANT_ID</code>, <code>SITE_HOSTNAME</code>, <code>SITE_PATH</code>, <code>FOLDER_PATH</code></td></tr>
+<tr><td>S3 bucket</td><td><code>bi-automations</code>, prefix <code>Forecast/</code></td></tr>
+<tr><td>Slack token</td><td>SSM Parameter Store: <code>/forecast/slack-bot-token</code> (encrypted)</td></tr>
+<tr><td>AWS region</td><td><code>eu-central-1</code> (account <code>497892281264</code>)</td></tr>
+</table>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>LucaNet Load Process</title>
+<style>
+@page { size: A4; margin: 14mm 14mm 16mm 14mm; }
+* { box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; font-size: 10.5pt; line-height: 1.5; color: #1a1a1a; margin: 0; background: #f7f7f5; }
+.page-wrap { max-width: 200mm; margin: 0 auto; padding: 8mm; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+@media print { body { background: #fff; } .page-wrap { box-shadow: none; max-width: none; padding: 0; } }
+h1 { font-size: 26pt; margin: 0 0 4mm; letter-spacing: -.02em; line-height: 1.1; border-bottom: 2px solid #1a1a1a; padding-bottom: 3mm; }
+h2 { font-size: 16pt; margin: 8mm 0 3mm; letter-spacing: -.01em; border-bottom: 1px solid #ddd; padding-bottom: 2mm; page-break-after: avoid; }
+h3 { font-size: 12.5pt; margin: 5mm 0 2mm; color: #333; page-break-after: avoid; }
+h4 { font-size: 11pt; margin: 3mm 0 1.5mm; color: #555; page-break-after: avoid; }
+p { margin: 1.5mm 0 2.5mm; }
+hr { border: none; border-top: 1px solid #ddd; margin: 5mm 0; }
+blockquote { border-left: 3px solid #1a1a1a; padding: 2mm 4mm; margin: 3mm 0; background: #fafafa; font-style: italic; font-size: 11.5pt; }
+blockquote p { margin: 1mm 0; }
+strong, b { color: #000; }
+code { font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: 9.5pt; background: #f1f1ef; padding: .3mm 1mm; border-radius: 1mm; color: #b91c1c; }
+pre { background: #f8f8f6; border-left: 2px solid #ddd; padding: 3mm 4mm; margin: 3mm 0; font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: 9pt; line-height: 1.4; overflow-x: auto; white-space: pre-wrap; word-break: break-word; page-break-inside: avoid; }
+pre code { background: transparent; color: #1a1a1a; padding: 0; }
+ul, ol { margin: 1.5mm 0 3mm 6mm; padding: 0; }
+li { margin: .5mm 0; }
+table { width: 100%; border-collapse: collapse; margin: 3mm 0; font-size: 9.5pt; page-break-inside: avoid; }
+th, td { padding: 1.5mm 2mm; border-bottom: 1px solid #e5e5e5; vertical-align: top; text-align: left; }
+th { background: #1a1a1a; color: #fff; font-weight: 600; }
+tr:nth-child(even) td { background: #fafafa; }
+.cover { text-align: center; padding: 30mm 0 8mm; border-bottom: 1px solid #ddd; margin-bottom: 6mm; }
+.cover .subtitle { color: #666; font-size: 11pt; margin-top: 2mm; }
+.cover .meta { color: #999; font-size: 9pt; margin-top: 4mm; letter-spacing: .04em; }
+.toc { background: #fafafa; border-left: 2px solid #1a1a1a; padding: 4mm 6mm; margin: 4mm 0 8mm; page-break-inside: avoid; }
+.toc h3 { margin: 0 0 2mm; font-size: 10pt; text-transform: uppercase; letter-spacing: .12em; color: #555; }
+.toc ol { margin: 0 0 0 5mm; }
+.toc li { font-size: 9.5pt; padding: .3mm 0; }
+.toc a { color: #1a1a1a; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+<div class="cover">
+  <h1 style="border:none">LucaNet Load Process</h1>
+  <div class="subtitle">Monthly financial data load from LucaNet into BI Stage Dev.</div>
+  <div class="meta">Documented 2026-05-13 &middot; Source: glc-process-guide.md, Fireflies 2026-04-27 &middot; Handover: Justus Kaiser</div>
+</div>
+
+<div class="toc"><h3>Contents</h3><ol>
+  <li><a href="#overview">Overview</a></li>
+  <li><a href="#timeline">Monthly Timeline</a></li>
+  <li><a href="#step1">Step 1 — Confirm Data</a></li>
+  <li><a href="#step2">Step 2 — Backup Pivot Tables</a></li>
+  <li><a href="#step3">Step 3 — SP_pivot_lucanet_costs_oids</a></li>
+  <li><a href="#step4">Step 4 — SP_CM2_EBITDA_costs_in_ASSA</a></li>
+  <li><a href="#step5">Step 5 — Next-Day Validation</a></li>
+  <li><a href="#stakeholders">Stakeholders &amp; Files</a></li>
+  <li><a href="#issues">Known Issues</a></li>
+</ol></div>
+
+<h2 id="overview">Overview</h2>
+<p>LucaNet is the group financial consolidation system. Once a month (~22nd–23rd), Justs loads the latest month's financial data from LucaNet into BI Stage Dev by running two stored procedures. This feeds the GEO Controlling (GLC) Power BI report with actual cost figures for material, shipping, labor, marketing, and other cost lines.</p>
+<blockquote><p><strong>Flow:</strong> LucaNet DB &rarr; <code>EXEC SP_pivot_lucanet_costs_oids</code> &rarr; pivot table &rarr; <code>EXEC SP_CM2_EBITDA_costs_in_ASSA</code> &rarr; ASSA layer &rarr; ETL overnight &rarr; GLC Power BI report.</p></blockquote>
+<p>The process is manually triggered. There is no automation layer — Justs runs both procedures after confirming data has arrived in LucaNet. Davis and the ETL team handle the BI Stage Dev trigger and can revert any step if needed.</p>
+
+<hr>
+
+<h2 id="timeline">Monthly Timeline</h2>
+<table>
+<tr><th>Day (approx.)</th><th>Action</th><th>Who</th></tr>
+<tr><td>~22nd–23rd</td><td>Confirm latest month's data is loaded in LucaNet DB (check update timestamp in facts table)</td><td>Justs (Justus Kaiser also has DB access)</td></tr>
+<tr><td>22nd–23rd</td><td>Ask Davis / ETL team to process LucaNet data into BI Stage Dev</td><td>Justs → Davis</td></tr>
+<tr><td>22nd–23rd</td><td>Backup pivot tables, run <code>SP_pivot_lucanet_costs_oids</code>, run <code>SP_CM2</code></td><td>Justs</td></tr>
+<tr><td>Same day</td><td>Update coefficient targets in GLC Alerts Controlling Excel</td><td>Justs (see GLC Coefficients doc)</td></tr>
+<tr><td>Next morning</td><td>Check GCS alerts Slack channel + Data Quality tab in GEO Controlling BI report</td><td>Justs</td></tr>
+<tr><td>Wednesday</td><td>Labor cost loading + labor coefficient adjustment (with Shemek)</td><td>Justs + Shemek</td></tr>
+</table>
+
+<hr>
+
+<h2 id="step1">Step 1 — Confirm LucaNet Data Is Available</h2>
+<ol>
+  <li>Connect to the <strong>LucaNet database</strong> (~7–9 base tables with raw data). Justus Kaiser also has access.</li>
+  <li>Verify the latest month's data is loaded — check the update timestamp in the <code>lucanet.facts</code> table.</li>
+  <li>If loaded: contact Davis / ETL team to trigger processing into BI Stage Dev.</li>
+</ol>
+<blockquote><p>Davis can revert any processing step — the pipeline is fully reversible.</p></blockquote>
+
+<hr>
+
+<h2 id="step2">Step 2 — Backup Pivot Tables</h2>
+<p>Do this <strong>before</strong> running any stored procedures.</p>
+<pre><code>-- Rename existing backup table with today's date
+-- e.g. backup_lucanet_costs_pivot → backup_lucanet_costs_pivot_20260423
+
+-- Truncate the previous dated backup
+TRUNCATE TABLE backup_lucanet_costs_pivot_[prev_date]
+
+-- Insert current pivot into the new backup
+-- Specify columns explicitly — column order matters
+INSERT INTO backup_lucanet_costs_pivot_[today_date]
+SELECT [col1], [col2], ... FROM lucanet_costs_pivot</code></pre>
+<blockquote><p>Always take the local backup before running the OIDS procedure. Even though Davis can revert, this is the cheapest and fastest recovery path.</p></blockquote>
+
+<hr>
+
+<h2 id="step3">Step 3 — Run SP_pivot_lucanet_costs_oids</h2>
+<p><strong>Purpose:</strong> Consolidates LucaNet cost data from two source tables into the pivot table used by the rest of the BI pipeline.</p>
+<p><strong>Sources:</strong></p>
+<ul>
+  <li><code>lucanet.facts</code> — most cost types; one row per account/OID combination.</li>
+  <li><code>lucanet.transactions</code> — lines requiring deeper breakdown (e.g. CRM costs), resolved via <code>CASE WHEN</code> logic.</li>
+</ul>
+<pre><code>EXEC SP_pivot_lucanet_costs_oids</code></pre>
+<p><strong>Validation after run:</strong></p>
+<pre><code>-- Check that last 3 months are populated.
+-- These two conditions flag valid (fully-loaded) months:
+SELECT *
+FROM lucanet_costs_pivot
+WHERE other_production_related_costs &gt; 100000
+  AND affiliate &gt; 0
+ORDER BY month DESC</code></pre>
+<blockquote><p><strong>Known edge case:</strong> In Q4 2025, one month exceeded the 100k threshold before all other lines were fully populated — the validation filter fired early. If a month looks suspicious, cross-check manually against raw LucaNet data rather than relying solely on this filter.</p></blockquote>
+<p><strong>Account structure changes:</strong> LucaNet occasionally reorganizes account hierarchy (happened June 2024 — two labor accounts merged into one). When this occurs, the stored procedure's CASE WHEN logic silently produces zeros for the affected cost lines. Watch for unexpectedly low cost totals after any LucaNet system upgrade.</p>
+
+<hr>
+
+<h2 id="step4">Step 4 — Run SP_CM2_EBITDA_costs_in_ASSA</h2>
+<p><strong>Purpose:</strong> Distributes costs to daily level per shop. This SP also runs nightly as part of the automated ETL — running it manually here applies the new LucaNet data before the overnight cycle.</p>
+<pre><code>EXEC SP_CM2_ebitda_costs_in_ASSA
+-- (created by Anton, 2023 — confirm exact name in DB before running)</code></pre>
+<p><strong>Internal logic:</strong></p>
+<ol>
+  <li>Finds the last 3 months where real LucaNet costs exist.</li>
+  <li>Computes average cost quota: <code>cost / total_revenue</code> for percentage-based lines.</li>
+  <li>Computes average absolute cost for absolute lines (e.g. labor).</li>
+  <li>For <strong>full future months</strong> (no LucaNet data): applies <code>total_revenue &times; avg_cost_quota</code>.</li>
+  <li>For <strong>partial months</strong> (current month mid-run): prorates by days elapsed.</li>
+</ol>
+<table>
+<tr><th>Cost type</th><th>Distribution logic inside CM2</th></tr>
+<tr><td>Material</td><td>Standard quota &times; revenue</td></tr>
+<tr><td>Shipping</td><td>Standard quota &times; revenue</td></tr>
+<tr><td>Labor</td><td>Via personnel distribution tables (see Labor Costs doc)</td></tr>
+<tr><td>Marketing</td><td>Split as flat columns</td></tr>
+<tr><td>Customer support</td><td>Special distribution</td></tr>
+<tr><td>United costs</td><td>Special distribution</td></tr>
+<tr><td>Affiliate</td><td>Special distribution</td></tr>
+<tr><td>API</td><td>Filtered separately — no standard CM2 costs</td></tr>
+</table>
+<blockquote><p><strong>Visibility delay:</strong> Changes affect the ASSA layer only. Results appear in GLC Power BI after the overnight ETL run. To see results same day, ask Davis to rerun manually — takes ~3–4 hours.</p></blockquote>
+
+<hr>
+
+<h2 id="step5">Step 5 — Next-Day Validation</h2>
+
+<h3>Check 1: GCS alerts Slack channel</h3>
+<ul>
+  <li>Alerts fire if daily cost values fall below historical minimum thresholds.</li>
+  <li>Thresholds defined in the <strong>Anchors tab</strong> of GLC Alerts Controlling Excel (BI SharePoint → Power BI alerts folder).</li>
+  <li>Anchors must be updated manually after each load cycle — pull current values from SQL or GEO Controlling, paste into Anchors tab.</li>
+  <li>Example: "AdWord was 2× below historical min for April 20." Investigate whether this is a real data issue or a threshold that needs updating.</li>
+</ul>
+
+<h3>Check 2: Data Quality tab in GEO Controlling BI report</h3>
+<ul>
+  <li>Direct comparison: actual cost quotas vs. coefficient targets.</li>
+  <li>Check per cost position and per affiliate.</li>
+  <li>Material / shipping: compare % quota. Labor: compare absolute amounts (for months with real LucaNet data).</li>
+  <li>Deviations of ~0.5–2% per affiliate are normal. Flag anything larger.</li>
+</ul>
+<blockquote><p>Only labor currently has a threshold-based flag measure in the BI report. Material and shipping do not — a gap to address when time allows.</p></blockquote>
+
+<hr>
+
+<h2 id="stakeholders">Stakeholders &amp; Files</h2>
+<table>
+<tr><th>Person</th><th>Role</th></tr>
+<tr><td>Justs Ceplis</td><td>Process owner — runs SPs, validates results, updates coefficients</td></tr>
+<tr><td>Justus Kaiser</td><td>Handover target — has LucaNet DB access</td></tr>
+<tr><td>Davis / ETL team</td><td>Triggers BI Stage Dev processing; can revert any step</td></tr>
+<tr><td>Alisa Lobodenkov</td><td>Monthly cost coordinator — provides period-shift adjusted benchmarks for material, shipping, labor</td></tr>
+<tr><td>Shemek (Przemysław Lamparski)</td><td>Labor costs coordinator — Wednesday session (see Labor Costs doc)</td></tr>
+</table>
+<table>
+<tr><th>File</th><th>Location</th><th>Purpose</th></tr>
+<tr><td>GLC Alerts Controlling Excel</td><td>BI SharePoint → Power BI alerts folder</td><td>Alert thresholds (Anchors tab), coefficient targets, GLC export paste target</td></tr>
+<tr><td>GEO Controlling BI report</td><td>BI SharePoint — standard report location</td><td>Current cost state; Data Quality tab for validation</td></tr>
+<tr><td>LucaNet database</td><td>DB connection (Justus Kaiser has access)</td><td>Confirm data is loaded before triggering ETL</td></tr>
+</table>
+
+<hr>
+
+<h2 id="issues">Known Issues</h2>
+<table>
+<tr><th>Issue</th><th>Detail</th></tr>
+<tr><td>LucaNet account restructures</td><td>SP silently produces zeros for affected cost lines. Seen June 2024 (labor accounts merged). Monitor after LucaNet upgrades.</td></tr>
+<tr><td>Validation filter early fire</td><td><code>other_production_related_costs &gt; 100000</code> can be true before all lines are filled. Cross-check manually if suspicious.</td></tr>
+<tr><td>CM2 results only visible after overnight ETL</td><td>Do not panic if same-day GLC numbers look unchanged. Ask Davis to rerun if same-day visibility needed (~3–4 hours).</td></tr>
+<tr><td>Backup step easy to skip</td><td>Always do it before running OIDS. It is the cheapest recovery path.</td></tr>
+<tr><td>December 2025 targets not finalized</td><td>Alisa had not confirmed Dec 2025 final cost quotas as of April 2026. Follow up before using those benchmarks.</td></tr>
+<tr><td>Accidental BI report edits</td><td>Philip/Daniel use Claude in Chrome with full edit rights — suspected source of unexpected filter changes. No Power BI Service audit log available to confirm.</td></tr>
+</table>
+
+</div>
+</body>
+</html>
