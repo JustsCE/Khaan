@@ -1,5 +1,5 @@
 {
-  "ts": "2026-05-13T17:46:25Z",
+  "ts": "2026-05-13T18:49:14Z",
   "query_hash": "e3f2e736cb87f116",
   "qualified_entries": [
     {
@@ -336,23 +336,6 @@
         "type_bonus": 0.0,
         "level_bonus": 1.5,
         "lex_bonus": 4.0,
-        "co_ref_bonus": 0.0,
-        "bundle_bonus": 0.0,
-        "reuse_bonus": 0.0
-      },
-      "related_to": []
-    },
-    {
-      "id": "FUS015",
-      "path": "cortex/fusiform/L1/FUS015.md",
-      "gist": "User asked 'What would you suggest I do with you Khaan?' after a session of fabr",
-      "body": "---\nid: FUS015\ntitle: User asked 'What would you suggest I do with you Khaan?' after a session of fabr\nstrength: 1\nreinforced: 0\ndate_created: 2026-05-11\nsalience: 0.75\ntags: []\nsources: [this-cycle]\n---\n\nUser asked 'What would you suggest I do with you Khaan?' after a session of fabrications \u2014 not angry, genuinely evaluative. Deadline of the 26th is the current horizon for proving value. User rewards honesty about failures more than confident delivery of wrong answers.\n",
-      "score": 2.01,
-      "scoring_trace": {
-        "domain_bonus": 0.0,
-        "type_bonus": 0.0,
-        "level_bonus": 0.5,
-        "lex_bonus": 3.012,
         "co_ref_bonus": 0.0,
         "bundle_bonus": 0.0,
         "reuse_bonus": 0.0
