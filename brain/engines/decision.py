@@ -137,6 +137,20 @@ def dispatch(user_message):
         t_recall.join(timeout=30)
         t_identity.join(timeout=120)
 
+        # freshness check: verify files were written for THIS query
+        query_hash = hashlib.sha256(user_message.lower().encode()).hexdigest()[:16]
+        for src_path in (recall_path, identity_path):
+            if src_path.exists():
+                try:
+                    data = json.loads(src_path.read_text())
+                    if data.get('query_hash') != query_hash:
+                        write_bin('decision-source-missing', 1)
+                        for i in range(1, 6):
+                            write_bin(f'decision-hypothesis-{i}', 0)
+                        return None
+                except (json.JSONDecodeError, KeyError):
+                    pass
+
         # check inputs exist
         if not recall_path.exists() or not identity_path.exists():
             write_bin("decision-source-missing", 1)
@@ -246,3 +260,7 @@ def dispatch(user_message):
         st = read_state()
         st["active_decision_nonce"] = None
         write_state(st)
+        if result is None:
+            stale = NAV / "active-decision.json"
+            if stale.exists():
+                stale.unlink()

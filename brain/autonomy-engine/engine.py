@@ -10,9 +10,10 @@ import sys
 import json
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from brain.autonomy_engine import integrate, recurrence
+
+sys.path.insert(0, str(Path(__file__).parent))
+import integrate, recurrence
 
 
 def cmd_status():
