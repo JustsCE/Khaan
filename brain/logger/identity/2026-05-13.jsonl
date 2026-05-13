@@ -289,3 +289,17 @@
 {"event": "relay_complete", "ts": "2026-05-13T19:09:53Z", "session_id": "", "query_hash": "e3f2e736cb87f116", "latency_ms": 20220, "entries_picked": 59}
 {"event": "relay_start", "ts": "2026-05-13T19:12:36Z", "session_id": "", "query_hash": "5e9c8395933cd2a2"}
 {"event": "relay_complete", "ts": "2026-05-13T19:12:57Z", "session_id": "", "query_hash": "5e9c8395933cd2a2", "latency_ms": 21037, "entries_picked": 62}
+{"event": "boot_start", "ts": "2026-05-13T19:16:36Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-13T19:18:06Z", "session_id": "", "latency_ms": 89414, "entries_picked": 48}
+{"event": "relay_start", "ts": "2026-05-13T19:18:06Z", "session_id": "", "query_hash": "e3f2e736cb87f116"}
+{"event": "relay_complete", "ts": "2026-05-13T19:18:30Z", "session_id": "", "query_hash": "e3f2e736cb87f116", "latency_ms": 23952, "entries_picked": 59}
+{"event": "boot_start", "ts": "2026-05-13T19:24:10Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-13T19:25:54Z", "session_id": "", "latency_ms": 104126, "entries_picked": 48}
+{"event": "relay_start", "ts": "2026-05-13T19:25:54Z", "session_id": "", "query_hash": "e3f2e736cb87f116"}
+{"event": "relay_complete", "ts": "2026-05-13T19:26:16Z", "session_id": "", "query_hash": "e3f2e736cb87f116", "latency_ms": 21676, "entries_picked": 59}
+{"event": "boot_start", "ts": "2026-05-13T19:32:46Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-13T19:34:33Z", "session_id": "", "latency_ms": 107046, "entries_picked": 48}
+{"event": "relay_start", "ts": "2026-05-13T19:34:33Z", "session_id": "", "query_hash": "e3f2e736cb87f116"}
+{"event": "relay_complete", "ts": "2026-05-13T19:34:54Z", "session_id": "", "query_hash": "e3f2e736cb87f116", "latency_ms": 21516, "entries_picked": 59}
+{"event": "relay_start", "ts": "2026-05-13T19:35:23Z", "session_id": "", "query_hash": "3f27c6d0e5dcfd61"}
+{"event": "relay_complete", "ts": "2026-05-13T19:35:41Z", "session_id": "", "query_hash": "3f27c6d0e5dcfd61", "latency_ms": 18401, "entries_picked": 55}
