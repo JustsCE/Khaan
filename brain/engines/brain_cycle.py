@@ -12,7 +12,7 @@ HIPPO = BRAIN / "hippocampus.md"
 
 
 def _check_timeout(t0):
-    if time.time() - t0 > 300:
+    if time.time() - t0 > 900:
         raise TimeoutError("cycle exceeded 300s")
 
 

@@ -142,3 +142,7 @@
 {"event": "relay_complete", "ts": "2026-05-13T06:30:10Z", "session_id": "", "query_hash": "ae8671af8e8cb40d", "latency_ms": 20959, "entries_picked": 68}
 {"event": "relay_start", "ts": "2026-05-13T06:41:14Z", "session_id": "", "query_hash": "bee90d855d655578"}
 {"event": "relay_complete", "ts": "2026-05-13T06:41:32Z", "session_id": "", "query_hash": "bee90d855d655578", "latency_ms": 17968, "entries_picked": 70}
+{"event": "relay_start", "ts": "2026-05-13T07:00:13Z", "session_id": "", "query_hash": "8c8416cc6dc8d53d"}
+{"event": "relay_complete", "ts": "2026-05-13T07:00:32Z", "session_id": "", "query_hash": "8c8416cc6dc8d53d", "latency_ms": 18617, "entries_picked": 53}
+{"event": "relay_start", "ts": "2026-05-13T07:02:46Z", "session_id": "", "query_hash": "8bfa1639394483f1"}
+{"event": "relay_complete", "ts": "2026-05-13T07:03:06Z", "session_id": "", "query_hash": "8bfa1639394483f1", "latency_ms": 20227, "entries_picked": 56}
