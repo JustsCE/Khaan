@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Learning Engine</title>
+<style>
+@page { size: A4; margin: 14mm 14mm 16mm 14mm; }
+* { box-sizing: border-box; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.5;
+    color: #1a1a1a;
+    margin: 0;
+    background: #f7f7f5;
+}
+.page-wrap {
+    max-width: 200mm;
+    margin: 0 auto;
+    padding: 8mm;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,.08);
+}
+@media print {
+    body { background: #fff; }
+    .page-wrap { box-shadow: none; max-width: none; padding: 0; }
+}
+h1 {
+    font-size: 26pt;
+    margin: 0 0 4mm;
+    letter-spacing: -.02em;
+    line-height: 1.1;
+    border-bottom: 2px solid #1a1a1a;
+    padding-bottom: 3mm;
+}
+h2 {
+    font-size: 16pt;
+    margin: 8mm 0 3mm;
+    letter-spacing: -.01em;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 2mm;
+    page-break-after: avoid;
+}
+h3 {
+    font-size: 12.5pt;
+    margin: 5mm 0 2mm;
+    color: #333;
+    page-break-after: avoid;
+}
+h4 {
+    font-size: 11pt;
+    margin: 3mm 0 1.5mm;
+    color: #555;
+    page-break-after: avoid;
+}
+p { margin: 1.5mm 0 2.5mm; }
+hr { border: none; border-top: 1px solid #ddd; margin: 5mm 0; }
+blockquote {
+    border-left: 3px solid #1a1a1a;
+    padding: 2mm 4mm;
+    margin: 3mm 0;
+    background: #fafafa;
+    font-style: italic;
+    font-size: 11.5pt;
+}
+blockquote p { margin: 1mm 0; }
+strong, b { color: #000; }
+code {
+    font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 9.5pt;
+    background: #f1f1ef;
+    padding: .3mm 1mm;
+    border-radius: 1mm;
+    color: #b91c1c;
+}
+pre {
+    background: #f8f8f6;
+    border-left: 2px solid #ddd;
+    padding: 3mm 4mm;
+    margin: 3mm 0;
+    font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 9pt;
+    line-height: 1.4;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    page-break-inside: avoid;
+}
+pre code {
+    background: transparent;
+    color: #1a1a1a;
+    padding: 0;
+}
+ul, ol { margin: 1.5mm 0 3mm 6mm; padding: 0; }
+li { margin: .5mm 0; }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 3mm 0;
+    font-size: 9.5pt;
+    page-break-inside: avoid;
+}
+th, td {
+    padding: 1.5mm 2mm;
+    border-bottom: 1px solid #e5e5e5;
+    vertical-align: top;
+    text-align: left;
+}
+th {
+    background: #1a1a1a;
+    color: #fff;
+    font-weight: 600;
+}
+tr:nth-child(even) td { background: #fafafa; }
+.cover {
+    text-align: center;
+    padding: 30mm 0 8mm;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 6mm;
+}
+.cover .subtitle {
+    color: #666;
+    font-size: 11pt;
+    margin-top: 2mm;
+}
+.cover .meta {
+    color: #999;
+    font-size: 9pt;
+    margin-top: 4mm;
+    letter-spacing: .04em;
+}
+.toc {
+    background: #fafafa;
+    border-left: 2px solid #1a1a1a;
+    padding: 4mm 6mm;
+    margin: 4mm 0 8mm;
+    page-break-inside: avoid;
+}
+.toc h3 {
+    margin: 0 0 2mm;
+    font-size: 10pt;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: #555;
+}
+.toc ol { margin: 0 0 0 5mm; }
+.toc li { font-size: 9.5pt; padding: .3mm 0; }
+.toc a { color: #1a1a1a; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+<div class="cover">
+  <h1 style="border:none">Learning Engine</h1>
+  <div class="subtitle">Turns chat observations into long-term memory.</div>
+<div class="meta">Updated 2026-05-13 &middot; JustsCE/Brain</div>
+</div>
+
+<div class="toc"><h3>Contents</h3><ol><li>Philosophy</li><li>Inputs</li><li>Skills</li><li>Stages</li><li>Infrastructure</li><li>Logs</li><li>Anti-lockout</li><li>Manually maintained</li></ol></div>
+
+<h2 id="philosophy">Philosophy</h2>
+<blockquote>
+  <p><strong>The Learning Engine turns chat observations into long-term memory.</strong></p>
+  <p><strong>Cycle commits are non-negotiable. The parent stays blocked while a cycle is overdue.</strong></p>
+</blockquote>
+<p>Every architectural decision in this document follows from those statements.</p>
+<p>The engine owns three skills: Brain Cycle (periodic consolidation), Brain Retro (session-end retrospective), Brain Learn (on-demand learning from external sources). Each skill writes to one or more memory regions on disc; the engine is the orchestrator, the skills are the work.</p>
+<p>The "non-negotiable" property is mechanical: the <code>learning-cycle-overdue</code> binary blocks every tool except <code>/learning-engine</code> until a cycle commits. There is no path that lets the parent answer first and consolidate later.</p>
+<p>The engine handles L1 &rarr; L2 &rarr; L3 promotion within each region automatically (by strength accrual). L3 &rarr; L4 ratification is performed by the User or by the Teacher and is out of scope; the engine does not promote into L4.</p>
+<hr>
+
+<h2 id="inputs">Inputs</h2>
+<p>The engine reads its own memory files plus the session transcript. Brain Learn additionally reads external sources or the current conversation when invoked explicitly.</p>
+<table><thead><tr><th>Source</th><th>Format</th><th>What is read</th></tr></thead><tbody>
+<tr><td>Session transcript</td><td>live conversation (read in-context)</td><td>Observations to ingest</td></tr>
+<tr><td><code>hippocampus.md</code></td><td>markdown with YAML frontmatter + body</td><td>Pending entries to consolidate (max 50)</td></tr>
+<tr><td><code>{semantic,episodic,procedural,fusiform}/*.md</code></td><td>markdown with YAML frontmatter + body</td><td>Candidates for reinforcement, decay, promotion</td></tr>
+<tr><td><code>cortex/prefrontal/L&lt;n&gt;/R###.md</code></td><td>markdown with YAML frontmatter + body</td><td>Existing rules (read for level recompute and decay)</td></tr>
+<tr><td><code>cortex/identity/ID###.md</code> + <code>cortex/broca/BR###.md</code> + <code>cortex/amygdala/AM###.md</code></td><td>markdown with YAML frontmatter + body</td><td>Candidates for reinforcement, decay, promotion</td></tr>
+<tr><td><code>thalamus.json</code></td><td>JSON</td><td>Counters, nextIds, schedule timestamps, learning stats</td></tr>
+<tr><td>External sources (Brain Learn)</td><td>varies (PDF, transcript, URL, message thread, current conversation)</td><td>Observations to extract</td></tr>
+</tbody></table>
+<p><strong>YAML.</strong> A simple key/value text format used for the metadata block at the top of each markdown entry. Lines like <code>id: S038</code>, <code>strength: 4</code>, <code>tags: [identity, charter]</code>. The frontmatter is fenced by <code>---</code> at the start and end. Everything below the closing fence is the body, plain prose.</p>
+<hr>
+
+<h2 id="skills">Skills</h2>
+<p>Three skills. Each has its own trigger and writes to a defined set of memory regions.</p>
+
+<h3>Region surface</h3>
+<table><thead><tr><th>Skill</th><th>Writes to</th></tr></thead><tbody>
+<tr><td>Brain Cycle</td><td>hippocampus, the cortex regions (semantic / episodic / procedural / fusiform / identity / broca / amygdala &mdash; all under <code>brain/cortex/</code>), prefrontal (via promote scan ratification task), thalamus, logger (one event per promotion)</td></tr>
+<tr><td>Brain Retro</td><td>hippocampus, prefrontal (direct, for recurring corrections)</td></tr>
+<tr><td>Brain Learn</td><td>hippocampus only (next Brain Cycle consolidates)</td></tr>
+</tbody></table>
+
+<h3>Brain Cycle &mdash; periodic consolidation</h3>
+<p><strong>Trigger:</strong> counter-gap &ge; 5 on <code>UserPromptSubmit</code>, or explicit <code>/learning-engine</code> invocation.</p>
+<p><strong>Budget:</strong> 80 tool calls and 300 seconds maximum per cycle. Past either limit, <code>learning-cycle-timeout</code> fires.</p>
+<p><strong>What it does:</strong> orchestrates the phases below. Each phase writes to specific memory regions and produces a ledger entry. Promote scan runs every cycle even if the eligible list is empty &mdash; the empty result is recorded so an empty cycle is distinguishable from a skipped phase.</p>
+
+<p><strong>Phase summary.</strong></p>
+<table><thead><tr><th>#</th><th>Phase</th><th>Frequency</th><th>Writes</th></tr></thead><tbody>
+<tr><td>1</td><td>Ingest</td><td>Every cycle</td><td>(in-memory classification)</td></tr>
+<tr><td>2</td><td>Hippocampus</td><td>Every cycle</td><td><code>hippocampus.md</code></td></tr>
+<tr><td>3</td><td>Consolidate</td><td>Every cycle</td><td>cortex/&lt;region&gt;/L1/ (new entries from observations; reinforce existing)</td></tr>
+<tr><td>4</td><td>Index rebuild</td><td>Every cycle</td><td><code>navigation/inverted-index.json</code></td></tr>
+<tr><td>5</td><td>Synthesis</td><td>Every cycle</td><td>cortex/&lt;region&gt;/{L2,L3}/ (new synthesised entries); archives source L1 / L2 entries to <code>cortex/archive/</code>; one logger event per synthesis</td></tr>
+<tr><td>6</td><td>Eval</td><td>Every 30 cycles</td><td>computes per-entry miss-rate from <code>turn_complete</code> + recall dispatch logs over the last 30 cycles; writes <code>logger/learning/eval-NNNN.json</code></td></tr>
+<tr><td>7</td><td>Hygiene</td><td>Every 30 cycles (after Eval)</td><td>reads <code>eval-NNNN.json</code>; decays strengths; appends audit findings to <code>logger/learning/audit-NNNN.json</code></td></tr>
+<tr><td>8</td><td>Commit</td><td>Every cycle</td><td><code>thalamus.json</code>, ledger, git push</td></tr>
+</tbody></table>
+
+<p><strong>Disc layout written.</strong> The engine writes to:</p>
+<pre><code>brain/
+  hippocampus.md            Phase 2
+  thalamus.json             Phase 8 commit
+  logger/                   every consolidate / synthesis event;
+                            Phase 6 Eval results + Phase 7 Hygiene findings every 30 cycles
+  cortex/
+    &lt;region&gt;/
+      L1/                   Phase 3 (new entries from observations);
+                            deleted by Phase 5 on synthesis to L2
+      L2/                   Phase 5 (synthesised from L1 clusters);
+                            deleted by Phase 5 on synthesis to L3
+      L3/                   Phase 5 (synthesised from L2 clusters);
+                            terminal under engine control
+      L4/                   not written by this engine
+                            (ratified by User or Teacher)
+
+  regions: semantic &middot; episodic &middot; procedural &middot; fusiform &middot;
+           identity &middot; broca &middot; amygdala &middot; prefrontal</code></pre>
+
+<h4>Phase 1 &mdash; Ingest</h4>
+<p>Walk the chat transcript since the last cycle. For each candidate observation, classify into one memory category and assign salience 0.0&ndash;1.0. Discard ephemeral or already-known.</p>
+<table><thead><tr><th>Category</th><th>Routes to</th></tr></thead><tbody>
+<tr><td>Semantic (fact about a tool, system, concept)</td><td><code>cortex/semantic/</code></td></tr>
+<tr><td>Episodic (event with narrative + weight)</td><td><code>cortex/episodic/</code></td></tr>
+<tr><td>Procedural (cue + routine + reward)</td><td><code>cortex/procedural/</code></td></tr>
+<tr><td>Fusiform (about a person in The Brain&rsquo;s orbit)</td><td><code>cortex/fusiform/</code></td></tr>
+<tr><td>Identity (a facet of the current self-model)</td><td><code>cortex/identity/</code></td></tr>
+<tr><td>Broca (an emotional event chain)</td><td><code>cortex/broca/</code></td></tr>
+<tr><td>Amygdala (a current emotional charge with subject self or FUS###)</td><td><code>cortex/amygdala/</code></td></tr>
+<tr><td>Prefrontal (a rule observation: do X, never do Y)</td><td><code>cortex/prefrontal/</code></td></tr>
+</tbody></table>
+<p><strong>Salience.</strong> The importance score (0.0&ndash;1.0) assigned to each observation at ingest time. It controls three downstream decisions:</p>
+<ul>
+  <li>Whether the observation gets promoted as a new entry when no existing match is found (threshold &ge; 0.5).</li>
+  <li>Which pending entry gets dropped when hippocampus is at its 50-cap (lowest-salience drops first).</li>
+  <li>Which entries are highlighted in the cycle ledger and the per-cycle log.</li>
+</ul>
+<p><strong>Heuristics for salience assignment:</strong></p>
+<ul>
+  <li>User correction or explicit emphasis (&ldquo;remember this&rdquo;) &rarr; <code>0.9+</code>.</li>
+  <li>Recurring pattern across multiple turns &rarr; <code>0.7&ndash;0.9</code>.</li>
+  <li>Novel fact or procedure with concrete outcome &rarr; <code>0.5&ndash;0.7</code>.</li>
+  <li>Routine working state, uncontested observations, ephemeral chatter &rarr; <code>&lt; 0.5</code>.</li>
+</ul>
+<p><strong>Ledger:</strong> <code>{phase: "ingest", executed: true, detail: "N observations across K categories"}</code>.</p>
+
+<h4>Phase 2 &mdash; Hippocampus</h4>
+<p>Write each ingested observation as an <code>H###</code> entry to <code>hippocampus.md</code>: id, date, tags, salience, target category, <code>consolidation: pending</code>. Cap at 50 pending; lowest-salience pending dropped at cap.</p>
+<p><strong>What clears hippocampus.</strong> Two paths:</p>
+<ul>
+  <li><strong>At write time (Phase 2).</strong> When the cap is hit, the lowest-salience pending entry is dropped to make room for the new one.</li>
+  <li><strong>At consolidation (Phase 3).</strong> Each H### that gets reinforced, promoted, or discarded is removed from hippocampus as part of that decision.</li>
+</ul>
+<p>Phase 7 (Hygiene) does NOT touch hippocampus &mdash; decay operates on long-term regions only.</p>
+<p><strong>Empty cycle:</strong> if the cycle has no observations, raise <code>cycle-empty.bin = 1</code> and emit a <code>cycle_empty</code> log event. The empty-cycle binary is cleared on the next <code>UserPromptSubmit</code>. No fake tick entry is written; an empty cycle is observable through its binary and log line, not through a forged hippocampus mutation.</p>
+<p><strong>Uniform entry format.</strong> Every cortex region (semantic, episodic, procedural, fusiform, identity, broca, amygdala, prefrontal &mdash; all under <code>brain/cortex/</code>) writes entries as markdown files with YAML frontmatter + body. Each entry lives inside an <code>L1/</code>, <code>L2/</code>, <code>L3/</code>, or <code>L4/</code> subfolder according to its current level; the file moves between subfolders as strength changes. Frontmatter holds id, date, tags, salience, strength, reinforced count, source, and the IDs the entry was promoted from (lineage). The body is human-readable prose. Hippocampus is the one exception &mdash; <code>H###</code> entries live as headings within a single <code>hippocampus.md</code> file rather than separate files, because they are short-lived buffer entries.</p>
+<p><strong>Ledger:</strong> <code>{phase: "hippocampus", executed: true, detail: "N entries"}</code>.</p>
+
+<h4>Phase 3 &mdash; Consolidate</h4>
+<p>For each pending <code>H###</code>, compute the overlap coefficient against existing entries in the target region:</p>
+<pre><code>overlap = |A &cap; B| / min(|A|, |B|)</code></pre>
+<p>A and B are term sets from the observation and a candidate entry (titles, tags, gist tokens, indexed terms). Apply the three-band threshold:</p>
+<ul>
+  <li><strong>&ge; 0.5</strong> &rarr; reinforce the existing entry. Strength +1, reinforced count incremented. Remove the H### entry from hippocampus.</li>
+  <li><strong>0.25 &ndash; 0.5</strong> &rarr; review. The matcher cannot decide alone; promote-or-reinforce based on salience and content overlap.</li>
+  <li><strong>&lt; 0.25</strong> &rarr; no match. Salience &ge; 0.5 promotes as a new entry; salience &lt; 0.5 discards.</li>
+</ul>
+<p>ID prefixes for new entries: S, E, PR, FUS, ID, BR, AM, R. New entries land at L1 (file path <code>cortex/&lt;region&gt;/L1/&lt;ID&gt;.md</code>); Phase 5 (Promote scan) moves them between L folders as their strength crosses 5 and 8. L3 &rarr; L4 ratification is performed by the User or Teacher and is out of scope here.</p>
+<p><strong>Lineage.</strong> Every reinforce / promote / discard decision is appended to the logger as a single event with source and target IDs. Selecting any L2 / L3 / L4 entry walks back through this stream to its supporting evidence.</p>
+<p><strong>Ledger:</strong> <code>{phase: "consolidate", executed: true, detail: "N reinforced, M promoted, K discarded"}</code>.</p>
+
+<p><strong>Eager-trigger condition.</strong> In addition to running once per cycle, Consolidate runs eagerly whenever <code>hippocampus.md</code> reaches 80% of capacity (40 of 50 entries by default). The eager run drains pending H### entries via the same overlap rules as the cycle-driven run. This prevents Phase 2&rsquo;s drop-lowest-salience from firing on entries that COULD have been consolidated but were just queued behind the cycle gap. The eager check is wired into the hippocampus append helper: when an append would put count &ge; 40, the helper schedules a synchronous Consolidate pass before returning. Empty hippocampus after eager-trigger is the steady state; Phase 2 only ever drops on truly novel-and-low-salience entries.</p>
+
+<h4>Phase 4 &mdash; Index rebuild</h4>
+<p>After consolidation modifies cortex (reinforces, promotes, or discards entries), the inverted index in <code>navigation/inverted-index.json</code> is rebuilt to reflect the new state.</p>
+<p><strong>What an inverted index is.</strong> A map from <em>term</em> &rarr; list of entries that contain that term, plus an IDF weight per term. Recall uses this index to find candidate entries quickly: instead of scanning every cortex file for each query, recall looks up the query&rsquo;s terms in the index and gets the candidate list directly.</p>
+<p><strong>What IDF is.</strong> Inverse Document Frequency. For a term that appears in <code>k</code> entries out of <code>N</code> total, IDF = <code>log(N / k) + 1.0</code>. Rare terms get high IDF (they discriminate strongly between entries); common terms get low IDF (they discriminate weakly). Recall&rsquo;s lex_bonus calculation multiplies hit count by IDF, so matching a rare term earns more points than matching a common one.</p>
+<p><strong>Why rebuild every cycle.</strong> Consolidation creates new entries, decays existing ones, and changes strengths. The index must reflect the current cortex or recall scoring uses stale values. The rebuild walks every entry across all 8 cortex regions, extracts terms, recomputes IDF weights, and writes <code>navigation/inverted-index.json</code> and <code>navigation/recall-index.json</code> atomically. Recall reads these files; the Brain Cycle owns the writes.</p>
+<p><strong>Ledger:</strong> <code>{phase: "index_rebuild", executed: true, detail: "K terms, J entries"}</code>.</p>
+
+<h4>Phase 5 &mdash; Synthesis</h4>
+<p><strong>Promotion across L1&rarr;L2&rarr;L3 happens in two ways:</strong> (a) <em>strength accrual</em> moves an entry between L folders within a region as reinforcement counts cross 5 and 8 (handled inline in Phase 3 Consolidate); (b) <em>Synthesis</em> distils a cluster of strength-eligible entries into a new higher-level entry and archives the sources. Phase 5 is the synthesis pass &mdash; the rule-engine binary <code>promote-scan-stale</code> clears when this phase completes.</p>
+<p>Synthesis is not a file move. It produces a new higher-level entry from a cluster of related lower-level entries and archives the sources. Higher-level entries are <em>original content</em>: an L2 captures the pattern that emerged across several L1s; an L3 captures the canonical shape that emerged across several L2s.</p>
+
+<p><strong>Trigger.</strong> An L1 entry becomes synthesis-eligible when its strength reaches 5. An L2 entry becomes synthesis-eligible when its strength reaches 8.</p>
+
+<p><strong>Per cycle, in each region:</strong></p>
+<ol>
+  <li>Collect L1 entries with strength &ge; 5 in this region.</li>
+  <li>Cluster them with the algorithm below.</li>
+  <li>For each cluster of size &ge; 2: read all members, distil the shared pattern into a new L2 entry. Frontmatter records the source IDs as the entry&rsquo;s lineage. Body is written from the cluster&rsquo;s combined evidence.</li>
+  <li>Write the new L2 to <code>cortex/&lt;region&gt;/L2/</code>.</li>
+  <li><strong>Archive the source L1 files.</strong> Source entries (the L1 entries that synthesised into a new L2, or the L2 entries that synthesised into a new L3) are MOVED, not deleted. They are relocated to <code>brain/cortex/archive/&lt;region&gt;/L&lt;n&gt;/&lt;id&gt;.md</code> with a frontmatter field <code>archived_in_cycle: NNNN</code> added. The active cortex no longer surfaces them; recall does not score them; <code>index_rebuild</code> excludes the archive directory. They remain on disc as historical record. Archive is append-only.</li>
+  <li>Repeat the same procedure for L2 entries at strength &ge; 8, producing L3 entries from L2 clusters and archiving the source L2s.</li>
+</ol>
+
+<p><strong>Why archive vs delete.</strong> Synthesis is irreversible; the lineage trail in the new L2 / L3 entry&rsquo;s frontmatter (<code>lineage: [src1, src2, &hellip;]</code>) points to entries that must still exist to verify the synthesis. Archiving keeps the audit chain intact. Deletion would orphan every lineage trail that references those IDs the moment a cycle ran.</p>
+
+<p><strong>Reinforcement targeting (when an H### consolidate-target choice exists).</strong> When a pending H### entry could reinforce one of several L1 candidates with overlap &ge; 0.5, prefer L1 entries whose strength is BELOW the L1&rarr;L2 promotion threshold (default 5). An L1 entry already at strength &ge; 5 that has no cluster partners (cohesion &lt; 0.4 with all neighbors) is &ldquo;saturated solo&rdquo; &mdash; it will not synthesise this cycle, so further reinforcement just inflates the strength counter without producing structural change. Phase 3 Consolidate routes new evidence to L1 entries that can still grow toward synthesis with a partner, leaving saturated-solo entries at their current level until a cluster partner emerges. (When no below-threshold candidate exists, the saturated-solo entry is reinforced as a fallback &mdash; better than discarding the H###.)</p>
+
+<h4>Cluster algorithm (initial spec, manually maintained)</h4>
+<p>Agglomerative clustering on tag / term / domain overlap:</p>
+<ol>
+  <li>Compute pairwise similarity for every pair of synthesis-eligible entries in the region: <code>sim(a, b) = overlap_coefficient(terms(a) &cup; tags(a), terms(b) &cup; tags(b))</code>.</li>
+  <li>Build a graph with an edge for every pair where <code>sim &ge; 0.4</code>.</li>
+  <li>Connected components of size &ge; 2 are clusters. Singletons are not synthesis-eligible this cycle (they need to accrue more reinforcement first).</li>
+  <li>If a cluster exceeds size 8, split by recursive median-overlap until each sub-cluster fits.</li>
+</ol>
+<p>Cohesion threshold (0.4), max cluster size (8), and min cluster size (2) are tunable; listed in the Manually maintained section at the end of this doc.</p>
+
+<p><strong>Synthesis subprocess.</strong> When a cluster needs to be named (the prose body of the new L2 / L3 entry), the engine spawns <code>claude -p --output-format json</code> via <code>engines._shared.cli_invoke()</code>. Same wrapper Decision Engine uses. The model is whatever your subscription session provides; no Anthropic API key is consumed. The pinned system prompt (<code>SYNTH_SYSTEM_PROMPT</code> in <code>cycle_phases.py</code>) names the cluster from member gists.</p>
+
+<h4>Pinned prompt (Synthesis subagent)</h4>
+<p>The exact <code>SYSTEM_PROMPT</code> the synthesis subagent runs under. Hash recorded in every cycle ledger; prompt drift is auditable.</p>
+<pre><code>You are synthesizing a cluster of source cortex entries
+into a single canonical, abstracted entry one level higher in the
+brain&#x27;s memory pyramid.
+
+# Inputs (passed under ---INPUTS---)
+
+A JSON object:
+
+    {
+      &quot;region&quot;: &quot;semantic|episodic|procedural|fusiform|identity|
+                broca|amygdala|prefrontal&quot;,
+      &quot;level_out&quot;: &quot;L2|L3&quot;,
+      &quot;cohesion&quot;: 0.62,        // overlap-coefficient of the cluster
+      &quot;common_terms&quot;: [&quot;...&quot;],  // shared tokens across all members
+      &quot;members&quot;: [
+        {&quot;id&quot;: &quot;S012&quot;, &quot;title&quot;: &quot;...&quot;, &quot;body_excerpt&quot;: &quot;...&quot;,
+         &quot;tags&quot;: [&quot;...&quot;]},
+        ...
+      ]
+    }
+
+# Output
+
+Markdown body only. The Python wrapper adds YAML frontmatter — do NOT
+include `---` blocks. Compose:
+
+    # &lt;prose title — not bullet-y, but substantive&gt;
+
+    &lt;1–3 paragraphs identifying the underlying pattern the source
+    entries share. Don&#x27;t enumerate the sources. Don&#x27;t say &quot;this
+    cluster is about X.&quot; State the pattern as canonical knowledge,
+    grounded in the sources.&gt;
+
+    *Source: [&lt;comma-separated source IDs&gt;]*
+
+# Voice constraints by region
+
+- semantic    → declarative, factual (&quot;X is Y because Z&quot;)
+- episodic    → narrative, events with consequence (&quot;On &lt;date&gt;, &lt;event&gt;;
+                 it implied &lt;pattern&gt;&quot;)
+- procedural  → instructional, second-person imperative (&quot;To do X,
+                 first &lt;step&gt;; the principle is &lt;abstraction&gt;&quot;)
+- fusiform    → biographical, relational (&quot;&lt;person&gt; is &lt;role&gt;;
+                 their pattern is &lt;observation&gt;&quot;)
+- identity    → first-person, reflective (&quot;I X because Y&quot;)
+- broca       → register-aware (&quot;My voice does X when Y&quot;)
+- amygdala    → emotionally-grounded (&quot;X charges me; Y dampens&quot;)
+- prefrontal  → rule-shaped (&quot;Always X. Never Y. Reason: Z.&quot;)
+
+# Constraints
+
+- Total length: 100–300 words.
+- Don&#x27;t quote source bodies verbatim. Abstract to the pattern.
+- Don&#x27;t apologize for synthesis (&quot;I tried to combine these…&quot;).
+- Title must be a noun phrase or imperative, not a question or
+  bulleted list.
+- The `*Source: [...]*` line is required and must be the last line.
+
+# Failure mode
+
+If inputs are missing, malformed, or empty, return:
+
+    {&quot;error&quot;: &quot;compose-failed: &lt;one-line reason&gt;&quot;}
+
+(JSON object, no surrounding markdown.) Otherwise, return only the
+markdown body — no JSON wrapper, no preamble, no ```fences```.</code></pre>
+
+<p><strong>L4 is out of scope.</strong> The engine never writes to <code>L4/</code>. L3 &rarr; L4 ratification is performed by the User or by the Teacher.</p>
+
+<p><strong>Logger.</strong> Each synthesis appends one event with: cycle id, region, source IDs (the cluster), target ID (the new entry), and the synthesis-trigger strength. This is the lineage trail.</p>
+
+<p><strong>Ledger:</strong> <code>{phase: "synthesis", executed: true, detail: "L2 created K, L3 created J, sources archived M"}</code>.</p>
+
+<h4>Phase 6 &mdash; Eval (scheduled, every 30 cycles)</h4>
+<p>Trigger: <code>cycleCount % 30 == 0</code>. Computes the miss-rate metric Hygiene needs.</p>
+
+<p><strong>Inputs.</strong> Three logger streams over the last 30 cycles:</p>
+<ul>
+  <li><code>logger/recall/&lt;date&gt;.jsonl</code> &mdash; per turn, the <code>qualified_ids</code> list (entries that were surfaced into <code>active-recall.json</code>) recorded under <code>dispatch_complete</code> events.</li>
+  <li><code>logger/decision/&lt;date&gt;.jsonl</code> &mdash; per turn, the 5-hypothesis payload the Decision subagent returned. Used to determine which entries the chosen lens depended on.</li>
+  <li><code>logger/handler/turn_complete.jsonl</code> &mdash; per turn, the user prompt, the assistant&rsquo;s final reply, and the tool calls that ran. Retained for at least 35 cycles by the handler (5-cycle buffer past the 30-cycle eval window).</li>
+</ul>
+<p>Records are joined on <code>query_hash</code> / <code>turn_id</code>.</p>
+
+<p><strong>Per-entry miss-rate calculation.</strong> Three counters per entry, accumulated across the window:</p>
+<table><thead><tr><th>Counter</th><th>What it counts</th><th>How it is determined</th></tr></thead><tbody>
+<tr><td><code>required</code></td><td>turns where this entry would have been the &ldquo;right&rdquo; recall hit (the entry was needed for the response)</td><td>Post-hoc scoring against <code>tool_uses</code> + <code>final_response</code> via term overlap &ge; 0.4 with the entry&rsquo;s title / body / tags. Strict threshold: an entry counts as required only if its content materially shaped the response.</td></tr>
+<tr><td><code>surfaced</code></td><td>turns where this entry actually appeared in <code>active-recall.json</code> as a qualified entry</td><td>Read directly from <code>dispatch_complete</code> events&rsquo; <code>qualified_ids</code> list. Boolean per turn.</td></tr>
+<tr><td><code>applied</code></td><td>turns where this entry was BOTH surfaced AND demonstrably shaped the response</td><td>Surfaced AND term-overlap &ge; 0.3 between the entry&rsquo;s gist and the assistant&rsquo;s <code>final_response</code>. The lower threshold (0.3) reflects that "applied" means the entry showed up in the output, not that it dominated.</td></tr>
+</tbody></table>
+
+<p><strong>The metric:</strong></p>
+<pre><code>miss_rate = (required &minus; applied) / required    when required &ge; sample_size
+miss_rate = undefined                              when required &lt; sample_size  (insufficient signal)</code></pre>
+
+<p>A miss is when an entry was needed but did not surface OR surfaced but did not apply. The numerator counts both modes (denied access and ignored access). The denominator is the required-count to normalise across popular vs niche entries: a niche entry that misses 5 of 10 required occurrences (50%) is just as broken as a popular entry that misses 50 of 100 (50%).</p>
+
+<p><strong>Decay trigger.</strong> An entry decays (strength &minus;1) when <code>miss_rate &gt; 0.80</code> AND <code>required &ge; 10</code> (the <code>sample_size</code> floor). Both thresholds live in the Manually maintained table at the end of this doc; do not tune from inside the engine.</p>
+
+<p><strong>Output.</strong> Writes <code>logger/learning/eval-NNNN.json</code> indexed by entry ID:</p>
+<pre><code>{
+  "cycle_id": 360,
+  "ts": "2026-05-13T00:00:00Z",
+  "window": 30,
+  "entries": {
+    "S042": {"required": 14, "surfaced": 9, "applied": 7, "miss_rate": 0.50, "samples": 14},
+    "PR017": {"required": 6, "surfaced": 6, "applied": 5, "miss_rate": "undefined", "samples": 6},
+    "R089": {"required": 22, "surfaced": 4, "applied": 2, "miss_rate": 0.91, "samples": 22}
+  }
+}</code></pre>
+<p>Hygiene (Phase 7) reads this file. Entries with <code>miss_rate &gt; 0.80 AND samples &ge; 10</code> are decay candidates; the rest are skipped.</p>
+
+<p><strong>Ledger:</strong> <code>{phase: "eval", executed: true/false, detail: "graded N entries across M turns"}</code>.</p>
+
+<h4>Phase 7 &mdash; Hygiene (scheduled, every 30 cycles, runs after Eval)</h4>
+<p>Trigger: <code>cycleCount % 30 == 0</code>. One pass over the cortex that does two jobs: it decays weak entries and it logs integrity findings.</p>
+
+<p><strong>Decay.</strong> Walk every cortex entry across all regions. For each entry with miss rate &gt; 80% over 10+ qualified recall occurrences (read from <code>logger/learning/eval-NNNN.json</code>), decrement strength. Prefrontal entries decay like any other &mdash; a rule with a high miss rate is not load-bearing and should surface for pruning. (Mechanical OS-level binaries are unaffected by this phase; they are not stored as <code>R###</code> entries.)</p>
+
+<p><strong>Audit log.</strong> While walking the cortex, the same pass records integrity findings to <code>logger/learning/audit-NNNN.json</code>. Hygiene does not act on the findings &mdash; it logs them for the User or the Teacher to review. The checks:</p>
+
+<table><thead><tr><th>Check</th><th>What it surfaces</th></tr></thead><tbody>
+<tr><td>Lineage integrity</td><td>For every L2 / L3 entry, every source ID listed in its lineage frontmatter must resolve to either (a) an active entry of the previous level in the same region, or (b) a Logger event recording the deletion of that source. Findings: lineage-broken entries.</td></tr>
+<tr><td>Orphaned cross-references</td><td>For every cortex entry, every ID referenced in its body or in <code>related: [...]</code> frontmatter must resolve to a live entry. Findings: entries pointing at IDs that no longer exist.</td></tr>
+<tr><td>Stale-but-strong</td><td>Entries with strength &ge; 5 but no qualified recall in the last 30 cycles. High strength + zero demand is noise; flag for review.</td></tr>
+<tr><td>Index &harr; disc bidirectional</td><td>Disc files not registered in <code>navigation/inverted-index.json</code> (Phase 4 catches and re-registers); the inverse direction &mdash; index entries with no corresponding file &mdash; is logged here.</td></tr>
+<tr><td>Domain drift</td><td>Entries registered under a domain whose keyword set no longer matches the entry&rsquo;s current term distribution (e.g. an entry registered under <code>vericity</code> whose body now contains zero vericity-domain terms after several reinforcements). Findings: drifted entries with their original and current top terms.</td></tr>
+</tbody></table>
+
+<p><strong>Audit findings format.</strong> One JSON file per audit run at <code>logger/learning/audit-NNNN.json</code>:</p>
+<pre><code>{
+  "cycle_id": 510,
+  "ts": "2026-05-13T12:34:56Z",
+  "lineage_integrity":      [{"entry_id": "S2-018", "missing_source": "S1-104", "region": "semantic"}],
+  "orphaned_cross_refs":    [{"entry_id": "E2-007", "missing_ref": "PR1-088", "where": "related"}],
+  "stale_but_strong":       [{"entry_id": "E3-002", "region": "episodic", "strength": 9, "last_recall_cycle": 432}],
+  "index_disc_mismatch":    [{"index_id": "PR1-031", "expected_path": "cortex/procedural/L1/PR031.md", "exists_on_disc": false}],
+  "domain_drift":           [{"entry_id": "S1-045", "registered_domain": "vericity", "current_top_terms": ["s3","lambda","forecast"]}]
+}</code></pre>
+
+<p><strong>Ledger:</strong> <code>{phase: "hygiene", executed: true/false, detail: "decayed M of N; findings: lineage X / orphaned Y / stale Z / mismatch W / drift V"}</code>.</p>
+
+<h4>Phase 8 &mdash; Commit</h4>
+<p>Increment <code>thalamus.json.cycleCount</code>. Update counters and <code>nextIds</code> for any new H/S/PR/E/R/FUS/ID/BR/AM entries. <code>git add -A &amp;&amp; git commit &amp;&amp; git push</code>. If push is rejected: stash, pull --rebase, pop, push.</p>
+<p><strong>Ledger commit.</strong> The cycle&rsquo;s consolidated ledger is written via <code>logger/api.py::write_learning_log("cycle_ledger", payload)</code>, which both:</p>
+<ul>
+  <li>Appends a per-event log line to <code>logger/learning/events.jsonl</code> (the running stream consumed by audits).</li>
+  <li>Persists the consolidated per-cycle JSON to <code>logger/learning/cycle-NNNN.json</code> (the structured form for inspection).</li>
+</ul>
+<p>Both writes happen in one logger call. Direct file writes bypass the logger and are forbidden.</p>
+<p><strong>Ledger:</strong> <code>{phase: "commit", executed: true, detail: "cycle N"}</code>.</p>
+
+<p>Phase 8 does not just write the ledger and call git. Before clearing <code>learning-cycle-running</code> and flipping the FSM back to <code>NORMAL</code>, the Brain Cycle runs its own invariant checks (cycleCount monotonic, hippo hash changed, nonce match, Phase 5 ran, pending H### not growing, every due phase stamped). If any check fails, the binaries stay raised and the cycle is retried. The full invariant list lives in <code>rule-engine.html</code> &mdash; Invariant verification.</p>
+<p>The engine&rsquo;s other skills (Brain Retro, Brain Learn, Brain Correct) are documented separately in <code>skills.html</code>. The cycle described above orchestrates the cortex; the skills produce its inputs.</p>
+<hr>
+
+<h2 id="stages">Stages</h2>
+<p>Per-cycle lifecycle. Brain Retro and Brain Learn share this lifecycle through the hippocampus &mdash; they stage entries; the cycle promotes them.</p>
+<pre><code>T0   UserPromptSubmit fires; counter_gap &ge; 5 detected.
+T1   learning-cycle-overdue.bin = 1.
+T2   Parent's tool gate blocks every tool except /learning-engine.
+T3   /learning-engine skill starts; learning-cycle-running.bin = 1.
+T4   Phase 1 Ingest &rarr; N observations classified across memory categories.
+T5   Phase 2 Hippocampus &rarr; H### entries written.
+T6   Phase 3 Consolidate &rarr; N reinforced, M promoted, K discarded.
+T7   Phase 4 Index rebuild &rarr; navigation/inverted-index.json updated.
+T8   Phase 5 Synthesis &rarr; new L2 / L3 entries created from L1 / L2 clusters; sources archived to cortex/archive/.
+T9   Phase 6 Eval &rarr; per-entry miss-rate computed from turn_complete + dispatch logs (only if cycleCount % 30 == 0).
+T10  Phase 7 Hygiene &rarr; decay + audit logging (only if cycleCount % 30 == 0).
+T11  Phase 8 Commit &rarr; thalamus + ledger + git push.
+T12  learning-cycle-overdue = 0; learning-cycle-running = 0; counter snapshot updated.
+T13  Parent unblocked.</code></pre>
+<p>Worst case: cycle fails 3 times or runs past 300s; Anti-lockout in Rules covers the recovery.</p>
+<hr>
+
+<h2 id="infrastructure">Infrastructure</h2>
+<p>Hooks, binaries, output artifacts.</p>
+
+<h3>Hooks (owned by the Learning Engine)</h3>
+<p>One handler, in <code>learning-engine/</code>.</p>
+<table><thead><tr><th>Hook event</th><th>Handler file</th><th>What it does</th></tr></thead><tbody>
+<tr><td><code>UserPromptSubmit</code></td><td><code>learning-engine/flip-cycle-overdue.py</code></td><td>If <code>(counter &minus; last_cycle) &ge; 5</code>: write <code>learning-cycle-overdue.bin = 1</code>.</td></tr>
+</tbody></table>
+<p>Cycle completion (clearing <code>learning-cycle-overdue</code>, <code>consolidation-pending</code>, <code>promote-scan-stale</code>; raising <code>learning-cycle-failed</code> after 3 fails) is handled inside the Brain Cycle skill itself when it commits or escalates &mdash; no external hook needed.</p>
+
+<h3>Binaries</h3>
+<table><thead><tr><th>Binary</th><th>Trigger to raise (<code>1</code>)</th><th>Cleared by</th></tr></thead><tbody>
+<tr><td><code>learning-cycle-overdue</code></td><td><code>(counter &minus; last_cycle_counter) &ge; 5</code> on <code>UserPromptSubmit</code></td><td>Successful cycle commit</td></tr>
+<tr><td><code>learning-cycle-running</code></td><td>Cycle starts</td><td>Cycle commit or fail</td></tr>
+<tr><td><code>learning-cycle-failed</code></td><td>3 consecutive cycle escalations</td><td>Next <code>UserPromptSubmit</code> (auto-recovery)</td></tr>
+<tr><td><code>learning-cycle-timeout</code></td><td>Cycle exceeds 300s</td><td>Next <code>UserPromptSubmit</code> (auto-recovery)</td></tr>
+<tr><td><code>consolidation-pending</code></td><td>Pending H### entries &ge; 30</td><td>Consolidate phase completes this cycle</td></tr>
+<tr><td><code>promote-scan-stale</code></td><td>New cycle started without a promote-scan run</td><td>Promote scan phase completes</td></tr>
+<tr><td><code>cycle-empty</code></td><td>Cycle had zero observations to ingest</td><td>Next <code>UserPromptSubmit</code></td></tr>
+</tbody></table>
+
+<h3>Output artifacts</h3>
+<p>All persistent regions follow the same lifecycle: an observation is reinforced (overlap coefficient &ge; 0.5), promoted as a new entry (no match + salience &ge; 0.5), reviewed (overlap 0.25&ndash;0.5), decayed (miss rate &gt; 80% over 10+ occurrences), or discarded. The mechanism is identical across regions, including prefrontal &mdash; a correction that matches an existing rule reinforces that rule, the same way an observation reinforces a cortex entry.</p>
+<ul>
+  <li><code>hippocampus.md</code></li>
+  <li><code>cortex/{semantic,episodic,procedural,fusiform,identity,broca,amygdala,prefrontal}/L&lt;1-3&gt;/*.md</code> (L4 not written by this engine)</li>
+  <li><code>thalamus.json</code> (counters, not memory)</li>
+  <li><code>logger/</code> (per-event stream &mdash; one append per promotion / decay / ratification task)</li>
+  <li><code>logger/learning/cycle-NNNN.json</code> (per-cycle ledger)</li>
+  <li><code>logger/learning/learn-&lt;hash&gt;.json</code> (Brain Learn batch manifest)</li>
+  <li>git commit + push on every successful cycle</li>
+</ul>
+<hr>
+
+<h2 id="logs">Logs</h2>
+<p>All engine output goes to <code>logger/learning/</code> via <code>logger/api.py::write_learning_log</code>. Append-only.</p>
+<table><thead><tr><th>Event</th><th>Payload</th><th>Purpose</th></tr></thead><tbody>
+<tr><td><code>cycle_start</code></td><td><code>ts, cycle_id, counter_at_start</code></td><td>Brain Cycle trigger fired</td></tr>
+<tr><td><code>phase_complete</code></td><td><code>ts, cycle_id, phase, latency_ms, detail</code></td><td>One per phase as it lands</td></tr>
+<tr><td><code>consolidation_summary</code></td><td><code>ts, cycle_id, reinforced, promoted, discarded</code></td><td>Phase 3 outcome</td></tr>
+<tr><td><code>index_rebuild</code></td><td><code>ts, cycle_id, terms, entries</code></td><td>Phase 4 outcome</td></tr>
+<tr><td><code>cycle_ledger</code></td><td>Full cycle payload: <code>ts, cycle_id, phases, totals, latencies</code></td><td>Consolidated per-cycle entry; mirrored to <code>cycle-NNNN.json</code></td></tr>
+<tr><td><code>cycle_commit</code></td><td><code>ts, cycle_id, total_latency_ms, ledger_path</code></td><td>Successful cycle</td></tr>
+<tr><td><code>cycle_failed</code></td><td><code>ts, cycle_id, attempt, reason</code></td><td>Each failure before three-strike</td></tr>
+<tr><td><code>cycle_timeout</code></td><td><code>ts, cycle_id, latency_ms</code></td><td>300s budget blew</td></tr>
+<tr><td><code>cycle_empty</code></td><td><code>ts, cycle_id</code></td><td>Cycle had zero observations to ingest; <code>cycle-empty.bin = 1</code></td></tr>
+<tr><td><code>synthesis_event</code></td><td><code>ts, cycle_id, region, source_ids[], target_id, trigger_strength</code></td><td>Phase 5 produced an L2 or L3; sources archived to <code>cortex/archive/</code>; recoverable through this event</td></tr>
+<tr><td><code>eval_run</code></td><td><code>ts, cycle_id, turns_in_window, entries_graded, ledger_path</code></td><td>Phase 6 Eval pass output; per-entry miss-rates persisted to <code>eval-NNNN.json</code></td></tr>
+<tr><td><code>audit_findings</code></td><td><code>ts, cycle_id, lineage_integrity[], orphaned_cross_refs[], stale_but_strong[], index_disc_mismatch[], domain_drift[]</code></td><td>Phase 7 Hygiene audit output; persisted to <code>audit-NNNN.json</code></td></tr>
+<tr><td><code>retro_summary</code></td><td><code>ts, session_id, worked_count, broke_count, recurring_flagged, hippo_entries_written</code></td><td>Brain Retro completion</td></tr>
+<tr><td><code>learn_batch</code></td><td><code>ts, source_hash, observations_extracted, observations_rejected, user_correction_count, hippo_entries_promoted</code></td><td>Brain Learn batch completion (promoted)</td></tr>
+<tr><td><code>learn_verification_failed</code></td><td><code>ts, source_hash, reason, failed_observation_ids</code></td><td>SubagentStop verifier rejected the Brain Learn payload; no promotion occurred</td></tr>
+</tbody></table>
+<p>Every event carries <code>cycle_id</code> or <code>session_id</code>. Joining on those keys reconstructs per-cycle and per-session trajectories. Slow is acceptable; latency is on every event so the time budget is visible.</p>
+<hr>
+
+<h2 id="anti-lockout">Anti-lockout</h2>
+<p>Three protections, all simple. Worst case the parent answers without a fresh cycle (degraded), never locked out.</p>
+<table><thead><tr><th>Protection</th><th>What it does</th></tr></thead><tbody>
+<tr><td>Three-strike forgiveness</td><td>After 3 consecutive cycle escalations, <code>learning-cycle-failed.bin = 1</code>. Next <code>UserPromptSubmit</code> clears all Learning binaries; the parent runs without a fresh cycle that turn (degraded but unblocked).</td></tr>
+<tr><td>300-second timeout</td><td>Per cycle attempt. If exceeded, <code>learning-cycle-timeout.bin = 1</code>. Next <code>UserPromptSubmit</code> clears.</td></tr>
+<tr><td>SessionStart reset</td><td>All Learning binaries written to <code>0</code> at session start.</td></tr>
+</tbody></table>
+<p>Every fallback writes a log line so the failure mode is always visible.</p>
+<hr>
+
+<h2 id="manually-maintained">Manually maintained</h2>
+<p>Constants and assets that the engine reads but does not auto-tune. Each is candidate for periodic A/B review by User or Teacher; commit changes deliberately, not on a hunch.</p>
+<table><thead><tr><th>Constant</th><th>Default</th><th>Where it lives</th><th>Review when</th></tr></thead><tbody>
+<tr><td>L1 &rarr; L2 strength threshold</td><td><code>5</code></td><td><code>thalamus.json :: config.level_thresholds.L2</code></td><td>Synthesis fires too early (noise) or too late (canonical patterns languish at L1).</td></tr>
+<tr><td>L2 &rarr; L3 strength threshold</td><td><code>8</code></td><td><code>thalamus.json :: config.level_thresholds.L3</code></td><td>L3 entries proliferate or stagnate.</td></tr>
+<tr><td>Cluster cohesion threshold</td><td><code>0.4</code></td><td><code>thalamus.json :: config.synthesis.cohesion</code></td><td>Synthesis produces over-broad L2s (lower) or misses obvious patterns (raise).</td></tr>
+<tr><td>Cluster size bounds</td><td>min 2, max 8</td><td><code>thalamus.json :: config.synthesis.cluster_size</code></td><td>L2 entries become unwieldy or sparse.</td></tr>
+<tr><td>Decay miss-rate floor</td><td><code>0.80</code></td><td><code>thalamus.json :: config.decay.miss_rate</code></td><td>Healthy entries decay too aggressively or noise persists.</td></tr>
+<tr><td>Decay sample size</td><td><code>10</code> qualified recall occurrences</td><td><code>thalamus.json :: config.decay.sample_size</code></td><td>Decay grades on too few signals (raise) or takes too long to act (lower).</td></tr>
+<tr><td>Cycle counter gap</td><td><code>5</code> messages</td><td><code>thalamus.json :: config.cycle.gap</code></td><td>Cycles fire too often (raise) or memory drifts before consolidation (lower).</td></tr>
+<tr><td>Eval window</td><td>last <code>30</code> cycles</td><td><code>thalamus.json :: config.eval.window</code></td><td>Eval signal is too noisy (raise) or too laggy (lower).</td></tr>
+<tr><td>Logger turn_complete retention</td><td><code>35</code> cycles</td><td><code>thalamus.json :: config.eval.retention</code></td><td>Always &ge; <code>eval.window + 5</code>; raise if you increase the eval window.</td></tr>
+</tbody></table>
+<p>The engine reads these from <code>thalamus.json :: config</code> at start of each cycle. No engine writes to <code>config</code>; only the User or Teacher edits it.</p>
+
+</div>
+</body>
+</html>

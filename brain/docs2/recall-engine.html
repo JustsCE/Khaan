@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Recall Engine</title>
+<style>
+@page { size: A4; margin: 14mm 14mm 16mm 14mm; }
+* { box-sizing: border-box; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.5;
+    color: #1a1a1a;
+    margin: 0;
+    background: #f7f7f5;
+}
+.page-wrap {
+    max-width: 200mm;
+    margin: 0 auto;
+    padding: 8mm;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,.08);
+}
+@media print {
+    body { background: #fff; }
+    .page-wrap { box-shadow: none; max-width: none; padding: 0; }
+}
+h1 {
+    font-size: 26pt;
+    margin: 0 0 4mm;
+    letter-spacing: -.02em;
+    line-height: 1.1;
+    border-bottom: 2px solid #1a1a1a;
+    padding-bottom: 3mm;
+}
+h2 {
+    font-size: 16pt;
+    margin: 8mm 0 3mm;
+    letter-spacing: -.01em;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 2mm;
+    page-break-after: avoid;
+}
+h3 {
+    font-size: 12.5pt;
+    margin: 5mm 0 2mm;
+    color: #333;
+    page-break-after: avoid;
+}
+h4 {
+    font-size: 11pt;
+    margin: 3mm 0 1.5mm;
+    color: #555;
+    page-break-after: avoid;
+}
+p { margin: 1.5mm 0 2.5mm; }
+hr { border: none; border-top: 1px solid #ddd; margin: 5mm 0; }
+blockquote {
+    border-left: 3px solid #1a1a1a;
+    padding: 2mm 4mm;
+    margin: 3mm 0;
+    background: #fafafa;
+    font-style: italic;
+    font-size: 11.5pt;
+}
+blockquote p { margin: 1mm 0; }
+strong, b { color: #000; }
+code {
+    font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 9.5pt;
+    background: #f1f1ef;
+    padding: .3mm 1mm;
+    border-radius: 1mm;
+    color: #b91c1c;
+}
+pre {
+    background: #f8f8f6;
+    border-left: 2px solid #ddd;
+    padding: 3mm 4mm;
+    margin: 3mm 0;
+    font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 9pt;
+    line-height: 1.4;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    page-break-inside: avoid;
+}
+pre code {
+    background: transparent;
+    color: #1a1a1a;
+    padding: 0;
+}
+ul, ol { margin: 1.5mm 0 3mm 6mm; padding: 0; }
+li { margin: .5mm 0; }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 3mm 0;
+    font-size: 9.5pt;
+    page-break-inside: avoid;
+}
+th, td {
+    padding: 1.5mm 2mm;
+    border-bottom: 1px solid #e5e5e5;
+    vertical-align: top;
+    text-align: left;
+}
+th {
+    background: #1a1a1a;
+    color: #fff;
+    font-weight: 600;
+}
+tr:nth-child(even) td { background: #fafafa; }
+.cover {
+    text-align: center;
+    padding: 30mm 0 8mm;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 6mm;
+}
+.cover .subtitle {
+    color: #666;
+    font-size: 11pt;
+    margin-top: 2mm;
+}
+.cover .meta {
+    color: #999;
+    font-size: 9pt;
+    margin-top: 4mm;
+    letter-spacing: .04em;
+}
+.toc {
+    background: #fafafa;
+    border-left: 2px solid #1a1a1a;
+    padding: 4mm 6mm;
+    margin: 4mm 0 8mm;
+    page-break-inside: avoid;
+}
+.toc h3 {
+    margin: 0 0 2mm;
+    font-size: 10pt;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: #555;
+}
+.toc ol { margin: 0 0 0 5mm; }
+.toc li { font-size: 9.5pt; padding: .3mm 0; }
+.toc a { color: #1a1a1a; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+<div class="cover">
+  <h1 style="border:none">Recall Engine</h1>
+  <div class="subtitle">Surfacing context, every turn.</div>
+<div class="meta">Updated 2026-05-13 &middot; JustsCE/Brain</div>
+</div>
+
+<div class="toc"><h3>Contents</h3><ol><li><a href="#rules">Rules</a></li><li><a href="#philosophy">Philosophy</a></li><li><a href="#stages">Stages</a></li><li><a href="#infrastructure">Infrastructure</a></li><li><a href="#anti-lockout">Anti-lockout</a></li><li><a href="#logs">Logs</a></li><li><a href="#manual-config">Manual config</a></li></ol></div>
+
+<h2 id="rules">Rules</h2>
+<p>How recall works, grouped by concern. Each rule has a title; mechanics are detailed in the sections below.</p>
+
+<h3>Recall fundamentals</h3>
+<ul>
+  <li><strong>Reads five cortex regions.</strong> <code>cortex/semantic/L&lt;n&gt;/</code>, <code>cortex/episodic/L&lt;n&gt;/</code>, <code>cortex/procedural/L&lt;n&gt;/</code>, <code>cortex/fusiform/L&lt;n&gt;/</code>, <code>cortex/prefrontal/L&lt;n&gt;/</code>. Identity, broca, amygdala are out of scope.</li>
+  <li><strong>One floor.</strong> Score floor = <code>2.0</code>. Below the floor, an entry has only weak partial signals and is dropped.</li>
+  <li><strong>No top-N truncation.</strong> Every entry above the floor advances. Width is enforced by floor + cap, never by quota.</li>
+</ul>
+
+<h3>Stage flow (5 stateless stages)</h3>
+<ul>
+  <li><strong>Normalize.</strong> Regex-extract <code>excluded_domains</code>, <code>time_hint</code>, <code>compare_targets</code>, <code>intent_targets</code>, <code>msg_words</code>, <code>msg_stems</code> from the query.</li>
+  <li><strong>Match domains.</strong> Pass A substring-matches domain names; Pass B keyword-matches the rest. Bundle detection runs in two tiers (registered vs. keyword-triggered).</li>
+  <li><strong>Expand scope when domains are thin.</strong> If matched domains together hold &lt; 50 entries, expand scan to all domains.</li>
+  <li><strong>Score with 7 signals.</strong> <code>domain_bonus</code> (+3.0), <code>type_bonus</code> (+1.5), <code>level_bonus</code> (L1 +0.5 / L2 +1.5 / L3 +3.0), <code>lex_bonus</code> (cap 4.0), <code>co_ref_bonus</code> (+2.0), <code>bundle_bonus</code> (+1.5), <code>reuse_bonus</code> (cap 2.0; &minus;0.5 if last access &gt; 7d). Heuristic weights.</li>
+  <li><strong>Lex rescue.</strong> Entries with <code>lex_score &ge; 2.0</code> outside <code>scan_domains</code> are added with <code>score = min(lex_score, 4.0) + level_bonus</code>.</li>
+  <li><strong>Empty short-circuit.</strong> If candidate count is zero, route to the empty-recall endpoint. No rerank, no injection.</li>
+  <li><strong>Rerank with 3 components.</strong> <code>specificity</code> (cap 2.0), <code>diversity</code> (&minus;1.0 per same-type duplicate), <code>temporal</code> (asymmetric: &minus;1.5 stale, +1.0 verified &le; 5 cycles, +0.5 &le; 20 cycles, date fallback when cycle metadata is absent).</li>
+  <li><strong>Graph expansion.</strong> For every qualified entry, follow <code>related_to</code> and add neighbours at 50% of parent rerank score, subject to the 2.0 floor.</li>
+  <li><strong>Hand off in full.</strong> Every entry above the 2.0 floor is written to <code>navigation/active-recall.json</code> as a structured payload for the Decision Engine to consume.</li>
+</ul>
+
+<hr>
+
+<h2 id="philosophy">Philosophy</h2>
+<blockquote>
+  <p><strong>The Recall Engine surfaces context. It does not answer queries.</strong></p>
+  <p><strong>Width over selectivity &mdash; every cortex entry that could plausibly inform the next move enters the qualified list.</strong></p>
+  <p><strong>Recall is the find step. Pruning, hypothesis-construction, and final decision happen in the Decision Engine.</strong></p>
+</blockquote>
+<p>Recall surfaces. The Decision Engine reads the qualified set and chooses what reaches Brain. The Recall Engine never writes to <code>additionalContext</code> directly.</p>
+<hr>
+
+<h2 id="stages">Stages</h2>
+
+<p>Five stateless stages. Every UserPromptSubmit message runs through start to finish.</p>
+<pre><code>           +----------+    +--------+    +----------+    +--------+    +---------+
+message --&gt;| NORMALIZE|--&gt;| DOMAIN |--&gt;|  SCORE   |--&gt;| RERANK |--&gt;| HANDOFF |--&gt; Decision Engine
+           +----------+    +--------+    +----------+    +--------+    +---------+
+                                                              |               (via active-recall.json)
+                                                       graph_expand
+                                                       (every qualified -&gt; +50% scored)</code></pre>
+
+<h3>Stage 1 &mdash; NORMALIZE</h3>
+<p><strong>Input:</strong> raw query string. <strong>Operation:</strong> regex-extract structural cues from the query.</p>
+<ul>
+  <li><code>excluded_domains</code> &mdash; phrases like &ldquo;not the X / exclude X / ignore X / skip X / without X&rdquo; collected into a set. <em>Purpose:</em> a query like &ldquo;everything about Slack but not the channel topology&rdquo; tells us to pull the slack domain in but exclude the channel-topology entries.</li>
+  <li><code>time_hint</code> &mdash; &ldquo;yesterday / last night&rdquo; &rarr; <code>recent_1d</code>; &ldquo;last week / this week&rdquo; &rarr; <code>recent_7d</code>; &ldquo;last month / this month&rdquo; &rarr; <code>recent_30d</code>. <em>Purpose:</em> &ldquo;what did we ship last week&rdquo; should weight recent entries higher in rerank&rsquo;s temporal axis.</li>
+  <li><code>compare_targets</code> &mdash; &ldquo;X vs Y / X versus Y / X or Y / X compared to Y / X against Y&rdquo; forces both X and Y into scan domains. <em>Purpose:</em> &ldquo;Slack vs WhatsApp&rdquo; needs both communication domains in the candidate pool, even if one side hits no domain keyword.</li>
+  <li><code>intent_targets</code> &mdash; verbs like &ldquo;deploy X / build X / fix X / debug X / connect to X&rdquo; collected as nouns. <em>Purpose:</em> &ldquo;deploy lambda&rdquo; routes to the deploy bundle even if no domain keyword matches.</li>
+  <li><code>msg_words</code> = <code>[a-z0-9]+</code> tokens from the lowercased query. <code>msg_stems</code> = stemmed variants of words longer than 3 chars. <em>Purpose:</em> a query with &ldquo;scoring&rdquo; finds entries containing &ldquo;scored&rdquo; or &ldquo;scores&rdquo;.</li>
+</ul>
+<p>Stems are stored alongside direct terms in the inverted index; <code>lex_bonus</code> picks them up transparently with no extra lookup. A small protected-acronym set bypasses stemming so tokens like <code>SQL</code>, <code>AWS</code>, <code>S3</code> keep their full IDF weight.</p>
+<p><strong>Output:</strong> <code>(excluded, time_hint, compare_targets, intent_targets, msg_words, msg_stems)</code>.</p>
+
+<h3>Stage 2 &mdash; DOMAIN MATCH</h3>
+<p><strong>Input:</strong> query + <code>excluded</code> set + the domain dictionary. <strong>Operation:</strong> two-pass match.</p>
+<ul>
+  <li><strong>Pass A:</strong> substring match the domain name itself (e.g., <code>"vericity" in msg</code>).</li>
+  <li><strong>Pass B:</strong> for each unmatched domain, check its keyword list (e.g., the <code>deployment</code> domain matches on <code>"docker"</code>, <code>"deploy"</code>, <code>"acr"</code>, <code>"container app"</code>, <code>"ec2"</code>, <code>"nginx"</code>, &hellip;).</li>
+  <li><strong>Bundle detection.</strong> A bundle is a hand-curated preload list for a known recurring workflow &mdash; when its trigger fires, every entry in the preload list joins the qualified set with a <code>+1.5</code> bundle_bonus, so the engine doesn&rsquo;t rediscover relevance from scratch each time the workflow appears. Bundles live at <code>brain/bundles/&lt;name&gt;.json</code> with a name, a trigger phrase, a keyword list, and a manifest of cortex IDs to surface together. Detection runs in two tiers: tier-1 = bundles registered in matched domains&rsquo; <code>bundles</code> field; tier-2 fires only if tier-1 is empty: keyword-match against the bundle&rsquo;s <code>keywords</code> + <code>trigger</code>, requiring &ge; 2 matches OR (&ge; 1 match AND &ge; 1 intent hit).</li>
+  <li><strong>Scope decision:</strong> if matched domains hold &lt; 50 total entries, expand to all domains. Narrow domains starve coverage; expanding still preserves the <code>domain_bonus</code> signal for ranking.</li>
+</ul>
+<p><strong>Output:</strong> <code>(matched_domains, active_bundles, bundle_entry_ids, scan_domains)</code>.</p>
+
+<h3>Stage 3 &mdash; SCORE</h3>
+<p><strong>Input:</strong> <code>scan_domains, matched_domains, lexical_hits, entity_linked, bundle_entry_ids, access_log, eval_penalties</code>. <strong>Operation:</strong> walk every entry in the scan domains. For each, compute the 7 signals (table below). Sum to a base score. Keep entries with <code>score &gt; 0</code>.</p>
+
+<h4>The 7 signals</h4>
+<table><thead><tr><th>Signal</th><th>Formula</th><th>Cap</th><th>Type</th></tr></thead><tbody>
+<tr><td><code>domain_bonus</code></td><td><code>+3.0</code> if entry&rsquo;s domain is in <code>matched_domains</code></td><td>3.0</td><td>binary</td></tr>
+<tr><td><code>type_bonus</code></td><td><code>+1.5</code> if entry&rsquo;s memory type matches <code>query_type</code></td><td>1.5</td><td>binary</td></tr>
+<tr><td><code>level_bonus</code></td><td><code>+0.5</code> if entry is at L1, <code>+1.5</code> at L2, <code>+3.0</code> at L3 (folder = level)</td><td>3.0</td><td>tiered</td></tr>
+<tr><td><code>lex_bonus</code></td><td><code>min(IDF-weighted hit count, 4.0)</code></td><td>4.0</td><td>continuous</td></tr>
+<tr><td><code>co_ref_bonus</code></td><td><code>+2.0</code> if entry id appears in <code>entity.linked</code></td><td>2.0</td><td>binary</td></tr>
+<tr><td><code>bundle_bonus</code></td><td><code>+1.5</code> if entry is in an active bundle&rsquo;s preload</td><td>1.5</td><td>binary</td></tr>
+<tr><td><code>reuse_bonus</code></td><td><code>min(voluntary_access * 0.5, 2.0)</code> minus <code>0.5</code> if last access &gt; 7d ago</td><td>2.0 / -0.5</td><td>continuous</td></tr>
+</tbody></table>
+
+<p>All weights are heuristic.</p>
+
+<p><strong>Lexical rescue path.</strong> The inverted index (<code>navigation/inverted-index.json</code>) is a posting-list map term&rarr;[entry IDs] plus IDF weights computed via <code>log(N / posting_list_len) + 1.0</code>. After the main scan, the rescue looks up entries with <code>lex_score &ge; 2.0</code> that fell <em>outside</em> the scan domains and adds them with <code>score = min(lex_score, 4.0) + level_bonus</code>. The 2.0 floor requires at least two distinct rare-term hits; the 4.0 cap matches the main <code>lex_bonus</code> cap so a routing-failed entry can&rsquo;t outrank a routing-perfect entry purely on word overlap.</p>
+
+<p>The inverted index is rebuilt by the brain cycle, so the rescue path always reads a current index. Rescue thresholds are static; the index is the moving part.</p>
+
+<p><strong>Output:</strong> candidates list <code>[{id, path, gist, score, read=False}, ...]</code> sorted by score descending. <em>No top-N truncation</em> &mdash; every entry above the score floor advances.</p>
+
+<h4>Max-contribution chart</h4>
+<p>Each bar is the signal&rsquo;s maximum positive contribution scaled against the 20.0 sum of all positive caps (7 score signals + 3 rerank components). <code>diversity</code> contributes only negative values, so its row is shown for completeness but does not add to the sum.</p>
+<pre><code>SCORE
+lex_bonus       ████████████████████  +4.0   (20.0%)
+domain_bonus    ███████████████       +3.0   (15.0%)
+level_bonus     ███████████████       +3.0   (15.0%)   L3 only; L2 +1.5, L1 +0.5
+co_ref_bonus    ██████████            +2.0   (10.0%)
+reuse_bonus     ██████████            +2.0   (10.0%)
+type_bonus      ███████▌              +1.5   ( 7.5%)
+bundle_bonus    ███████▌              +1.5   ( 7.5%)
+RERANK
+specificity     ██████████            +2.0   (10.0%)
+temporal        █████                 +1.0   ( 5.0%)
+diversity       ·                      0.0   ( 0.0%, negative-only)
+                ────────────────────  +20.0  (sum)</code></pre>
+<p><code>lex_bonus</code> alone can carry over a fifth of the maximum. <code>domain_bonus</code> at ~16% paired with any one continuous signal clears the 5.0 high band. Binary score signals saturate quickly; continuous signals and rerank components reward depth and recency.</p>
+
+<h3>Stage 4 &mdash; RERANK</h3>
+<p><strong>Input:</strong> the full candidate list from Stage 3 + <code>entry_meta</code> + <code>access_log</code>. <code>entry_meta</code> is the <code>recall-index.json</code> records for the scanned domains, scoped per-query.</p>
+
+<p><strong>Operation.</strong> When <code>candidate_count == 0</code> the dispatcher routes to the empty-recall endpoint (<code>Recall.dispatch_empty()</code>) immediately &mdash; no rerank, no handoff, just a marker so the Decision Engine knows there is no recall context this turn. Otherwise every candidate is reranked with three components added to the base score:</p>
+<table><thead><tr><th>Component</th><th>Formula</th><th>Cap</th><th>Purpose</th></tr></thead><tbody>
+<tr><td><code>specificity</code></td><td><code>min(len(query_words &cap; gist_words) * 0.5, 2.0)</code></td><td>2.0</td><td>Reward entries whose gist literally overlaps the query, not just domain-tagged. Capped so a verbose query can&rsquo;t let a single entry&rsquo;s overlap dominate.</td></tr>
+<tr><td><code>diversity</code></td><td><code>0.0</code> first time a memory type is seen, <code>-1.0</code> for each subsequent same-type</td><td>-1.0 per dup</td><td>Prevent five procedurals from monopolising the result set when a mix of memory types would be more useful.</td></tr>
+<tr><td><code>temporal</code></td><td>see breakdown below</td><td>-1.5 ... +1.0</td><td>Answer &ldquo;is this knowledge still true?&rdquo; &mdash; prefer current truth over decayed knowledge.</td></tr>
+</tbody></table>
+
+<p><strong>Temporal breakdown.</strong> Asymmetric &mdash; the world doesn&rsquo;t suddenly become true (positive bonuses small) but it can suddenly become wrong (penalties larger).</p>
+<ul>
+  <li><code>-1.5</code> &mdash; stale: <code>cycleCount - verified_at_cycle &gt; 50</code>.</li>
+  <li><code>+1.0</code> &mdash; verified within the last 5 cycles. Just confirmed.</li>
+  <li><code>+0.5</code> &mdash; verified within the last 20 cycles. Recently relevant.</li>
+  <li>Date fallback when cycle metadata is absent: <code>+1.0</code> if learned &le; 7 days ago, <code>+0.5</code> if &le; 30 days ago, <code>-0.5</code> if &gt; 30 days ago.</li>
+</ul>
+
+<p><strong>1-hop graph expansion.</strong> Sort by <code>rerank_score</code> descending. For every qualified entry, follow <code>related_to</code> links and add neighbours to the qualified list at 50% of the parent&rsquo;s rerank_score (subject to the 2.0 floor). No cap on seeds, no cap on neighbours per seed &mdash; Recall widens, the Decision Engine prunes. The 50% discount keeps direct hits ranked above their neighbours without removing the neighbours from consideration.</p>
+
+<p><strong>Output:</strong> reranked qualified list, single tier.</p>
+
+<h3>Stage 5 &mdash; HANDOFF</h3>
+<p><strong>Input:</strong> reranked candidates + <code>min_req_score = 2.0</code> floor.</p>
+<p><strong>Operation:</strong> filter to <code>rerank_score &ge; 2.0</code>. Every entry that clears the floor is qualified. Below 2.0 an entry has only weak partial signals &mdash; a single binary match alone (domain or type) does not clear the floor; an entry needs at least domain-plus-something, or strong lexical evidence, or a combination. The 2.0 cut keeps the qualified set grounded in real evidence rather than incidental keyword overlap.</p>
+
+<p><strong>Handoff format.</strong> Every qualified entry is written in full &mdash; rules, procedurals, semantic, episodic, all of it &mdash; into <code>navigation/active-recall.json</code> as a structured payload (id, path, gist, full body, score breakdown, links). The Decision Engine reads this file. Recall never writes to <code>additionalContext</code> and never speaks to Brain directly.</p>
+
+<p><strong>Output:</strong> a <code>RecallResult</code> payload containing <code>qualified_entries</code> (full bodies + metadata) and <code>scoring_trace</code> (signal breakdown for each entry). Returned to the dispatcher and persisted to <code>active-recall.json</code>. The Decision Engine consumes either form.</p>
+<hr>
+
+<h2 id="infrastructure">Infrastructure</h2>
+<p>How recall plugs into the rest of the brain. Grouped by which engine drives or consumes each piece.</p>
+
+<h3>Driven by Rule Engine &mdash; <code>Recall.dispatch(message) &rarr; RecallResult | None</code></h3>
+<p>The dispatcher calls this exactly once per <code>UserPromptSubmit</code>.</p>
+<ul>
+  <li><strong>Args:</strong> raw user message string.</li>
+  <li><strong>Returns:</strong> a <code>RecallResult</code> payload with <code>qualified_entries</code> (full bodies + metadata) and <code>scoring_trace</code>, or <code>None</code> if no candidate qualified (empty-recall route).</li>
+  <li><strong>Side effects:</strong> writes <code>navigation/active-recall.json</code>; updates the access log; writes <code>modes/bundle_mode.json</code> when a bundle activates.</li>
+</ul>
+
+<h3>Read by Recall, written by Learning Engine</h3>
+<p>The Brain Cycle (Learning Engine, Phase 4) rebuilds <code>navigation/inverted-index.json</code> and <code>navigation/recall-index.json</code> from the cortex on disk every cycle. Recall reads these files; it does not write them. See <code>learning-engine.html</code> for the rebuild contract.</p>
+
+<h3>Consumed by Decision Engine &mdash; <code>active-recall.json</code></h3>
+<p>Recall&rsquo;s only piece of cross-event state. Written at the end of Stage 5 (HANDOFF) and consumed by the Decision Engine. Lives until either:</p>
+<ol>
+  <li>Overwrite by the next <code>UserPromptSubmit</code>&rsquo;s dispatch.</li>
+  <li>2-hour expiry from the timestamp.</li>
+</ol>
+<p>Writes are atomic via tmp-then-rename, so a concurrent read sees either the old payload or the new payload, never a half-written one.</p>
+
+<h3>Read by Rule Engine &mdash; binaries</h3>
+<p>Four alerts the Rule Engine reads. Same file shape as every other binary in the system: <code>0</code> silent, <code>1</code> alert, atomic writes.</p>
+<table><thead><tr><th>Binary</th><th>Trigger to raise (<code>1</code>)</th><th>Opener (writes <code>0</code>)</th></tr></thead><tbody>
+<tr><td><code>recall-stale</code></td><td><code>active-recall.json</code> older than 2 hours</td><td>next successful dispatch</td></tr>
+<tr><td><code>recall-dispatch-failed</code></td><td>last dispatch threw or returned an error</td><td>next successful dispatch</td></tr>
+<tr><td><code>recall-failed</code></td><td>3rd consecutive dispatch failure</td><td>next <code>UserPromptSubmit</code></td></tr>
+<tr><td><code>recall-timeout</code></td><td>dispatch exceeds 30s</td><td>next <code>UserPromptSubmit</code></td></tr>
+</tbody></table>
+<p>Recall raises and clears its own binaries; the Rule Engine just reads them.</p>
+<hr>
+
+<h2 id="anti-lockout">Anti-lockout</h2>
+<p>Three protections, all simple. Worst case the parent answers without fresh recall (degraded), never locked out.</p>
+<table><thead><tr><th>Protection</th><th>What it does</th></tr></thead><tbody>
+<tr><td>Three-strike forgiveness</td><td>After 3 consecutive dispatch failures, <code>recall-failed.bin = 1</code>. Next <code>UserPromptSubmit</code> clears every recall binary; the parent runs without a fresh qualified set that turn (degraded but unblocked).</td></tr>
+<tr><td>30-second timeout</td><td>Per dispatch attempt. If exceeded, <code>recall-timeout.bin = 1</code>. Next <code>UserPromptSubmit</code> clears.</td></tr>
+<tr><td>SessionStart reset</td><td>All recall binaries written to <code>0</code> at session start.</td></tr>
+</tbody></table>
+<p>Every fallback writes a log line so the failure mode is always visible.</p>
+<hr>
+
+<h2 id="logs">Logs</h2>
+<p>Every recall event logs to <code>logger/recall/</code>. The writer is <code>logger/api.py::write_recall_log(event, payload)</code>; the recall engine doesn&rsquo;t manage the file, it just calls the writer. Append-only.</p>
+<p>Each event is enumerated below with the exact payload it carries and the question it lets us answer.</p>
+<table><thead><tr><th>Event</th><th>Payload</th><th>What it lets us measure</th></tr></thead><tbody>
+<tr><td><code>dispatch</code></td><td><code>ts, query_hash, scan_domains, candidate_count, qualified_count, qualified_ids, route</code> (<code>normal</code> | <code>empty</code>)</td><td>Qualified-set size and composition between scoring variants. The primary surface for recall comparisons.</td></tr>
+<tr><td><code>lex_rescue</code></td><td><code>ts, query_hash, rescued_ids, lex_scores</code></td><td>How often the rescue path fires and whether tuning its floor changes precision.</td></tr>
+<tr><td><code>bundle_activation</code></td><td><code>ts, query_hash, tier</code> (1 | 2)<code>, bundles_active, bundle_entry_ids</code></td><td>Which bundles ever fire. Dormant ones get pruned; load-bearing ones earn maintenance attention.</td></tr>
+<tr><td><code>graph_expansion</code></td><td><code>ts, query_hash, seed_ids, neighbour_ids, parent_scores</code></td><td>Whether 1-hop expansion adds value the Decision Engine actually consumes.</td></tr>
+<tr><td><code>handoff</code></td><td><code>ts, query_hash, qualified_ids, total_chars</code></td><td>Payload size handed to the Decision Engine. The cost side of the recall ledger.</td></tr>
+<tr><td><code>index_rebuild</code></td><td><code>ts, terms_count, entries_count, phrases_count, orphans_removed</code></td><td>That the index changed across runs &mdash; a sanity check before reading any other diff.</td></tr>
+</tbody></table>
+<p>All events share <code>query_hash</code> (sha256 of the lowercased message), so a single query&rsquo;s full trajectory &mdash; <code>dispatch</code> &rarr; <code>lex_rescue</code> &rarr; <code>bundle_activation</code> &rarr; <code>graph_expansion</code> &rarr; <code>handoff</code> &mdash; can be reconstructed by joining on that key.</p>
+<hr>
+
+<h2 id="manual-config">Manual config</h2>
+<p>The pieces below are not auto-tuned. They sit in version-controlled config and are reviewed when the trigger condition fires.</p>
+
+<table><thead><tr><th>Asset</th><th>Where it lives</th><th>Review when</th></tr></thead><tbody>
+<tr><td>Domain dictionary</td><td><code>brain/navigation/domain-dictionary.json</code></td><td>A new topic emerges that keyword routing misses; or a new domain is added. Hand-edited; never auto-updated.</td></tr>
+<tr><td>Stemmer suffix rules</td><td>the index rebuilder</td><td>A class of word forms misses repeatedly &mdash; surface from eval-penalty trends.</td></tr>
+<tr><td>Protected-acronym set</td><td>the index rebuilder</td><td>A domain-critical token gets stemmed away (e.g., a new product/tool name disappears from queries).</td></tr>
+<tr><td>Bundle definitions</td><td><code>brain/bundles/&lt;name&gt;.json</code></td><td>A workflow becomes recurrent and its preload list is worth curating by hand.</td></tr>
+<tr><td>Stage 3 score weights and rerank components</td><td>recall config</td><td>An eval-log sweep shows a signal is over- or under-weighted.</td></tr>
+</tbody></table>
+
+</div>
+</body>
+</html>

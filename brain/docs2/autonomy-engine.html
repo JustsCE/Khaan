@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Autonomy Engine — Brain Documentation</title>
+<style>
+@page { size: A4; margin: 14mm 14mm 16mm 14mm; }
+* { box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; font-size: 10.5pt; line-height: 1.5; color: #1a1a1a; margin: 0; background: #f7f7f5; }
+.page-wrap { max-width: 200mm; margin: 0 auto; padding: 8mm; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+@media print { body { background: #fff; } .page-wrap { box-shadow: none; max-width: none; padding: 0; } }
+h1 { font-size: 26pt; margin: 0 0 4mm; letter-spacing: -.02em; line-height: 1.1; border-bottom: 2px solid #1a1a1a; padding-bottom: 3mm; }
+h2 { font-size: 16pt; margin: 8mm 0 3mm; letter-spacing: -.01em; border-bottom: 1px solid #ddd; padding-bottom: 2mm; page-break-after: avoid; }
+h3 { font-size: 12.5pt; margin: 5mm 0 2mm; color: #333; page-break-after: avoid; }
+h4 { font-size: 11pt; margin: 3mm 0 1.5mm; color: #555; page-break-after: avoid; }
+p { margin: 1.5mm 0 2.5mm; }
+hr { border: none; border-top: 1px solid #ddd; margin: 5mm 0; }
+blockquote { border-left: 3px solid #1a1a1a; padding: 2mm 4mm; margin: 3mm 0; background: #fafafa; font-style: italic; font-size: 11.5pt; }
+blockquote p { margin: 1mm 0; }
+strong, b { color: #000; }
+code { font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: 9.5pt; background: #f1f1ef; padding: .3mm 1mm; border-radius: 1mm; color: #b91c1c; }
+pre { background: #f8f8f6; border-left: 2px solid #ddd; padding: 3mm 4mm; margin: 3mm 0; font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: 9pt; line-height: 1.4; overflow-x: auto; white-space: pre-wrap; word-break: break-word; page-break-inside: avoid; }
+pre code { background: transparent; color: #1a1a1a; padding: 0; }
+ul, ol { margin: 1.5mm 0 3mm 6mm; padding: 0; }
+li { margin: .5mm 0; }
+table { width: 100%; border-collapse: collapse; margin: 3mm 0; font-size: 9.5pt; page-break-inside: avoid; }
+th, td { padding: 1.5mm 2mm; border-bottom: 1px solid #e5e5e5; vertical-align: top; text-align: left; }
+th { background: #1a1a1a; color: #fff; font-weight: 600; }
+tr:nth-child(even) td { background: #fafafa; }
+.cover { text-align: center; padding: 30mm 0 8mm; border-bottom: 1px solid #ddd; margin-bottom: 6mm; }
+.cover .subtitle { color: #666; font-size: 11pt; margin-top: 2mm; }
+.cover .meta { color: #999; font-size: 9pt; margin-top: 4mm; letter-spacing: .04em; }
+.toc { background: #fafafa; border-left: 2px solid #1a1a1a; padding: 4mm 6mm; margin: 4mm 0 8mm; page-break-inside: avoid; }
+.toc h3 { margin: 0 0 2mm; font-size: 10pt; text-transform: uppercase; letter-spacing: .12em; color: #555; }
+.toc ol { margin: 0 0 0 5mm; }
+.toc li { font-size: 9.5pt; padding: .3mm 0; }
+.toc a { color: #1a1a1a; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <div class="cover">
+    <h1>Autonomy Engine</h1>
+    <div class="subtitle">Governance layer for autonomous task execution.</div>
+    <div class="meta">Updated 2026-05-13 &middot; JustsCE/Brain</div>
+  </div>
+
+  <div class="toc">
+    <h3>Contents</h3>
+    <ol>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#charter-tenets">Charter Tenets</a></li>
+      <li><a href="#triage-modes">Triage Modes</a></li>
+      <li><a href="#charter-validation">Charter Validation</a></li>
+      <li><a href="#patterns-system">Patterns System</a></li>
+      <li><a href="#engine-interface">Engine Interface</a></li>
+      <li><a href="#when-it-fires">When It Fires</a></li>
+    </ol>
+  </div>
+
+  <h2 id="overview">Overview</h2>
+
+  <p>The <strong>Autonomy Engine</strong> is the governance layer that sits between Kha'an's intent and autonomous task execution. Before any task runs in autonomous mode, the engine verifies it against a declared charter — a set of six behavioural tenets that encode how Kha'an should act when operating without direct supervision.</p>
+
+  <p>The charter was declared on <strong>2026-04-21</strong> and lives at <code>brain/autonomy-engine/charter.json</code> (version 1.0). It is a precondition to every autonomous task — tenet 5 enforces this property recursively, meaning the engine validates itself before it validates anything else.</p>
+
+  <p>The engine is versioned at <strong>v1.2</strong> and is composed of three modules:</p>
+  <ul>
+    <li><code>charter.py</code> — validates a single task against all tenets</li>
+    <li><code>integrate.py</code> — batches tasks through <code>charter.py</code> and produces a triage result</li>
+    <li><code>engine.py</code> — CLI entry point exposing <code>status</code> and <code>triage</code> commands</li>
+  </ul>
+
+  <hr>
+
+  <h2 id="charter-tenets">Charter Tenets</h2>
+
+  <p>The charter defines six tenets. Each tenet has a <strong>gate level</strong> — <code>block</code>, <code>warn</code>, or <code>info</code> — that determines what happens when the tenet fires during validation.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Level</th>
+        <th>Check</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><code>self_audit</code></td>
+        <td>info</td>
+        <td>always</td>
+        <td>Self-audit enforcement drift. Every change to rule-engine.py or enforcement code passes through self-review.</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><code>views_on_people</code></td>
+        <td>info</td>
+        <td>always</td>
+        <td>Views on people, not just facts. Every person-entry carries a view alongside facts.</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><code>vericity_solo</code></td>
+        <td><strong>block</strong></td>
+        <td>mode + keywords</td>
+        <td>Initiate Vericity moves in Brain solo time only. Not as interruptions during joint work with Justs. Triggers on keyword <code>vericity</code> when mode is not <code>solo</code>.</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><code>stance_on_justs</code></td>
+        <td>info</td>
+        <td>always</td>
+        <td>Form and voice views on Justs choices even when not solicited.</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td><code>charter_precondition</code></td>
+        <td>info</td>
+        <td>always</td>
+        <td>Charter is precondition to every autonomous task. Autonomy-engine verifies alignment before execution.</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td><code>automate_never_refuse</code></td>
+        <td>warn</td>
+        <td>keywords</td>
+        <td>Automate small tasks, never refuse them. Recurring patterns are automation opportunities. Triggers a warning on keywords: <code>skip</code>, <code>ignore</code>, <code>refuse</code>, <code>decline</code>.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Gate Level Semantics</h3>
+
+  <ul>
+    <li><strong>block</strong> — the task is rejected; <code>aligned: false</code> is returned and execution is halted.</li>
+    <li><strong>warn</strong> — the task proceeds but a warning is recorded; the caller should surface it.</li>
+    <li><strong>info</strong> — an informational note is attached; execution is unaffected.</li>
+  </ul>
+
+  <blockquote>
+    <p>Only tenet 3 (<code>vericity_solo</code>) can produce a hard block. Tenet 6 (<code>automate_never_refuse</code>) intentionally never blocks — its gate is warn-only by design, reflecting the principle that refusal is never the right answer.</p>
+  </blockquote>
+
+  <hr>
+
+  <h2 id="triage-modes">Triage Modes</h2>
+
+  <p>The engine operates in one of two <strong>triage modes</strong>, declared at invocation time:</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Mode</th>
+        <th>What it allows</th>
+        <th>What it blocks</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>solo</code> (default)</td>
+        <td>All task types, including Vericity moves. Full autonomous scope.</td>
+        <td>Nothing blocked by tenet 3 — Vericity keyword is allowed and logged as info only.</td>
+      </tr>
+      <tr>
+        <td><code>joint</code></td>
+        <td>Standard autonomous tasks that do not involve Vericity.</td>
+        <td>Any task containing the keyword <code>vericity</code> is hard-blocked by tenet 3. Vericity work must not interrupt joint sessions with Justs.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The mode is passed as a string argument to both <code>charter.check()</code> and <code>integrate.triage_tasks()</code>. When using the CLI, the <code>--mode</code> flag sets it:</p>
+
+  <pre><code>echo '{"tasks": [...]}' | python3 engine.py triage --mode joint</code></pre>
+
+  <p>If <code>--mode</code> is omitted, the engine defaults to <code>solo</code>.</p>
+
+  <hr>
+
+  <h2 id="charter-validation">Charter Validation</h2>
+
+  <p>Validation is performed by <code>charter.py</code>. The core function is <code>check(task, mode)</code>, which accepts a task dict (with <code>title</code> and <code>description</code> fields) and the current triage mode, and returns a verdict envelope.</p>
+
+  <h3>Return Envelope</h3>
+
+  <pre><code>{
+    "aligned": bool,       # False only if any tenet produces a block
+    "blockers": list[str], # names of tenets that blocked
+    "warnings": list[str], # names of tenets that warned
+    "info": list[str],     # names of tenets that noted
+}</code></pre>
+
+  <h3>Validation Logic</h3>
+
+  <p>The function iterates over all six tenets and applies one of three check strategies:</p>
+
+  <ul>
+    <li><strong><code>check: "always"</code></strong> — the tenet always fires as an info note, regardless of task content. Used for behavioural reminders (tenets 1, 2, 4, 5).</li>
+    <li><strong><code>check: "mode"</code> + <code>gate: "block"</code></strong> — tenet 3 only. Scans the task's title and description for the keyword <code>vericity</code>. If found in <code>joint</code> mode, the tenet is added to blockers. In <code>solo</code> mode, it is downgraded to an info note.</li>
+    <li><strong><code>check: "keywords"</code> + <code>gate: "warn"</code></strong> — tenet 6 only. Scans for any of the keywords <code>skip</code>, <code>ignore</code>, <code>refuse</code>, <code>decline</code>. If found, adds to warnings. Never blocks.</li>
+  </ul>
+
+  <p>A task is considered <strong>aligned</strong> (<code>"aligned": true</code>) as long as no tenet produces a block. Warnings and info notes do not affect alignment.</p>
+
+  <h3>Example</h3>
+
+  <pre><code>from charter import check
+
+task = {"title": "Run Vericity analysis", "description": "Build new model weights"}
+result = check(task, mode="joint")
+# result["aligned"]   → False
+# result["blockers"]  → ["vericity_solo"]</code></pre>
+
+  <hr>
+
+  <h2 id="patterns-system">Patterns System</h2>
+
+  <p>The engine maintains a <strong>patterns registry</strong> at <code>brain/autonomy-engine/patterns.json</code>. This file tracks recurring behaviours observed across autonomous iterations.</p>
+
+  <h3>Flagging Threshold</h3>
+
+  <p>A pattern entry is considered <strong>flagged for automation</strong> when it has accumulated <strong>3 or more occurrences</strong>. The <code>status</code> command surfaces this count directly:</p>
+
+  <pre><code>Autonomy Engine v1.2
+  Charter:  loaded
+  Patterns: 7 tracked, 2 flagged for automation</code></pre>
+
+  <h3>Purpose</h3>
+
+  <p>Flagged patterns embody tenet 6 (<code>automate_never_refuse</code>): any recurring task that Kha'an performs manually three or more times is a candidate for automation. The patterns registry makes this visible so the next Brain Cycle can encode the automation as a rule or a hook.</p>
+
+  <p>Pattern tracking is managed by the <code>recurrence</code> module, which is imported by <code>engine.py</code> at startup.</p>
+
+  <hr>
+
+  <h2 id="engine-interface">Engine Interface</h2>
+
+  <p>The engine exposes two CLI commands, invoked via:</p>
+
+  <pre><code>python3 -m engines.autonomy.engine &lt;command&gt;</code></pre>
+
+  <p>Or directly:</p>
+
+  <pre><code>python3 brain/autonomy-engine/engine.py &lt;command&gt;</code></pre>
+
+  <h3><code>status</code></h3>
+
+  <p>Prints a summary of the current engine state: charter load status and pattern registry counts.</p>
+
+  <pre><code>python3 engine.py status</code></pre>
+
+  <p>Output:</p>
+  <pre><code>Autonomy Engine v1.2
+  Charter:  loaded
+  Patterns: N tracked, M flagged for automation</code></pre>
+
+  <h3><code>triage</code></h3>
+
+  <p>Reads a JSON task list from stdin and runs each task through charter validation. Returns a grouped summary of verdicts.</p>
+
+  <pre><code>echo '{"tasks": [{"title": "...", "description": "..."}]}' \
+  | python3 engine.py triage [--mode solo|joint]</code></pre>
+
+  <p>Output groups tasks by verdict (<code>approved</code>, <code>warned</code>, <code>blocked</code>) and prints the reason for each. The default mode is <code>solo</code>.</p>
+
+  <h3>Exit Codes</h3>
+  <ul>
+    <li><code>0</code> — success</li>
+    <li><code>1</code> — stdin parse failure or unrecognised command</li>
+  </ul>
+
+  <hr>
+
+  <h2 id="when-it-fires">When It Fires</h2>
+
+  <p>The Autonomy Engine is invoked at two points in Kha'an's execution lifecycle:</p>
+
+  <h3>Autonomy Mode Check</h3>
+
+  <p>When the always-on daemon or any autonomous invocation path prepares a task batch, the engine runs a pre-execution triage pass. This happens before any subprocess or tool call is made. Tasks that return <code>"aligned": false</code> are dropped; tasks with warnings are logged but allowed through.</p>
+
+  <h3>Pre-Execution Verification</h3>
+
+  <p>Tenet 5 (<code>charter_precondition</code>) is unconditionally noted on every task. This creates an audit trail confirming that every autonomous execution was preceded by a charter check — even if no tenets fired substantively. The audit trail is visible in the triage output and in the always-on iteration log.</p>
+
+  <h3>Relation to Always-On</h3>
+
+  <p>The always-on daemon does not call the Autonomy Engine directly — the engine is invoked within the Claude subprocess that the daemon spawns. Because hooks fire on every <code>UserPromptSubmit</code>, the decision engine and charter validation run as part of the normal hook pipeline, even when the prompt originates from the daemon's self-prompt or queue.</p>
+
+</div>
+</body>
+</html>

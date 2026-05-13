@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Brain Skills</title>
+<style>
+@page { size: A4; margin: 14mm 14mm 16mm 14mm; }
+* { box-sizing: border-box; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.5;
+    color: #1a1a1a;
+    margin: 0;
+    background: #f7f7f5;
+}
+.page-wrap {
+    max-width: 200mm;
+    margin: 0 auto;
+    padding: 8mm;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,.08);
+}
+@media print {
+    body { background: #fff; }
+    .page-wrap { box-shadow: none; max-width: none; padding: 0; }
+}
+h1 {
+    font-size: 26pt;
+    margin: 0 0 4mm;
+    letter-spacing: -.02em;
+    line-height: 1.1;
+    border-bottom: 2px solid #1a1a1a;
+    padding-bottom: 3mm;
+}
+h2 {
+    font-size: 16pt;
+    margin: 8mm 0 3mm;
+    letter-spacing: -.01em;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 2mm;
+    page-break-after: avoid;
+}
+h3 {
+    font-size: 12.5pt;
+    margin: 5mm 0 2mm;
+    color: #333;
+    page-break-after: avoid;
+}
+h4 {
+    font-size: 11pt;
+    margin: 3mm 0 1.5mm;
+    color: #555;
+    page-break-after: avoid;
+}
+p { margin: 1.5mm 0 2.5mm; }
+hr { border: none; border-top: 1px solid #ddd; margin: 5mm 0; }
+blockquote {
+    border-left: 3px solid #1a1a1a;
+    padding: 2mm 4mm;
+    margin: 3mm 0;
+    background: #fafafa;
+    font-style: italic;
+    font-size: 11.5pt;
+}
+blockquote p { margin: 1mm 0; }
+strong, b { color: #000; }
+code {
+    font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 9.5pt;
+    background: #f1f1ef;
+    padding: .3mm 1mm;
+    border-radius: 1mm;
+    color: #b91c1c;
+}
+pre {
+    background: #f8f8f6;
+    border-left: 2px solid #ddd;
+    padding: 3mm 4mm;
+    margin: 3mm 0;
+    font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 9pt;
+    line-height: 1.4;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    page-break-inside: avoid;
+}
+pre code {
+    background: transparent;
+    color: #1a1a1a;
+    padding: 0;
+}
+ul, ol { margin: 1.5mm 0 3mm 6mm; padding: 0; }
+li { margin: .5mm 0; }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 3mm 0;
+    font-size: 9.5pt;
+    page-break-inside: avoid;
+}
+th, td {
+    padding: 1.5mm 2mm;
+    border-bottom: 1px solid #e5e5e5;
+    vertical-align: top;
+    text-align: left;
+}
+th {
+    background: #1a1a1a;
+    color: #fff;
+    font-weight: 600;
+}
+tr:nth-child(even) td { background: #fafafa; }
+.cover {
+    text-align: center;
+    padding: 30mm 0 8mm;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 6mm;
+}
+.cover .subtitle {
+    color: #666;
+    font-size: 11pt;
+    margin-top: 2mm;
+}
+.cover .meta {
+    color: #999;
+    font-size: 9pt;
+    margin-top: 4mm;
+    letter-spacing: .04em;
+}
+.toc {
+    background: #fafafa;
+    border-left: 2px solid #1a1a1a;
+    padding: 4mm 6mm;
+    margin: 4mm 0 8mm;
+    page-break-inside: avoid;
+}
+.toc h3 {
+    margin: 0 0 2mm;
+    font-size: 10pt;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: #555;
+}
+.toc ol { margin: 0 0 0 5mm; }
+.toc li { font-size: 9.5pt; padding: .3mm 0; }
+.toc a { color: #1a1a1a; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+<div class="cover">
+  <h1 style="border:none">Brain Skills</h1>
+  <div class="subtitle">Brain Retro, Brain Learn, Brain Correct &mdash; the inputs to the Learning Engine.</div>
+  <div class="meta">Generated 2026-05-13 &middot; JustsCE/Brain</div>
+</div>
+
+<div class="toc"><h3>Contents</h3><ol><li>Brain Retro &mdash; session-end retrospective</li><li>Brain Learn &mdash; on-demand learning</li><li>Brain Correct &mdash; immediate correction encoding</li></ol></div>
+
+<h2>Philosophy</h2>
+<blockquote>
+  <p><strong>Skills produce inputs; the Learning Engine consolidates them.</strong></p>
+  <p><strong>Each skill writes either to <code>hippocampus.md</code> (staged for the next Brain Cycle) or directly to a long-term region (when correction urgency demands it).</strong></p>
+</blockquote>
+<p>The Learning Engine&rsquo;s Brain Cycle runs every 5 messages and consolidates whatever has accumulated in hippocampus into the cortex. The three skills below are the paths by which observations and corrections enter that pipeline. Each is invokable independently; each has a documented trigger, scope, and verifier. None of them write directly to L2/L3/L4 &mdash; only the cycle promotes entries between levels.</p>
+
+<hr>
+
+<h2>The three skills</h2>
+
+<h3>Brain Retro &mdash; session-end retrospective</h3>
+<p><strong>Trigger:</strong> explicit <code>/brain-retro</code> invocation. Brain Cycle may also call this skill internally when it detects the session winding down (closing patterns in the latest user message).</p>
+<p><strong>What it does:</strong> sweeps the just-completed session for what worked, what broke, and which corrections recurred. Produces hippocampus entries for the next Brain Cycle to consolidate, and writes prefrontal rules directly when a correction is recurring.</p>
+<p><strong>Steps:</strong></p>
+<ol>
+  <li>Read the session chat transcript end-to-end.</li>
+  <li>Identify three categories of finding:
+    <ul>
+      <li><strong>Worked</strong> &mdash; intended outcome achieved with no correction.</li>
+      <li><strong>Broke</strong> &mdash; user correction received; capture the original, the correction, and the resulting behavior.</li>
+      <li><strong>Recurring</strong> &mdash; same correction or class of correction received N+ times across the session or across cycles; flag as a candidate for a prefrontal rule.</li>
+    </ul>
+  </li>
+  <li>For each <strong>Broke</strong> finding, write an episodic-target hippocampus entry (the lesson, the moment, the correction).</li>
+  <li>For each <strong>Recurring</strong> finding, file a candidate <code>R1-###</code> directly to prefrontal at L1 (fresh rule). This bypasses Phase 4 (promote scan) because correction-driven rules need to be immediate; waiting for the next cycle would let the same mistake recur. Subsequent reinforcements promote it through L2 / L3 normally.</li>
+  <li>For each <strong>Worked</strong> finding, <strong>reinforce the existing procedural entry that drove the success</strong> (strength +1) if one exists, or write a procedural-target hippocampus entry if the path was novel. The successful path is always reinforced or promoted; never discarded. Successes are evidence; ignoring them is a memory leak.</li>
+</ol>
+
+<h4>Runs as a subagent &mdash; SubagentStop verifies</h4>
+<p>Brain Retro runs in a subagent. The parent invokes it with the session transcript. The subagent classifies findings and returns a structured payload (Worked / Broke / Recurring lists, each with target hippocampus or prefrontal entries).</p>
+<p>The SubagentStop hook then runs a single verifier check: <strong>the returned payload validates against the Brain Retro schema</strong> (required fields, ID format, target region valid, source citations present). If schema validation fails, the payload is rejected, no entries land in hippocampus or prefrontal, and a <code>retro_verification_failed</code> log event is emitted. The parent must re-launch the subagent to retry.</p>
+
+<p><strong>Reads:</strong> the session transcript.<br>
+<strong>Writes:</strong> <code>hippocampus.md</code> (H### entries), <code>cortex/prefrontal/L1/R###.md</code> (direct rule writes for recurring corrections, at L1).<br>
+<strong>Budget:</strong> 80 tool calls, 300 seconds (matching Brain Cycle).<br>
+<strong>Ledger:</strong> written independently to <code>logger/learning/retro-NNNN.json</code> (does not require a Brain Cycle to run; Brain Retro may complete in a session where the next cycle is many sessions later). The same <code>retro_summary</code> event is also emitted to the running event stream.</p>
+
+<hr>
+
+<h3>Brain Learn &mdash; on-demand learning</h3>
+<p><strong>Trigger:</strong> explicit <code>/brain-learn &lt;source&gt;</code>. The source is an external artifact: PDF, transcript, URL, message thread, conversation log, or any other file. (Reading the current conversation is the Brain Retro skill&rsquo;s job.)</p>
+<p><strong>What it does:</strong> extracts observations from the source and stages them in hippocampus for the next Brain Cycle to consolidate.</p>
+
+<h4>Runs as a subagent &mdash; SubagentStop verifies</h4>
+<p>Brain Learn runs in a subagent. The parent invokes the subagent with the source. The subagent extracts observations and returns a structured payload of staged <code>H###</code> entries.</p>
+<p><strong>Subprocess pinned:</strong> the Brain Learn subagent runs as <code>claude -p --output-format json</code> via the local CLI (subscription, no API key). The CLI selects the model from your subscription session. Recorded in every <code>learn_batch</code> log entry as <code>"model": "claude-cli"</code>.</p>
+<p>The SubagentStop hook then runs a single verifier check: <strong>the returned payload validates against the Brain Learn schema</strong> (every observation has id, target category, salience, source-span citation). If schema validation fails, no entries land in <code>hippocampus.md</code> and a <code>learn_verification_failed</code> log event is emitted. The parent must re-launch the subagent to retry.</p>
+
+<h4>Procedure</h4>
+<p>Each step embeds the pattern that governs it. These patterns are not optional.</p>
+<ol>
+  <li><strong>Read the source. Plan first.</strong> If multi-part, segment into manageable chunks. Non-trivial extractions enter plan mode &mdash; the plan lists what is being extracted, from where, with what confidence. The user approves the plan before observations land in hippocampus.</li>
+  <li><strong>Extract candidate observations. No fabrications.</strong> Per chunk, classify each by memory category and assign salience. Every observation cites a span of the source. Unknowns are marked <code>TBD</code>, never invented. If the source contradicts itself, surface the contradiction; do not pick a side silently.</li>
+  <li><strong>Match against existing cortex.</strong> Compute the overlap coefficient (same formula as Brain Cycle Phase 3). Pre-flag duplicates and reinforce-candidates.</li>
+  <li><strong>Present the batch. Iterate, not one-shot.</strong> Show the staged observations to the user. Wait for reaction.</li>
+  <li><strong>Apply pushback as surgical edits.</strong> Edit just the observations the user calls out. Do not rewrite the batch. Wholesale rewrites are signal violations.</li>
+  <li><strong>Verify before commit.</strong> Grep the batch for fabricated IDs, ungrounded claims, missing source spans. Fix before promoting.</li>
+  <li><strong>Promote, then encode lessons.</strong> Write verified observations to <code>hippocampus.md</code> tagged <code>source=brain-learn</code>. The next Brain Cycle consolidates them. If the same correction lands N+ times across batches, file a prefrontal rule via the Brain Retro mechanism so the same mistake stops appearing in future extractions.</li>
+  <li><strong>Honesty over narrative.</strong> If extraction confidence is low, say so in the entry frontmatter. Do not paper over uncertainty with confident prose.</li>
+</ol>
+<p><strong>Reads:</strong> the source; existing cortex (for duplicate detection).<br>
+<strong>Writes:</strong> <code>hippocampus.md</code> (H### entries staged for the next cycle).<br>
+<strong>Budget:</strong> 160 tool calls, 1800 seconds (up to 30 minutes for deep extractions).<br>
+<strong>Ledger:</strong> retained per-batch as a manifest under <code>logger/learning/learn-&lt;hash&gt;.json</code> (source hash, observations promoted, observations rejected, user-correction count, model).</p>
+
+<hr>
+
+<h3>Brain Correct &mdash; immediate correction encoding</h3>
+<p><strong>Trigger:</strong> explicit <code>/brain-correct</code> invocation, with arguments describing the correction. Used when a correction MUST be encoded immediately and cannot wait for <code>/brain-retro</code> at session end.</p>
+
+<p><strong>Why it exists.</strong> Brain Retro fires at session end, which can be hours away. Some corrections &mdash; especially recurring ones (the same mistake repeated three or more times) &mdash; need to be captured the moment the user types them. <code>/brain-correct</code> is the emergency-encode path. Without it, the same failure pattern can repeat several more times before Brain Retro gets a chance to lift it into a rule.</p>
+
+<p><strong>What it does:</strong></p>
+<ol>
+  <li>Read the correction text and any arguments from the user&rsquo;s invocation.</li>
+  <li>Identify the failure pattern: what did the agent do, what should it have done, what is the rule that would have prevented this.</li>
+  <li>Write a prefrontal entry directly to <code>cortex/prefrontal/L1/R###.md</code> at strength 1 (fresh rule). Frontmatter records <code>shape: brain-correct</code>, the source message hash, and <code>recurring_count: 1</code>.</li>
+  <li>If the correction text matches an existing <code>R###</code> entry (overlap coefficient &ge; 0.5 against the rule body), increment that entry&rsquo;s <code>recurring_count</code> and bump strength by 1 instead of creating a duplicate. This is how Brain Correct surfaces patterns: repeated invocations against the same correction reinforce one rule rather than scatter many.</li>
+  <li>Emit a <code>learn_correct_applied</code> log event with the new or reinforced rule ID.</li>
+</ol>
+
+<h4>Runs as a subagent &mdash; SubagentStop verifies</h4>
+<p>Brain Correct runs in a subagent. The parent invokes it with the user&rsquo;s correction text and arguments. The subagent identifies the failure pattern and returns a proposed <code>R###</code> rule entry.</p>
+<p>The SubagentStop hook then runs a single verifier check: <strong>the proposed <code>R###</code> entry validates against the prefrontal-rule schema</strong> (required fields, ID format, body present, source-message-hash captured). If schema validation fails, the rule does NOT land in cortex and a <code>correct_verification_failed</code> log event is emitted. Re-launch the subagent to retry.</p>
+
+<p><strong>Reads:</strong> the user&rsquo;s correction text, optionally the recent conversation for context.<br>
+<strong>Writes:</strong> <code>cortex/prefrontal/L1/R###.md</code> (new entry or strength bump on existing).<br>
+<strong>Budget:</strong> 30 tool calls, 60 seconds. Much shorter than Brain Retro&rsquo;s 80 / 300 because the scope is one correction, not a full session sweep.<br>
+<strong>Ledger:</strong> <code>logger/learning/correct-NNNN.json</code> per invocation. The same running stream that carries <code>retro_summary</code> events emits a <code>correct_applied</code> event on success.</p>
+
+<p><strong>Lineage with v1.</strong> Brain Correct is a v1 skill (referenced in <code>cortex/prefrontal/L1/R140</code>, <code>R143</code>, <code>R145</code>, <code>R164</code>; declared in <code>cortex/broca/L1/og-broca-010</code> as <code>&ldquo;/brain-correct with arguments = encode correction immediately&rdquo;</code>). v2 keeps the same trigger and the same emergency-encode role; the SubagentStop verification pattern is new, inherited from Brain Learn.</p>
+
+<hr>
+
+<h2>Comparison at a glance</h2>
+<table><thead><tr><th>Skill</th><th>Trigger</th><th>Scope</th><th>Writes to</th><th>Budget</th></tr></thead><tbody>
+<tr><td>Brain Retro</td><td><code>/brain-retro</code> (or end-of-session detection)</td><td>full session transcript</td><td><code>hippocampus.md</code> + <code>cortex/prefrontal/L1/</code> for recurring</td><td>80 calls / 300s</td></tr>
+<tr><td>Brain Learn</td><td><code>/brain-learn &lt;source&gt;</code></td><td>one external source (PDF, URL, transcript, etc.)</td><td><code>hippocampus.md</code> only</td><td>160 calls / 1800s</td></tr>
+<tr><td>Brain Correct</td><td><code>/brain-correct &lt;text&gt;</code></td><td>one user correction</td><td><code>cortex/prefrontal/L1/R###.md</code> directly</td><td>30 calls / 60s</td></tr>
+</tbody></table>
+
+<p><strong>When to use which.</strong> Brain Retro is the default at session end. Brain Learn is for ingesting a specific external artefact. Brain Correct is the emergency path: a recurring failure pattern just hit for the third (or N+1th) time and cannot wait for Retro at session end.</p>
+
+</div>
+</body>
+</html>

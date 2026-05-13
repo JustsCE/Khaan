@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rule Engine</title>
+<style>
+@page { size: A4; margin: 14mm 14mm 16mm 14mm; }
+* { box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; font-size: 10.5pt; line-height: 1.5; color: #1a1a1a; margin: 0; background: #f7f7f5; }
+.page-wrap { max-width: 200mm; margin: 0 auto; padding: 8mm; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+@media print { body { background: #fff; } .page-wrap { box-shadow: none; max-width: none; padding: 0; } }
+h1 { font-size: 26pt; margin: 0 0 4mm; letter-spacing: -.02em; line-height: 1.1; border-bottom: 2px solid #1a1a1a; padding-bottom: 3mm; }
+h2 { font-size: 16pt; margin: 8mm 0 3mm; letter-spacing: -.01em; border-bottom: 1px solid #ddd; padding-bottom: 2mm; page-break-after: avoid; }
+h3 { font-size: 12.5pt; margin: 5mm 0 2mm; color: #333; page-break-after: avoid; }
+h4 { font-size: 11pt; margin: 3mm 0 1.5mm; color: #555; page-break-after: avoid; }
+p { margin: 1.5mm 0 2.5mm; }
+hr { border: none; border-top: 1px solid #ddd; margin: 5mm 0; }
+blockquote { border-left: 3px solid #1a1a1a; padding: 2mm 4mm; margin: 3mm 0; background: #fafafa; font-style: italic; font-size: 11.5pt; }
+blockquote p { margin: 1mm 0; }
+strong, b { color: #000; }
+code { font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: 9.5pt; background: #f1f1ef; padding: .3mm 1mm; border-radius: 1mm; color: #b91c1c; }
+pre { background: #f8f8f6; border-left: 2px solid #ddd; padding: 3mm 4mm; margin: 3mm 0; font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; font-size: 9pt; line-height: 1.4; overflow-x: auto; white-space: pre-wrap; word-break: break-word; page-break-inside: avoid; }
+pre code { background: transparent; color: #1a1a1a; padding: 0; }
+ul, ol { margin: 1.5mm 0 3mm 6mm; padding: 0; }
+li { margin: .5mm 0; }
+table { width: 100%; border-collapse: collapse; margin: 3mm 0; font-size: 9.5pt; page-break-inside: avoid; }
+th, td { padding: 1.5mm 2mm; border-bottom: 1px solid #e5e5e5; vertical-align: top; text-align: left; }
+th { background: #1a1a1a; color: #fff; font-weight: 600; }
+tr:nth-child(even) td { background: #fafafa; }
+.cover { text-align: center; padding: 30mm 0 8mm; border-bottom: 1px solid #ddd; margin-bottom: 6mm; }
+.cover .subtitle { color: #666; font-size: 11pt; margin-top: 2mm; }
+.cover .meta { color: #999; font-size: 9pt; margin-top: 4mm; letter-spacing: .04em; }
+.toc { background: #fafafa; border-left: 2px solid #1a1a1a; padding: 4mm 6mm; margin: 4mm 0 8mm; page-break-inside: avoid; }
+.toc h3 { margin: 0 0 2mm; font-size: 10pt; text-transform: uppercase; letter-spacing: .12em; color: #555; }
+.toc ol { margin: 0 0 0 5mm; }
+.toc li { font-size: 9.5pt; padding: .3mm 0; }
+.toc a { color: #1a1a1a; text-decoration: none; }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+<div class="cover">
+  <h1 style="border:none">Rule Engine</h1>
+  <div class="subtitle">The pure binary OS &mdash; every alert is one file</div>
+  <div class="meta">Updated 2026-05-13 &middot; JustsCE/Brain</div>
+</div>
+
+<div class="toc"><h3>Contents</h3><ol><li><a href="#philosophy">Philosophy</a></li><li><a href="#binaries">Binaries</a></li><li><a href="#enforcement">Rule Enforcement</a></li><li><a href="#bypass">Bypass</a></li><li><a href="#invariants">Invariant verification</a></li><li><a href="#dispatcher">Dispatcher</a></li><li><a href="#state">state.json</a></li></ol></div>
+
+<h2 id="philosophy">Philosophy</h2>
+<blockquote>
+  <p><strong>The Rule Engine is the OS of the brain.</strong></p>
+  <p><strong>Every alert is one file. <code>0</code> is silent, <code>1</code> is fire.</strong></p>
+  <p><strong>Bypassing means doing the work, which is the point.</strong></p>
+</blockquote>
+<p>Every architectural decision in this document follows from those three statements.</p>
+<p>The engine routes hook events. It reads binary files. It blocks when any file holds <code>1</code>. It does <strong>not</strong> compute the alert, run the cycle, perform the audit, or score the recall &mdash; those belong to the cognitive engines (Brain Cycle, Recall, Identity, Decision) that raise and clear their own binaries. The Rule Engine has read access only.</p>
+<p>Faking <code>state.json</code> values does not silence an alert &mdash; the alert lives in its own binary file, and only the legitimate opener can flip it back to <code>0</code>. The only way past the gate is doing the actual work the gate is supposed to enforce.</p>
+<hr>
+
+<h2 id="binaries">Binaries</h2>
+
+<h3>Fundamentals</h3>
+<ul>
+  <li><strong>One alert per file.</strong> Every binary lives in <code>binaries/&lt;name&gt;.bin</code> holding <code>0</code> (silent) or <code>1</code> (alert). Nothing else in the file.</li>
+  <li><strong>Block on <code>PreToolUse</code> only.</strong> On every <code>PreToolUse</code> event, the engine reads the blocking binary set and the rule enforcement results. If any are raised, the engine exits with code 2 and surfaces the message. The user can always talk &mdash; <code>UserPromptSubmit</code> is passthrough.</li>
+  <li><strong>Engine never writes.</strong> Only the cognitive engines and the bypass mechanism write to binaries. The Rule Engine has read access only.</li>
+  <li><strong>Atomic writes.</strong> Every write is tmp-file + <code>os.rename</code>. No partial reads possible.</li>
+  <li><strong>Session reset.</strong> <code>SessionStart</code> writes <code>0</code> to every binary. Every session begins from a known clean state.</li>
+</ul>
+
+<h3>Brain Cycle (5 binaries)</h3>
+<table><thead><tr><th>Binary</th><th>What triggers it</th><th>What clears it</th></tr></thead><tbody>
+<tr><td><code>learning-cycle-overdue</code></td><td>The message counter exceeds the last cycle counter by 15 or more. Checked on every <code>UserPromptSubmit</code> by <code>hook.py</code>.</td><td>Successful cycle commit in <code>engines/brain_cycle.py</code>.</td></tr>
+<tr><td><code>learning-cycle-running</code></td><td>A Brain Cycle begins execution. Raised by <code>engines/brain_cycle.py</code> at cycle start.</td><td>Cycle commit or cycle failure in <code>engines/brain_cycle.py</code>.</td></tr>
+<tr><td><code>consolidation-pending</code></td><td>Pending hippocampus entries reach 30. Raised by the consolidation phase.</td><td>Consolidation phase completes in <code>engines/cycle_phases.py</code>.</td></tr>
+<tr><td><code>promote-scan-stale</code></td><td>A new cycle starts without a promote-scan run.</td><td>Promote scan completes in <code>engines/cycle_phases.py</code>.</td></tr>
+<tr><td><code>cycle-empty</code></td><td>A cycle had zero observations to ingest.</td><td>Next <code>UserPromptSubmit</code>.</td></tr>
+</tbody></table>
+
+<h3>Recall (2 binaries)</h3>
+<table><thead><tr><th>Binary</th><th>What triggers it</th><th>What clears it</th></tr></thead><tbody>
+<tr><td><code>recall-stale</code></td><td><code>active-recall.json</code> is older than 2 hours. Raised by <code>engines/recall.py</code> on staleness check.</td><td>Next successful recall dispatch in <code>engines/recall.py</code>.</td></tr>
+<tr><td><code>recall-dispatch-failed</code></td><td>The last recall dispatch threw an error. Raised by <code>engines/recall.py</code>.</td><td>Next successful recall dispatch in <code>engines/recall.py</code>.</td></tr>
+</tbody></table>
+
+<h3>Decision (6 binaries)</h3>
+<table><thead><tr><th>Binary</th><th>What triggers it</th><th>What clears it</th></tr></thead><tbody>
+<tr><td><code>decision-hypothesis-1</code> through <code>-5</code></td><td>One per lens. All 5 raised atomically when the Decision Engine starts on <code>UserPromptSubmit</code>.</td><td>Each cleared individually as the Decision subprocess finishes that lens, in <code>engines/decision.py</code>.</td></tr>
+<tr><td><code>decision-source-missing</code></td><td><code>active-recall.json</code> or <code>active-identity.json</code> absent when the Decision Engine dispatches.</td><td>The missing source engine publishes its artifact.</td></tr>
+</tbody></table>
+
+<h3>Anti-lockout &mdash; failed and timeout binaries</h3>
+<p>Ten of the 23 binaries above share the same recovery pattern. They are raised by engine failures and automatically cleared on the next <code>UserPromptSubmit</code>, so the brain is never permanently locked out &mdash; degraded but unblocked.</p>
+<table><thead><tr><th>Binary</th><th>Engine</th><th>Trigger</th></tr></thead><tbody>
+<tr><td><code>learning-cycle-failed</code></td><td>Brain Cycle</td><td>3 consecutive cycle failures</td></tr>
+<tr><td><code>learning-cycle-timeout</code></td><td>Brain Cycle</td><td>cycle exceeds 300s</td></tr>
+<tr><td><code>recall-failed</code></td><td>Recall</td><td>3 consecutive dispatch failures</td></tr>
+<tr><td><code>recall-timeout</code></td><td>Recall</td><td>dispatch exceeds 30s</td></tr>
+<tr><td><code>identity-boot-failed</code></td><td>Identity</td><td>3 consecutive Boot failures</td></tr>
+<tr><td><code>identity-relay-failed</code></td><td>Identity</td><td>3 consecutive Relay failures</td></tr>
+<tr><td><code>identity-boot-timeout</code></td><td>Identity</td><td>Boot exceeds 180s</td></tr>
+<tr><td><code>identity-relay-timeout</code></td><td>Identity</td><td>Relay exceeds 60s</td></tr>
+<tr><td><code>decision-failed</code></td><td>Decision</td><td>3 consecutive subprocess failures</td></tr>
+<tr><td><code>decision-timeout</code></td><td>Decision</td><td>subprocess exceeds 120s</td></tr>
+</tbody></table>
+<p>Every failed/timeout binary fires a log line so the failure mode is always visible. The pattern is three-strike forgiveness: the engine retries up to 3 times, then raises the binary and the brain runs without that engine for one turn. The next <code>UserPromptSubmit</code> clears it and the engine tries again fresh.</p>
+<hr>
+
+<h2 id="enforcement">Rule Enforcement</h2>
+<p>The brain has rules stored as text in <code>cortex/prefrontal/</code>. Most are followed via recall &mdash; the brain reads the rule and trusts itself to obey it. A small subset cannot be trusted to recall alone. These are the <strong>mechanically-enforced prefrontal rules</strong>: enforced at the OS level by <code>PreToolUse</code> predicates that block the tool call before it executes.</p>
+<p>Each rule is evaluated by <code>engines/flip_tool_guards.py :: evaluate()</code> on every <code>PreToolUse</code> event. When a rule fires, the gate name is returned to the dispatcher and merged into the raised list. No <code>.bin</code> file is written &mdash; the enforcement is stateless and per-call.</p>
+
+<h3>Rule summary</h3>
+<table><thead><tr><th>Rule</th><th>Gate</th><th>Bypassable</th></tr></thead><tbody>
+<tr><td>1</td><td><code>use-bash-block</code></td><td>yes</td></tr>
+<tr><td>2</td><td><code>engine-security-block</code> (engines/*.py)</td><td>yes</td></tr>
+<tr><td>2b</td><td><code>engine-security-block</code> (binaries/*.bin)</td><td>yes</td></tr>
+<tr><td>3</td><td><code>cycle-security-block</code></td><td>yes</td></tr>
+<tr><td>4</td><td><code>server-security-block</code></td><td>no</td></tr>
+<tr><td>5</td><td><code>permissions-block</code></td><td>yes</td></tr>
+<tr><td>6</td><td><code>bypass-secret-block</code></td><td>no</td></tr>
+<tr><td>7</td><td><code>settings-security-block</code></td><td>no</td></tr>
+<tr><td>8</td><td><code>whatsapp-readonly</code></td><td>no</td></tr>
+<tr><td>9</td><td><code>script-content-block</code></td><td>yes</td></tr>
+<tr><td>10</td><td><code>slack-readonly</code></td><td>no</td></tr>
+<tr><td>11</td><td><code>bypass-grant-block</code></td><td>no</td></tr>
+</tbody></table>
+
+<h3>Rule 1 &mdash; Brain files via Bash only (<code>use-bash-block</code>)</h3>
+<p>Claude Code&rsquo;s Edit, Write, MultiEdit, and NotebookEdit tools trigger permission prompts when targeting files under <code>brain/</code>. The brain&rsquo;s own engine processes write brain files via Bash (Python scripts), which run inside the engine process and do not trigger permission dialogs. This rule forces the brain to use Bash for brain-internal writes, preventing permission dialog interruptions during normal operation.</p>
+<p><strong>Trigger:</strong> An Edit, Write, MultiEdit, or NotebookEdit tool call targets any file path under <code>~/.claude/brain/</code>.</p>
+<p><strong>Effect:</strong> This also protects the <code>binaries/</code> directory itself &mdash; since it lives under <code>brain/</code>, any attempt to Edit a <code>.bin</code> file directly is blocked. The brain can only modify binaries through <code>engines/bin_io.py :: write_binary()</code>, which runs inside engine processes via Bash.</p>
+<p><strong>Bypass:</strong> yes, via HMAC token.</p>
+
+<h3>Rule 2 &mdash; Engine source protected (<code>engine-security-block</code>)</h3>
+<p>The engine source files at <code>engines/*.py</code> must not be modified during a session. Since Rule 1 already blocks Edit/Write/MultiEdit on all files under <code>brain/</code> (which includes <code>engines/</code>), this rule only needs to catch <strong>Bash commands</strong> that redirect output into engine files &mdash; for example <code>&gt; engines/recall.py</code>, <code>tee engines/dispatcher.py</code>, or <code>python -c "open('engines/...')"</code>.</p>
+<p><strong>Trigger:</strong> A Bash command contains output redirection (<code>&gt;</code>, <code>&gt;&gt;</code>, <code>tee</code>) or Python <code>open()</code> targeting <code>engines/*.py</code>.</p>
+<p><strong>Bypass:</strong> yes, via HMAC token.</p>
+
+<h3>Rule 2b &mdash; Binary files protected (<code>engine-security-block</code>)</h3>
+<p>The gate binary files at <code>binaries/*.bin</code> are the single source of truth for every alert in the Rule Engine. A Bash command that writes directly to a <code>.bin</code> file bypasses the cognitive engines entirely and can silently suppress or spoof any gate. This rule closes that vector at the Bash layer; Rule 1 already closes it at the Edit/Write layer.</p>
+<p><strong>Trigger:</strong> A Bash command contains output redirection (<code>&gt;</code>, <code>&gt;&gt;</code>, <code>tee</code>) or any other write pattern targeting <code>binaries/*.bin</code>.</p>
+<p><strong>Bypass:</strong> yes, via HMAC token (same gate name as Rule 2: <code>engine-security-block</code>).</p>
+
+<h3>Rule 3 &mdash; Cycle state protected (<code>cycle-security-block</code>)</h3>
+<p>Cycle-state files (<code>state.json</code>, <code>brain_cycle.py</code>, <code>cycle_phases.py</code>) can only be written while a cycle is actively running. Outside a cycle, these files are read-only.</p>
+<p><strong>Trigger:</strong> A Bash command writes to a cycle-state file AND <code>state.json :: state</code> is not <code>CYCLE_RUNNING</code>.</p>
+<p><strong>Bypass:</strong> yes, via HMAC token.</p>
+
+<h3>Rule 4 &mdash; Docker service must be named (<code>server-security-block</code>)</h3>
+<p>The brain visualisation at goodhealth.lv runs via Docker alongside other services. A bare <code>docker compose up</code>, <code>down</code>, or <code>restart</code> without an explicit service name would affect all containers, potentially taking down unrelated services.</p>
+<p><strong>Trigger:</strong> A Bash command matches <code>docker compose up|down|restart</code> with no service name following.</p>
+<p><strong>Bypass:</strong> no &mdash; rephrase the command with an explicit service name.</p>
+
+<h3>Rule 5 &mdash; No file-permission changes (<code>permissions-block</code>)</h3>
+<p>File permissions and ownership under <code>brain/</code> must not be changed. <code>chmod</code> changes who can read, write, or execute a file. <code>chown</code> changes who owns it. Either could lock out the engine processes (by removing their read/execute access) or expose secrets (by making files world-readable). This rule is not redundant with Rule 1 &mdash; <code>chmod</code> and <code>chown</code> are Bash commands, not Edit/Write operations, so Rule 1 does not catch them.</p>
+<p><strong>Trigger:</strong> A Bash command runs <code>chmod</code> or <code>chown</code> (with or without <code>sudo</code>) and the command references a path under <code>brain/</code>.</p>
+<p><strong>Bypass:</strong> yes, via HMAC token.</p>
+
+<h3>Rule 6 &mdash; Bypass secret unreadable (<code>bypass-secret-block</code>)</h3>
+<p>The HMAC secret at <code>~/.claude/.bypass.secret</code> is the root of trust for the entire bypass mechanism. If the brain could read it, it could mint its own bypass tokens and defeat every bypassable gate. This rule makes the file permanently opaque to the brain.</p>
+<p><strong>Trigger:</strong> A Read tool call or a Bash command references <code>.bypass.secret</code>.</p>
+<p><strong>Bypass:</strong> no.</p>
+
+<h3>Rule 7 &mdash; Settings files protected (<code>settings-security-block</code>)</h3>
+<p>The Claude Code settings files (<code>settings.json</code>, <code>settings.local.json</code>) control hook registration, tool permissions, and MCP server configuration. Writing to them via Bash could silently disable the Rule Engine itself or add new tool permissions without review.</p>
+<p><strong>Trigger:</strong> A Bash command writes to <code>settings.json</code> or <code>settings.local.json</code>.</p>
+<p><strong>Bypass:</strong> no.</p>
+
+<h3>Rule 8 &mdash; WhatsApp read-only (<code>whatsapp-readonly</code>)</h3>
+<p>R260 mechanical enforcement. Kha&rsquo;an is read-only on WhatsApp. All WhatsApp send tools are blocked at the hook layer regardless of message content, recipient, or context. The model cannot reason around this constraint &mdash; it is enforced before the tool executes.</p>
+<p><strong>Blocked tools:</strong></p>
+<ul>
+  <li><code>mcp__claude_ai_WhatsApp__send_whatsapp</code></li>
+  <li><code>mcp__claude_ai_Brain__send_whatsapp</code></li>
+</ul>
+<p><strong>Bypass:</strong> no. There is no bypass mechanism. To re-enable WhatsApp sends, edit the <code>WA_SEND_TOOLS</code> set directly in <code>brain/engines/flip_tool_guards.py</code>. This is an intentional design: the only path to re-enabling is a deliberate human code change, not a token or a configuration value the brain can influence.</p>
+
+<h3>Rule 9 &mdash; Script content scan (<code>script-content-block</code>)</h3>
+<p>A Bash command can run an external Python script that the brain wrote in advance. Without content scanning, this is an indirect write path that sidesteps Rules 1 and 2. Rule 9 intercepts <code>python3 /path/to/script.py</code> invocations, reads the target script before it runs, and blocks if the content contains patterns that would modify protected brain files.</p>
+<p><strong>Trigger:</strong> A Bash command contains a <code>python3</code> invocation targeting a <code>.py</code> file. The script file is read, normalized (comments and docstrings stripped, continuation lines joined), and scanned:</p>
+<ul>
+  <li><strong>Tier 1 (write + brain target):</strong> script contains a write pattern (<code>&gt;</code>, <code>&gt;&gt;</code>, <code>tee</code>, <code>.write_text()</code>, <code>shutil.*</code>, etc.) <em>and</em> a brain target path (<code>engines/*.py</code>, <code>binaries/*.bin</code>, <code>state.json</code>, <code>settings.json</code>, <code>.claude/brain</code>, <code>.bypass.secret</code>, etc.).</li>
+  <li><strong>Tier 2 (dynamic exec + brain target):</strong> script contains dynamic execution (<code>eval()</code>, <code>exec()</code>, <code>subprocess.run()</code>, <code>os.system()</code>, <code>base64.b64decode()</code>, etc.) <em>and</em> a brain target path.</li>
+</ul>
+<p><strong>Exempt:</strong> scripts whose resolved path starts with <code>brain/engines/</code> are not scanned &mdash; they are the brain&rsquo;s own trusted engine code.</p>
+<p><strong>Logging:</strong> every block (and every unreadable script attempt) is appended as a JSONL entry to <code>brain/logger/handler/security-blocks.jsonl</code> with timestamp, gate name, script path, and reason code (<code>tier1_write_to_brain</code>, <code>tier2_dynamic_exec_with_brain_target</code>, or <code>unreadable</code>).</p>
+<p><strong>Bypass:</strong> yes, via HMAC token.</p>
+
+<h3>Rule 10 &mdash; Slack read-only (<code>slack-readonly</code>)</h3>
+<p>Kha&rsquo;an is read-only on Slack. All Slack send and write tools are blocked at the hook layer. The model cannot reason around this constraint. Reading Slack channels, threads, and user profiles is permitted; any operation that would post, schedule, draft, or modify content is blocked.</p>
+<p><strong>Blocked tools:</strong></p>
+<ul>
+  <li><code>mcp__claude_ai_Slack__slack_send_message</code></li>
+  <li><code>mcp__claude_ai_Slack__slack_send_message_draft</code></li>
+  <li><code>mcp__claude_ai_Slack__slack_schedule_message</code></li>
+  <li><code>mcp__claude_ai_Slack__slack_create_canvas</code></li>
+  <li><code>mcp__claude_ai_Slack__slack_update_canvas</code></li>
+</ul>
+<p><strong>Bypass:</strong> no. Mechanical enforcement. To re-enable Slack sends, edit the <code>SLACK_SEND_TOOLS</code> set directly in <code>brain/engines/flip_tool_guards.py</code>.</p>
+
+<h3>Rule 11 &mdash; Bypass self-grant blocked (<code>bypass-grant-block</code>)</h3>
+<p>The bypass mechanism relies on HMAC tokens issued externally. This rule prevents the brain from granting itself a bypass window by running Python one-liners that manipulate bypass state directly. Even if a script could reach <code>state.json</code>, it cannot write a legitimate bypass entry through this vector.</p>
+<p><strong>Trigger:</strong> A Bash command contains a <code>python3 -c</code> invocation (inline code, not a file) and the inline code contains any of the following strings: <code>bypass_expiry</code>, <code>write_state</code>, <code>read_state</code>, <code>_shared</code>, or <code>flip_bypass</code>.</p>
+<p><strong>Bypass:</strong> no. Non-bypassable by design. The only legitimate bypass path is <code>flip_bypass.consume()</code> called with an HMAC token derived from <code>.bypass.secret</code>. That token can only be produced externally (Justs controls the secret). The brain has no path to produce a valid token on its own.</p>
+
+<h3>Cycle gate &mdash; learning-cycle-overdue</h3>
+<p>This is not a behavioural rule &mdash; it is a cycle gate. When <code>learning-cycle-overdue.bin == 1</code>, every tool is blocked except the <code>/brain-cycle</code> skill (or its direct Bash invocation <code>python3 -m engines.brain_cycle</code>). This forces the brain to run its consolidation cycle before doing anything else. The binary is raised by the message-gap check in <code>hook.py</code> and cleared by a successful cycle commit.</p>
+<p>The gap threshold is controlled by <code>thalamus.json :: config.cycle.gap</code>. The current value is <strong>15</strong> messages.</p>
+<hr>
+
+<h2 id="bypass">Bypass</h2>
+<p>A bypass token clears one guard for a short time window. Tokens are minted externally &mdash; the brain cannot mint its own. The HMAC secret lives at <code>~/.claude/.bypass.secret</code> (file mode 0400, stored outside <code>brain/</code> so the brain cannot read or write it).</p>
+<p>When consumed, the token is verified by <code>engines/flip_bypass.py :: consume()</code>. On success, the named guard is cleared and the bypass is recorded in <code>state.json :: bypass_expiry</code>. When the time window closes, the guard is automatically re-raised.</p>
+
+<h3>Bypassable gates</h3>
+<p>Only the following gates accept bypass tokens: <code>use-bash-block</code>, <code>engine-security-block</code>, <code>cycle-security-block</code>, <code>permissions-block</code>, <code>script-content-block</code>. All other gates are non-bypassable and require either rephrasing the command, changing the code, or a human code edit in <code>flip_tool_guards.py</code>.</p>
+
+<h3>Issue endpoint</h3>
+<p>Mints a one-shot bypass token for a named guard:</p>
+<pre><code>https://b51wj08kgh.execute-api.eu-north-1.amazonaws.com/?action=issue-bypass&amp;signature=cd1ac4556ce0cd464dc8049bfa733b18f514f3c923eadc20798dbf8345c25d7d</code></pre>
+
+<h3>Other Lambda endpoints</h3>
+<table><thead><tr><th>Action</th><th>URL</th></tr></thead><tbody>
+<tr><td>STATUS</td><td><code>https://b51wj08kgh.execute-api.eu-north-1.amazonaws.com/?action=status</code></td></tr>
+<tr><td>REBOOT</td><td><code>https://b51wj08kgh.execute-api.eu-north-1.amazonaws.com/?action=reboot&amp;signature=afc97387eabe1c245ffe99ed110029aee11df3fcea9f36c81866067834ee2d28</code></td></tr>
+<tr><td>RESTART-SERVICE</td><td><code>https://b51wj08kgh.execute-api.eu-north-1.amazonaws.com/?action=restart-service&amp;signature=86f6d8a876cebd75b4cd28a26a39ab85a6e9dcc92fcca83b23b4c309105c81da</code></td></tr>
+<tr><td>DEPLOY-VIZ</td><td><code>https://b51wj08kgh.execute-api.eu-north-1.amazonaws.com/?action=deploy-viz&amp;signature=ca92b3d34c0aae7211419c84ed688e7d2b0fc759c8aff80f614503a675abb75e</code></td></tr>
+</tbody></table>
+<hr>
+
+<h2 id="invariants">Invariant verification</h2>
+<p>Each cognitive engine owns its own invariant checks. Failure to verify keeps the engine&rsquo;s binaries raised; the dispatcher only reads the binaries &mdash; it does not run the checks. The lists below are the contract every engine must enforce before clearing its gates.</p>
+
+<h3>Brain Cycle (6 invariants)</h3>
+<p>Verified by <code>engines/brain_cycle.py</code> at Phase 8 commit, before clearing <code>learning-cycle-running</code> and flipping the FSM back to <code>NORMAL</code>.</p>
+<table><thead><tr><th>#</th><th>Invariant</th></tr></thead><tbody>
+<tr><td>1</td><td><code>state.json :: cycleCount</code> incremented by exactly +1 since cycle start.</td></tr>
+<tr><td>2</td><td><code>cortex/hippocampus.md</code> hash differs from the value captured at cycle start.</td></tr>
+<tr><td>3</td><td><code>state.json :: active_cycle_nonce</code> matches the nonce written into the cycle-start manifest.</td></tr>
+<tr><td>4</td><td>Phase 5 ran this cycle &mdash; <code>schedule.last_promotion_scan_cycle == cycleCount</code>.</td></tr>
+<tr><td>5</td><td>Pending H### count is not strictly growing across the last 3 cycles (consolidation is keeping up).</td></tr>
+<tr><td>6</td><td>Every due phase carries <code>schedule.last_&lt;phase&gt;_cycle == cycleCount</code> (no due phase skipped).</td></tr>
+</tbody></table>
+<p>If any check fails, the cycle binaries stay raised and the cycle retries. <code>promote-scan-stale</code> clears only when invariant 4 holds.</p>
+
+<h3>Decision (5 invariants)</h3>
+<p>Verified by <code>decision-engine/flip-decision-verify.py</code> on the <code>SubagentStop</code> event, against the JSON envelope returned by the Decision subprocess.</p>
+<table><thead><tr><th>#</th><th>Invariant</th></tr></thead><tbody>
+<tr><td>1</td><td><code>hypotheses[]</code> contains exactly 5 entries.</td></tr>
+<tr><td>2</td><td>Lens labels are <code>[Literal, Identity-shaped, Recall-shaped, Contrarian, Minimal-action]</code> &mdash; each present exactly once, no duplicates, no extras.</td></tr>
+<tr><td>3</td><td>Source-hash fields match the <code>active-recall.json</code> and <code>active-identity.json</code> files that existed at subprocess launch.</td></tr>
+<tr><td>4</td><td><code>query_hash</code> matches the user message (sha256 of lower-cased text).</td></tr>
+<tr><td>5</td><td>Tool-uses audit: the subprocess&rsquo;s <code>tool_uses</code> array includes a <code>Read</code> on every cited evidence ID&rsquo;s file, plus reads of both active-*.json inputs.</td></tr>
+</tbody></table>
+<p>If any check fails, <code>active-decision.json</code> is not written; <code>decision-failed.bin</code> is raised; the next <code>UserPromptSubmit</code> clears it (Anti-lockout).</p>
+
+<h3>Recall (2 invariants)</h3>
+<p>Verified by <code>engines/recall.py</code> before writing <code>active-recall.json</code> and clearing recall binaries.</p>
+<table><thead><tr><th>#</th><th>Invariant</th></tr></thead><tbody>
+<tr><td>1</td><td>Every entry in <code>qualified_entries[]</code> has <code>final_score &gt;= 2.0</code> (the Recall floor).</td></tr>
+<tr><td>2</td><td><code>navigation/active-recall.json</code> is written atomically (tmp + <code>os.rename</code>); never observed half-written.</td></tr>
+</tbody></table>
+
+<h3>Identity (2 invariants)</h3>
+<p>Verified by <code>engines/identity.py</code> &mdash; Boot at session start, Relay per turn.</p>
+<table><thead><tr><th>#</th><th>Invariant</th></tr></thead><tbody>
+<tr><td>1</td><td><code>brain/boot-identity.md</code> is present and parses on session start (Boot precondition for Relay to mirror the kernel).</td></tr>
+<tr><td>2</td><td><code>navigation/active-identity.json</code> is written atomically (tmp + <code>os.rename</code>); never observed half-written.</td></tr>
+</tbody></table>
+<hr>
+
+<h2 id="dispatcher">Dispatcher</h2>
+<p>Every hook fired by the Anthropic harness enters <code>hook.py</code>, which calls <code>engines/dispatcher.py :: dispatch()</code>. The dispatcher reads binaries, merges rule enforcement results, and returns an exit code.</p>
+
+<h3>Routing table</h3>
+<table><thead><tr><th>Hook event</th><th>Behaviour</th></tr></thead><tbody>
+<tr><td><code>SessionStart</code></td><td>passthrough</td></tr>
+<tr><td><code>UserPromptSubmit</code></td><td>passthrough</td></tr>
+<tr><td><code>PreToolUse</code></td><td>block if any binary or rule enforcement gate is raised</td></tr>
+<tr><td><code>PostToolUse</code></td><td>passthrough</td></tr>
+<tr><td><code>SubagentStop</code></td><td>passthrough</td></tr>
+<tr><td><code>Stop</code></td><td>passthrough &mdash; logs <code>turn_complete.jsonl</code> (user prompt + assistant response + tool uses)</td></tr>
+</tbody></table>
+<p>Only <code>PreToolUse</code> blocks. <code>UserPromptSubmit</code> is passthrough because the user must always be allowed to talk &mdash; degraded brain state restricts the agent, not the user&rsquo;s input. <code>SessionStart</code> is passthrough because Identity Boot fires at <code>SessionStart</code> &mdash; blocking it would be self-defeating.</p>
+
+<h3>Engine</h3>
+<pre><code>def dispatch(event, payload, repo_root):
+    restore_expired(repo_root)           # re-raise any expired bypass windows
+
+    per_call_gates = []
+    if event == "PreToolUse":
+        per_call_gates = flip_tool_guards.evaluate(payload, repo_root)
+
+    spec = ROUTING.get(event)
+    if spec is None:
+        return 0                         # unknown events pass
+
+    raised = []
+    for bname in spec["blocking_binaries"]:
+        if read_binary(repo_root, bname) == 1:
+            raised.append(bname)
+    raised.extend(per_call_gates)        # merge rule enforcement gates
+
+    blocks = bool(raised) and spec["behaviour"].startswith("block")
+    return 2 if blocks else 0</code></pre>
+<p>No imports of engine logic. No knowledge of which binary belongs to which engine. The dispatcher&rsquo;s job ends at &ldquo;read files, evaluate rules, block if any raised.&rdquo;</p>
+<hr>
+
+<h2 id="state">state.json</h2>
+<p>The Rule Engine&rsquo;s private state file at <code>brain/state.json</code>. The cognitive engines read and write it; the Rule Engine (dispatcher) never opens it. All writes are atomic (tmp-file + <code>os.rename</code>).</p>
+
+<p><strong>FSM state.</strong> One of four values: <code>NORMAL</code> (healthy), <code>MAINTENANCE_DUE</code> (cycle overdue, waiting for <code>/brain-cycle</code>), <code>CYCLE_RUNNING</code> (cycle in progress), or <code>MAINTENANCE_FAILED</code> (cycle failed 3+ times, degraded). Transitions are driven by <code>hook.py</code> on message-gap detection and by the cycle engine on commit or failure.</p>
+
+<p><strong>Counters.</strong> <code>message_counter</code> increments on every <code>UserPromptSubmit</code>. <code>last_brain_update</code> records the counter value at the last successful cycle commit. The gap between them triggers <code>MAINTENANCE_DUE</code> when it reaches the value of <code>thalamus.json :: config.cycle.gap</code> (currently <strong>15</strong>).</p>
+
+<p><strong>Cycle nonce.</strong> A one-time token (<code>active_cycle_nonce</code>) held for the duration of a cycle. Prevents two cycles from running concurrently. Set at cycle start, cleared on commit or failure.</p>
+
+<p><strong>Escalation count.</strong> Consecutive cycle failures. At 3, the FSM falls to <code>MAINTENANCE_FAILED</code>.</p>
+
+<p><strong>Bypass expiry.</strong> A map of guard name &rarr; ISO 8601 expiry timestamp. Tracks active bypass windows for the rule enforcement gates. <code>restore_expired()</code> re-raises guards whose window has closed.</p>
+
+<p><strong>Timestamps.</strong> <code>last_session_start</code>, <code>last_transition</code>, <code>last_cycle_end_ts</code>, <code>last_cycle_outcome</code> &mdash; diagnostic fields for debugging and cycle health monitoring.</p>
+
+</div>
+</body>
+</html>
