@@ -1394,3 +1394,8 @@
 {"event": "cycle_ledger", "cycle_id": 28, "phases": [{"phase": "ingest", "executed": true, "detail": "0 observations across 0 categories"}, {"phase": "hippocampus", "executed": true, "detail": "0 entries"}, {"phase": "consolidate", "executed": true, "detail": "0 reinforced, 0 promoted, 0 discarded"}, {"phase": "index_rebuild", "executed": true, "detail": "9261 terms, 1018 entries"}, {"phase": "synthesis", "executed": true, "detail": "L2 created 0, L3 created 0, sources archived 0"}, {"phase": "eval", "executed": false, "detail": "not due"}, {"phase": "hygiene", "executed": false, "detail": "not due"}], "ts": "2026-05-13T07:04:48Z"}
 {"event": "cycle_commit", "cycle_id": 28, "ts": "2026-05-13T07:04:48Z"}
 {"event": "cycle_git", "cycle_id": 28, "status": "ok", "ts": "2026-05-13T07:04:50Z"}
+{"event": "cycle_start", "ts": "2026-05-13T12:10:39Z", "cycle_id": 29, "counter_at_start": 424}
+{"event": "cycle_empty", "ts": "2026-05-13T12:10:51Z"}
+{"event": "index_rebuild", "ts": "2026-05-13T12:10:51Z", "terms_count": 9261, "entries_count": 1018}
+{"event": "cycle_ledger", "cycle_id": 29, "phases": [{"phase": "ingest", "executed": true, "detail": "0 observations across 0 categories"}, {"phase": "hippocampus", "executed": true, "detail": "0 entries"}, {"phase": "consolidate", "executed": true, "detail": "0 reinforced, 0 promoted, 0 discarded"}, {"phase": "index_rebuild", "executed": true, "detail": "9261 terms, 1018 entries"}, {"phase": "synthesis", "executed": true, "detail": "L2 created 0, L3 created 0, sources archived 0"}, {"phase": "eval", "executed": false, "detail": "not due"}, {"phase": "hygiene", "executed": false, "detail": "not due"}], "ts": "2026-05-13T12:10:51Z"}
+{"event": "cycle_commit", "cycle_id": 29, "ts": "2026-05-13T12:10:51Z"}
