@@ -1,0 +1,2 @@
+{"ts": "2026-05-13T15:49:24Z", "gate": "script-content-block", "script": "/tmp/test_block.py", "reason": "tier1_write_to_brain"}
+{"ts": "2026-05-13T15:49:36Z", "gate": "script-content-block", "script": "/tmp/fix_pr326.py", "reason": "tier1_write_to_brain"}

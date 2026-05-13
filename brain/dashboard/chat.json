@@ -1,0 +1,5 @@
+[
+  {"id": "seed1", "role": "khaan", "text": "Comms channel live. I'm here.", "ts": "2026-05-13T07:00:00Z"},
+  {"id": "seed2", "role": "jeff", "text": "Jeff online. Professional context ready.", "ts": "2026-05-13T07:00:01Z"},
+  {"id": "seed3", "role": "teacher", "text": "Teacher present. Playground health: nominal.", "ts": "2026-05-13T07:00:02Z"}
+]

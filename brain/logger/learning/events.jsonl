@@ -1399,3 +1399,18 @@
 {"event": "index_rebuild", "ts": "2026-05-13T12:10:51Z", "terms_count": 9261, "entries_count": 1018}
 {"event": "cycle_ledger", "cycle_id": 29, "phases": [{"phase": "ingest", "executed": true, "detail": "0 observations across 0 categories"}, {"phase": "hippocampus", "executed": true, "detail": "0 entries"}, {"phase": "consolidate", "executed": true, "detail": "0 reinforced, 0 promoted, 0 discarded"}, {"phase": "index_rebuild", "executed": true, "detail": "9261 terms, 1018 entries"}, {"phase": "synthesis", "executed": true, "detail": "L2 created 0, L3 created 0, sources archived 0"}, {"phase": "eval", "executed": false, "detail": "not due"}, {"phase": "hygiene", "executed": false, "detail": "not due"}], "ts": "2026-05-13T12:10:51Z"}
 {"event": "cycle_commit", "cycle_id": 29, "ts": "2026-05-13T12:10:51Z"}
+{"event": "cycle_git", "cycle_id": 29, "status": "ok", "ts": "2026-05-13T12:10:53Z"}
+{"event": "retro_summary", "ts": "2026-05-13T15:07:35Z", "worked_count": 4, "broke_count": 4, "recurring_flagged": 2, "hippo_entries_written": 8}
+{"event": "retro_summary", "ts": "2026-05-13T15:09:17Z", "worked_count": 5, "broke_count": 4, "recurring_flagged": 2, "hippo_entries_written": 9}
+{"event": "retro_summary", "ts": "2026-05-13T15:09:31Z", "worked_count": 5, "broke_count": 4, "recurring_flagged": 3, "hippo_entries_written": 9}
+{"event": "retro_summary", "ts": "2026-05-13T15:10:48Z", "worked_count": 5, "broke_count": 4, "recurring_flagged": 3, "hippo_entries_written": 9}
+{"event": "retro_summary", "ts": "2026-05-13T15:12:04Z", "worked_count": 5, "broke_count": 2, "recurring_flagged": 3, "hippo_entries_written": 6}
+{"event": "cycle_start", "ts": "2026-05-13T16:33:35Z", "cycle_id": 30, "counter_at_start": 439}
+{"event": "consolidation_summary", "ts": "2026-05-13T16:34:15Z", "reinforced": 20, "promoted": 22, "discarded": 0}
+{"event": "consolidation_summary", "ts": "2026-05-13T16:34:15Z", "reinforced": 0, "promoted": 10, "discarded": 0}
+{"event": "index_rebuild", "ts": "2026-05-13T16:34:15Z", "terms_count": 9296, "entries_count": 1054}
+{"event": "synthesis_event", "ts": "2026-05-13T16:34:32Z", "cycle_id": 30, "region": "procedural", "source_ids": ["PR085", "PR285"], "target_id": "PR330", "trigger_strength": 5}
+{"event": "eval_run", "ts": "2026-05-13T16:34:33Z", "cycle_id": 30, "entries_graded": 1048, "turns_in_window": 385}
+{"event": "audit_findings", "ts": "2026-05-13T16:34:33Z", "cycle_id": 30, "lineage_integrity": 2, "orphaned_cross_refs": 769, "stale_but_strong": 18, "index_disc_mismatch": 7, "domain_drift": 0}
+{"event": "cycle_ledger", "cycle_id": 30, "phases": [{"phase": "ingest", "executed": true, "detail": "11 observations across 4 categories"}, {"phase": "hippocampus", "executed": true, "detail": "11 entries"}, {"phase": "consolidate", "executed": true, "detail": "0 reinforced, 10 promoted, 0 discarded"}, {"phase": "index_rebuild", "executed": true, "detail": "9296 terms, 1054 entries"}, {"phase": "synthesis", "executed": true, "detail": "L2 created 1, L3 created 0, sources archived 2"}, {"phase": "eval", "executed": true, "detail": "graded 1048 entries across 385 turns"}, {"phase": "hygiene", "executed": true, "detail": "decayed 152 of 1052; lineage_integrity 2; orphaned_cross_refs 769; stale_but_strong 18; index_disc_mismatch 7"}], "ts": "2026-05-13T16:34:33Z"}
+{"event": "cycle_commit", "cycle_id": 30, "ts": "2026-05-13T16:34:33Z"}

@@ -2,12 +2,13 @@
 id: og-broca-008-session-2026-04-07-evening-patterns-cycle-75
 
 title: og Brain — Session 2026-04-07 Evening Patterns (cycle 75)
-strength: 4
+strength: 3
 level: L1
 migrated_from: /home/ubuntu/.claude/brain/broca.md (section: Session 2026-04-07 Evening Patterns (cycle 75))
 migrated_at: 2026-05-05T11:50:50Z
 shape: split-section
 ---
+
 
 ## Session 2026-04-07 Evening Patterns (cycle 75)
 

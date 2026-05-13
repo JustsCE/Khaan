@@ -175,3 +175,37 @@
 {"event": "relay_complete", "ts": "2026-05-13T11:59:54Z", "session_id": "", "query_hash": "4a05af5bf719ffc4", "latency_ms": 21165, "entries_picked": 49}
 {"event": "relay_start", "ts": "2026-05-13T12:05:37Z", "session_id": "", "query_hash": "71d23d51054206b6"}
 {"event": "relay_complete", "ts": "2026-05-13T12:05:56Z", "session_id": "", "query_hash": "71d23d51054206b6", "latency_ms": 19315, "entries_picked": 49}
+{"event": "relay_start", "ts": "2026-05-13T12:10:53Z", "session_id": "", "query_hash": "9b647a3932a7e253"}
+{"event": "relay_complete", "ts": "2026-05-13T12:11:13Z", "session_id": "", "query_hash": "9b647a3932a7e253", "latency_ms": 19461, "entries_picked": 49}
+{"event": "relay_start", "ts": "2026-05-13T12:16:46Z", "session_id": "", "query_hash": "e2ff7a6e0913d9f1"}
+{"event": "relay_complete", "ts": "2026-05-13T12:17:05Z", "session_id": "", "query_hash": "e2ff7a6e0913d9f1", "latency_ms": 18476, "entries_picked": 49}
+{"event": "relay_start", "ts": "2026-05-13T14:39:33Z", "session_id": "", "query_hash": "ec9fe1e0bf778d46"}
+{"event": "relay_complete", "ts": "2026-05-13T14:39:53Z", "session_id": "", "query_hash": "ec9fe1e0bf778d46", "latency_ms": 20262, "entries_picked": 53}
+{"event": "relay_start", "ts": "2026-05-13T15:02:11Z", "session_id": "", "query_hash": "290c223afbb0f6d6"}
+{"event": "relay_complete", "ts": "2026-05-13T15:02:31Z", "session_id": "", "query_hash": "290c223afbb0f6d6", "latency_ms": 19952, "entries_picked": 52}
+{"event": "relay_start", "ts": "2026-05-13T15:06:22Z", "session_id": "", "query_hash": "ed137bf80854ed70"}
+{"event": "relay_failed", "ts": "2026-05-13T15:08:05Z", "session_id": "", "query_hash": "ed137bf80854ed70", "attempt": 1, "reason": "no JSON object in result: Retro complete. Here's what landed:\n\n**Worked (4 \u2192 procedural reinforcement)**\n- Gmail OAuth diagnosis \u2014 clean chain, no corrections\n- Vericity Transactions approval \u2014 caught React import bug, got APP"}
+{"event": "relay_failed", "ts": "2026-05-13T15:09:33Z", "session_id": "", "query_hash": "ed137bf80854ed70", "attempt": 2, "reason": "no JSON object in result: Done. Retro complete.\n\n**5 worked, 4 broke, 2 recurring \u2192 9 entries landed.**\n\n### Broke (hippocampus, pending consolidation)\n- **H2045** \u2014 Jeff Windows setup: `ln -s` fails silently on MINGW64 withou"}
+{"event": "relay_failed", "ts": "2026-05-13T15:10:52Z", "session_id": "", "query_hash": "ed137bf80854ed70", "attempt": 3, "reason": "no JSON object in result: Done. Retro committed:\n\n- **5 worked** entries reinforced\n- **4 broke** entries written to hippocampus\n- **3 recurring** patterns filed directly to `cortex/prefrontal/L1/` as `R1-###` rules \u2014 no Brain"}
+{"event": "boot_start", "ts": "2026-05-13T15:14:30Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-13T15:17:21Z", "session_id": "", "latency_ms": 170558, "entries_picked": 50}
+{"event": "relay_start", "ts": "2026-05-13T15:17:21Z", "session_id": "", "query_hash": "0177c736e7ea87c2"}
+{"event": "relay_complete", "ts": "2026-05-13T15:17:39Z", "session_id": "", "query_hash": "0177c736e7ea87c2", "latency_ms": 18121, "entries_picked": 49}
+{"event": "relay_start", "ts": "2026-05-13T15:25:03Z", "session_id": "", "query_hash": "490119a6ddec40cc"}
+{"event": "relay_complete", "ts": "2026-05-13T15:25:26Z", "session_id": "", "query_hash": "490119a6ddec40cc", "latency_ms": 22985, "entries_picked": 63}
+{"event": "relay_start", "ts": "2026-05-13T15:27:00Z", "session_id": "", "query_hash": "fa58d52629ddbee4"}
+{"event": "relay_complete", "ts": "2026-05-13T15:27:31Z", "session_id": "", "query_hash": "fa58d52629ddbee4", "latency_ms": 31646, "entries_picked": 57}
+{"event": "relay_start", "ts": "2026-05-13T15:30:49Z", "session_id": "", "query_hash": "5be8a3b4f1351054"}
+{"event": "relay_complete", "ts": "2026-05-13T15:31:06Z", "session_id": "", "query_hash": "5be8a3b4f1351054", "latency_ms": 16912, "entries_picked": 54}
+{"event": "relay_start", "ts": "2026-05-13T15:34:07Z", "session_id": "", "query_hash": "db5b1588b761b135"}
+{"event": "relay_complete", "ts": "2026-05-13T15:34:31Z", "session_id": "", "query_hash": "db5b1588b761b135", "latency_ms": 24297, "entries_picked": 60}
+{"event": "relay_start", "ts": "2026-05-13T15:38:16Z", "session_id": "", "query_hash": "e775d7825a07535e"}
+{"event": "relay_complete", "ts": "2026-05-13T15:38:37Z", "session_id": "", "query_hash": "e775d7825a07535e", "latency_ms": 20675, "entries_picked": 51}
+{"event": "relay_start", "ts": "2026-05-13T15:52:06Z", "session_id": "", "query_hash": "50d2bee475cff86f"}
+{"event": "relay_complete", "ts": "2026-05-13T15:52:31Z", "session_id": "", "query_hash": "50d2bee475cff86f", "latency_ms": 24646, "entries_picked": 54}
+{"event": "relay_start", "ts": "2026-05-13T16:13:32Z", "session_id": "", "query_hash": "382588ff80de92af"}
+{"event": "relay_complete", "ts": "2026-05-13T16:13:50Z", "session_id": "", "query_hash": "382588ff80de92af", "latency_ms": 18459, "entries_picked": 50}
+{"event": "relay_start", "ts": "2026-05-13T16:22:12Z", "session_id": "", "query_hash": "a32215ea4b698733"}
+{"event": "relay_complete", "ts": "2026-05-13T16:22:37Z", "session_id": "", "query_hash": "a32215ea4b698733", "latency_ms": 25238, "entries_picked": 50}
+{"event": "relay_start", "ts": "2026-05-13T16:29:33Z", "session_id": "", "query_hash": "d6299afa89fc4f23"}
+{"event": "relay_complete", "ts": "2026-05-13T16:29:57Z", "session_id": "", "query_hash": "d6299afa89fc4f23", "latency_ms": 23437, "entries_picked": 49}
