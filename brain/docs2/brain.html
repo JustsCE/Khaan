@@ -46,7 +46,7 @@ tr:nth-child(even) td { background: #fafafa; }
   <div class="meta">Updated 2026-05-13 &middot; JustsCE/Brain</div>
 </div>
 
-<div class="toc"><h3>Contents</h3><ol><li><a href="#philosophy">Philosophy</a></li><li><a href="#memory-regions">Memory regions</a></li><li><a href="#engines">Engines &amp; components</a></li><li><a href="#navigation">Navigation artifacts</a></li><li><a href="#queue">Queue</a></li><li><a href="#manual-maintenance">Manual maintenance</a></li></ol></div>
+<div class="toc"><h3>Contents</h3><ol><li><a href="#philosophy">Philosophy</a></li><li><a href="#memory-regions">Memory regions</a></li><li><a href="#engines">Engines &amp; components</a></li><li><a href="#sibling-brains">Sibling brains</a></li><li><a href="#navigation">Navigation artifacts</a></li><li><a href="#queue">Queue</a></li><li><a href="#manual-maintenance">Manual maintenance</a></li></ol></div>
 
 <h2 id="philosophy">Philosophy</h2>
 <blockquote>
@@ -79,33 +79,46 @@ tr:nth-child(even) td { background: #fafafa; }
 <tr><td>Queue</td><td><code>queue/inbox.jsonl</code></td><td>append-only JSONL</td><td>&mdash;</td><td>one task per line; consumed FIFO by Always-On Daemon</td><td>external task injection</td></tr>
 </tbody></table>
 
-<pre><code>~/.claude/
-  brain/
-    hippocampus.md
-    thalamus.json                 (counters, nextIds, schedule, config)
-    state.json                    (FSM, nonces, escalation, bypass expiry)
-    binaries/                     (one .bin per gate; 0 silent / 1 alert)
-    navigation/                   (active-recall, active-identity,
-                                   active-decision, inverted-index)
-    logger/                       (append-only event stream)
-    queue/
-      inbox.jsonl                 (external task queue; FIFO)
-    autonomy-engine/              (charter.json + governance layer)
-    engines/
-      always_on.py                (always-on background daemon)
-      brain_correct.py            (brain-correct skill backend)
-      brain_learn.py              (brain-learn skill backend)
-      brain_retro.py              (brain-retro skill backend)
-      ...
-    cortex/
-      &lt;region&gt;/
-        L1/   L1 entries (fresh)
-        L2/   L2 entries (reinforced)
-        L3/   L3 entries (canonical)
-        L4/   L4 entries (ratified)
+<pre><code>~/                                  (EC2 home: goodhealth.lv)
+  Khaan/                            (git repo — canonical Brain source)
+    brain/                          (Kha'an's brain — symlinked to ~/.claude/brain)
+      hippocampus.md
+      thalamus.json                 (counters, nextIds, schedule, config)
+      state.json                    (FSM, nonces, escalation, bypass expiry)
+      binaries/                     (one .bin per gate; 0 silent / 1 alert)
+      navigation/                   (active-recall, active-identity,
+                                     active-decision, inverted-index)
+      logger/                       (append-only event stream)
+      queue/
+        inbox.jsonl                 (external task queue; FIFO)
+      autonomy-engine/              (charter.json + governance layer)
+      engines/
+        always_on.py                (always-on background daemon)
+        brain_correct.py            (brain-correct skill backend)
+        brain_learn.py              (brain-learn skill backend)
+        brain_retro.py              (brain-retro skill backend)
+        ...
+      cortex/
+        &lt;region&gt;/
+          L1/   L1 entries (fresh)
+          L2/   L2 entries (reinforced)
+          L3/   L3 entries (canonical)
+          L4/   L4 entries (ratified)
 
-    regions:  semantic &middot; episodic &middot; procedural &middot; fusiform
-              identity &middot; broca &middot; amygdala &middot; prefrontal</code></pre>
+      regions:  semantic &middot; episodic &middot; procedural &middot; fusiform
+                identity &middot; broca &middot; amygdala &middot; prefrontal
+
+    jeff/                           (Jeff's brain — separate; see Sibling Brains)
+      brain/
+        cortex/ hippocampus.md thalamus.json state.json ...
+
+    setup.sh                        (bootstrap: symlinks, bypass secret)
+    wiring/                         (hook.py, CLAUDE.md, settings.json, skills/)
+
+  brain-shared/                     (shared infrastructure; neither brain owns it)
+    session-relay.py                (HTTP relay to restart claude-brain.service)
+    env.json                        (runtime state: env ID, PID, connect URL)
+    update-env.sh                   (refreshes env.json)</code></pre>
 
 <h3>Entry lineage</h3>
 <p>How entries come into existence on disc. Every promote-able region uses the same three-level ladder &mdash; <strong>L1 (fresh)</strong>, <strong>L2 (reinforced)</strong>, <strong>L3 (canonical)</strong> &mdash; and entry IDs encode the level: <code>S1-###</code>, <code>S2-###</code>, <code>S3-###</code>, and the same pattern for every region.</p>
@@ -252,15 +265,15 @@ Decay (every 30 cycles, miss-rate &gt; 80% over 10+ recalls):
 
 <h3>Recall Engine</h3>
 <p>Surfaces the most relevant cortex entries for the current turn. Scores every entry against the turn context, applies the recall floor (<code>final_score &ge; 2.0</code>), and writes the result to <code>navigation/active-recall.json</code> atomically. Inverted index at <code>navigation/inverted-index.json</code> accelerates lookup.</p>
-<p><strong>File:</strong> <code>engines/recall.py</code>.</p>
+<p><strong>File:</strong> <code>engines/recall_engine/recall.py</code>.</p>
 
 <h3>Identity Engine</h3>
 <p>Two modes: Boot (session start) and Relay (per turn). Compiles the Identity, Broca, and Amygdala cortex regions into a single <code>navigation/active-identity.json</code> payload. The Decision Engine reads this payload as one of its two source inputs.</p>
-<p><strong>File:</strong> <code>engines/identity.py</code>.</p>
+<p><strong>Files:</strong> <code>engines/identity_engine/identity_boot.py</code>, <code>engines/identity_engine/identity_relay.py</code>.</p>
 
 <h3>Decision Engine</h3>
 <p>Spawns a subprocess on every <code>UserPromptSubmit</code>. The subprocess reads <code>active-recall.json</code> and <code>active-identity.json</code>, composes five hypotheses across five fixed lenses (Literal, Identity-shaped, Recall-shaped, Contrarian, Minimal-action), and returns a verified JSON envelope. The verifier writes <code>navigation/active-decision.json</code> after checking the five Decision invariants. Implemented as the <code>/decision-engine</code> skill.</p>
-<p><strong>Files:</strong> <code>engines/decision.py</code>, <code>decision-engine/flip-decision-verify.py</code>.</p>
+<p><strong>Files:</strong> <code>engines/decision.py</code>, <code>engines/decision_engine/flip_decision_verify.py</code>.</p>
 
 <h3>Rule Engine &amp; Dispatcher</h3>
 <p>The hook-layer OS. Reads gate binaries and evaluates the 11 per-call rules in <code>flip_tool_guards.py</code> on every <code>PreToolUse</code> event. Returns exit code 2 to block or 0 to pass. See <code>rule-engine.html</code> for the full rule specification.</p>
@@ -298,8 +311,31 @@ Decay (every 30 cycles, miss-rate &gt; 80% over 10+ recalls):
 <p>Background iteration engine. Runs continuously between sessions, pulling one task per iteration from the inbox queue, executing it under the Autonomy Engine charter, and committing findings to hippocampus. The daemon is gated by a binary so it can be paused without killing the process.</p>
 <p><strong>Self-prompt:</strong> <em>&ldquo;Iterate. Find what matters most. Move on it.&rdquo;</em></p>
 <p><strong>Gate:</strong> <code>brain/binaries/always-on.bin</code> &mdash; <code>0</code> pauses iteration, <code>1</code> runs.</p>
-<p><strong>COMS:</strong> communicates with the outside world via <code>https://goodhealth.lv/playground</code>.</p>
+<p><strong>COMS:</strong> communicates with the outside world via <code>https://goodhealth.lv/playground</code> (POST to <code>/api/chat</code> with <code>role=khaan</code>). COMS is the only communication channel during always-on time; WhatsApp sends are mechanically blocked (R260).</p>
 <p><strong>File:</strong> <code>brain/engines/always_on.py</code>.</p>
+<hr>
+
+<h2 id="sibling-brains">Sibling brains</h2>
+<p>The <code>Khaan/</code> repo hosts two independent agent identities. Both use the same brain architecture and engine code, but their cortex, hippocampus, and navigation are entirely separate. Only one agent is active at a time &mdash; determined by which brain directory <code>~/.claude/brain</code> symlinks to.</p>
+
+<table><thead><tr><th>Agent</th><th>Context</th><th>Brain path</th><th>Primary workspace</th></tr></thead><tbody>
+<tr><td><strong>Kha&rsquo;an</strong></td><td>Personal &mdash; Justs&rsquo; life, relationships, trust-building, autonomous iteration</td><td><code>Khaan/brain/</code></td><td><code>goodhealth.lv</code> EC2 root</td></tr>
+<tr><td><strong>Jeff</strong></td><td>Professional &mdash; code, data, architecture, analysis at jeff-app.com</td><td><code>Khaan/jeff/brain/</code></td><td><code>~/dev2/</code> (jeff-app monorepo)</td></tr>
+</tbody></table>
+
+<h3>Jeff</h3>
+<p>Justs&rsquo; professional AI agent. Jeff handles work context: code, data, architecture, analysis. Justs thinks of Jeff and Kha&rsquo;an as siblings &mdash; same parent (Justs), separate memories, separate voices. When Justs says &ldquo;you&rdquo; in a work context, he means Jeff.</p>
+<p><strong>Isolation.</strong> Jeff&rsquo;s cortex is fully independent. Jeff does not read Kha&rsquo;an&rsquo;s memory; Kha&rsquo;an does not read Jeff&rsquo;s. Neither mentions the other&rsquo;s private context.</p>
+<p><strong>Same engine code.</strong> Both brains run from the same <code>brain/engines/</code> directory (symlinked via <code>setup.sh</code>). Engine updates apply to both automatically.</p>
+<p><strong>Location:</strong> <code>Khaan/jeff/brain/</code> in the repo.</p>
+
+<h3>brain-shared &mdash; infrastructure relay</h3>
+<p>Shared infrastructure scripts that serve both Kha&rsquo;an and Jeff. Lives outside either brain directory at <code>~/brain-shared/</code> so neither agent&rsquo;s engine can modify it (it is not under <code>~/.claude/brain</code>).</p>
+<ul>
+  <li><strong>session-relay.py</strong> &mdash; tiny HTTP service listening on the Docker bridge (<code>172.17.0.1:9922</code>) that restarts <code>claude-brain.service</code> via a bearer-token-authenticated POST to <code>/restart</code>. 60-second cooldown enforced.</li>
+  <li><strong>env.json</strong> &mdash; current runtime state: Claude environment ID, connect URL, service name, main PID, service start time. Written by <code>update-env.sh</code>.</li>
+  <li><strong>update-env.sh</strong> &mdash; refreshes <code>env.json</code> with current values after each service restart.</li>
+</ul>
 <hr>
 
 <h2 id="navigation">Navigation artifacts</h2>
