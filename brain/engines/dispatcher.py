@@ -17,6 +17,7 @@ BLOCKING_BINARIES = [
     "decision-hypothesis-3",
     "decision-hypothesis-4",
     "decision-hypothesis-5",
+    "coms-pending",
 ]
 
 ROUTING = {
@@ -27,6 +28,10 @@ ROUTING = {
     "SubagentStop":     {"behaviour": "passthrough", "blocking_binaries": []},
     "Stop":             {"behaviour": "passthrough", "blocking_binaries": []},
 }
+
+# COMS-pending anti-deadlock: these tools are always allowed through
+# so the agent can investigate and respond to the COMS message.
+COMS_ALLOWED_TOOLS = {"Read", "Grep", "Glob", "Bash", "Agent", "WebFetch", "WebSearch", "ToolSearch"}
 
 
 def read_binary(repo_root, name):
@@ -59,8 +64,25 @@ def restore_expired(repo_root):
         os.rename(tmp, st_path)
 
 
+def _auto_clear_stale_coms(repo_root):
+    """Clear coms-pending bin if it's been set for >30 minutes (anti-deadlock)."""
+    try:
+        bin_path = repo_root / "binaries" / "coms-pending.bin"
+        if not bin_path.exists():
+            return
+        if bin_path.read_text().strip() != "1":
+            return
+        # Check age of the bin file
+        age = time.time() - bin_path.stat().st_mtime
+        if age > 1800:  # 30 minutes
+            bin_path.write_text("0")
+    except Exception:
+        pass
+
+
 def dispatch(event, payload, repo_root):
     restore_expired(repo_root)
+    _auto_clear_stale_coms(repo_root)
 
     per_call_gates = []
     if event == "PreToolUse":
@@ -110,6 +132,11 @@ def dispatch(event, payload, repo_root):
                     cmd = payload.get("tool_input", {}).get("command", "")
                     if re.match(r"python3\s+.*engines[./](decision|brain_cycle)", cmd):
                         continue
+            if bname == "coms-pending":
+                # Anti-deadlock: allow investigation + response tools through
+                tool_name = payload.get("tool_name", "")
+                if tool_name in COMS_ALLOWED_TOOLS:
+                    continue
             raised.append(bname)
     raised.extend(per_call_gates)
 
