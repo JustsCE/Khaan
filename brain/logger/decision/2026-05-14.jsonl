@@ -135,3 +135,12 @@
 {"event": "decision_dispatch", "ts": "2026-05-14T11:39:42Z", "query_hash": "408bb36788d1fbf2", "sources_hash": "c95903a29019ab5d:d59104347cb42925", "model": "claude-cli", "system_prompt_hash": "662dd57fc909e9ff"}
 {"event": "subagent_complete", "ts": "2026-05-14T11:40:53Z", "query_hash": "408bb36788d1fbf2", "subagent_id": "decision-0", "status": "returned", "latency_ms": 70204}
 {"event": "handoff", "ts": "2026-05-14T11:40:53Z", "query_hash": "408bb36788d1fbf2", "payload_chars": 8782, "all_5_present": true}
+{"event": "decision_dispatch", "ts": "2026-05-14T11:42:47Z", "query_hash": "5ef6b638b45e98ae", "sources_hash": "30282e16aec0e07c:151125169640503b", "model": "claude-cli", "system_prompt_hash": "662dd57fc909e9ff"}
+{"event": "subagent_complete", "ts": "2026-05-14T11:44:20Z", "query_hash": "5ef6b638b45e98ae", "subagent_id": "decision-0", "status": "returned", "latency_ms": 92617}
+{"event": "handoff", "ts": "2026-05-14T11:44:20Z", "query_hash": "5ef6b638b45e98ae", "payload_chars": 10953, "all_5_present": true}
+{"event": "decision_dispatch", "ts": "2026-05-14T11:45:54Z", "query_hash": "a9a5851228fc152a", "sources_hash": "7ce093ce0c3dcce4:85037e3c7a346762", "model": "claude-cli", "system_prompt_hash": "662dd57fc909e9ff"}
+{"event": "subagent_complete", "ts": "2026-05-14T11:47:08Z", "query_hash": "a9a5851228fc152a", "subagent_id": "decision-0", "status": "returned", "latency_ms": 74433}
+{"event": "handoff", "ts": "2026-05-14T11:47:08Z", "query_hash": "a9a5851228fc152a", "payload_chars": 8882, "all_5_present": true}
+{"event": "decision_dispatch", "ts": "2026-05-14T11:50:13Z", "query_hash": "91168138593e184d", "sources_hash": "89fbe3d1af55acb6:da9a5909040c3f42", "model": "claude-cli", "system_prompt_hash": "662dd57fc909e9ff"}
+{"event": "subagent_complete", "ts": "2026-05-14T11:51:29Z", "query_hash": "91168138593e184d", "subagent_id": "decision-0", "status": "returned", "latency_ms": 76341}
+{"event": "handoff", "ts": "2026-05-14T11:51:29Z", "query_hash": "91168138593e184d", "payload_chars": 10742, "all_5_present": true}

@@ -154,3 +154,9 @@
 {"event": "relay_complete", "ts": "2026-05-14T11:36:13Z", "session_id": "", "query_hash": "cdc9e1167a701e35", "latency_ms": 20077, "entries_picked": 49}
 {"event": "relay_start", "ts": "2026-05-14T11:39:14Z", "session_id": "", "query_hash": "408bb36788d1fbf2"}
 {"event": "relay_complete", "ts": "2026-05-14T11:39:42Z", "session_id": "", "query_hash": "408bb36788d1fbf2", "latency_ms": 28642, "entries_picked": 49}
+{"event": "relay_start", "ts": "2026-05-14T11:42:32Z", "session_id": "", "query_hash": "5ef6b638b45e98ae"}
+{"event": "relay_complete", "ts": "2026-05-14T11:42:47Z", "session_id": "", "query_hash": "5ef6b638b45e98ae", "latency_ms": 15423, "entries_picked": 53}
+{"event": "relay_start", "ts": "2026-05-14T11:45:32Z", "session_id": "", "query_hash": "a9a5851228fc152a"}
+{"event": "relay_complete", "ts": "2026-05-14T11:45:54Z", "session_id": "", "query_hash": "a9a5851228fc152a", "latency_ms": 22440, "entries_picked": 47}
+{"event": "relay_start", "ts": "2026-05-14T11:49:56Z", "session_id": "", "query_hash": "91168138593e184d"}
+{"event": "relay_complete", "ts": "2026-05-14T11:50:13Z", "session_id": "", "query_hash": "91168138593e184d", "latency_ms": 17102, "entries_picked": 50}
