@@ -108,3 +108,19 @@
 {"event": "relay_complete", "ts": "2026-05-14T04:11:14Z", "session_id": "", "query_hash": "e3f2e736cb87f116", "latency_ms": 23331, "entries_picked": 59}
 {"event": "relay_start", "ts": "2026-05-14T04:14:57Z", "session_id": "", "query_hash": "d6bf835e16068b38"}
 {"event": "relay_complete", "ts": "2026-05-14T04:15:10Z", "session_id": "", "query_hash": "d6bf835e16068b38", "latency_ms": 13837, "entries_picked": 47}
+{"event": "relay_start", "ts": "2026-05-14T06:14:24Z", "session_id": "", "query_hash": "796c12a2614a541f"}
+{"event": "identity_timeout", "ts": "2026-05-14T06:16:24Z", "skill": "relay", "latency_ms": 120110}
+{"event": "relay_start", "ts": "2026-05-14T06:30:22Z", "session_id": "", "query_hash": "ce0e78f2730431f1"}
+{"event": "relay_complete", "ts": "2026-05-14T06:30:48Z", "session_id": "", "query_hash": "ce0e78f2730431f1", "latency_ms": 25468, "entries_picked": 59}
+{"event": "boot_start", "ts": "2026-05-14T06:33:37Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-14T06:35:11Z", "session_id": "", "latency_ms": 93430, "entries_picked": 48}
+{"event": "relay_start", "ts": "2026-05-14T06:43:59Z", "session_id": "", "query_hash": "9e0501d606af484a"}
+{"event": "relay_complete", "ts": "2026-05-14T06:44:18Z", "session_id": "", "query_hash": "9e0501d606af484a", "latency_ms": 18917, "entries_picked": 48}
+{"event": "relay_start", "ts": "2026-05-14T06:51:17Z", "session_id": "", "query_hash": "4438d460e73836da"}
+{"event": "relay_complete", "ts": "2026-05-14T06:51:36Z", "session_id": "", "query_hash": "4438d460e73836da", "latency_ms": 18913, "entries_picked": 57}
+{"event": "boot_start", "ts": "2026-05-14T06:53:58Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-14T06:55:55Z", "session_id": "", "latency_ms": 116304, "entries_picked": 48}
+{"event": "relay_start", "ts": "2026-05-14T06:55:55Z", "session_id": "", "query_hash": "4f31039337e9830d"}
+{"event": "identity_timeout", "ts": "2026-05-14T06:57:55Z", "skill": "relay", "latency_ms": 120099}
+{"event": "relay_start", "ts": "2026-05-14T07:03:57Z", "session_id": "", "query_hash": "d8419fa36cb118ba"}
+{"event": "relay_complete", "ts": "2026-05-14T07:04:22Z", "session_id": "", "query_hash": "d8419fa36cb118ba", "latency_ms": 24985, "entries_picked": 51}
