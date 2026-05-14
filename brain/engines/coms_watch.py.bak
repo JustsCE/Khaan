@@ -28,6 +28,7 @@ from engines.coms_protocol import (
 BRAIN = Path.home() / ".claude" / "brain"
 QUEUE_FILE = BRAIN / "queue" / "inbox.jsonl"
 LOG_DIR = BRAIN / "logger" / "coms-watch"
+GATE_FILE = BRAIN / "binaries" / "always-on.bin"
 COMS_PENDING_BIN = BRAIN / "binaries" / "coms-pending.bin"
 THALAMUS = BRAIN / "thalamus.json"
 
@@ -51,6 +52,12 @@ def log_event(event, data):
             "event": event, **data
         }) + "\n")
 
+
+def gate_on():
+    try:
+        return GATE_FILE.read_text().strip() == "1"
+    except Exception:
+        return False
 
 
 def set_coms_pending(val):
@@ -173,6 +180,9 @@ def main():
 
     while True:
         try:
+            if not gate_on():
+                time.sleep(POLL_INTERVAL)
+                continue
 
             n = poll_cycle(agent_name)
             if n > 0:

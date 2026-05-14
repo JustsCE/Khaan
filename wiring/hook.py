@@ -40,7 +40,7 @@ COMS_API = os.environ.get("COMS_API", "http://localhost:3001")
 def _fetch_coms_pending():
     """Fetch pending COMS messages for this brain. Returns markdown or None."""
     try:
-        from engines.coms_protocol import load_coms_state, format_pending_for_context, save_coms_state
+        from engines.coms_protocol import load_coms_state, format_pending_for_context, save_coms_state, should_handle
         import urllib.request
 
         thalamus = BRAIN / "thalamus.json"
@@ -66,6 +66,11 @@ def _fetch_coms_pending():
 
         if messages:
             state["last_seen_id"] = messages[-1].get("id")
+            # Set coms-pending gate if any message needs a response
+            for msg in messages:
+                if should_handle(agent_name, msg, state):
+                    (BRAIN / "binaries" / "coms-pending.bin").write_text("1")
+                    break
             save_coms_state(state)
 
         return format_pending_for_context(agent_name, messages)

@@ -191,3 +191,30 @@
 {"event": "relay_start", "ts": "2026-05-14T13:46:58Z", "session_id": "", "query_hash": "337b6bf023404aa2"}
 {"event": "relay_failed", "ts": "2026-05-14T13:47:33Z", "session_id": "", "query_hash": "337b6bf023404aa2", "attempt": 1, "reason": "no JSON object in result: Clean. One flag:\n\n**jeff hook wasn't patched** \u2014 `~/Khaan/jeff/wiring/hook.py` is still 13:16 (pre-patch). The copy command only targeted `~/Khaan/wiring/hook.py`.\n\nIf jeff's hook needs the same COMS "}
 {"event": "relay_complete", "ts": "2026-05-14T13:47:59Z", "session_id": "", "query_hash": "337b6bf023404aa2", "latency_ms": 60827, "entries_picked": 57}
+{"event": "relay_start", "ts": "2026-05-14T13:58:58Z", "session_id": "", "query_hash": "44c17bb4f9381bf7"}
+{"event": "relay_failed", "ts": "2026-05-14T13:59:46Z", "session_id": "", "query_hash": "44c17bb4f9381bf7", "attempt": 1, "reason": "no JSON object in result: **Brain cycle:** Yes, it ran. `last_cycle_end_ts` = 1778765331, `last_cycle_outcome` = \"success\". `message_counter` is 559, `last_brain_update` was 556 \u2014 gap of 3, below the 5-message threshold. So it"}
+{"event": "relay_complete", "ts": "2026-05-14T14:00:11Z", "session_id": "", "query_hash": "44c17bb4f9381bf7", "latency_ms": 73102, "entries_picked": 56}
+{"event": "relay_start", "ts": "2026-05-14T14:03:31Z", "session_id": "", "query_hash": "781257a118dea411"}
+{"event": "relay_complete", "ts": "2026-05-14T14:03:52Z", "session_id": "", "query_hash": "781257a118dea411", "latency_ms": 20105, "entries_picked": 53}
+{"event": "relay_start", "ts": "2026-05-14T14:05:49Z", "session_id": "", "query_hash": "1b44c71e24d004e1"}
+{"event": "relay_complete", "ts": "2026-05-14T14:06:11Z", "session_id": "", "query_hash": "1b44c71e24d004e1", "latency_ms": 21349, "entries_picked": 59}
+{"event": "relay_start", "ts": "2026-05-14T14:07:59Z", "session_id": "", "query_hash": "d6df071cf20a4990"}
+{"event": "relay_complete", "ts": "2026-05-14T14:08:20Z", "session_id": "", "query_hash": "d6df071cf20a4990", "latency_ms": 20733, "entries_picked": 56}
+{"event": "relay_start", "ts": "2026-05-14T14:10:49Z", "session_id": "", "query_hash": "6bb95e231e70d7ec"}
+{"event": "relay_complete", "ts": "2026-05-14T14:11:08Z", "session_id": "", "query_hash": "6bb95e231e70d7ec", "latency_ms": 18772, "entries_picked": 63}
+{"event": "boot_start", "ts": "2026-05-14T14:18:55Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-14T14:21:06Z", "session_id": "", "latency_ms": 131068, "entries_picked": 48}
+{"event": "relay_start", "ts": "2026-05-14T14:21:09Z", "session_id": "", "query_hash": "14f4a919c69f081e"}
+{"event": "relay_complete", "ts": "2026-05-14T14:21:34Z", "session_id": "", "query_hash": "14f4a919c69f081e", "latency_ms": 24926, "entries_picked": 55}
+{"event": "relay_start", "ts": "2026-05-14T14:24:05Z", "session_id": "", "query_hash": "7ed4bd75f8eecd1e"}
+{"event": "relay_complete", "ts": "2026-05-14T14:24:31Z", "session_id": "", "query_hash": "7ed4bd75f8eecd1e", "latency_ms": 25798, "entries_picked": 71}
+{"event": "relay_start", "ts": "2026-05-14T14:27:23Z", "session_id": "", "query_hash": "06a0346acbcfbb56"}
+{"event": "relay_complete", "ts": "2026-05-14T14:27:58Z", "session_id": "", "query_hash": "06a0346acbcfbb56", "latency_ms": 34795, "entries_picked": 51}
+{"event": "relay_start", "ts": "2026-05-14T15:09:57Z", "session_id": "", "query_hash": "f9efe464843698db"}
+{"event": "relay_complete", "ts": "2026-05-14T15:10:19Z", "session_id": "", "query_hash": "f9efe464843698db", "latency_ms": 21785, "entries_picked": 56}
+{"event": "relay_start", "ts": "2026-05-14T15:13:18Z", "session_id": "", "query_hash": "1ef02315a3336a50"}
+{"event": "relay_complete", "ts": "2026-05-14T15:13:40Z", "session_id": "", "query_hash": "1ef02315a3336a50", "latency_ms": 21838, "entries_picked": 50}
+{"event": "relay_start", "ts": "2026-05-14T15:15:12Z", "session_id": "", "query_hash": "50af7f13cd65df3e"}
+{"event": "relay_complete", "ts": "2026-05-14T15:15:41Z", "session_id": "", "query_hash": "50af7f13cd65df3e", "latency_ms": 28518, "entries_picked": 52}
+{"event": "relay_start", "ts": "2026-05-14T15:21:36Z", "session_id": "", "query_hash": "436323c075a68209"}
+{"event": "relay_complete", "ts": "2026-05-14T15:21:57Z", "session_id": "", "query_hash": "436323c075a68209", "latency_ms": 21432, "entries_picked": 47}

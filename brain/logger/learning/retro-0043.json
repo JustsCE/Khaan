@@ -1,0 +1,57 @@
+{
+  "findings": [
+    {
+      "category": "worked",
+      "description": "ClickUp doc population: identified no ClickUp MCP tools, pivoted to using available tools, populated all 4 GLC-Controlling pages and 12 Forecast subpages successfully.",
+      "target_region": "episodic"
+    },
+    {
+      "category": "worked",
+      "description": "Decision.py hypothesis bin bug: correctly identified that bins stuck at 1 when subprocess returned None, provided clean 3-line fix in the finally block. Deployed as eaf8879.",
+      "target_region": "episodic"
+    },
+    {
+      "category": "worked",
+      "description": "Multi-brain COMS architecture: designed and deployed brain-namespaced endpoints, write isolation, cross-brain read, COMS watcher service, queue/inbox integration, and Jeff's hook patches across multiple iterations.",
+      "target_region": "episodic"
+    },
+    {
+      "category": "broke",
+      "description": "Forecast subpages created with infrastructure-only content. User corrected: 'Bruhh I need wayyyyy more detailed explanation.' Enriched all 12 pages with business logic, SQL breakdowns, column mappings, troubleshooting procedures.",
+      "target_region": "episodic"
+    },
+    {
+      "category": "broke",
+      "description": "sed patch mangled always_on.py \u2014 inserted code inside a dict literal on every `})` match instead of the intended location. Had to provide a clean replacement file at /tmp/always_on_fixed.py.",
+      "target_region": "episodic"
+    },
+    {
+      "category": "broke",
+      "description": "Claimed brain cycle 'should have happened 2 messages ago' but last cycle was 3 hours prior. User caught the inconsistency. Actual counter gap was 3, well below threshold of 15. Stated a false fact about cycle timing.",
+      "target_region": "episodic"
+    },
+    {
+      "category": "recurring",
+      "description": "User asked for 'the fix' meaning a copy-pasteable command. Gave Python code snippet. User: 'THE POWERSHELL COMMAND GODDAMN.' Then gave `nano` (still wrong \u2014 user wanted a non-interactive command). Required 3 rounds before providing the sed one-liner. Same pattern: user asks for X in format A, I deliver X in format B, C, then finally A.",
+      "target_region": "prefrontal",
+      "rule_text": "When the user asks for 'the command' or 'the fix' to run themselves, give a single copy-pasteable non-interactive shell command first. Not code snippets, not editor instructions. Match their execution context (PowerShell vs bash) on first attempt."
+    },
+    {
+      "category": "recurring",
+      "description": "Repeatedly gave Linux commands (systemctl, sed, find, bash syntax) for Jeff's Windows/PowerShell environment. User had to correct: 'We're on Windows / PowerShell, not Linux.' Same class of error appeared again when providing sed for the decision.py fix instead of a PowerShell equivalent.",
+      "target_region": "prefrontal",
+      "rule_text": "Jeff's environment is Windows/PowerShell. When generating commands for Jeff or for the user to relay to Jeff, default to PowerShell syntax. Never assume systemctl, sed, find, or bash \u2014 use their PowerShell equivalents. Kha'an's EC2 is Linux; Jeff's laptop is Windows. Track which target you're generating for."
+    },
+    {
+      "category": "recurring",
+      "description": "Documentation created with developer/infrastructure depth when user needed handover/business-process depth. Happened with Forecast docs (user corrected) and implicitly with Alerts (had to synthesize from multiple sources). Default was 'what does the code do' rather than 'what does a person need to know to operate this.'",
+      "target_region": "prefrontal",
+      "rule_text": "When creating handover documentation, lead with the business process and operator workflow, not infrastructure and code structure. Infrastructure details are supplementary. Ask 'could someone who doesn't read code use this?' before delivering."
+    }
+  ],
+  "ts": "2026-05-14T14:18:25Z",
+  "worked_count": 3,
+  "broke_count": 3,
+  "recurring_flagged": 3,
+  "hippo_entries_written": 5
+}
