@@ -3,6 +3,7 @@ from pathlib import Path
 
 sys.path.insert(0, os.path.join(os.path.expanduser("~"), ".claude", "brain"))
 from engines._shared import BRAIN
+from engines.coms_protocol import mark_processed as _coms_mark_processed
 
 GATE = BRAIN / "binaries" / "always-on.bin"
 QUEUE = BRAIN / "queue" / "inbox.jsonl"
@@ -130,6 +131,12 @@ def iteration():
             "stdout_chars": len(r.stdout),
             "stderr_chars": len(r.stderr),
         })
+        # Mark COMS items as processed after handling
+        if source == "coms" and queued and queued.get("msg_id"):
+            try:
+                _coms_mark_processed(queued["msg_id"])
+            except Exception:
+                pass
     except Exception as e:
         log_event("iteration_failed", {
             "source": source, "latency_ms": int((time.time() - t0) * 1000),

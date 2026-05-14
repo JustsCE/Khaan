@@ -1,3 +1,12 @@
+"""
+Patched Jeff hook.py — adds COMS catch-up to SessionStart and UserPromptSubmit.
+
+Changes from original:
+1. handle_session_start: after identity boot, fetch pending COMS messages
+2. handle_user_prompt_submit: after decision engine, check for new COMS messages
+3. New helper: _fetch_coms_pending() — polls chat API for actionable messages
+"""
+
 import os, sys, json, time
 from pathlib import Path
 
@@ -33,11 +42,68 @@ LEARNING_BINS = [
 ]
 
 
+# ─── COMS catch-up ────────────────────────────────────────────────────────────
+
+COMS_API = os.environ.get("COMS_API", "https://goodhealth.lv")
+
+def _fetch_coms_pending():
+    """Fetch pending COMS messages for this brain. Returns markdown or None."""
+    try:
+        from engines.coms_protocol import load_coms_state, format_pending_for_context
+        import urllib.request
+
+        # Read agent name
+        thalamus = BRAIN / "thalamus.json"
+        agent_name = "jeff"
+        try:
+            agent_name = json.loads(thalamus.read_text()).get("agent_name", "jeff").lower()
+        except Exception:
+            pass
+
+        # Fetch recent messages
+        state = load_coms_state()
+        cursor = state.get("last_seen_id")
+        url = f"{COMS_API}/api/chat"
+        if cursor:
+            url += f"?after_id={cursor}"
+
+        req = urllib.request.Request(url, method="GET")
+        resp = urllib.request.urlopen(req, timeout=5)
+        data = json.loads(resp.read().decode())
+        messages = data.get("messages", [])
+
+        if not messages:
+            return None
+
+        # Update cursor to latest message
+        if messages:
+            state["last_seen_id"] = messages[-1].get("id")
+            from engines.coms_protocol import save_coms_state
+            save_coms_state(state)
+
+        # Format pending messages for context injection
+        return format_pending_for_context(agent_name, messages)
+
+    except Exception as e:
+        _safe_log(f"coms_fetch: {e}")
+        return None
+
+
+# ─── Handlers ─────────────────────────────────────────────────────────────────
+
 def handle_session_start(payload):
     for b in DECISION_BINS + RECALL_BINS + IDENTITY_BINS + LEARNING_BINS:
         write_bin(b, 0)
     from engines.identity_engine.identity_boot import boot
     kernel = boot()
+
+    # COMS catch-up: find pending messages
+    coms_ctx = _fetch_coms_pending()
+    if coms_ctx and kernel:
+        kernel = kernel + "\n\n" + coms_ctx
+    elif coms_ctx:
+        kernel = coms_ctx
+
     if kernel:
         return {"hookSpecificOutput": {"hookEventName": "SessionStart", "additionalContext": kernel}}
     return {}
@@ -77,8 +143,6 @@ def handle_user_prompt_submit(payload):
     user_message = payload.get("prompt") or payload.get("message") or payload.get("content", "")
     trigger()
 
-    # Synchronous: blocks hook until decision completes.
-    # Sonnet model keeps this under 30s. Anti-lockout clears on timeout.
     try:
         from engines.decision import dispatch
         dispatch(user_message)
@@ -86,6 +150,12 @@ def handle_user_prompt_submit(payload):
         _safe_log(f"decision dispatch: {e}")
 
     ctx = _compose_turn_context()
+
+    # COMS check: inject pending messages
+    coms_ctx = _fetch_coms_pending()
+    if coms_ctx:
+        ctx = (ctx or "") + "\n\n" + coms_ctx
+
     if ctx:
         return {"hookSpecificOutput": {"hookEventName": "UserPromptSubmit", "additionalContext": ctx}}
     return {}
@@ -184,11 +254,6 @@ def handle_post_tool_use(payload):
 
 
 def handle_subagent_stop(payload):
-    # Decision, Brain Retro, Brain Learn, Brain Correct all run via cli_invoke
-    # (a Bash subprocess), not Anthropic's native subagent — so SubagentStop
-    # does not fire for them. Each engine does its schema verification inline
-    # inside run(). Kept as a named no-op so DISPATCH stays valid; rewire here
-    # if any engine transitions to a native subagent.
     return {}
 
 
