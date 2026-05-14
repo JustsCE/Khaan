@@ -1,3 +1,6 @@
 __pycache__/
 *.pyc
 binaries/*.bin
+dashboard/chat.json
+dashboard/digests.json
+dashboard/latest-digest.json
