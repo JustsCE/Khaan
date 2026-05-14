@@ -82,3 +82,7 @@
 {"event": "boot_complete", "ts": "2026-05-14T03:10:09Z", "session_id": "", "latency_ms": 139452, "entries_picked": 48}
 {"event": "relay_start", "ts": "2026-05-14T03:10:10Z", "session_id": "", "query_hash": "e3f2e736cb87f116"}
 {"event": "relay_complete", "ts": "2026-05-14T03:10:35Z", "session_id": "", "query_hash": "e3f2e736cb87f116", "latency_ms": 25841, "entries_picked": 59}
+{"event": "boot_start", "ts": "2026-05-14T03:31:29Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-14T03:33:20Z", "session_id": "", "latency_ms": 110847, "entries_picked": 48}
+{"event": "relay_start", "ts": "2026-05-14T03:33:20Z", "session_id": "", "query_hash": "e3f2e736cb87f116"}
+{"event": "relay_complete", "ts": "2026-05-14T03:33:36Z", "session_id": "", "query_hash": "e3f2e736cb87f116", "latency_ms": 15877, "entries_picked": 59}
