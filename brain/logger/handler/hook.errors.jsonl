@@ -354,3 +354,12 @@
 {"ts": "2026-05-14T06:16:24Z", "error": "decision dispatch: cannot access local variable 'result' where it is not associated with a value"}
 {"ts": "2026-05-14T06:57:55Z", "error": "decision dispatch: cannot access local variable 'result' where it is not associated with a value"}
 {"ts": "2026-05-14T13:36:47Z", "error": "decision dispatch: cannot access local variable 'result' where it is not associated with a value"}
+{"ts": "2026-05-14T18:21:56Z", "error": "brain cycle: expected an indented block after 'if' statement on line 237 (cycle_phases.py, line 239)"}
+{"ts": "2026-05-14T18:25:46Z", "error": "brain cycle: expected an indented block after 'if' statement on line 237 (cycle_phases.py, line 239)"}
+{"ts": "2026-05-14T18:27:46Z", "error": "decision dispatch: cannot access local variable 'result' where it is not associated with a value"}
+{"ts": "2026-05-14T18:31:33Z", "error": "brain cycle: expected an indented block after 'if' statement on line 237 (cycle_phases.py, line 239)"}
+{"ts": "2026-05-14T18:34:27Z", "error": "brain cycle: expected an indented block after 'if' statement on line 237 (cycle_phases.py, line 239)"}
+{"ts": "2026-05-14T18:37:52Z", "error": "brain cycle: expected an indented block after 'if' statement on line 237 (cycle_phases.py, line 239)"}
+{"ts": "2026-05-14T18:40:10Z", "error": "brain cycle: expected an indented block after 'if' statement on line 237 (cycle_phases.py, line 239)"}
+{"ts": "2026-05-14T18:44:11Z", "error": "brain cycle: expected an indented block after 'if' statement on line 237 (cycle_phases.py, line 239)"}
+{"ts": "2026-05-14T18:48:19Z", "error": "brain cycle: expected an indented block after 'if' statement on line 237 (cycle_phases.py, line 239)"}

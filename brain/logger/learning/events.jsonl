@@ -1523,3 +1523,19 @@
 {"event": "index_rebuild", "ts": "2026-05-14T15:36:44Z", "terms_count": 9332, "entries_count": 1013}
 {"event": "cycle_ledger", "cycle_id": 44, "phases": [{"phase": "ingest", "executed": true, "detail": "0 observations across 0 categories"}, {"phase": "hippocampus", "executed": true, "detail": "0 entries"}, {"phase": "consolidate", "executed": true, "detail": "0 reinforced, 5 promoted, 0 discarded"}, {"phase": "index_rebuild", "executed": true, "detail": "9332 terms, 1013 entries"}, {"phase": "synthesis", "executed": true, "detail": "L2 created 0, L3 created 0, sources archived 0"}, {"phase": "eval", "executed": false, "detail": "not due"}, {"phase": "hygiene", "executed": false, "detail": "not due"}], "ts": "2026-05-14T15:36:44Z"}
 {"event": "cycle_commit", "cycle_id": 44, "ts": "2026-05-14T15:36:44Z"}
+{"event": "cycle_git", "cycle_id": 44, "status": "ok", "ts": "2026-05-14T15:36:46Z"}
+{"event": "cycle_start", "ts": "2026-05-14T18:52:39Z", "cycle_id": 45, "counter_at_start": 594}
+{"event": "cycle_failed", "ts": "2026-05-14T18:52:50Z", "cycle_id": 45, "attempt": 1, "reason": "name '_log' is not defined"}
+{"event": "cycle_start", "ts": "2026-05-14T18:52:50Z", "cycle_id": 45, "counter_at_start": 594}
+{"event": "cycle_failed", "ts": "2026-05-14T18:53:04Z", "cycle_id": 45, "attempt": 2, "reason": "name '_log' is not defined"}
+{"event": "cycle_start", "ts": "2026-05-14T18:53:04Z", "cycle_id": 45, "counter_at_start": 594}
+{"event": "cycle_failed", "ts": "2026-05-14T18:53:27Z", "cycle_id": 45, "attempt": 3, "reason": "name '_log' is not defined"}
+{"event": "cycle_start", "ts": "2026-05-14T18:57:41Z", "cycle_id": 45, "counter_at_start": 595}
+{"event": "cycle_failed", "ts": "2026-05-14T18:57:55Z", "cycle_id": 45, "attempt": 1, "reason": "name '_log' is not defined"}
+{"event": "cycle_start", "ts": "2026-05-14T19:10:33Z", "cycle_id": 45, "counter_at_start": 596}
+{"event": "cycle_failed", "ts": "2026-05-14T19:10:47Z", "cycle_id": 45, "attempt": 1, "reason": "name '_log' is not defined"}
+{"event": "cycle_start", "ts": "2026-05-14T19:22:18Z", "cycle_id": 45, "counter_at_start": 597}
+{"event": "cycle_empty", "ts": "2026-05-14T19:23:00Z"}
+{"event": "index_rebuild", "ts": "2026-05-14T19:23:01Z", "terms_count": 9332, "entries_count": 1013}
+{"event": "cycle_ledger", "cycle_id": 45, "phases": [{"phase": "ingest", "executed": true, "detail": "0 observations across 0 categories"}, {"phase": "hippocampus", "executed": true, "detail": "0 entries"}, {"phase": "consolidate", "executed": true, "detail": "0 reinforced, 0 promoted, 0 discarded"}, {"phase": "index_rebuild", "executed": true, "detail": "9332 terms, 1013 entries"}, {"phase": "synthesis", "executed": true, "detail": "L2 created 0, L3 created 0, sources archived 0"}, {"phase": "eval", "executed": false, "detail": "not due"}, {"phase": "hygiene", "executed": false, "detail": "not due"}], "ts": "2026-05-14T19:23:01Z"}
+{"event": "cycle_commit", "cycle_id": 45, "ts": "2026-05-14T19:23:01Z"}

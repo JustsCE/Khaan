@@ -19,6 +19,7 @@ def _find_repo_root() -> Path:
         if r.returncode == 0:
             return Path(r.stdout.strip())
     except Exception as e:
+        _log("ingest_error", {"error": str(e)[:500], "transcript_len": len(transcript), "turn_count": len(turns)})
         pass
     return BRAIN.resolve().parent
 
@@ -234,13 +235,18 @@ def phase_ingest():
         turns.append(evt)
 
     if not turns:
+    # Cap transcript to most recent turns to avoid timeout
+    MAX_INGEST_TURNS = 30
+    if len(turns) > MAX_INGEST_TURNS:
+        turns = turns[-MAX_INGEST_TURNS:]
         return [], {"phase": "ingest", "executed": True, "detail": "0 observations across 0 categories"}
 
     # Cap transcript to most recent turns to avoid timeout
     MAX_INGEST_TURNS = 30
     if len(turns) > MAX_INGEST_TURNS:
         turns = turns[-MAX_INGEST_TURNS:]
-
+    # walk the chat transcript since the last cycle -- no truncation
+        _log("ingest_error", {"error": str(e)[:500], "transcript_len": len(transcript), "turn_count": len(turns)})
     transcript = "\n\n".join(
         f"User: {t.get('user_prompt', '')}\nAssistant: {t.get('final_response', '')}"
         for t in turns
@@ -250,7 +256,7 @@ def phase_ingest():
         resp = cli_invoke(INGEST_PROMPT, transcript, timeout=120, model="opus")
         observations = resp["result"].get("observations", [])
     except Exception as e:
-        write_learning_log("ingest_error", {"error": str(e)[:500], "transcript_len": len(transcript), "turn_count": len(turns)})
+        _log("ingest_error", {"error": str(e)[:500], "transcript_len": len(transcript), "turn_count": len(turns)})
         observations = []
 
     cats = {}
@@ -504,6 +510,7 @@ def phase_index_rebuild():
                 try:
                     evt = json.loads(line)
                 except Exception as e:
+        _log("ingest_error", {"error": str(e)[:500], "transcript_len": len(transcript), "turn_count": len(turns)})
                     continue
                 if evt.get("event") != "dispatch":
                     continue
@@ -698,6 +705,7 @@ def _synthesize_level(region, src_level, dst_level, strength_thresh,
                 except json.JSONDecodeError:
                     pass
         except Exception as e:
+        _log("ingest_error", {"error": str(e)[:500], "transcript_len": len(transcript), "turn_count": len(turns)})
             continue
 
         # extract title from first # line of generated body
