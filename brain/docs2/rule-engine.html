@@ -312,9 +312,9 @@ tr:nth-child(even) td { background: #fafafa; }
 <h2 id="state">state.json</h2>
 <p>The Rule Engine&rsquo;s private state file at <code>brain/state.json</code>. The cognitive engines read and write it; the Rule Engine (dispatcher) never opens it. All writes are atomic (tmp-file + <code>os.rename</code>).</p>
 
-<p><strong>FSM state.</strong> One of four values: <code>NORMAL</code> (healthy), <code>MAINTENANCE_DUE</code> (cycle overdue, waiting for <code>/brain-cycle</code>), <code>CYCLE_RUNNING</code> (cycle in progress), or <code>MAINTENANCE_FAILED</code> (cycle failed 3+ times, degraded). Transitions are driven by <code>hook.py</code> on message-gap detection and by the cycle engine on commit or failure.</p>
+<p><strong>FSM state.</strong> One of three values: <code>NORMAL</code> (healthy), <code>CYCLE_RUNNING</code> (cycle in progress), or <code>MAINTENANCE_FAILED</code> (cycle failed 3+ times, degraded). When overdue, <code>handle_user_prompt_submit()</code> calls <code>run_cycle()</code> synchronously — no intermediate <code>MAINTENANCE_DUE</code> state. <code>CYCLE_RUNNING</code> is set by the cycle engine itself at the start of each run.</p>
 
-<p><strong>Counters.</strong> <code>message_counter</code> increments on every <code>UserPromptSubmit</code>. <code>last_brain_update</code> records the counter value at the last successful cycle commit. The gap between them triggers <code>MAINTENANCE_DUE</code> when it reaches the value of <code>thalamus.json :: config.cycle.gap</code> (currently <strong>15</strong>).</p>
+<p><strong>Counters.</strong> <code>message_counter</code> increments on every <code>UserPromptSubmit</code>. <code>last_brain_update</code> records the counter value at the last successful cycle commit. The gap between them triggers an inline <code>run_cycle()</code> call when the gap reaches the value of <code>thalamus.json :: config.cycle.gap</code> (currently <strong>15</strong>).</p>
 
 <p><strong>Cycle nonce.</strong> A one-time token (<code>active_cycle_nonce</code>) held for the duration of a cycle. Prevents two cycles from running concurrently. Set at cycle start, cleared on commit or failure.</p>
 

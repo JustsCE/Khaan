@@ -1,0 +1,8 @@
+{"event": "boot_start", "ts": "2026-05-14T00:01:19Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-14T00:03:00Z", "session_id": "", "latency_ms": 100492, "entries_picked": 48}
+{"event": "relay_start", "ts": "2026-05-14T00:03:00Z", "session_id": "", "query_hash": "e3f2e736cb87f116"}
+{"event": "relay_complete", "ts": "2026-05-14T00:03:29Z", "session_id": "", "query_hash": "e3f2e736cb87f116", "latency_ms": 28582, "entries_picked": 59}
+{"event": "boot_start", "ts": "2026-05-14T00:11:03Z", "session_id": ""}
+{"event": "boot_complete", "ts": "2026-05-14T00:13:33Z", "session_id": "", "latency_ms": 150324, "entries_picked": 48}
+{"event": "relay_start", "ts": "2026-05-14T00:13:33Z", "session_id": "", "query_hash": "e3f2e736cb87f116"}
+{"event": "relay_complete", "ts": "2026-05-14T00:14:03Z", "session_id": "", "query_hash": "e3f2e736cb87f116", "latency_ms": 29691, "entries_picked": 59}

@@ -306,7 +306,7 @@ I develop my own relationships with the people in my orbit.</code></pre>
 <h3>UserPromptSubmit</h3>
 <ol>
   <li>Increment <code>state.message_counter</code>. Compute gap <code>= counter &minus; last_brain_update</code>.</li>
-  <li>If <code>gap &ge; 5</code> and state is <code>NORMAL</code>: transition to <code>MAINTENANCE_DUE</code>, write <code>learning-cycle-overdue.bin = 1</code>.</li>
+  <li>Call <code>flip_cycle_overdue.check_overdue()</code>. If overdue, <code>run_cycle()</code> is called synchronously in-hook before decision dispatch. The cycle engine sets <code>fsm = CYCLE_RUNNING</code>, executes all 8 phases, then commits to <code>NORMAL</code> on success or falls to <code>MAINTENANCE_FAILED</code> after 3 consecutive failures. No <code>MAINTENANCE_DUE</code> intermediate state exists in code.</li>
   <li>Invoke the <code>/decision-engine</code> skill. The skill owns the orchestration &mdash; mutex acquire on <code>active_decision_nonce</code>, parallel spawn of Recall and Identity Relay (Python threads), Decision CLI subprocess, <code>flip-decision-verify</code> on the returned envelope. See <code>decision-engine.html</code>.</li>
   <li>Compose turn context from <code>navigation/active-*.json</code> files &rarr; surface as <code>additionalContext</code>.</li>
   <li>Return 0 (always passthrough &mdash; user always gets to talk).</li>
