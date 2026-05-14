@@ -1,0 +1,6 @@
+{
+  "brains": [
+    {"id": "khaan", "host": "localhost", "dir": "brain", "type": "primary"},
+    {"id": "jeff", "host": "localhost", "dir": "jeff", "type": "sub-brain"}
+  ]
+}
