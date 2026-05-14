@@ -182,3 +182,5 @@
 {"event": "relay_complete", "ts": "2026-05-14T13:16:59Z", "session_id": "", "query_hash": "915bedd3751e8c6c", "latency_ms": 25823, "entries_picked": 52}
 {"event": "relay_start", "ts": "2026-05-14T13:20:08Z", "session_id": "", "query_hash": "e0f8b4b100f2fc40"}
 {"event": "relay_complete", "ts": "2026-05-14T13:20:29Z", "session_id": "", "query_hash": "e0f8b4b100f2fc40", "latency_ms": 21062, "entries_picked": 56}
+{"event": "relay_start", "ts": "2026-05-14T13:24:12Z", "session_id": "", "query_hash": "b7fab5a5fdf46b08"}
+{"event": "relay_complete", "ts": "2026-05-14T13:24:44Z", "session_id": "", "query_hash": "b7fab5a5fdf46b08", "latency_ms": 31933, "entries_picked": 55}
