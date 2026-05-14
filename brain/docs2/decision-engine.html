@@ -154,7 +154,7 @@ tr:nth-child(even) td { background: #fafafa; }
 <div class="cover">
   <h1 style="border:none">Decision Engine</h1>
   <div class="subtitle">Five hypotheses, four dimensions, no choosing &mdash; per turn.</div>
-<div class="meta">Updated 2026-05-13 &middot; JustsCE/Brain</div>
+<div class="meta">Updated 2026-05-14 &middot; JustsCE/Brain</div>
 </div>
 
 <div class="toc"><h3>Contents</h3><ol><li>Philosophy</li><li>Inputs</li><li>Rules</li><li>The 4-D methodology</li><li>Hypothesis generation</li><li>Stages</li><li>Infrastructure</li><li>Anti-lockout</li><li>Pinned prompt</li><li>Logs</li></ol></div>
@@ -263,10 +263,14 @@ T1   Skill checks state.json :: active_decision_nonce. If held, wait up
      to 240s; if 240s elapses, skill exits. Otherwise take nonce.
 T2   Skill blocks parent tools (decision-hypothesis-1..5 = 1).
 T3   Skill spawns Recall and Identity in parallel; joins both.
+T3.5 Freshness check: verify each active-*.json was written for THIS
+     turn (query_hash match). Stale file raises decision-source-
+     missing, clears hypothesis bins, exits without subprocess.
 T4   Skill launches Decision subprocess (claude -p with pinned prompt).
-T5   Subprocess computes 5 hypotheses; each binary flips 1 -&gt; 0.
+T5   Subprocess computes all 5 hypotheses; returns JSON envelope.
 T6   flip-decision-verify runs single schema check (incl. tool_uses).
-T7   On pass: write active-decision.json; release nonce; tools unblock.
+T7   On pass: clear all 5 hypothesis bins; write active-decision.json;
+     release nonce; tools unblock.
 T8   Skill returns; Claude Code sends user prompt + additionalContext
      to the parent; parent emits N's reply with N's decision in context.</code></pre>
 <p>Worst case: subprocess fails 3 times or runs past 120s; Anti-lockout in Rules covers the recovery.</p>
@@ -277,7 +281,7 @@ T8   Skill returns; Claude Code sends user prompt + additionalContext
 <p><strong>What the skill does, in order:</strong></p>
 <ol>
   <li><strong>Mutex acquire.</strong> Read <code>state.json :: active_decision_nonce</code>. If held by an in-flight earlier turn, wait for release (see Mutex below). If unset, atomically take a fresh nonce.</li>
-  <li><strong>Spawn Recall and Identity in parallel.</strong> Both engines run as Python threads inside the skill process. Each writes its <code>active-*.json</code> for THIS turn. Skill joins both threads before continuing.</li>
+  <li><strong>Spawn Recall and Identity in parallel.</strong> Both engines run as Python threads inside the skill process. Each writes its <code>active-*.json</code> for THIS turn. Skill joins both threads before continuing. After joining, a freshness check verifies each <code>active-*.json</code> carries the <code>query_hash</code> for THIS turn; a stale file raises <code>decision-source-missing.bin = 1</code>, clears hypothesis bins, and exits cleanly without launching the subprocess.</li>
   <li><strong>Spawn the Decision subprocess.</strong> Run <code>claude -p --output-format json</code> via <code>engines._shared.cli_invoke()</code>, passing the pinned <code>SYSTEM_PROMPT</code> + the just-written <code>active-recall.json</code> and <code>active-identity.json</code> as inputs.</li>
   <li><strong>Verify.</strong> When the subprocess returns, run <code>flip-decision-verify</code> on the returned JSON envelope. The hook event is named <code>SubagentStop</code> by Anthropic; semantically the verifier runs against the CLI subprocess&rsquo;s return payload (one schema check &mdash; see invariant verification below).</li>
   <li><strong>Write or reject.</strong> On verifier pass: write <code>active-decision.json</code>; clear the 5 hypothesis binaries; release the mutex. On fail: increment strike counter; retry up to 3 times; after 3 strikes, raise <code>decision-failed.bin = 1</code> &mdash; the next UserPromptSubmit clears it (Anti-lockout).</li>
@@ -369,11 +373,11 @@ T8   Skill returns; Claude Code sends user prompt + additionalContext
 
 <h3>Binaries</h3>
 <table><thead><tr><th>Binary</th><th>Trigger to raise (<code>1</code>)</th><th>Cleared by</th></tr></thead><tbody>
-<tr><td><code>decision-hypothesis-1</code> (Literal)</td><td><code>UserPromptSubmit</code> fires</td><td>Subprocess finishes Literal hypothesis</td></tr>
-<tr><td><code>decision-hypothesis-2</code> (Identity-shaped)</td><td><code>UserPromptSubmit</code> fires</td><td>Subprocess finishes Identity-shaped hypothesis</td></tr>
-<tr><td><code>decision-hypothesis-3</code> (Recall-shaped)</td><td><code>UserPromptSubmit</code> fires</td><td>Subprocess finishes Recall-shaped hypothesis</td></tr>
-<tr><td><code>decision-hypothesis-4</code> (Contrarian)</td><td><code>UserPromptSubmit</code> fires</td><td>Subprocess finishes Contrarian hypothesis</td></tr>
-<tr><td><code>decision-hypothesis-5</code> (Minimal-action)</td><td><code>UserPromptSubmit</code> fires</td><td>Subprocess finishes Minimal-action hypothesis</td></tr>
+<tr><td><code>decision-hypothesis-1</code> (Literal)</td><td><code>UserPromptSubmit</code> fires</td><td>All 5 cleared together by skill orchestrator at T7, after verify passes</td></tr>
+<tr><td><code>decision-hypothesis-2</code> (Identity-shaped)</td><td><code>UserPromptSubmit</code> fires</td><td>All 5 cleared together by skill orchestrator at T7, after verify passes</td></tr>
+<tr><td><code>decision-hypothesis-3</code> (Recall-shaped)</td><td><code>UserPromptSubmit</code> fires</td><td>All 5 cleared together by skill orchestrator at T7, after verify passes</td></tr>
+<tr><td><code>decision-hypothesis-4</code> (Contrarian)</td><td><code>UserPromptSubmit</code> fires</td><td>All 5 cleared together by skill orchestrator at T7, after verify passes</td></tr>
+<tr><td><code>decision-hypothesis-5</code> (Minimal-action)</td><td><code>UserPromptSubmit</code> fires</td><td>All 5 cleared together by skill orchestrator at T7, after verify passes</td></tr>
 <tr><td><code>decision-source-missing</code></td><td>An input artifact absent at dispatch</td><td>The missing source publishes its artifact</td></tr>
 <tr><td><code>decision-failed</code></td><td>3 consecutive subprocess failures</td><td>Next <code>UserPromptSubmit</code> (auto-recovery)</td></tr>
 <tr><td><code>decision-timeout</code></td><td>Subprocess exceeds 120s</td><td>Next <code>UserPromptSubmit</code> (auto-recovery)</td></tr>
@@ -485,8 +489,6 @@ The parent will surface this to the rule engine, which raises the
 <p>All engine output goes to <code>logger/decision/</code> via <code>logger/api.py::write_decision_log</code>. Append-only.</p>
 <table><thead><tr><th>Event</th><th>Payload</th><th>Purpose</th></tr></thead><tbody>
 <tr><td><code>decision_dispatch</code></td><td><code>ts, query_hash, sources_hash, model, system_prompt_hash</code></td><td>Start signal &mdash; one per turn</td></tr>
-<tr><td><code>subagent_launch</code></td><td><code>ts, query_hash, subagent_id, model</code></td><td>Confirms the subprocess actually launched (field name retained for hook-event parity)</td></tr>
-<tr><td><code>hypothesis_complete</code></td><td><code>ts, query_hash, hypothesis_id, label, latency_ms</code></td><td>One per hypothesis as each completes &mdash; per-hypothesis timing is load-bearing</td></tr>
 <tr><td><code>handoff</code></td><td><code>ts, query_hash, payload_chars, all_5_present</code></td><td>The 5-hypothesis payload was returned to the parent</td></tr>
 <tr><td><code>subagent_complete</code></td><td><code>ts, query_hash, subagent_id, status, latency_ms</code></td><td>Total subprocess run + outcome (field name retained for hook-event parity)</td></tr>
 <tr><td><code>decision_failed</code></td><td><code>ts, query_hash, attempt, reason</code></td><td>Each failure before the three-strike threshold</td></tr>
