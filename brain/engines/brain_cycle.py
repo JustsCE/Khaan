@@ -50,6 +50,11 @@ def run_cycle():
             try:
                 observations, l1 = phase_ingest()
                 ledger.append(l1)
+
+                # INVARIANT: every cycle must produce at least 1 observation
+                if not observations:
+                    raise ValueError("invariant: ingest produced 0 observations — cycle aborted")
+
                 _check_timeout(t0)
 
                 l2 = phase_hippocampus(observations)

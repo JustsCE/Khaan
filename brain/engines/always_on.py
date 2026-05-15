@@ -12,10 +12,24 @@ TURN_LOG = BRAIN / "logger" / "handler" / "turn_complete.jsonl"
 STATE_FILE = BRAIN / "state.json"
 CYCLE_RUNNING = BRAIN / "binaries" / "learning-cycle-running.bin"
 
-SELF_PROMPT = "Iterate. Find what matters most. Move on it. If you need to communicate with Justs, use COMS at https://goodhealth.lv/playground — POST to /api/chat with role=khaan. During always-on time, COMS is the ONLY communication channel. Tonight: work on TCG handover tasks. Check COMS for details from Justs."
+SELF_PROMPT = "Iterate. Find what matters most. Move on it. If you need to communicate with Justs, use COMS at https://goodhealth.lv/playground — POST to /api/chat with role=khaan. During always-on time, COMS is the ONLY communication channel."
 
 LIVE_SESSION_WINDOW_S = 90
 DECISION_INFLIGHT_WINDOW_S = 120
+
+ITER_COUNT_FILE = BRAIN / "binaries" / "always-on-iter-count.bin"
+CYCLE_EVERY_N = 10
+
+
+def read_iter_count():
+    try:
+        return int(ITER_COUNT_FILE.read_text().strip())
+    except Exception:
+        return 0
+
+
+def write_iter_count(n):
+    ITER_COUNT_FILE.write_text(str(n))
 
 
 def gate_on():
@@ -105,6 +119,21 @@ def iteration():
         time.sleep(15)
         return
 
+    # Brain cycle gate: every CYCLE_EVERY_N iterations, run consolidation
+    count = read_iter_count()
+    if count >= CYCLE_EVERY_N:
+        log_event("brain_cycle_trigger", {"iteration_count": count})
+        try:
+            from engines.brain_cycle import run_cycle
+            run_cycle()
+            log_event("brain_cycle_complete", {"iteration_count": count})
+        except Exception as e:
+            log_event("brain_cycle_failed", {"error": str(e)[:500]})
+        finally:
+            (BRAIN / "binaries" / "learning-cycle-running.bin").write_text("0")
+        write_iter_count(0)
+        return
+
     queued = dequeue_one()
     if queued:
         prompt = queued["prompt"]
@@ -137,6 +166,7 @@ def iteration():
                 _coms_mark_processed(queued["msg_id"])
             except Exception:
                 pass
+        write_iter_count(read_iter_count() + 1)
     except Exception as e:
         log_event("iteration_failed", {
             "source": source, "latency_ms": int((time.time() - t0) * 1000),

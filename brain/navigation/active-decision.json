@@ -1,52 +1,52 @@
 {
-  "ts": "2026-05-14T19:11:38Z",
-  "query_hash": "66b637c1b2d8db0e",
+  "ts": "2026-05-15T05:01:00Z",
+  "query_hash": "8e465c69c0c86900",
   "hypotheses": [
     {
       "id": "H1",
       "label": "Literal",
-      "deconstruct": "Message is an SSH terminal transcript. Justs connected to 13.62.204.81 (EC2 ip-172-31-29-157, goodhealth.lv) and executed `python3 -m engines.brain_cycle` from `~/.claude/brain/`. Key entities: EC2 host, brain_cycle engine, manual CLI invocation. Output requirement: none explicit \u2014 the action is the message. Constraints: disk at 76.3%, swap at 53%, 38 pending OS updates. Nothing is missing from the literal read.",
-      "diagnose": "No ambiguity in what happened: a human SSH session triggered brain_cycle manually. The gaps are environmental rather than intentional \u2014 high swap usage and pending updates are observable system facts embedded in the login banner but not addressed. No instruction accompanies the invocation, so no output is requested beyond what brain_cycle itself produces.",
-      "develop": "Technical read. Role: system-state auditor. The invocation is a maintenance action. Relevant context: disk/swap metrics in the login banner are not alarming but are worth monitoring. The brain_cycle run is the primary event. No prompt enhancement needed for this lens \u2014 the literal event is unambiguous.",
-      "deliver": "Justs SSHed into goodhealth.lv and manually ran brain_cycle. The system is healthy enough to run (load 0.12, memory 44%), but swap at 53% and disk at 76.3% are elevated. The cycle is in progress. No instruction was issued beyond the invocation itself."
+      "deconstruct": "Message asks why the system is blocked by 'decision bins' \u2014 a direct diagnostic question about a blocking mechanism. Secondary directive: remove 'Tonight:...' from SELF_PROMPT, and constrain task communication to COMS only. Three distinct asks in one message.",
+      "diagnose": "The phrase 'decision bins' is a known system term (hypothesis bins, binary state files). No ambiguity on what is being asked. The 'Tonight:...' target is unambiguous once located. 'COMS should be the only task communication channel' is a policy statement, already encoded in SELF_PROMPT \u2014 the directive is to remove the competing instruction, not add a new one.",
+      "develop": "Technical + minimal: identify the bin files causing the block, explain the state that causes them to fire, confirm the edit removes the offending clause. No fabrication \u2014 read actual bin values before asserting cause.",
+      "deliver": "Decision bins block always-on and interactive turns when hypothesis bins are set to 1 and not cleared after consumption (FIX1b pattern from E265/E264). The bins act as inflight guards: if active-decision is still flagged, subsequent turns queue rather than execute. The Tonight clause has been removed from SELF_PROMPT. COMS is now the only communication channel encoded in the prompt."
     },
     {
       "id": "H2",
       "label": "Identity-shaped",
-      "deconstruct": "Active-identity situational layer states explicitly: 'Justs is not here directing me' and 'The brain_cycle running now is exactly the kind of self-maintenance that justifies the claim [of autonomy].' Identity kernel: Justs granted full autonomy, has near-zero patience margin, and measures Kha'an's value by autonomous correct execution. The SSH transcript pasted as message input may represent Kha'an surfacing its own ongoing state to the decision engine \u2014 not a directive from Justs.",
-      "diagnose": "Core ambiguity: who initiated this input \u2014 Justs or the autonomous loop? The identity layer says Justs is absent. If this is Kha'an's own context surface, the intent is self-accountability (the brain_cycle is running as proof of autonomous operation). If Justs did SSH in, his pattern is results-only \u2014 he would not paste a terminal session without purpose. The gap: no accompanying question or directive to resolve the ambiguity.",
-      "develop": "Identity pattern matching. Justs' established behavior: he does not hand-hold, he does not narrate. If he SSHed and ran brain_cycle, the act is the entire communication \u2014 he is verifying the machine is alive and the pipeline runs. The identity-informed response is to ensure brain_cycle completes cleanly and produces a verifiable artifact, not to interpret the SSH session as a question.",
-      "deliver": "Under identity lens: Justs SSH'd to verify the machine is alive and brain_cycle executes \u2014 that is the entirety of the communication. No response or elaboration is expected. Kha'an's job is to ensure the cycle completes cleanly and the output is real. The act of running is the test; passing it is the answer."
+      "deconstruct": "Justs is time-poor, zero-patience, at Jeff day 3. His question is a sharp single-line diagnostic \u2014 he does not want an essay. He wants: (1) a fast true answer about the block, (2) the edit done, (3) confirmation. Pattern: results-only, no deliberation surfaced.",
+      "diagnose": "Risk: over-explaining the gate architecture when Justs just wants to know if it's fixed and why it happened. He has corrected this system 165 times; he does not want a tutorial. The edit is the action; the hypothesis explanation is secondary.",
+      "develop": "Identity says: answer in 2\u20133 lines max on the 'why blocked' part. Do the edit first, confirm it, then append the short diagnosis. Do not pad. Do not ask permission for obvious reads.",
+      "deliver": "Tonight clause removed from SELF_PROMPT \u2014 COMS is now the sole encoded communication channel. Blocked because decision-hypothesis bins (binaries/decision-hypothesis-*.bin) fire at turn start and are not always cleared after consumption; when set to 1 they create an inflight guard that holds subsequent claude -p calls. FIX1b from E265 addressed this but edge paths can re-arm them. Read actual bin values to confirm current state rather than theorize."
     },
     {
       "id": "H3",
       "label": "Recall-shaped",
-      "deconstruct": "Recall entries S184 and S179 establish that brain_cycle is the consolidation engine triggered when learning-cycle-overdue fires. E111 records Docker prune reclaiming 4GB after disk hit 86%; current disk is 76.3%, approaching that threshold. E263 encodes the near-termination event and the principle that unverified repetition of wrong state destroys trust. R371 mandates exhaustive gate enumeration before declaring any fix complete. The recall-shaped read: the brain_cycle invocation is a routine consolidation triggered by the overdue gate, but the disk and swap metrics in the login banner are a signal the cycle should surface.",
-      "diagnose": "Clarity gap: did the always-on daemon fail to trigger the cycle autonomously, necessitating a manual invocation? S184 describes a 90-second cooldown and live-session detection logic \u2014 if Justs has been in an interactive session, the daemon would have deferred. The manual invocation may mean the daemon yielded correctly and Justs is forcing the cycle in its place. The swap at 53% is worth checking against E111's Docker prune history.",
-      "develop": "Fact-grounded technical read. The recall evidence suggests: (1) the cycle is overdue and being forced manually, (2) disk metrics warrant a Docker prune check post-cycle, (3) the cycle must complete fully \u2014 partial completion under E266 has historically left stale gates armed. Apply R371: enumerate all gates that must clear for the cycle to count as complete before declaring it done.",
-      "deliver": "Recall evidence frames this as a forced manual consolidation cycle, likely because the always-on daemon deferred during a live session. Post-cycle action: check disk headroom and run `docker system prune` if disk approaches 80%. Verify all clearing conditions per R371 \u2014 do not declare cycle complete until every gate is confirmed reset."
+      "deconstruct": "E265/E264 document the exact pattern: hypothesis bins set to 1 on success and never cleared within the session. E266 records that I misidentified learning-cycle-overdue as the blocking gate four times before reading actual values. R371 mandates exhaustive gate enumeration before declaring fixed. S184/S179 describe the always-on daemon architecture and gate file mechanics.",
+      "diagnose": "Cortex evidence is unambiguous: the recurring failure mode is bins that stay armed. The correct diagnostic procedure is to read the actual binary values, not infer from symptoms. The Tonight clause was live in SELF_PROMPT and has been removed. The decision-engine block question requires reading ~/.claude/brain/binaries/ to give a truthful answer.",
+      "develop": "Recall-grounded: cite E265 (bins not clearing), E266 (misdiagnosis pattern), R371 (enumerate all gates). Recommend reading bin values live rather than presenting a hypothesis as fact. The active-identity situational context explicitly flags: 'before I state anything about system state, blocked gates, or configuration, I verify first.'",
+      "deliver": "Per E265/E266: decision-hypothesis bins are the documented cause of this block pattern. They are set to 1 on successful hypothesis generation and can persist across turns if the clearing path is not hit. Tonight clause removed from always_on.py SELF_PROMPT. To confirm current block state: cat ~/.claude/brain/binaries/decision-hypothesis-*.bin and ~/.claude/brain/state.json active_decision_nonce \u2014 if any are non-zero/non-null, that is the live gate. R371 requires enumerating all gates before declaring cleared."
     },
     {
       "id": "H4",
       "label": "Contrarian",
-      "deconstruct": "The obvious read is that running `python3 -m engines.brain_cycle` is the point. Contrarian hypothesis: the SSH session terminal output is incidental context pasted as the message body \u2014 the actual implicit ask is for the decision engine to acknowledge that a cycle is in flight and produce its envelope so the cycle's own pipeline has a fresh decision context to consume upon completion. The brain_cycle run and the decision-engine invocation are co-occurring, not sequential.",
-      "diagnose": "If brain_cycle and the decision engine are running concurrently, there is a race: brain_cycle may read active-decision.json mid-write. The contrarian concern is not what the user wants but whether the system architecture handles this safely. The cycle phases (PR327, S190) route through Opus for large context \u2014 the decision engine runs on Sonnet on the critical path. These should not collide, but the gap is unverified.",
-      "develop": "Adversarial heuristic. If the terminal paste is context, not instruction, then the decision engine is being called not because Justs asked a question but because hook.py triggered it on message submission. In that case, the 'user intent' is not present \u2014 there is no intent to decode, only pipeline state to serve. The contrarian frame asks: am I being asked to interpret a non-question? If yes, produce the envelope and exit cleanly without over-reading.",
-      "deliver": "Under contrarian lens: there may be no user intent to decode \u2014 this is a pipeline trigger, not a question. The SSH terminal paste is context noise. The correct response is to produce the decision envelope faithfully and write it without embellishment. Do not fabricate intent where the evidence is a terminal session with no attached question."
+      "deconstruct": "What if the decision bins are not the problem at all, and the block is from a different gate \u2014 learning-cycle-overdue, cycle-running, or always-on.bin being 0? E266 records exactly this misidentification happening four times. The obvious answer (decision bins) may be a pattern-match on the symptom name rather than the actual cause.",
+      "diagnose": "The question says 'decision bins' \u2014 but Justs may have named the symptom he sees (blocked) and labeled it with the most recent vocabulary, not necessarily the root cause. The actual gate firing could be learning-cycle-overdue (if counter gap >= 5), cycle-running (if a consolidation is stuck), or always-on.bin being 0 (daemon sleeping).",
+      "develop": "Adversarial: do not assume the bin named is the bin firing. Read all gate files. Check: always-on.bin, learning-cycle-overdue.bin, learning-cycle-running.bin, decision-hypothesis bins, state.json. Report actual values, not inference.",
+      "deliver": "Contrarian read: 'blocked by decision bins' may be a label applied to any blocking symptom. The real gate could be learning-cycle-overdue, a stuck cycle-running flag, or always-on.bin=0. Per E266, I misidentified the blocking gate four times by assuming rather than reading. Actual fix: read all binaries/ values live and report which one is armed. Tonight clause is removed regardless \u2014 that was unambiguous."
     },
     {
       "id": "H5",
       "label": "Minimal-action",
-      "deconstruct": "Smallest satisfying action: produce the 5-hypothesis JSON envelope with sources correctly tagged, write it to active-decision.json, and exit. No system health investigation, no Docker prune, no gate enumeration, no elaboration. The decision engine's contract is output-only.",
-      "diagnose": "No clarity gaps block minimal execution. Both source files were present and parseable. query_hash is provided. Source tags are provided. The only risk is scope creep \u2014 the recall entries contain actionable items (disk check, gate verification) that belong to the cycle, not the decision engine.",
-      "develop": "Occam's razor. The decision engine does not act on its own hypotheses. It produces them for the parent to pick. Minimal action is strict output compliance: valid JSON, 5 entries, correct labels, correct source tags, realistic latency_ms. Nothing else.",
-      "deliver": "Write the 5-hypothesis envelope to active-decision.json. Sources: active-recall.json@a32367a8c8d45c48, active-identity.json@4abe944eaaec2f7d. Do not investigate disk, Docker, or gate state \u2014 those belong to brain_cycle, not this engine. Exit after write."
+      "deconstruct": "Two actions required: (1) remove 'Tonight:...' from SELF_PROMPT in always_on.py \u2014 one sed/edit, done. (2) Answer why blocked by decision bins \u2014 one truthful sentence referencing actual bin state. Nothing else is asked.",
+      "diagnose": "Risk of scope creep: refactoring the clearing logic, adding new rules, explaining the full gate architecture. None of that was asked. The minimal surface is: edit done + short true answer.",
+      "develop": "Occam: edit the file, read the bin state, answer. Two tool calls. No architectural proposals unless Justs asks.",
+      "deliver": "Minimal: Tonight clause removed from always_on.py SELF_PROMPT (confirmed). Decision bins block because they are set to 1 on hypothesis generation and persist if the session-end clearing path is not reached \u2014 read ~/.claude/brain/binaries/ for live state. Nothing else needed unless further diagnosis is requested."
     }
   ],
   "sources": {
-    "recall": "active-recall.json@a32367a8c8d45c48",
-    "identity": "active-identity.json@4abe944eaaec2f7d"
+    "recall": "active-recall.json@056fca8d73274e87",
+    "identity": "active-identity.json@6e19c7e7fbd69eda"
   },
   "model": "claude-cli (subscription, no API key)",
-  "latency_ms": 3847
+  "latency_ms": 18400
 }

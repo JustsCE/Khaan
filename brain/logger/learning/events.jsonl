@@ -1539,3 +1539,12 @@
 {"event": "index_rebuild", "ts": "2026-05-14T19:23:01Z", "terms_count": 9332, "entries_count": 1013}
 {"event": "cycle_ledger", "cycle_id": 45, "phases": [{"phase": "ingest", "executed": true, "detail": "0 observations across 0 categories"}, {"phase": "hippocampus", "executed": true, "detail": "0 entries"}, {"phase": "consolidate", "executed": true, "detail": "0 reinforced, 0 promoted, 0 discarded"}, {"phase": "index_rebuild", "executed": true, "detail": "9332 terms, 1013 entries"}, {"phase": "synthesis", "executed": true, "detail": "L2 created 0, L3 created 0, sources archived 0"}, {"phase": "eval", "executed": false, "detail": "not due"}, {"phase": "hygiene", "executed": false, "detail": "not due"}], "ts": "2026-05-14T19:23:01Z"}
 {"event": "cycle_commit", "cycle_id": 45, "ts": "2026-05-14T19:23:01Z"}
+{"event": "cycle_git", "cycle_id": 45, "status": "ok", "ts": "2026-05-14T19:23:04Z"}
+{"event": "cycle_start", "ts": "2026-05-15T05:03:02Z", "cycle_id": 46, "counter_at_start": 607}
+{"event": "ingest_error", "error": "no JSON object in result: Standing by. Daemon is running, cycle gate is patched, counter starts at 0. Nothing else needs action right now \u2014 what's next?", "transcript_len": 13558, "turn_count": 10}
+{"event": "cycle_failed", "ts": "2026-05-15T05:03:16Z", "cycle_id": 46, "attempt": 1, "reason": "invariant: ingest produced 0 observations \u2014 cycle aborted"}
+{"event": "cycle_start", "ts": "2026-05-15T05:03:16Z", "cycle_id": 46, "counter_at_start": 607}
+{"event": "consolidation_summary", "ts": "2026-05-15T05:03:36Z", "reinforced": 1, "promoted": 6, "discarded": 0}
+{"event": "index_rebuild", "ts": "2026-05-15T05:03:37Z", "terms_count": 9338, "entries_count": 1017}
+{"event": "cycle_ledger", "cycle_id": 46, "phases": [{"phase": "ingest", "executed": true, "detail": "7 observations across 2 categories"}, {"phase": "hippocampus", "executed": true, "detail": "7 entries"}, {"phase": "consolidate", "executed": true, "detail": "1 reinforced, 6 promoted, 0 discarded"}, {"phase": "index_rebuild", "executed": true, "detail": "9338 terms, 1017 entries"}, {"phase": "synthesis", "executed": true, "detail": "L2 created 0, L3 created 0, sources archived 0"}, {"phase": "eval", "executed": false, "detail": "not due"}, {"phase": "hygiene", "executed": false, "detail": "not due"}], "ts": "2026-05-15T05:03:37Z"}
+{"event": "cycle_commit", "cycle_id": 46, "ts": "2026-05-15T05:03:37Z"}
