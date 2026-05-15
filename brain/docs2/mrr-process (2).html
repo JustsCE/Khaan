@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>MRR Monthly Data Processing</title>
+<style>
+@page { size: A4; margin: 14mm 14mm 16mm 14mm; }
+* { box-sizing: border-box; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.5;
+    color: #1a1a1a;
+    margin: 0;
+    background: #f7f7f5;
+}
+.page-wrap {
+    max-width: 200mm;
+    margin: 0 auto;
+    padding: 8mm;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,.08);
+}
+@media print {
+    body { background: #fff; }
+    .page-wrap { box-shadow: none; max-width: none; padding: 0; }
+}
+h1 {
+    font-size: 26pt;
+    margin: 0 0 4mm;
+    letter-spacing: -.02em;
+    line-height: 1.1;
+    border-bottom: 2px solid #1a1a1a;
+    padding-bottom: 3mm;
+}
+h2 {
+    font-size: 16pt;
+    margin: 8mm 0 3mm;
+    letter-spacing: -.01em;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 2mm;
+    page-break-after: avoid;
+}
+h3 {
+    font-size: 12.5pt;
+    margin: 5mm 0 2mm;
+    color: #333;
+    page-break-after: avoid;
+}
+h4 {
+    font-size: 11pt;
+    margin: 3mm 0 1.5mm;
+    color: #555;
+    page-break-after: avoid;
+}
+p { margin: 1.5mm 0 2.5mm; }
+hr { border: none; border-top: 1px solid #ddd; margin: 5mm 0; }
+blockquote {
+    border-left: 3px solid #1a1a1a;
+    padding: 2mm 4mm;
+    margin: 3mm 0;
+    background: #fafafa;
+    font-style: italic;
+    font-size: 11.5pt;
+}
+blockquote p { margin: 1mm 0; }
+strong, b { color: #000; }
+code {
+    font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 9.5pt;
+    background: #f1f1ef;
+    padding: .3mm 1mm;
+    border-radius: 1mm;
+    color: #b91c1c;
+}
+pre {
+    background: #f8f8f6;
+    border-left: 2px solid #ddd;
+    padding: 3mm 4mm;
+    margin: 3mm 0;
+    font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 9pt;
+    line-height: 1.4;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    page-break-inside: avoid;
+}
+pre code {
+    background: transparent;
+    color: #1a1a1a;
+    padding: 0;
+}
+ul, ol { margin: 1.5mm 0 3mm 6mm; padding: 0; }
+li { margin: .5mm 0; }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 3mm 0;
+    font-size: 9.5pt;
+    page-break-inside: avoid;
+}
+th, td {
+    padding: 1.5mm 2mm;
+    border-bottom: 1px solid #e5e5e5;
+    vertical-align: top;
+    text-align: left;
+}
+th {
+    background: #1a1a1a;
+    color: #fff;
+    font-weight: 600;
+}
+tr:nth-child(even) td { background: #fafafa; }
+.cover {
+    text-align: center;
+    padding: 30mm 0 8mm;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 6mm;
+}
+.cover .subtitle {
+    color: #666;
+    font-size: 11pt;
+    margin-top: 2mm;
+}
+.cover .meta {
+    color: #999;
+    font-size: 9pt;
+    margin-top: 4mm;
+    letter-spacing: .04em;
+}
+.toc {
+    background: #fafafa;
+    border-left: 2px solid #1a1a1a;
+    padding: 4mm 6mm;
+    margin: 4mm 0 8mm;
+    page-break-inside: avoid;
+}
+.toc h3 {
+    margin: 0 0 2mm;
+    font-size: 10pt;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: #555;
+}
+.toc ol { margin: 0 0 0 5mm; }
+.toc li { font-size: 9.5pt; padding: .3mm 0; }
+.warning {
+    background: #fff7ed;
+    border-left: 3px solid #f59e0b;
+    padding: 2mm 4mm;
+    margin: 3mm 0;
+    font-size: 10pt;
+}
+.warning strong { color: #92400e; }
+.danger {
+    background: #fef2f2;
+    border-left: 3px solid #dc2626;
+    padding: 2mm 4mm;
+    margin: 3mm 0;
+    font-size: 10pt;
+}
+.danger strong { color: #991b1b; }
+.checklist { list-style: none; margin-left: 2mm; }
+.checklist li::before { content: "\2610  "; font-size: 11pt; }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+<div class="cover">
+  <h1 style="border:none">MRR Monthly Data Processing</h1>
+  <div class="subtitle">Database &rarr; QlikView &rarr; Power BI &mdash; complete handover documentation.</div>
+  <div class="meta">Updated 2026-05-08 &middot; JustsCE/Brain</div>
+</div>
+
+<div class="toc"><h3>Contents</h3><ol>
+<li>Overview &amp; Timeline</li>
+<li>Full Monthly Checklist</li>
+<li>Infrastructure &amp; Connections</li>
+<li>Step 0: Data Quality Checks</li>
+<li>Step 1: Create Tables &amp; Procedures (Database)</li>
+<li>Step 2: Call Procedures &amp; Build the Snapshot (Database)</li>
+<li>Step 3: Refresh QlikView Reports (Virtual Machine)</li>
+<li>Update Views &amp; Refresh Power BI</li>
+<li>Technical Reference</li>
+<li>Snapshot Logic &mdash; Deep Dive</li>
+<li>Sendmoments Data Integration</li>
+<li>Power BI Report Structure</li>
+</ol></div>
+
+<!-- ============================================================ -->
+<h2 id="overview">1. Overview &amp; Timeline</h2>
+
+<p>Every month, the MRR (Monthly Revenue Reporting) data is processed by loading a new snapshot of order and revenue data in the database (<code>bi_stage_dev</code>), then refreshing both QlikView and Power BI reports for finance stakeholders.</p>
+
+<div class="warning">
+<strong>Deadline:</strong> Always complete the data load <strong>before the 3rd working day</strong> of the month.
+</div>
+
+<h3>Monthly Sequence</h3>
+<ul>
+<li>Previous month closes on the last day of the month &mdash; data becomes available</li>
+<li>Step 0: Perform data quality checks (refunds, Groupon, Sendmoments)</li>
+<li>Step 1: Create new tables &amp; stored procedures in the database</li>
+<li>Step 2: Call procedures, build MRR snapshot in the database</li>
+<li>Step 3: Refresh QlikView report on the virtual machine, validate, backup</li>
+<li>Step 4: Update Power BI views in the database, refresh Power BI report</li>
+<li>Notify stakeholders (LEN, CHU, JKA, MFR, MNA)</li>
+</ul>
+
+<table>
+<tr><th>Abbr.</th><th>Name</th><th>Role</th></tr>
+<tr><td><strong>JCE</strong></td><td>Justs Ceplis</td><td>Process owner (handing over)</td></tr>
+<tr><td><strong>JKA</strong></td><td>Justus Kaiser</td><td>Taking over process ownership</td></tr>
+<tr><td><strong>MNA</strong></td><td>Mayuri Babaji Naykodi</td><td>Executing MRR loads, Power BI updates</td></tr>
+<tr><td><strong>MFR</strong></td><td>Mariano Freixas</td><td>Finance stakeholder (revenue reports, Canada)</td></tr>
+<tr><td><strong>CHU</strong></td><td>Caroline Hulsem</td><td>Stakeholder &mdash; requested archive filter changes &amp; UI improvements</td></tr>
+<tr><td><strong>LEN</strong></td><td>Lena</td><td>Stakeholder &mdash; receives completion notifications</td></tr>
+<tr><td><strong>JEN</strong></td><td>Jenna</td><td>Stakeholder &mdash; requested including all created orders</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="checklist">2. Full Monthly Checklist</h2>
+
+<ul class="checklist">
+<li><strong>Step 0:</strong> Refunds data quality check passed</li>
+<li><strong>Step 0:</strong> Groupon voucher data quality check passed</li>
+<li><strong>Step 0:</strong> Sendmoments data quality check passed</li>
+<li><strong>Step 1:</strong> Previous month's procedure DDL copied</li>
+<li><strong>Step 1:</strong> <code>sp_monthlyfinance[DATE]</code> created (3 date refs updated)</li>
+<li><strong>Step 1:</strong> <code>sp_monthlyfinanceallsales[DATE]</code> created (3 date refs updated)</li>
+<li><strong>Step 1:</strong> <code>monthly_finance_[DATE]</code> table created</li>
+<li><strong>Step 1:</strong> <code>monthly_finance_allsales[DATE]</code> table created</li>
+<li><strong>Step 1:</strong> <code>mrrsnapshot[YYYYMMDD]</code> table created (last day of month!)</li>
+<li><strong>Step 2:</strong> <code>sp_monthlyfinance</code> called successfully</li>
+<li><strong>Step 2:</strong> <code>sp_monthlyfinanceallsales</code> called successfully</li>
+<li><strong>Step 2:</strong> New snapshot truncated</li>
+<li><strong>Step 2:</strong> Snapshot UNION ALL query executed (4 date refs verified)</li>
+<li><strong>Step 2:</strong> Sendmoments data inserted into snapshot</li>
+<li><strong>Step 3:</strong> QlikView QVD loader updated (MRR tab + MRR Full tab)</li>
+<li><strong>Step 3:</strong> QlikView QVD refreshed (~1.5h)</li>
+<li><strong>Step 3:</strong> QlikView report: summary exported BEFORE refresh</li>
+<li><strong>Step 3:</strong> QlikView report: refreshed</li>
+<li><strong>Step 3:</strong> QlikView report: summary exported AFTER refresh</li>
+<li><strong>Step 3:</strong> Historical data comparison passed (no changes)</li>
+<li><strong>Step 3:</strong> QlikView report saved &amp; backup archived</li>
+<li><strong>Step 4:</strong> <code>dw.v_mrr_ppqvd2</code> updated to new snapshot</li>
+<li><strong>Step 4:</strong> <code>dw.v_mrr_wallets_3</code> updated to new snapshot</li>
+<li><strong>Step 4:</strong> Power BI report refreshed and saved</li>
+<li><strong>Step 4:</strong> Power BI data reconciliation passed</li>
+<li><strong>Step 4:</strong> Power BI report backed up with date</li>
+<li>Team notified (LEN, CHU, JKA, MNA, MFR)</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2 id="infrastructure">3. Infrastructure &amp; Connections</h2>
+
+<h3>QlikView VM</h3>
+<table>
+<tr><th>Parameter</th><th>Value</th></tr>
+<tr><td>IP</td><td><code>10.148.128.227</code></td></tr>
+<tr><td>User</td><td><code>PICANOVA\bi.admin</code></td></tr>
+<tr><td>Password</td><td><code>!1Admin</code></td></tr>
+<tr><td>Backup path</td><td><code>C:\QlikviewData\Applikationen\finance\Data\Archived</code></td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="step0">4. Step 0: Data Quality Checks</h2>
+
+<p>Before starting the load, verify that the upstream data sources have complete data for the month being loaded. Run these three checks in the database:</p>
+
+<h3>i) Refunds</h3>
+<p>Verify that refund data is current and includes the full previous month:</p>
+<pre><code>SELECT refund_date, *
+FROM dw.refund_items_fact
+ORDER BY refund_date DESC
+LIMIT 100;</code></pre>
+<p>Check that <code>refund_date</code> values extend through the end of the previous month. If the latest refund dates are more than a few days old, the refund pipeline may be stalled.</p>
+
+<h3>ii) Groupon Vouchers</h3>
+<p>Verify the Groupon voucher staging data is fresh:</p>
+<pre><code>SELECT dw_timestamp, *
+FROM asa.b2b_grouponvouchers
+ORDER BY dw_timestamp DESC
+LIMIT 100;</code></pre>
+<p>Then check the aggregated Groupon revenue by month and source to spot any gaps:</p>
+<pre><code>SELECT
+    source,
+    TO_CHAR(redeemed_date, 'YYYY-MM') AS year_month,
+    SUM(netreveur) AS total_netreveur
+FROM dw.groupon_vouchers_fact
+GROUP BY TO_CHAR(redeemed_date, 'YYYY-MM'), source
+ORDER BY year_month DESC;</code></pre>
+<p>The previous month should appear with reasonable revenue figures. Compare against prior months for sanity.</p>
+
+<h3>iii) Sendmoments</h3>
+<p>Verify Sendmoments revenue data is loaded for the target month:</p>
+<pre><code>SELECT *
+FROM poc_landing.sendmoments_revenue
+ORDER BY created_date DESC
+LIMIT 100;</code></pre>
+<p>Confirm that <code>created_date</code> values cover the full previous month.</p>
+
+<!-- ============================================================ -->
+<h2 id="step1">5. Step 1: Create Tables &amp; Procedures (Database)</h2>
+
+<p>Each month, new versioned tables and stored procedures are created in the database. They are <strong>copies of the previous month's objects</strong> with updated date references.</p>
+
+<h3>i) Copy Previous DDL</h3>
+<p>Open the DDL of the previous month's stored procedures and tables. Use them as templates for the new month.</p>
+
+<h3>ii) Create New Stored Procedures</h3>
+<p>Two procedures are created each month:</p>
+
+<table>
+<tr><th>Procedure</th><th>Naming Convention</th><th>Example</th></tr>
+<tr><td>Monthly Finance</td><td><code>dw.sp_monthlyfinance[YYYYMMDD]</code></td><td><code>dw.sp_monthlyfinance20260305</code></td></tr>
+<tr><td>Monthly Finance All Sales</td><td><code>dw.sp_monthlyfinanceallsales[YYYYMMDD]</code></td><td><code>dw.sp_monthlyfinanceallsales20260305</code></td></tr>
+</table>
+
+<p>The <code>[YYYYMMDD]</code> date suffix is the <strong>date when the procedure is created</strong> (not the reporting month).</p>
+
+<div class="warning">
+<strong>Three places to update</strong> inside each procedure:
+<ol>
+<li>The <code>CREATE PROCEDURE</code> statement name</li>
+<li>The <code>TRUNCATE TABLE</code> target table name</li>
+<li>The <code>INSERT INTO</code> target table name</li>
+</ol>
+All three must reference the same new date suffix. Missing one will cause the procedure to write to last month's table.
+</div>
+
+<h3>iii) Create New Tables</h3>
+<p>Three tables are created each month:</p>
+
+<table>
+<tr><th>Table</th><th>Naming Convention</th><th>Date Rule</th><th>Example</th></tr>
+<tr><td>Monthly Finance</td><td><code>dw.monthly_finance_[YYYYMMDD]</code></td><td>Date when created</td><td><code>dw.monthly_finance_20260305</code></td></tr>
+<tr><td>Monthly Finance All Sales</td><td><code>dw.monthly_finance_allsales[YYYYMMDD]</code></td><td>Date when created</td><td><code>dw.monthly_finance_allsales20260305</code></td></tr>
+<tr><td>MRR Snapshot</td><td><code>dw.mrrsnapshot[YYYYMMDD]</code></td><td><strong>Last day of the month being loaded!</strong></td><td><code>dw.mrrsnapshot20260228</code></td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2 id="step2">6. Step 2: Call Procedures &amp; Build the Snapshot (Database)</h2>
+
+<p>This is the core data processing step. It runs the two finance procedures and then builds the MRR snapshot by combining historical data with new data.</p>
+
+<h3>i) Call the Monthly Finance Procedure</h3>
+<pre><code>CALL dw.sp_monthlyfinance20260327();</code></pre>
+<p>This populates <code>dw.monthly_finance_20260327</code> with the current month's order/revenue data.</p>
+
+<h3>ii) Call the Monthly Finance All Sales Procedure</h3>
+<pre><code>CALL dw.sp_monthlyfinanceallsales20260327();</code></pre>
+<p>This populates <code>dw.monthly_finance_allsales20260327</code> with a broader sales dataset (used by the QlikView &ldquo;MRR Full&rdquo; tab).</p>
+
+<h3>iii) Build the MRR Snapshot</h3>
+<p>The snapshot is built by combining the <strong>previous snapshot</strong> (historical data) with <strong>new orders only</strong> from the current <code>monthly_finance</code> table. This is a <code>UNION ALL</code> with a <code>LEFT JOIN</code> deduplication pattern.</p>
+
+<h4>Truncate the new snapshot table first:</h4>
+<pre><code>TRUNCATE dw.mrrsnapshot20260331;  -- new SNAPSHOT</code></pre>
+
+<h4>Insert the combined data:</h4>
+<pre><code>INSERT INTO dw.mrrsnapshot20260331  -- new SNAPSHOT
+SELECT * FROM (
+    -- Part A: All historical data from the PREVIOUS snapshot
+    SELECT dw_id, serviceprovider, paymentmethod, ordernumber,
+           invoicenumber, createddate, archiveddate, status,
+           shipcountry, province, shop, company,
+           invoicecompany, invoicevatid, invoiceaddress,
+           invoicecity, invoicezipcode, invoicecountry,
+           articlenumber, sku, NULL AS productionsite,
+           couponcode, coupondescription, coupongroupid,
+           shippingprovider, vatrate, vatamount1local,
+           vatamount1eur, vatrate1name, vatamount2local,
+           vatamount2eur, vatrate2name, currencycode, quantity,
+           grosssourcerevlocal, grosssourcereveur,
+           netsourcerevlocal, netsourcereveur, datasource,
+           grossgrpnreveur, grossgrpnrevlocal,
+           netgrpnreveur, netgrpnrevlocal,
+           grpncosteur, grpnfixedcosteur, grpnearneur,
+           dw_batch, dw_sourcecode, dw_timestamp
+    FROM dw.mrrsnapshot20260228  -- old SNAPSHOT
+    WHERE CreatedDate > '2019-12-31'
+
+    UNION ALL
+
+    -- Part B: NEW orders only (not in previous snapshot)
+    SELECT mfnew.dw_id, mfnew.serviceprovider, ...
+    FROM dw.monthly_finance_20260327 mfnew  -- new NORMAL TABLE
+    LEFT JOIN dw.mrrsnapshot20260228 mfold   -- old SNAPSHOT
+        ON mfold.ordernumber = mfnew.ordernumber
+       AND mfold.DataSource  = mfnew.DataSource
+    WHERE mfold.ordernumber IS NULL          -- only NEW orders
+      AND mfnew.CreatedDate  > '2019-12-31'
+      AND mfnew.ArchivedDate >= '2026-03-01' -- first day of load month
+) aa
+WHERE aa.ArchivedDate > '2019-12-31'
+  AND aa.ArchivedDate < '2026-04-01';        -- first day of NEXT month</code></pre>
+
+<h3>Deduplication Logic</h3>
+<p>The <code>LEFT JOIN</code> on <code>ordernumber + DataSource</code> with <code>WHERE mfold.ordernumber IS NULL</code> ensures only orders that do NOT already exist in the previous snapshot are inserted. This prevents double-counting of historical orders. Both columns must match for an order to be considered a duplicate &mdash; the same <code>ordernumber</code> can appear from different data sources (e.g., Groupon vs. direct).</p>
+
+<h4>Date references to update (4 places):</h4>
+<table>
+<tr><th>#</th><th>What</th><th>Value</th><th>Example (loading March)</th></tr>
+<tr><td>1</td><td><code>INSERT INTO</code> / <code>TRUNCATE</code> target</td><td>New snapshot table name</td><td><code>dw.mrrsnapshot20260331</code></td></tr>
+<tr><td>2</td><td><code>FROM</code> old snapshot (both parts A and the JOIN)</td><td>Previous snapshot table name</td><td><code>dw.mrrsnapshot20260228</code></td></tr>
+<tr><td>3</td><td><code>ArchivedDate >=</code> in Part B</td><td>First day of load month</td><td><code>'2026-03-01'</code></td></tr>
+<tr><td>4</td><td><code>ArchivedDate <</code> in outer WHERE</td><td>First day of NEXT month</td><td><code>'2026-04-01'</code></td></tr>
+</table>
+
+<h3>iv) Add Sendmoments Data to the Snapshot</h3>
+<p>After the main snapshot is built, Sendmoments revenue data is inserted separately from <code>poc_landing.sendmoments_revenue</code>. See Section 11 for the full details.</p>
+
+<!-- ============================================================ -->
+<h2 id="step3">7. Step 3: Refresh QlikView Reports (Virtual Machine)</h2>
+
+<p>QlikView reports are refreshed on a dedicated virtual machine.</p>
+
+<h3>Login to the QlikView VM</h3>
+<table>
+<tr><th>Parameter</th><th>Value</th></tr>
+<tr><td>IP</td><td><code>10.148.128.227</code></td></tr>
+<tr><td>User</td><td><code>PICANOVA\bi.admin</code></td></tr>
+<tr><td>Password</td><td><code>!1Admin</code></td></tr>
+</table>
+
+<h3>i) Update &amp; Refresh the QVD Loader</h3>
+<ol>
+<li>Open <strong>MonthlyRevenueReporting PP QVD</strong>.</li>
+<li>Click <strong>Edit Script</strong>.</li>
+<li>In the <strong>MRR</strong> tab:
+    <ul>
+    <li>Change the source from the old snapshot to the new <code>mrrsnapshot</code> table.</li>
+    <li>Update the date filters to include the latest month.</li>
+    </ul>
+</li>
+<li>In the <strong>MRR Full</strong> tab:
+    <ul>
+    <li>Change the source from the old <code>monthly_finance_allsales</code> table to the new one.</li>
+    </ul>
+</li>
+<li>Click <strong>Save</strong>.</li>
+<li>Close the script editor and press <strong>Refresh</strong>.</li>
+</ol>
+
+<div class="danger">
+<strong>Refresh time:</strong> The QlikView refresh can take <strong>up to 1.5 hours</strong>. Do not close the application during refresh.
+</div>
+
+<h3>ii) Validate &amp; Backup the Report</h3>
+<ol>
+<li>Open <strong>MonthlyRevenueReporting</strong> (the main report, not the QVD loader).</li>
+<li><strong>Export the summary table to Excel</strong> (before refreshing).</li>
+<li>Refresh the report.</li>
+<li><strong>Export the summary table again</strong> (after refreshing).</li>
+<li>Compare both exports: <strong>all historical data must be exactly the same</strong>. Only the new month should be added.</li>
+<li>If validation passes: <strong>Save &amp; Close</strong>.</li>
+<li>Save a backup of the Semantic Model to:<br>
+    <code>C:\QlikviewData\Applikationen\finance\Data\Archived</code></li>
+</ol>
+
+<div class="warning">
+<strong>Historical data must be 100% the same and unchanged.</strong>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="step4">8. Update Views &amp; Refresh Power BI</h2>
+
+<p>After the snapshot is built, the Power BI views in the database need to be pointed to the new data.</p>
+
+<h3>Update the Views in the Database</h3>
+<p>Change the source to the new snapshot table in these two views:</p>
+<ol>
+<li><code>dw.v_mrr_ppqvd2</code></li>
+<li><code>dw.v_mrr_wallets_3</code></li>
+</ol>
+<p>These views are what Power BI reads from. Update them to reference the new <code>dw.mrrsnapshot[YYYYMMDD]</code> table.</p>
+
+<h3>Refresh the Power BI Report</h3>
+<ol>
+<li>Open the MRR Power BI report.</li>
+<li>Refresh all data connections.</li>
+<li>Wait for refresh to complete.</li>
+<li>Save the report (<kbd>Ctrl+S</kbd>).</li>
+</ol>
+
+<h3>Data Reconciliation (Power BI)</h3>
+<p>After refresh, verify data integrity in Power BI the same way as QlikView:</p>
+<ul>
+<li>All historical monthly amounts must remain <strong>unchanged</strong>.</li>
+<li>Only the newly loaded month should appear as an addition.</li>
+<li>Cross-reference against the QlikView export for parity.</li>
+</ul>
+
+<h3>Backup</h3>
+<ol>
+<li>Copy the MRR Power BI file to the archive folder.</li>
+<li>Rename the archived copy with the current date.</li>
+</ol>
+
+<div style="height:120mm;"></div>
+<hr>
+
+<!-- ============================================================ -->
+<h2 id="technical-reference" style="font-size:22pt; border-bottom:2px solid #1a1a1a;">Technical Reference</h2>
+
+<h2 id="snapshot-logic">10. Snapshot Logic &mdash; Deep Dive</h2>
+
+<p>Understanding the snapshot build pattern is critical for debugging issues.</p>
+
+<h3>How Snapshots Accumulate</h3>
+<p>Each month's snapshot is a <strong>superset</strong> of all previous snapshots plus new orders. The chain looks like:</p>
+<pre><code>mrrsnapshot20260131 = all orders through January
+mrrsnapshot20260228 = mrrsnapshot20260131 + new Feb orders
+mrrsnapshot20260331 = mrrsnapshot20260228 + new Mar orders
+...</code></pre>
+
+<p>The snapshot is <strong>append-only by design</strong>. Once an order enters a snapshot, it stays in all future snapshots. The deduplication <code>LEFT JOIN</code> ensures no double-counting.</p>
+
+<h3>Date Filters Explained</h3>
+<table>
+<tr><th>Filter</th><th>Purpose</th></tr>
+<tr><td><code>CreatedDate > '2019-12-31'</code></td><td>Excludes legacy data before 2020 (applies to both historical and new parts)</td></tr>
+<tr><td><code>ArchivedDate >= '2026-03-01'</code></td><td>Only include new orders archived in the target month (Part B only)</td></tr>
+<tr><td><code>ArchivedDate < '2026-04-01'</code></td><td>Exclude orders archived in future months (outer WHERE, applies to all)</td></tr>
+</table>
+
+<h3>Archive Date Filter Change</h3>
+<p>JEN and CHU requested including <strong>all created orders</strong>, not just archived ones. The archive date filter in the outer WHERE clause may be adjusted or removed in future iterations. If you are instructed to remove this filter, ensure consistency &mdash; remove it from both the main snapshot query AND the Sendmoments insert.</p>
+
+<!-- ============================================================ -->
+<h2 id="sendmoments">11. Sendmoments Data Integration</h2>
+
+<p>Sendmoments revenue data is inserted into the snapshot separately because it comes from a different source (<code>poc_landing.sendmoments_revenue</code>) and has a different column structure. This is the last step of the snapshot build &mdash; the Sendmoments data is unioned into the snapshot by inserting it at the end of Step 2.</p>
+
+<h3>Insert Query</h3>
+<pre><code>INSERT INTO dw.mrrsnapshot20260331 (  -- new SNAPSHOT
+    dw_id, serviceprovider, paymentmethod, ordernumber,
+    invoicenumber, createddate, archiveddate, status,
+    shipcountry, province, shop, company,
+    invoicecompany, invoicevatid, invoiceaddress,
+    invoicecity, invoicezipcode, invoicecountry,
+    articlenumber, sku, productionsite,
+    couponcode, coupondescription, coupongroupid,
+    shippingprovider, vatrate, vatamount1local,
+    vatamount1eur, vatrate1name, vatamount2local,
+    vatamount2eur, vatrate2name, currencycode, quantity,
+    grosssourcerevlocal, grosssourcereveur,
+    netsourcerevlocal, netsourcereveur, datasource,
+    grossgrpnreveur, grossgrpnrevlocal,
+    netgrpnreveur, netgrpnrevlocal,
+    grpncosteur, grpnfixedcosteur, grpnearneur,
+    dw_batch, dw_sourcecode, dw_timestamp
+)
+SELECT
+    sm.id, sm.service_provider, sm.payment_method,
+    sm.order_number, sm.invoice_number,
+    sm.created_date, sm.archived_date, sm.status,
+    sm.ship_country, sm.province, sm.shop, sm.company,
+    sm.invoice_company, sm.invoice_vat_id,
+    sm.invoice_address, sm.invoice_city,
+    sm.invoice_zip_code, sm.invoice_country,
+    sm.article_number, sm.sku, sm.production_site,
+    sm.coupon_code, sm.coupon_description,
+    sm.coupon_group_id, sm.shipping_provider,
+    sm.vat_rate, sm.vat_amount,
+    NULL, NULL, NULL, NULL, NULL,  -- vatamount1eur..vatrate2name
+    sm.currency_code, sm.quantity,
+    sm.gross_rev_local, sm.gross_rev_eur,
+    sm.net_rev_local, sm.net_rev_eur,
+    sm.datasource,
+    NULL, NULL, NULL, NULL,        -- grpn columns
+    NULL, NULL, NULL,              -- grpn cost columns
+    NULL, NULL, NULL               -- dw_batch, dw_sourcecode, dw_timestamp
+FROM poc_landing.sendmoments_revenue sm
+WHERE sm.archived_date >= '2026-03-01'
+  AND sm.archived_date <= '2026-04-01';</code></pre>
+
+<h3>Column Mapping Notes</h3>
+<p>The Sendmoments source table uses <strong>snake_case</strong> column names while the snapshot uses <strong>camelCase/lowercase</strong>. The column mapping in the INSERT handles this translation. Key differences:</p>
+
+<table>
+<tr><th>Sendmoments Column</th><th>Snapshot Column</th><th>Notes</th></tr>
+<tr><td><code>sm.id</code></td><td><code>dw_id</code></td><td>&mdash;</td></tr>
+<tr><td><code>sm.vat_amount</code></td><td><code>vatamount1local</code></td><td>Only local VAT; EUR and rate2 fields are NULL</td></tr>
+<tr><td>(not available)</td><td><code>grossgrpnreveur</code> etc.</td><td>All Groupon-specific columns are NULL for Sendmoments</td></tr>
+<tr><td>(not available)</td><td><code>dw_batch</code>, <code>dw_sourcecode</code>, <code>dw_timestamp</code></td><td>All NULL &mdash; Sendmoments has no DW metadata</td></tr>
+</table>
+
+<h3>Date Filters</h3>
+<p>The Sendmoments insert uses the same date range as the main snapshot: <code>archived_date >= first day of month</code> AND <code>archived_date &lt;= first day of next month</code>.</p>
+
+<div class="warning">
+<strong>Boundary condition:</strong> Note the use of <code>&lt;=</code> (less-than-or-equal) for the upper date bound in the Sendmoments insert vs. <code>&lt;</code> (less-than) in the main snapshot query. This means orders archived exactly on the first day of the next month will be included in Sendmoments but excluded from the main snapshot. Verify this is intentional for your month&rsquo;s load.
+</div>
+
+<!-- ============================================================ -->
+<h2 id="powerbi-structure">12. Power BI Report Structure</h2>
+
+<h3>Report Tabs</h3>
+<table>
+<tr><th>Tab / Page</th><th>Purpose</th><th>Primary User</th></tr>
+<tr><td>Monthly Revenue Report</td><td>Near 1:1 recreation of QlikView layout. Summary at top, detailed transactions below. Scroll right for additional columns.</td><td>All stakeholders</td></tr>
+<tr><td>Picanova Inc.</td><td>Revenue breakdown by currency, ship country, net/VAT/gross USD, main channel sales &amp; refunds.</td><td>MFR</td></tr>
+<tr><td>Canada</td><td>Canada-specific data. Pending filter fix to show only Canadian transactions (currently includes US, ~10k rows instead of ~3k).</td><td>MFR</td></tr>
+</table>
+
+<h3>Key Filters</h3>
+<ul>
+<li><strong>Entity</strong>: e.g., Picanova Inc. (top-left selector)</li>
+<li><strong>Archive date</strong>: select the reporting month</li>
+<li><strong>Reset filters</strong>: circular arrow icon in top-right</li>
+<li><strong>Shop filter</strong>: watch for erroneously pre-selected values</li>
+</ul>
+
+<h3>Stakeholder Notes (MFR)</h3>
+<ul>
+<li>MFR previously received the MRR database via a <strong>Finance folder upload</strong> each month. This upload has stopped.</li>
+<li>The Picanova Inc. tab was created by Laura before she left but MFR was never onboarded to it.</li>
+<li><strong>Known discrepancy</strong>: Left summary table uses <code>revenue source usdn</code> measure; right detail table uses a different measure. Needs harmonization.</li>
+<li>Gross USD should = Net USD + VAT USD &mdash; confirmed working for refunds line.</li>
+</ul>
+
+<h3>UI Improvements (Requested by CHU)</h3>
+<ul>
+<li>Expand slicer filters so all selected months are visible without scrolling.</li>
+<li>Make filter text smaller / filters physically larger.</li>
+<li>Goal: screenshots should show which filters are selected without requiring slicer scrolling.</li>
+</ul>
+
+<hr>
+
+<p style="text-align:center; color:#999; font-size:8.5pt; margin-top:10mm;">
+Source: SQL runbook (last updated 2026-02) + Fireflies transcripts (2026-05-05 &times;2).<br>
+Document created 2026-05-08 by JCE. Database: <code>bi_stage_dev</code>.
+</p>
+
+</div>
+</body>
+</html>
