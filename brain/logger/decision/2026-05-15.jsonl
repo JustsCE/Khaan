@@ -132,3 +132,22 @@
 {"event": "decision_dispatch", "ts": "2026-05-15T14:06:18Z", "query_hash": "14995709b7606b0e", "sources_hash": "102980ae294be25e:2b189b1bb96fa003", "model": "claude-cli", "system_prompt_hash": "662dd57fc909e9ff"}
 {"event": "subagent_complete", "ts": "2026-05-15T14:07:40Z", "query_hash": "14995709b7606b0e", "subagent_id": "decision-0", "status": "returned", "latency_ms": 82102}
 {"event": "handoff", "ts": "2026-05-15T14:07:40Z", "query_hash": "14995709b7606b0e", "payload_chars": 8449, "all_5_present": true}
+{"event": "decision_dispatch", "ts": "2026-05-15T14:20:07Z", "query_hash": "324f163cd1103c0c", "sources_hash": "b9ae0c6ec19d36aa:20511dd5a8c24130", "model": "claude-cli", "system_prompt_hash": "662dd57fc909e9ff"}
+{"event": "subagent_complete", "ts": "2026-05-15T14:21:31Z", "query_hash": "324f163cd1103c0c", "subagent_id": "decision-0", "status": "returned", "latency_ms": 84384}
+{"event": "handoff", "ts": "2026-05-15T14:21:31Z", "query_hash": "324f163cd1103c0c", "payload_chars": 9137, "all_5_present": true}
+{"event": "decision_dispatch", "ts": "2026-05-15T14:23:18Z", "query_hash": "1a43163ea384f582", "sources_hash": "c08eb1a87c99a446:d3dd6f7247918f10", "model": "claude-cli", "system_prompt_hash": "662dd57fc909e9ff"}
+{"event": "subagent_complete", "ts": "2026-05-15T14:24:25Z", "query_hash": "1a43163ea384f582", "subagent_id": "decision-0", "status": "returned", "latency_ms": 66095}
+{"event": "handoff", "ts": "2026-05-15T14:24:25Z", "query_hash": "1a43163ea384f582", "payload_chars": 7448, "all_5_present": true}
+{"event": "decision_dispatch", "ts": "2026-05-15T14:27:58Z", "query_hash": "961f7663ba0b2386", "sources_hash": "a8c4d17b5c7a83c9:c22bb8e503573b3b", "model": "claude-cli", "system_prompt_hash": "662dd57fc909e9ff"}
+{"event": "subagent_complete", "ts": "2026-05-15T14:29:09Z", "query_hash": "961f7663ba0b2386", "subagent_id": "decision-0", "status": "returned", "latency_ms": 70815}
+{"event": "handoff", "ts": "2026-05-15T14:29:09Z", "query_hash": "961f7663ba0b2386", "payload_chars": 9432, "all_5_present": true}
+{"event": "decision_dispatch", "ts": "2026-05-15T14:34:16Z", "query_hash": "f480aa73e753260a", "sources_hash": "f9e450ee96d87507:44b748571f0f2352", "model": "claude-cli", "system_prompt_hash": "662dd57fc909e9ff"}
+{"event": "subagent_complete", "ts": "2026-05-15T14:35:27Z", "query_hash": "f480aa73e753260a", "subagent_id": "decision-0", "status": "returned", "latency_ms": 71722}
+{"event": "handoff", "ts": "2026-05-15T14:35:27Z", "query_hash": "f480aa73e753260a", "payload_chars": 9043, "all_5_present": true}
+{"event": "decision_dispatch", "ts": "2026-05-15T14:39:04Z", "query_hash": "c3175938cacdb6ab", "sources_hash": "cc1198844e98dfb5:5cad83e310a603c0", "model": "claude-cli", "system_prompt_hash": "662dd57fc909e9ff"}
+{"event": "subagent_complete", "ts": "2026-05-15T14:40:19Z", "query_hash": "c3175938cacdb6ab", "subagent_id": "decision-0", "status": "returned", "latency_ms": 75589}
+{"event": "handoff", "ts": "2026-05-15T14:40:19Z", "query_hash": "c3175938cacdb6ab", "payload_chars": 9832, "all_5_present": true}
+{"event": "decision_dispatch", "ts": "2026-05-15T14:44:17Z", "query_hash": "2abbf096dd3a4cac", "sources_hash": "01e10de24c52db18:991543e412f24b81", "model": "claude-cli", "system_prompt_hash": "662dd57fc909e9ff"}
+{"event": "decision_dispatch", "ts": "2026-05-15T14:44:57Z", "query_hash": "76206c11a22df09a", "sources_hash": "8d6ea356dcf4998f:7705502a2a856a3e", "model": "claude-cli", "system_prompt_hash": "662dd57fc909e9ff"}
+{"event": "subagent_complete", "ts": "2026-05-15T14:46:18Z", "query_hash": "76206c11a22df09a", "subagent_id": "decision-0", "status": "returned", "latency_ms": 81323}
+{"event": "handoff", "ts": "2026-05-15T14:46:18Z", "query_hash": "76206c11a22df09a", "payload_chars": 8247, "all_5_present": true}
