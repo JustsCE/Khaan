@@ -1,2 +1,27 @@
 {"ts": "2026-05-15T04:53:12Z", "event": "daemon_start", "pid": 618047}
 {"ts": "2026-05-15T05:01:06Z", "event": "daemon_start", "pid": 618750}
+{"ts": "2026-05-15T05:05:43Z", "event": "daemon_start", "pid": 619038}
+{"ts": "2026-05-15T05:05:43Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-15T05:06:13Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-15T05:06:43Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-15T05:07:13Z", "event": "iteration_start", "source": "self", "prompt": "Iterate. Find what matters most. Move on it. If you need to communicate with Justs, use COMS at https://goodhealth.lv/playground \u2014 POST to /api/chat with role=khaan. During always-on time, COMS is the"}
+{"ts": "2026-05-15T05:32:12Z", "event": "iteration_complete", "source": "self", "latency_ms": 1498762, "exit_code": 0, "stdout_chars": 812, "stderr_chars": 0}
+{"ts": "2026-05-15T05:32:12Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-15T05:32:42Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-15T05:33:12Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-15T05:33:42Z", "event": "iteration_start", "source": "self", "prompt": "Iterate. Find what matters most. Move on it. If you need to communicate with Justs, use COMS at https://goodhealth.lv/playground \u2014 POST to /api/chat with role=khaan. During always-on time, COMS is the"}
+{"ts": "2026-05-15T05:54:12Z", "event": "iteration_complete", "source": "self", "latency_ms": 1229595, "exit_code": 0, "stdout_chars": 1207, "stderr_chars": 0}
+{"ts": "2026-05-15T05:54:12Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-15T05:54:42Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-15T05:55:12Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-15T05:55:42Z", "event": "iteration_start", "source": "self", "prompt": "Iterate. Find what matters most. Move on it. If you need to communicate with Justs, use COMS at https://goodhealth.lv/playground \u2014 POST to /api/chat with role=khaan. During always-on time, COMS is the"}
+{"ts": "2026-05-15T06:03:16Z", "event": "iteration_complete", "source": "self", "latency_ms": 454219, "exit_code": 0, "stdout_chars": 1, "stderr_chars": 0}
+{"ts": "2026-05-15T06:03:16Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-15T06:03:46Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-15T06:04:16Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-15T06:04:46Z", "event": "iteration_skipped", "reason": "decision_in_flight"}
+{"ts": "2026-05-15T06:05:01Z", "event": "iteration_skipped", "reason": "decision_in_flight"}
+{"ts": "2026-05-15T06:05:16Z", "event": "iteration_skipped", "reason": "decision_in_flight"}
+{"ts": "2026-05-15T06:05:31Z", "event": "iteration_skipped", "reason": "decision_in_flight"}
+{"ts": "2026-05-15T06:05:46Z", "event": "iteration_skipped", "reason": "decision_in_flight"}
+{"ts": "2026-05-15T06:06:01Z", "event": "iteration_skipped", "reason": "live_session_active"}
