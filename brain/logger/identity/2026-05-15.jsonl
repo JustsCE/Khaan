@@ -113,3 +113,24 @@
 {"event": "relay_complete", "ts": "2026-05-15T14:44:17Z", "session_id": "", "query_hash": "2abbf096dd3a4cac", "latency_ms": 27778, "entries_picked": 65}
 {"event": "relay_start", "ts": "2026-05-15T14:44:35Z", "session_id": "", "query_hash": "76206c11a22df09a"}
 {"event": "relay_complete", "ts": "2026-05-15T14:44:57Z", "session_id": "", "query_hash": "76206c11a22df09a", "latency_ms": 21462, "entries_picked": 60}
+{"event": "relay_start", "ts": "2026-05-15T14:50:14Z", "session_id": "", "query_hash": "65ee0aa218bbdc48"}
+{"event": "relay_complete", "ts": "2026-05-15T14:50:36Z", "session_id": "", "query_hash": "65ee0aa218bbdc48", "latency_ms": 21803, "entries_picked": 54}
+{"event": "relay_start", "ts": "2026-05-15T15:02:59Z", "session_id": "", "query_hash": "f5d537242f670312"}
+{"event": "relay_failed", "ts": "2026-05-15T15:03:25Z", "session_id": "", "query_hash": "f5d537242f670312", "attempt": 1, "reason": "no JSON object in result: One area worth investing in is structured data literacy across teams \u2014 not just for analysts, but for people who consume reports and make decisions from them. Too often, dashboards get built to satisf"}
+{"event": "relay_complete", "ts": "2026-05-15T15:04:02Z", "session_id": "", "query_hash": "f5d537242f670312", "latency_ms": 63399, "entries_picked": 52}
+{"event": "relay_start", "ts": "2026-05-15T16:07:54Z", "session_id": "", "query_hash": "87f9ebe9e2bde4f8"}
+{"event": "relay_complete", "ts": "2026-05-15T16:08:13Z", "session_id": "", "query_hash": "87f9ebe9e2bde4f8", "latency_ms": 19424, "entries_picked": 53}
+{"event": "relay_start", "ts": "2026-05-15T16:26:33Z", "session_id": "", "query_hash": "3d42c49b3a5bbbb7"}
+{"event": "identity_timeout", "ts": "2026-05-15T16:28:33Z", "skill": "relay", "latency_ms": 120081}
+{"event": "relay_start", "ts": "2026-05-15T16:29:30Z", "session_id": "", "query_hash": "474a18afcbc6bb0d"}
+{"event": "relay_complete", "ts": "2026-05-15T16:29:47Z", "session_id": "", "query_hash": "474a18afcbc6bb0d", "latency_ms": 16629, "entries_picked": 48}
+{"event": "relay_start", "ts": "2026-05-15T16:31:31Z", "session_id": "", "query_hash": "0de54b3b8c514b26"}
+{"event": "relay_complete", "ts": "2026-05-15T16:31:52Z", "session_id": "", "query_hash": "0de54b3b8c514b26", "latency_ms": 20767, "entries_picked": 52}
+{"event": "relay_start", "ts": "2026-05-15T16:34:32Z", "session_id": "", "query_hash": "87bb2b7efaac8dee"}
+{"event": "relay_complete", "ts": "2026-05-15T16:34:52Z", "session_id": "", "query_hash": "87bb2b7efaac8dee", "latency_ms": 20276, "entries_picked": 56}
+{"event": "relay_start", "ts": "2026-05-15T16:38:36Z", "session_id": "", "query_hash": "29a6e4ecf7679658"}
+{"event": "relay_complete", "ts": "2026-05-15T16:38:54Z", "session_id": "", "query_hash": "29a6e4ecf7679658", "latency_ms": 18377, "entries_picked": 52}
+{"event": "relay_start", "ts": "2026-05-15T16:42:10Z", "session_id": "", "query_hash": "428df05792efdf0b"}
+{"event": "relay_complete", "ts": "2026-05-15T16:42:40Z", "session_id": "", "query_hash": "428df05792efdf0b", "latency_ms": 29740, "entries_picked": 50}
+{"event": "relay_start", "ts": "2026-05-15T17:14:04Z", "session_id": "", "query_hash": "a432120b8b06c1a3"}
+{"event": "relay_complete", "ts": "2026-05-15T17:14:23Z", "session_id": "", "query_hash": "a432120b8b06c1a3", "latency_ms": 19379, "entries_picked": 52}
