@@ -368,7 +368,7 @@ def iteration():
 
     try:
         r = subprocess.run(
-            ["claude", "-p", "--model", "opus"],
+            ["claude", "-p", "--no-session-persistence", "--model", "opus"],
             input=prompt, capture_output=True, text=True, env=env
         )
         log_event("iteration_complete", {
