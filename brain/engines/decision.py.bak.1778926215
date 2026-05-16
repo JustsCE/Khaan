@@ -126,7 +126,6 @@ def dispatch(user_message):
     st["last_decision_start_ts"] = time.time()
     write_state(st)
 
-    result = None
     try:
         # spawn Recall and Identity Relay in parallel
         from engines.recall_engine.recall import dispatch as recall_dispatch
@@ -181,6 +180,7 @@ def dispatch(user_message):
             f"The identity source tag is: active-identity.json@{identity_h}\n"
         )
 
+        result = None
         for attempt in range(3):
             t0 = time.time()
             try:

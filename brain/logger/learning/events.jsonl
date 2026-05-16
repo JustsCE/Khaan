@@ -1612,3 +1612,25 @@
 {"event": "index_rebuild", "ts": "2026-05-16T09:05:07Z", "terms_count": 9427, "entries_count": 1074}
 {"event": "cycle_ledger", "cycle_id": 55, "phases": [{"phase": "ingest", "executed": true, "detail": "6 observations across 3 categories"}, {"phase": "hippocampus", "executed": true, "detail": "6 entries"}, {"phase": "consolidate", "executed": true, "detail": "0 reinforced, 6 promoted, 0 discarded"}, {"phase": "index_rebuild", "executed": true, "detail": "9427 terms, 1074 entries"}, {"phase": "synthesis", "executed": true, "detail": "L2 created 0, L3 created 0, sources archived 0"}, {"phase": "eval", "executed": false, "detail": "not due"}, {"phase": "hygiene", "executed": false, "detail": "not due"}], "ts": "2026-05-16T09:05:07Z"}
 {"event": "cycle_commit", "cycle_id": 55, "ts": "2026-05-16T09:05:07Z"}
+{"event": "cycle_git", "cycle_id": 55, "status": "ok", "ts": "2026-05-16T09:05:09Z"}
+{"event": "cycle_start", "ts": "2026-05-16T09:05:48Z", "cycle_id": 56, "counter_at_start": 691}
+{"event": "cycle_failed", "ts": "2026-05-16T09:05:48Z", "cycle_id": 56, "attempt": 1, "reason": "invariant: ingest produced 0 observations \u2014 cycle aborted"}
+{"event": "cycle_start", "ts": "2026-05-16T09:05:48Z", "cycle_id": 56, "counter_at_start": 691}
+{"event": "cycle_failed", "ts": "2026-05-16T09:05:48Z", "cycle_id": 56, "attempt": 2, "reason": "invariant: ingest produced 0 observations \u2014 cycle aborted"}
+{"event": "cycle_start", "ts": "2026-05-16T09:05:48Z", "cycle_id": 56, "counter_at_start": 691}
+{"event": "cycle_failed", "ts": "2026-05-16T09:05:48Z", "cycle_id": 56, "attempt": 3, "reason": "invariant: ingest produced 0 observations \u2014 cycle aborted"}
+{"event": "cycle_start", "ts": "2026-05-16T09:09:35Z", "cycle_id": 56, "counter_at_start": 693}
+{"event": "cycle_failed", "ts": "2026-05-16T09:09:35Z", "cycle_id": 56, "attempt": 1, "reason": "invariant: ingest produced 0 observations \u2014 cycle aborted"}
+{"event": "cycle_start", "ts": "2026-05-16T09:10:03Z", "cycle_id": 56, "counter_at_start": 693}
+{"event": "cycle_failed", "ts": "2026-05-16T09:10:04Z", "cycle_id": 56, "attempt": 1, "reason": "invariant: ingest produced 0 observations \u2014 cycle aborted"}
+{"event": "cycle_start", "ts": "2026-05-16T09:11:08Z", "cycle_id": 56, "counter_at_start": 693}
+{"event": "ingest_error", "error": "no JSON object in result: I'm here. What do you need?", "transcript_len": 18, "turn_count": 1}
+{"event": "cycle_failed", "ts": "2026-05-16T09:11:17Z", "cycle_id": 56, "attempt": 1, "reason": "invariant: ingest produced 0 observations \u2014 cycle aborted"}
+{"event": "cycle_start", "ts": "2026-05-16T10:09:44Z", "cycle_id": 56, "counter_at_start": 701}
+{"event": "ingest_error", "error": "Expecting value: line 1 column 2 (char 1)", "transcript_len": 16777, "turn_count": 9}
+{"event": "cycle_failed", "ts": "2026-05-16T10:11:14Z", "cycle_id": 56, "attempt": 1, "reason": "invariant: ingest produced 0 observations \u2014 cycle aborted"}
+{"event": "cycle_start", "ts": "2026-05-16T10:22:01Z", "cycle_id": 56, "counter_at_start": 702}
+{"event": "consolidation_summary", "ts": "2026-05-16T10:22:38Z", "reinforced": 1, "promoted": 9, "discarded": 0}
+{"event": "index_rebuild", "ts": "2026-05-16T10:22:39Z", "terms_count": 9437, "entries_count": 1083}
+{"event": "cycle_ledger", "cycle_id": 56, "phases": [{"phase": "ingest", "executed": true, "detail": "10 observations across 4 categories"}, {"phase": "hippocampus", "executed": true, "detail": "10 entries"}, {"phase": "consolidate", "executed": true, "detail": "1 reinforced, 9 promoted, 0 discarded"}, {"phase": "index_rebuild", "executed": true, "detail": "9437 terms, 1083 entries"}, {"phase": "synthesis", "executed": true, "detail": "L2 created 0, L3 created 0, sources archived 0"}, {"phase": "eval", "executed": false, "detail": "not due"}, {"phase": "hygiene", "executed": false, "detail": "not due"}], "ts": "2026-05-16T10:22:39Z"}
+{"event": "cycle_commit", "cycle_id": 56, "ts": "2026-05-16T10:22:39Z"}

@@ -26,6 +26,7 @@ ACTIVE_IDENTITY = BRAIN / "navigation" / "active-identity.json"
 ACTIVE_DECISION = BRAIN / "navigation" / "active-decision.json"
 DECISION_WAIT_S = 60
 CONTEXT_WINDOW_S = 24 * 3600
+CONTEXT_N = 5
 BRAIN_TASKS_URL = "http://localhost:3001/api/dashboard/brain-tasks"
 
 
@@ -54,6 +55,8 @@ def get_recent_chat_context():
         if (now - ts).total_seconds() > CONTEXT_WINDOW_S:
             break
         recent.append(m)
+        if len(recent) >= CONTEXT_N:
+            break
     recent.reverse()
     return "\n\n".join(f"[{m.get('role','?')} @ {m.get('ts','?')}]\n{m.get('text','')[:1500]}" for m in recent)
 
@@ -186,7 +189,7 @@ def compose_rich_prompt(base_prompt):
 
     parts = []
     if coms_context:
-        parts.append(f"## Recent COMS conversation (24h rolling window)\n{coms_context}")
+        parts.append(f"## Recent COMS conversation (last {CONTEXT_N}, <=24h)\n{coms_context}")
     if task:
         parts.append(render_task(bucket, task))
     for name, path in [("Recall", ACTIVE_RECALL), ("Identity", ACTIVE_IDENTITY), ("Decision", ACTIVE_DECISION)]:
