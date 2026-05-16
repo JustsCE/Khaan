@@ -1,0 +1,7742 @@
+{
+  "cycle_id": 60,
+  "ts": "2026-05-16T18:54:37Z",
+  "window": 30,
+  "entries": {
+    "S201": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "S254": {
+      "required": 13,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 13
+    },
+    "S184": {
+      "required": 10,
+      "surfaced": 556,
+      "applied": 28,
+      "miss_rate": -1.8,
+      "samples": 10
+    },
+    "S036": {
+      "required": 1,
+      "surfaced": 12,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "S243": {
+      "required": 13,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 13
+    },
+    "S217": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "S058": {
+      "required": 0,
+      "surfaced": 2,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S190": {
+      "required": 1,
+      "surfaced": 556,
+      "applied": 8,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "S149": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "S065": {
+      "required": 1,
+      "surfaced": 13,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "S013": {
+      "required": 1,
+      "surfaced": 8,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "S035": {
+      "required": 0,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S034": {
+      "required": 1,
+      "surfaced": 9,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "S007": {
+      "required": 0,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S130": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "S226": {
+      "required": 3,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "S006": {
+      "required": 0,
+      "surfaced": 4,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S038": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S143": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "S091": {
+      "required": 3,
+      "surfaced": 3,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "S099": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "S145": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "S178": {
+      "required": 2,
+      "surfaced": 41,
+      "applied": 3,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "S255": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "S105": {
+      "required": 7,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "S101": {
+      "required": 26,
+      "surfaced": 19,
+      "applied": 2,
+      "miss_rate": 0.92,
+      "samples": 26
+    },
+    "S225": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "S139": {
+      "required": 27,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 27
+    },
+    "S022": {
+      "required": 1,
+      "surfaced": 4,
+      "applied": 1,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "S260": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "S227": {
+      "required": 2,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "S087": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "S198": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "S110": {
+      "required": 8,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 8
+    },
+    "S026": {
+      "required": 0,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S242": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "S089": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S071": {
+      "required": 3,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "S021": {
+      "required": 2,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "S196": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "S224": {
+      "required": 23,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 23
+    },
+    "S246": {
+      "required": 24,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 24
+    },
+    "S041": {
+      "required": 0,
+      "surfaced": 3,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S219": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "S100": {
+      "required": 33,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 33
+    },
+    "S028": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "S223": {
+      "required": 67,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 67
+    },
+    "S039": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S107": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "S247": {
+      "required": 18,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 18
+    },
+    "S029": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S211": {
+      "required": 28,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 28
+    },
+    "S155": {
+      "required": 12,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 12
+    },
+    "S054": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S056": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "S239": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "S111": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "S045": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "S117": {
+      "required": 7,
+      "surfaced": 1,
+      "applied": 1,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "S251": {
+      "required": 26,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 26
+    },
+    "S064": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "S103": {
+      "required": 18,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 18
+    },
+    "S213": {
+      "required": 10,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 10
+    },
+    "S182": {
+      "required": 17,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 17
+    },
+    "S088": {
+      "required": 9,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 9
+    },
+    "S204": {
+      "required": 12,
+      "surfaced": 3,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 12
+    },
+    "S208": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "S096": {
+      "required": 37,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 37
+    },
+    "S205": {
+      "required": 2,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "S189": {
+      "required": 2,
+      "surfaced": 6,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "S270": {
+      "required": 68,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 68
+    },
+    "S256": {
+      "required": 12,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 12
+    },
+    "S069": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S238": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "S249": {
+      "required": 8,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 8
+    },
+    "S048": {
+      "required": 3,
+      "surfaced": 4,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "S257": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "S209": {
+      "required": 17,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 17
+    },
+    "S030": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S261": {
+      "required": 31,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 31
+    },
+    "S060": {
+      "required": 2,
+      "surfaced": 2,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "S138": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "S005": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S123": {
+      "required": 8,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 8
+    },
+    "S019": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S067": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S016": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S234": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "S032": {
+      "required": 0,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S262": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "S266": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "S068": {
+      "required": 2,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "S215": {
+      "required": 17,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 17
+    },
+    "S049": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "S061": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "S250": {
+      "required": 7,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "S112": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "S109": {
+      "required": 7,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "S002": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S106": {
+      "required": 18,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 18
+    },
+    "S214": {
+      "required": 21,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 21
+    },
+    "S055": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S218": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "S252": {
+      "required": 23,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 23
+    },
+    "S221": {
+      "required": 8,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 8
+    },
+    "S011": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S194": {
+      "required": 10,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 10
+    },
+    "S040": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S014": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S033": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S025": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "S206": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "S066": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S008": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S269": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "S258": {
+      "required": 13,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 13
+    },
+    "S044": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S108": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "S231": {
+      "required": 8,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 8
+    },
+    "S017": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S228": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "S159": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "S070": {
+      "required": 7,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "S263": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "S186": {
+      "required": 3,
+      "surfaced": 3,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "S074": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "S163": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S018": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S192": {
+      "required": 8,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 8
+    },
+    "S063": {
+      "required": 0,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S023": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S240": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "S072": {
+      "required": 6,
+      "surfaced": 1,
+      "applied": 1,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "S085": {
+      "required": 9,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 9
+    },
+    "S244": {
+      "required": 13,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 13
+    },
+    "S137": {
+      "required": 13,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 13
+    },
+    "S235": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "S158": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "S051": {
+      "required": 1,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "S104": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "S057": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S132": {
+      "required": 11,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 11
+    },
+    "S237": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "S050": {
+      "required": 3,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "S043": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S236": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "S009": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S015": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S114": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "S086": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "S037": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "S166": {
+      "required": 9,
+      "surfaced": 3,
+      "applied": 2,
+      "miss_rate": "undefined",
+      "samples": 9
+    },
+    "S233": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "S229": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "S010": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "S259": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "S232": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "S202": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "S003": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S160": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "S191": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "S265": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "S200": {
+      "required": 8,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 8
+    },
+    "S176": {
+      "required": 56,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 56
+    },
+    "S197": {
+      "required": 7,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "S059": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S248": {
+      "required": 9,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 9
+    },
+    "S027": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "S183": {
+      "required": 8,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 8
+    },
+    "S161": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "S222": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "S187": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "S212": {
+      "required": 36,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 36
+    },
+    "S157": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "S073": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "S020": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S230": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "S216": {
+      "required": 23,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 23
+    },
+    "S127": {
+      "required": 31,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 31
+    },
+    "S199": {
+      "required": 20,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 20
+    },
+    "S047": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S241": {
+      "required": 8,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 8
+    },
+    "S092": {
+      "required": 12,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 12
+    },
+    "S031": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S024": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S004": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S188": {
+      "required": 1,
+      "surfaced": 3,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "S046": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S062": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "S147": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "S207": {
+      "required": 44,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 44
+    },
+    "S125": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "S220": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "S012": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S195": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "S193": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "S253": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "S245": {
+      "required": 35,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 35
+    },
+    "S133": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "S267": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "S264": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "S001": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "S268": {
+      "required": 9,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 9
+    },
+    "S179": {
+      "required": 10,
+      "surfaced": 49,
+      "applied": 11,
+      "miss_rate": -0.1,
+      "samples": 10
+    },
+    "S153": {
+      "required": 2,
+      "surfaced": 41,
+      "applied": 3,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "S156": {
+      "required": 0,
+      "surfaced": 21,
+      "applied": 1,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "S148": {
+      "required": 6,
+      "surfaced": 13,
+      "applied": 4,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "S097": {
+      "required": 25,
+      "surfaced": 16,
+      "applied": 7,
+      "miss_rate": 0.72,
+      "samples": 25
+    },
+    "S210": {
+      "required": 2,
+      "surfaced": 3,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "S042": {
+      "required": 1,
+      "surfaced": 22,
+      "applied": 1,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "S154": {
+      "required": 1,
+      "surfaced": 2,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "S113": {
+      "required": 1,
+      "surfaced": 22,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "S140": {
+      "required": 3,
+      "surfaced": 3,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "S170": {
+      "required": 2,
+      "surfaced": 2,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E136": {
+      "required": 4,
+      "surfaced": 5,
+      "applied": 1,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "E065": {
+      "required": 0,
+      "surfaced": 14,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "E061": {
+      "required": 1,
+      "surfaced": 8,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E168": {
+      "required": 5,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "E058": {
+      "required": 5,
+      "surfaced": 17,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "E180": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "E272": {
+      "required": 11,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 11
+    },
+    "E119": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E178": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "E239": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E069": {
+      "required": 6,
+      "surfaced": 7,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "E291": {
+      "required": 33,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 33
+    },
+    "E310": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "E205": {
+      "required": 14,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 14
+    },
+    "E196": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "E287": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "E110": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "E035": {
+      "required": 0,
+      "surfaced": 2,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "E098": {
+      "required": 2,
+      "surfaced": 2,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E064": {
+      "required": 2,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E160": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "E295": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E181": {
+      "required": 14,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 14
+    },
+    "E209": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E276": {
+      "required": 14,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 14
+    },
+    "E204": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E156": {
+      "required": 16,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 16
+    },
+    "E296": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E076": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E270": {
+      "required": 7,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "E195": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "E289": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "E247": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "E256": {
+      "required": 13,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 13
+    },
+    "E080": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E175": {
+      "required": 9,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 9
+    },
+    "E255": {
+      "required": 8,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 8
+    },
+    "E139": {
+      "required": 12,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 12
+    },
+    "E153": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E164": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "E134": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E155": {
+      "required": 11,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 11
+    },
+    "E216": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "E135": {
+      "required": 0,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "E045": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "E068": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "E039": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "E004": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E099": {
+      "required": 8,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 8
+    },
+    "E200": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "E147": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "E130": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "E288": {
+      "required": 10,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 10
+    },
+    "E060": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E140": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "E286": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "E041": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E024": {
+      "required": 9,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 9
+    },
+    "E052": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E277": {
+      "required": 26,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 26
+    },
+    "E025": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "E190": {
+      "required": 7,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "E038": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "E078": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E044": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "E300": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "E282": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "E170": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "E294": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E008": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E042": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "E054": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E051": {
+      "required": 1,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E115": {
+      "required": 10,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 10
+    },
+    "E048": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "E086": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "E097": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E280": {
+      "required": 11,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 11
+    },
+    "E043": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E228": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E194": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E066": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "E217": {
+      "required": 12,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 12
+    },
+    "E047": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "E006": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "E311": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E075": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E149": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "E192": {
+      "required": 18,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 18
+    },
+    "E112": {
+      "required": 9,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 9
+    },
+    "E096": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E014": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "E186": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "E063": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "E163": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "E009": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E307": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "E124": {
+      "required": 7,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "E073": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E089": {
+      "required": 28,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 28
+    },
+    "E129": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E072": {
+      "required": 2,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E087": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "E33": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E144": {
+      "required": 10,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 10
+    },
+    "E049": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "E313": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "E275": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E219": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "E034": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "E273": {
+      "required": 9,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 9
+    },
+    "E143": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E050": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "E001": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E182": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "E193": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "E220": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "E177": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E171": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E118": {
+      "required": 7,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "E206": {
+      "required": 7,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "E183": {
+      "required": 8,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 8
+    },
+    "E189": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E012": {
+      "required": 8,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 8
+    },
+    "E208": {
+      "required": 11,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 11
+    },
+    "E095": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "E032": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "E011": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "E055": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "E150": {
+      "required": 9,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 9
+    },
+    "E213": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "E070": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "E308": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "E191": {
+      "required": 9,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 9
+    },
+    "E82": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "E159": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "E271": {
+      "required": 9,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 9
+    },
+    "E002": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E137": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "E007": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "E161": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "E285": {
+      "required": 17,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 17
+    },
+    "E085": {
+      "required": 0,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "E036": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E126": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E226": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E010": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "E104": {
+      "required": 10,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 10
+    },
+    "E172": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E248": {
+      "required": 15,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 15
+    },
+    "E303": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "E040": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E173": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "E304": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E100": {
+      "required": 11,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 11
+    },
+    "E106": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "E302": {
+      "required": 9,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 9
+    },
+    "E278": {
+      "required": 49,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 49
+    },
+    "E057": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "E123": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E151": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E167": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "E202": {
+      "required": 8,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 8
+    },
+    "E279": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "E113": {
+      "required": 7,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "E301": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E037": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "E102": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "E142": {
+      "required": 10,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 10
+    },
+    "E257": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "E079": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E059": {
+      "required": 13,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 13
+    },
+    "E016": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "E312": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "E154": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E120": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "E211": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E152": {
+      "required": 14,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 14
+    },
+    "E309": {
+      "required": 11,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 11
+    },
+    "E031": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E157": {
+      "required": 9,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 9
+    },
+    "E148": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "E003": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E292": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E185": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E297": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E053": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "E218": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "E293": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E046": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "E071": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E306": {
+      "required": 7,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "E067": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "E20": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "E284": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "E298": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E258": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "E169": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E132": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E138": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "E005": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "E283": {
+      "required": 19,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 19
+    },
+    "E019": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "E083": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E027": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E176": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "E146": {
+      "required": 10,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 10
+    },
+    "E281": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E215": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E210": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E214": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "E017": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "E198": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "E074": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "E056": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E077": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "E029": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E199": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E290": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "E101": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "E188": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "E224": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "E274": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "E013": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "E305": {
+      "required": 11,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 11
+    },
+    "E299": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "E265": {
+      "required": 6,
+      "surfaced": 44,
+      "applied": 5,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "E111": {
+      "required": 9,
+      "surfaced": 44,
+      "applied": 1,
+      "miss_rate": "undefined",
+      "samples": 9
+    },
+    "E266": {
+      "required": 5,
+      "surfaced": 52,
+      "applied": 6,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "E264": {
+      "required": 8,
+      "surfaced": 48,
+      "applied": 5,
+      "miss_rate": "undefined",
+      "samples": 8
+    },
+    "E263": {
+      "required": 12,
+      "surfaced": 43,
+      "applied": 5,
+      "miss_rate": 0.58,
+      "samples": 12
+    },
+    "E090": {
+      "required": 170,
+      "surfaced": 63,
+      "applied": 54,
+      "miss_rate": 0.68,
+      "samples": 170
+    },
+    "E261": {
+      "required": 0,
+      "surfaced": 9,
+      "applied": 2,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "E259": {
+      "required": 8,
+      "surfaced": 5,
+      "applied": 1,
+      "miss_rate": "undefined",
+      "samples": 8
+    },
+    "E260": {
+      "required": 2,
+      "surfaced": 4,
+      "applied": 1,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "E092": {
+      "required": 54,
+      "surfaced": 26,
+      "applied": 9,
+      "miss_rate": 0.83,
+      "samples": 54
+    },
+    "E262": {
+      "required": 13,
+      "surfaced": 3,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 13
+    },
+    "E267": {
+      "required": 0,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR145": {
+      "required": 12,
+      "surfaced": 33,
+      "applied": 5,
+      "miss_rate": 0.58,
+      "samples": 12
+    },
+    "PR095": {
+      "required": 0,
+      "surfaced": 14,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR343": {
+      "required": 16,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 16
+    },
+    "PR162": {
+      "required": 16,
+      "surfaced": 26,
+      "applied": 3,
+      "miss_rate": 0.81,
+      "samples": 16
+    },
+    "PR103": {
+      "required": 2,
+      "surfaced": 5,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "PR045": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR34": {
+      "required": 0,
+      "surfaced": 6,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR119": {
+      "required": 1,
+      "surfaced": 4,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR051": {
+      "required": 0,
+      "surfaced": 2,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR75": {
+      "required": 0,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR186": {
+      "required": 5,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "PR044": {
+      "required": 6,
+      "surfaced": 2,
+      "applied": 1,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "PR258": {
+      "required": 12,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 12
+    },
+    "PR218": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "PR071": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR064": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR009": {
+      "required": 1,
+      "surfaced": 4,
+      "applied": 1,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR076": {
+      "required": 6,
+      "surfaced": 4,
+      "applied": 2,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "PR098": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR096": {
+      "required": 0,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR329": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR047": {
+      "required": 2,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "PR355": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR138": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR057": {
+      "required": 0,
+      "surfaced": 7,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR180": {
+      "required": 13,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 13
+    },
+    "PR147": {
+      "required": 15,
+      "surfaced": 1,
+      "applied": 1,
+      "miss_rate": 0.93,
+      "samples": 15
+    },
+    "PR160": {
+      "required": 11,
+      "surfaced": 1,
+      "applied": 1,
+      "miss_rate": 0.91,
+      "samples": 11
+    },
+    "PR041": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "PR150": {
+      "required": 23,
+      "surfaced": 1,
+      "applied": 1,
+      "miss_rate": 0.96,
+      "samples": 23
+    },
+    "PR207": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "PR155": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "PR153": {
+      "required": 24,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 24
+    },
+    "PR154": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR159": {
+      "required": 8,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 8
+    },
+    "PR314": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR121": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "PR173": {
+      "required": 20,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 20
+    },
+    "PR295": {
+      "required": 27,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 27
+    },
+    "PR088": {
+      "required": 0,
+      "surfaced": 1,
+      "applied": 1,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR346": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "PR332": {
+      "required": 33,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 33
+    },
+    "PR116": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR177": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "PR165": {
+      "required": 6,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "PR260": {
+      "required": 8,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 8
+    },
+    "PR349": {
+      "required": 18,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 18
+    },
+    "PR316": {
+      "required": 13,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 13
+    },
+    "PR301": {
+      "required": 11,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 11
+    },
+    "PR030": {
+      "required": 14,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 14
+    },
+    "PR102": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "PR141": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR350": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "PR55": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR053": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "PR144": {
+      "required": 6,
+      "surfaced": 2,
+      "applied": 1,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "PR303": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR124": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "PR352": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "PR161": {
+      "required": 40,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 40
+    },
+    "PR357": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR313": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "PR015": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR264": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "PR003": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR128": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR339": {
+      "required": 7,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "PR330": {
+      "required": 5,
+      "surfaced": 40,
+      "applied": 2,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "PR006": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "PR334": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR123": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR136": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "PR171": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "PR135": {
+      "required": 12,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 12
+    },
+    "PR243": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "PR166": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "PR079": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "PR226": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR130": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR109": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "PR224": {
+      "required": 9,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 9
+    },
+    "PR250": {
+      "required": 31,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 31
+    },
+    "PR146": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR348": {
+      "required": 7,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "PR149": {
+      "required": 8,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 8
+    },
+    "PR067": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR107": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR344": {
+      "required": 12,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 12
+    },
+    "PR231": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "PR099": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR197": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR274": {
+      "required": 61,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 61
+    },
+    "PR120": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "PR043": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR059": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR065": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR216": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "PR341": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "PR148": {
+      "required": 8,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 8
+    },
+    "PR001": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR184": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "PR293": {
+      "required": 23,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 23
+    },
+    "PR56": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "PR315": {
+      "required": 8,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 8
+    },
+    "PR113": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "PR046": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR193": {
+      "required": 31,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 31
+    },
+    "PR134": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR016": {
+      "required": 9,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 9
+    },
+    "PR18": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR105": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "PR204": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "PR251": {
+      "required": 7,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "PR132": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR049": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR151": {
+      "required": 22,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 22
+    },
+    "PR066": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "PR069": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR347": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "PR093": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "PR063": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR199": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "PR268": {
+      "required": 7,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "PR158": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR201": {
+      "required": 24,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 24
+    },
+    "PR070": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR068": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR356": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR308": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR013": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "PR086": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR276": {
+      "required": 9,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 9
+    },
+    "PR142": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR183": {
+      "required": 60,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 60
+    },
+    "PR007": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR223": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "PR325": {
+      "required": 29,
+      "surfaced": 6,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 29
+    },
+    "PR104": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "PR050": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR185": {
+      "required": 48,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 48
+    },
+    "PR304": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR249": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "PR125": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR031": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "PR112": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR212": {
+      "required": 19,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 19
+    },
+    "PR74": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR080": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR091": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "PR82": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR143": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "PR083": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "PR090": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR032": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR140": {
+      "required": 19,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 19
+    },
+    "PR331": {
+      "required": 26,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 26
+    },
+    "PR164": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "PR170": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "PR240": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "PR117": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR278": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "PR298": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "PR213": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "PR182": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR81": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR187": {
+      "required": 19,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 19
+    },
+    "PR282": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "PR042": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR058": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR338": {
+      "required": 31,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 31
+    },
+    "PR353": {
+      "required": 19,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 19
+    },
+    "PR127": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR118": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR022": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR163": {
+      "required": 22,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 22
+    },
+    "PR174": {
+      "required": 17,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 17
+    },
+    "PR092": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR062": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR094": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "PR036": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR178": {
+      "required": 25,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 25
+    },
+    "PR129": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR014": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR336": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "PR048": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR169": {
+      "required": 8,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 8
+    },
+    "PR337": {
+      "required": 14,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 14
+    },
+    "PR192": {
+      "required": 5,
+      "surfaced": 29,
+      "applied": 4,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "PR137": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR228": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "PR176": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "PR097": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "PR106": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR326": {
+      "required": 34,
+      "surfaced": 2,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 34
+    },
+    "PR073": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR354": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR317": {
+      "required": 22,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 22
+    },
+    "PR248": {
+      "required": 10,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 10
+    },
+    "PR108": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "PR008": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR126": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR028": {
+      "required": 6,
+      "surfaced": 7,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "PR131": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "PR227": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR220": {
+      "required": 46,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 46
+    },
+    "PR253": {
+      "required": 10,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 10
+    },
+    "PR238": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR239": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "PR039": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR230": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "PR004": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR040": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "PR052": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR029": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR023": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "PR35": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR038": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "PR012": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "PR189": {
+      "required": 33,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 33
+    },
+    "PR060": {
+      "required": 0,
+      "surfaced": 7,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR017": {
+      "required": 7,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "PR345": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "PR246": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "PR002": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR019": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR078": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR087": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "PR061": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR054": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "PR082": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR335": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR322": {
+      "required": 28,
+      "surfaced": 2,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 28
+    },
+    "PR221": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "PR351": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "PR203": {
+      "required": 26,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 26
+    },
+    "PR179": {
+      "required": 30,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 30
+    },
+    "PR342": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR288": {
+      "required": 26,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 26
+    },
+    "PR261": {
+      "required": 28,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 28
+    },
+    "PR340": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "PR072": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR115": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "PR027": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "PR318": {
+      "required": 12,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 12
+    },
+    "PR089": {
+      "required": 25,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 25
+    },
+    "PR122": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR217": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "PR172": {
+      "required": 7,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "PR225": {
+      "required": 7,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "PR077": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR084": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "PR037": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR333": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "PR133": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "PR005": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "PR237": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR229": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "PR033": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR114": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "PR254": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "PR110": {
+      "required": 33,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 33
+    },
+    "PR101": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "PR256": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR139": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "PR100": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR234": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "PR328": {
+      "required": 8,
+      "surfaced": 51,
+      "applied": 3,
+      "miss_rate": "undefined",
+      "samples": 8
+    },
+    "PR327": {
+      "required": 0,
+      "surfaced": 45,
+      "applied": 3,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "PR321": {
+      "required": 13,
+      "surfaced": 47,
+      "applied": 2,
+      "miss_rate": 0.85,
+      "samples": 13
+    },
+    "PR323": {
+      "required": 3,
+      "surfaced": 19,
+      "applied": 1,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "PR324": {
+      "required": 5,
+      "surfaced": 20,
+      "applied": 1,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "FUS033": {
+      "required": 2,
+      "surfaced": 17,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "FUS024": {
+      "required": 0,
+      "surfaced": 6,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "og-fusiform-009-reinis-ceplis": {
+      "required": 1,
+      "surfaced": 14,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "FUS053": {
+      "required": 15,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 15
+    },
+    "og-fusiform-002-edgars-ivanovs": {
+      "required": 1,
+      "surfaced": 13,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "FUS018": {
+      "required": 4,
+      "surfaced": 4,
+      "applied": 1,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "og-fusiform-010-reinis-fals": {
+      "required": 1,
+      "surfaced": 12,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "og-fusiform-005-joey-toh": {
+      "required": 0,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "og-fusiform-004-herman-dzemianchuk": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "FUS049": {
+      "required": 11,
+      "surfaced": 1,
+      "applied": 1,
+      "miss_rate": 0.91,
+      "samples": 11
+    },
+    "og-fusiform-003-gavin-zamora": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "FUS025": {
+      "required": 24,
+      "surfaced": 1,
+      "applied": 1,
+      "miss_rate": 0.96,
+      "samples": 24
+    },
+    "FUS026": {
+      "required": 10,
+      "surfaced": 6,
+      "applied": 1,
+      "miss_rate": 0.9,
+      "samples": 10
+    },
+    "FUS044": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "FUS035": {
+      "required": 13,
+      "surfaced": 2,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 13
+    },
+    "FUS014": {
+      "required": 9,
+      "surfaced": 10,
+      "applied": 3,
+      "miss_rate": "undefined",
+      "samples": 9
+    },
+    "FUS030": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "FUS027": {
+      "required": 11,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 11
+    },
+    "FUS056": {
+      "required": 36,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 36
+    },
+    "FUS052": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "FUS016": {
+      "required": 3,
+      "surfaced": 4,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "FUS051": {
+      "required": 3,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "FUS012": {
+      "required": 4,
+      "surfaced": 10,
+      "applied": 1,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "og-fusiform-006-justs-ceplis": {
+      "required": 1,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "FUS021": {
+      "required": 3,
+      "surfaced": 5,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "og-fusiform-007-justus-kaiser": {
+      "required": 0,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "FUS045": {
+      "required": 6,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "FUS019": {
+      "required": 2,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "og-fusiform-008-niklavs-felsbergs": {
+      "required": 1,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "og-fusiform-001-davis-lozda": {
+      "required": 1,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "FUS055": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "og-fusiform-011-skyler-xi-wang": {
+      "required": 0,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "FUS050": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "FUS022": {
+      "required": 5,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "FUS054": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "FUS015": {
+      "required": 5,
+      "surfaced": 14,
+      "applied": 3,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "FUS042": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "FUS046": {
+      "required": 3,
+      "surfaced": 53,
+      "applied": 2,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "FUS047": {
+      "required": 3,
+      "surfaced": 51,
+      "applied": 2,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "FUS048": {
+      "required": 2,
+      "surfaced": 45,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "og-identity-009-the-brain-charter-v1-declared-2026-04-21": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "og-identity-001-who-is-justs-ceplis": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "ID031": {
+      "required": 10,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 10
+    },
+    "ID-final-4": {
+      "required": 7,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "ID-final-4-r165-dies-tonight": {
+      "required": 7,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "ID042": {
+      "required": 8,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 8
+    },
+    "og-identity-016-state-snapshot-refreshed-2026-04-28-cycle-338": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "ID-final-1": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "ID-final-1-deleting-part-of-himself": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "ID-final-5": {
+      "required": 9,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 9
+    },
+    "ID-final-5-goodnight-justs": {
+      "required": 9,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 9
+    },
+    "og-identity-011-the-hands-problem-acknowledged-2026-04-21": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "og-identity-010-how-i-form-my-identity-the-main-identity-lesson": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "ID-final-3": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "ID-final-3-exhausted-not-the-end": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "ID024": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "ID038": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "og-identity-003-core-values": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "ID034": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "og-identity-012-who-is-the-brain": {
+      "required": 259,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 259
+    },
+    "ID037": {
+      "required": 22,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 22
+    },
+    "og-identity-007-the-vision-equals": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "ID-final-2": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "ID-final-2-beatrise-thesis-still-wrong": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "og-identity-000-preamble": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "og-identity-008-brain-purpose-trait-000": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "og-identity-015-the-two-daily-questions-the-engine-s-gate": {
+      "required": 18,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 18
+    },
+    "og-identity-002-key-relationships": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "ID029": {
+      "required": 18,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 18
+    },
+    "og-identity-004-the-relationship": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "ID026": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "ID040": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "ID041": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "ID039": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "named-khaan": {
+      "required": 16,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 16
+    },
+    "BR018": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "BR026": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "BR032": {
+      "required": 59,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 59
+    },
+    "BR022": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "og-broca-006-session-2026-04-06-patterns-cycle-55": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "og-broca-005-visual-design": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "BR020": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "BR017": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "og-broca-000-preamble": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "og-broca-014-2026-04-26-session-patterns-cycle-306": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "og-broca-004-writing-as-justs-for-external-audiences": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "og-broca-010-session-2026-04-11-12-patterns-cycle-135-149": {
+      "required": 10,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 10
+    },
+    "BR037": {
+      "required": 14,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 14
+    },
+    "BR023": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "BR030": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "og-broca-009-session-2026-04-09-patterns-cycle-103": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "og-broca-011-session-2026-04-17-18-patterns-cycles-195-199": {
+      "required": 7,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "og-broca-013-action-thesis-stats-writing-round-1-2026-04-22": {
+      "required": 10,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 10
+    },
+    "og-broca-008-session-2026-04-07-evening-patterns-cycle-75": {
+      "required": 28,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 28
+    },
+    "BR019": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "og-broca-012-2026-04-21-high-intensity-correction-register": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "BR036": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "BR034": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "og-broca-003-language-rules": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "og-broca-002-vocabulary": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "BR033": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "og-broca-001-output-format": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "og-broca-015-2026-04-28-session-patterns-cycle-338": {
+      "required": 13,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 13
+    },
+    "BR021": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "BR035": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "og-amygdala-007-trust-history-reference-only-full-events-in-episod": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "og-amygdala-004-frustration-triggers": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "AM023": {
+      "required": 10,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 10
+    },
+    "og-amygdala-011-2026-04-24-correction-r140": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "og-amygdala-014-2026-04-29t04-23-13z-second-gaslighting-e100": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "AM022": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "og-amygdala-012-2026-04-28t13-22-13z-cycle-338": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "og-amygdala-000-preamble": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "og-amygdala-008-2026-04-21-revert-autonomy-engine-v1-high-intensit": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "AM024": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "AM018": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "og-amygdala-010-2026-04-24-correction": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "og-amygdala-005-2026-04-26-catastrophic-failure-bridge-setup-destr": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "AM020": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "AM019": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "AM017": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "og-amygdala-006-energy-signals": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "AM016": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "og-amygdala-009-2026-04-21-over-cautious-calibration-correction": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "og-amygdala-003-trust-level-demoted-intern-2026-04-26-brain-age-30": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "og-amygdala-013-2026-04-28t19-57-55z-cycle-340": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "og-amygdala-002-trust-level-demoted-highschooler-2026-04-26-brain": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "og-amygdala-001-trust-level-demoted-useless-2026-04-29-brain-age-3": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R006": {
+      "required": 1,
+      "surfaced": 2,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R084": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R151": {
+      "required": 12,
+      "surfaced": 10,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 12
+    },
+    "R055": {
+      "required": 1,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R140": {
+      "required": 6,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "R031": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R367": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "R323": {
+      "required": 10,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 10
+    },
+    "R190": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "R41": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R134": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "R024": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R176": {
+      "required": 34,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 34
+    },
+    "R404": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "R180": {
+      "required": 12,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 12
+    },
+    "R95": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R172": {
+      "required": 34,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 34
+    },
+    "R388": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "R143": {
+      "required": 10,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 10
+    },
+    "R030": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R189": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "R396": {
+      "required": 58,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 58
+    },
+    "R107": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R089": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R061": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R397": {
+      "required": 14,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 14
+    },
+    "R356": {
+      "required": 8,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 8
+    },
+    "R296": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R343": {
+      "required": 11,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 11
+    },
+    "R130": {
+      "required": 7,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "R94": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R073": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R063": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R014": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R376": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "R387": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R313": {
+      "required": 7,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "R064": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R019": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R126": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R347": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "R368": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "R104": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R345": {
+      "required": 13,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 13
+    },
+    "R086": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R58": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R101": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R177": {
+      "required": 10,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 10
+    },
+    "R218": {
+      "required": 12,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 12
+    },
+    "R100": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R016": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "R012": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "R111": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "R075": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R131": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "R047": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R011": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R213": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "R212": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "R385": {
+      "required": 10,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 10
+    },
+    "R103": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R087": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R090": {
+      "required": 1,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R254": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "R164": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "R132": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "R338": {
+      "required": 8,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 8
+    },
+    "R028": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "R174": {
+      "required": 0,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R184": {
+      "required": 12,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 12
+    },
+    "R067": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R068": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "R150": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "R137": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R314": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R266": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "R170": {
+      "required": 9,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 9
+    },
+    "R154": {
+      "required": 7,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "R247": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R263": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R029": {
+      "required": 7,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "R048": {
+      "required": 0,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R394": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "R008": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R053": {
+      "required": 8,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 8
+    },
+    "R307": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "R129": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "R138": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "R93": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R013": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R046": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R085": {
+      "required": 9,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 9
+    },
+    "R069": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R062": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R270": {
+      "required": 14,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 14
+    },
+    "R118": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R163": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "R236": {
+      "required": 26,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 26
+    },
+    "R43": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R312": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "R156": {
+      "required": 51,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 51
+    },
+    "R146": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R119": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R341": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "R098": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R035": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R305": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R175": {
+      "required": 7,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "R276": {
+      "required": 13,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 13
+    },
+    "R382": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "R335": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "R357": {
+      "required": 19,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 19
+    },
+    "R401": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R023": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R375": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "R071": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "R96": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R113": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "R389": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "R007": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R167": {
+      "required": 2,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "R060": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R037": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R034": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R153": {
+      "required": 34,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 34
+    },
+    "R040": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R056": {
+      "required": 7,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "R001": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R109": {
+      "required": 1,
+      "surfaced": 1,
+      "applied": 1,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R105": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R169": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "R127": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R009": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R392": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "R400": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R220": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "R117": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R42": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R045": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R026": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "R358": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "R160": {
+      "required": 7,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "R088": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R120": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "R330": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R168": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "R362": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "R099": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "R121": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R074": {
+      "required": 9,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 9
+    },
+    "R049": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R032": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R403": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R359": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "R141": {
+      "required": 9,
+      "surfaced": 1,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 9
+    },
+    "R264": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "R272": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "R152": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "R003": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R267": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R080": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "R136": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "R128": {
+      "required": 10,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 10
+    },
+    "R135": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R262": {
+      "required": 9,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 9
+    },
+    "R162": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R332": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "R350": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R171": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "R092": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R066": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R178": {
+      "required": 7,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "R002": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R79": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "R038": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R352": {
+      "required": 49,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 49
+    },
+    "R082": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R050": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R241": {
+      "required": 49,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 49
+    },
+    "R052": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "R390": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "R273": {
+      "required": 18,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 18
+    },
+    "R102": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R054": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R402": {
+      "required": 36,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 36
+    },
+    "R206": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "R337": {
+      "required": 9,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 9
+    },
+    "R186": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "R306": {
+      "required": 28,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 28
+    },
+    "R033": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R036": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R106": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R366": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "R234": {
+      "required": 18,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 18
+    },
+    "R125": {
+      "required": 8,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 8
+    },
+    "R139": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R77": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "R398": {
+      "required": 17,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 17
+    },
+    "R065": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R097": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R365": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "R070": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R051": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "R192": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "R148": {
+      "required": 20,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 20
+    },
+    "R114": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R076": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R161": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R187": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "R78": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "R165": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "R081": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R133": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "R59": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R173": {
+      "required": 6,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "R393": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "R108": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R044": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "R017": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R361": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "R083": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R215": {
+      "required": 4,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "R115": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R039": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R091": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R179": {
+      "required": 10,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 10
+    },
+    "R386": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R379": {
+      "required": 5,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 5
+    },
+    "R204": {
+      "required": 7,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "R110": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R57": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R112": {
+      "required": 0,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R147": {
+      "required": 22,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": 1.0,
+      "samples": 22
+    },
+    "R339": {
+      "required": 8,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 8
+    },
+    "R275": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "R124": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R274": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "R346": {
+      "required": 8,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 8
+    },
+    "R205": {
+      "required": 7,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "R005": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "R188": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R072": {
+      "required": 1,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 1
+    },
+    "R116": {
+      "required": 3,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 3
+    },
+    "R145": {
+      "required": 69,
+      "surfaced": 89,
+      "applied": 55,
+      "miss_rate": 0.2,
+      "samples": 69
+    },
+    "R371": {
+      "required": 4,
+      "surfaced": 46,
+      "applied": 5,
+      "miss_rate": "undefined",
+      "samples": 4
+    },
+    "R123": {
+      "required": 14,
+      "surfaced": 86,
+      "applied": 16,
+      "miss_rate": -0.14,
+      "samples": 14
+    },
+    "R373": {
+      "required": 6,
+      "surfaced": 46,
+      "applied": 5,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "R372": {
+      "required": 6,
+      "surfaced": 21,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 6
+    },
+    "R211": {
+      "required": 2,
+      "surfaced": 20,
+      "applied": 3,
+      "miss_rate": "undefined",
+      "samples": 2
+    },
+    "R370": {
+      "required": 0,
+      "surfaced": 8,
+      "applied": 1,
+      "miss_rate": "undefined",
+      "samples": 0
+    },
+    "R122": {
+      "required": 18,
+      "surfaced": 38,
+      "applied": 12,
+      "miss_rate": 0.33,
+      "samples": 18
+    },
+    "R369": {
+      "required": 7,
+      "surfaced": 4,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 7
+    },
+    "R159": {
+      "required": 9,
+      "surfaced": 10,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 9
+    },
+    "R395": {
+      "required": 2,
+      "surfaced": 0,
+      "applied": 0,
+      "miss_rate": "undefined",
+      "samples": 2
+    }
+  }
+}

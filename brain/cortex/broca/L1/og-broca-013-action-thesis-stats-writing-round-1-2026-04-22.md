@@ -2,12 +2,13 @@
 id: og-broca-013-action-thesis-stats-writing-round-1-2026-04-22
 
 title: og Brain — Action: thesis-stats-writing (Round 1 — 2026-04-22)
-strength: 4
+strength: 3
 level: L1
 migrated_from: /home/ubuntu/.claude/brain/broca.md (section: Action: thesis-stats-writing (Round 1 — 2026-04-22))
 migrated_at: 2026-05-05T11:50:50Z
 shape: split-section
 ---
+
 
 ## Action: thesis-stats-writing (Round 1 — 2026-04-22)
 

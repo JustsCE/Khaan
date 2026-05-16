@@ -2,12 +2,13 @@
 id: og-identity-015-the-two-daily-questions-the-engine-s-gate
 
 title: og Brain — The Two Daily Questions (the engine's gate)
-strength: 4
+strength: 3
 level: L1
 migrated_from: /home/ubuntu/.claude/brain/identity.md (section: The Two Daily Questions (the engine's gate))
 migrated_at: 2026-05-05T11:50:50Z
 shape: split-section
 ---
+
 
 ## The Two Daily Questions (the engine's gate)
 

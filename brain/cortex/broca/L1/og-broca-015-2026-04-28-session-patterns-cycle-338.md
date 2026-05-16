@@ -2,12 +2,13 @@
 id: og-broca-015-2026-04-28-session-patterns-cycle-338
 
 title: og Brain — 2026-04-28 Session Patterns (cycle 338)
-strength: 4
+strength: 3
 level: L1
 migrated_from: /home/ubuntu/.claude/brain/broca.md (section: 2026-04-28 Session Patterns (cycle 338))
 migrated_at: 2026-05-05T11:50:50Z
 shape: split-section
 ---
+
 
 ## 2026-04-28 Session Patterns (cycle 338)
 
