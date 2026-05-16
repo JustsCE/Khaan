@@ -37,3 +37,12 @@
 {"event": "decision_dispatch", "ts": "2026-05-16T08:47:54Z", "query_hash": "544eae0a3b7b1024", "sources_hash": "57be25a5e7a6c66f:b5e1263e6a0b8898", "model": "claude-cli", "system_prompt_hash": "662dd57fc909e9ff"}
 {"event": "subagent_complete", "ts": "2026-05-16T08:49:32Z", "query_hash": "544eae0a3b7b1024", "subagent_id": "decision-0", "status": "returned", "latency_ms": 97869}
 {"event": "handoff", "ts": "2026-05-16T08:49:32Z", "query_hash": "544eae0a3b7b1024", "payload_chars": 13275, "all_5_present": true}
+{"event": "decision_dispatch", "ts": "2026-05-16T08:56:20Z", "query_hash": "f000e14b87f3b790", "sources_hash": "8dfb45eabf004149:25dbf8feb2d08ac1", "model": "claude-cli", "system_prompt_hash": "662dd57fc909e9ff"}
+{"event": "subagent_complete", "ts": "2026-05-16T08:57:43Z", "query_hash": "f000e14b87f3b790", "subagent_id": "decision-0", "status": "returned", "latency_ms": 83080}
+{"event": "handoff", "ts": "2026-05-16T08:57:43Z", "query_hash": "f000e14b87f3b790", "payload_chars": 8673, "all_5_present": true}
+{"event": "decision_dispatch", "ts": "2026-05-16T08:58:32Z", "query_hash": "21485e919e475979", "sources_hash": "b89db6db12f205a9:1a702979537a2c6d", "model": "claude-cli", "system_prompt_hash": "662dd57fc909e9ff"}
+{"event": "decision_dispatch", "ts": "2026-05-16T08:59:51Z", "query_hash": "2b14dea874ff7bd9", "sources_hash": "be24dc875b26c986:2da57be5c5e15152", "model": "claude-cli", "system_prompt_hash": "662dd57fc909e9ff"}
+{"event": "subagent_complete", "ts": "2026-05-16T09:00:07Z", "query_hash": "21485e919e475979", "subagent_id": "decision-0", "status": "returned", "latency_ms": 95426}
+{"event": "handoff", "ts": "2026-05-16T09:00:07Z", "query_hash": "21485e919e475979", "payload_chars": 9447, "all_5_present": true}
+{"event": "decision_timeout", "ts": "2026-05-16T09:01:51Z", "query_hash": "2b14dea874ff7bd9", "latency_ms": 120091}
+{"event": "decision_dispatch", "ts": "2026-05-16T09:04:15Z", "query_hash": "3c4df9dc165a3125", "sources_hash": "b49c9bd6a48c81dd:bcc075c36d5a1468", "model": "claude-cli", "system_prompt_hash": "662dd57fc909e9ff"}

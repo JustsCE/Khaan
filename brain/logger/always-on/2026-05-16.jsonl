@@ -24,3 +24,11 @@
 {"ts": "2026-05-16T08:55:29Z", "event": "iteration_skipped", "reason": "cycle_in_flight"}
 {"ts": "2026-05-16T08:55:44Z", "event": "iteration_skipped", "reason": "cycle_in_flight"}
 {"ts": "2026-05-16T08:55:59Z", "event": "iteration_skipped", "reason": "cycle_in_flight"}
+{"ts": "2026-05-16T08:56:14Z", "event": "iteration_skipped", "reason": "decision_in_flight"}
+{"ts": "2026-05-16T08:56:29Z", "event": "iteration_skipped", "reason": "decision_in_flight"}
+{"ts": "2026-05-16T08:56:44Z", "event": "iteration_skipped", "reason": "decision_in_flight"}
+{"ts": "2026-05-16T08:56:59Z", "event": "iteration_skipped", "reason": "decision_in_flight"}
+{"ts": "2026-05-16T08:57:14Z", "event": "iteration_skipped", "reason": "decision_in_flight"}
+{"ts": "2026-05-16T08:57:29Z", "event": "iteration_skipped", "reason": "decision_in_flight"}
+{"ts": "2026-05-16T08:58:13Z", "event": "dispatch_failed", "error": "cannot access local variable 'result' where it is not associated with a value"}
+{"ts": "2026-05-16T08:58:13Z", "event": "iteration_start", "source": "self+context", "prompt": "## Recent COMS conversation (last 5, <=24h)\n[justs @ 2026-05-16T06:57:48.325Z]\nAfterwards I would like you to prepare a full fucking Thesis on the impact of this change announced by anthropic and the "}
