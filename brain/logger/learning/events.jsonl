@@ -1640,3 +1640,10 @@
 {"event": "index_rebuild", "ts": "2026-05-16T11:31:36Z", "terms_count": 9447, "entries_count": 1092}
 {"event": "cycle_ledger", "cycle_id": 57, "phases": [{"phase": "ingest", "executed": true, "detail": "9 observations across 4 categories"}, {"phase": "hippocampus", "executed": true, "detail": "9 entries"}, {"phase": "consolidate", "executed": true, "detail": "0 reinforced, 9 promoted, 0 discarded"}, {"phase": "index_rebuild", "executed": true, "detail": "9447 terms, 1092 entries"}, {"phase": "synthesis", "executed": true, "detail": "L2 created 0, L3 created 0, sources archived 0"}, {"phase": "eval", "executed": false, "detail": "not due"}, {"phase": "hygiene", "executed": false, "detail": "not due"}], "ts": "2026-05-16T11:31:36Z"}
 {"event": "cycle_commit", "cycle_id": 57, "ts": "2026-05-16T11:31:36Z"}
+{"event": "cycle_git", "cycle_id": 57, "status": "ok", "ts": "2026-05-16T11:31:38Z"}
+{"event": "cycle_start", "ts": "2026-05-16T13:00:45Z", "cycle_id": 58, "counter_at_start": 717}
+{"event": "cycle_start", "ts": "2026-05-16T15:17:27Z", "cycle_id": 58, "counter_at_start": 718}
+{"event": "consolidation_summary", "ts": "2026-05-16T15:17:51Z", "reinforced": 0, "promoted": 7, "discarded": 0}
+{"event": "index_rebuild", "ts": "2026-05-16T15:17:51Z", "terms_count": 9463, "entries_count": 1099}
+{"event": "cycle_ledger", "cycle_id": 58, "phases": [{"phase": "ingest", "executed": true, "detail": "7 observations across 3 categories"}, {"phase": "hippocampus", "executed": true, "detail": "7 entries"}, {"phase": "consolidate", "executed": true, "detail": "0 reinforced, 7 promoted, 0 discarded"}, {"phase": "index_rebuild", "executed": true, "detail": "9463 terms, 1099 entries"}, {"phase": "synthesis", "executed": true, "detail": "L2 created 0, L3 created 0, sources archived 0"}, {"phase": "eval", "executed": false, "detail": "not due"}, {"phase": "hygiene", "executed": false, "detail": "not due"}], "ts": "2026-05-16T15:17:51Z"}
+{"event": "cycle_commit", "cycle_id": 58, "ts": "2026-05-16T15:17:51Z"}

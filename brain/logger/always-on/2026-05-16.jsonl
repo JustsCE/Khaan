@@ -97,3 +97,51 @@
 {"ts": "2026-05-16T11:30:10Z", "event": "iteration_skipped", "reason": "live_session_active"}
 {"ts": "2026-05-16T11:30:40Z", "event": "iteration_skipped", "reason": "live_session_active"}
 {"ts": "2026-05-16T11:31:10Z", "event": "brain_cycle_trigger", "iteration_count": 10}
+{"ts": "2026-05-16T11:31:38Z", "event": "brain_cycle_complete", "iteration_count": 10}
+{"ts": "2026-05-16T11:35:19Z", "event": "iteration_start", "source": "brain_visual:plan:mp85sj4agted", "iteration_hash": "542577650312", "prompt": "## Recent COMS conversation (24h rolling window)\n[justs @ 2026-05-16T06:52:33.508Z]\nHey Kha'an, I need you to develop a custom MCP server via Brain MCP for Power BI - NORDE Specifically. What info do "}
+{"ts": "2026-05-16T11:44:26Z", "event": "iteration_complete", "source": "brain_visual:plan:mp85sj4agted", "iteration_hash": "542577650312", "latency_ms": 546870, "exit_code": 0, "stdout_chars": 706, "stderr_chars": 0}
+{"ts": "2026-05-16T11:44:26Z", "event": "autonomy_invariant", "iteration_hash": "542577650312", "mode": "full", "coms_posted": true, "coms_ref": "mp8a3991rq6n", "digest_posted": true, "digest_ref": "mp8a3jgp", "pass": true}
+{"ts": "2026-05-16T11:44:26Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-16T11:44:56Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-16T11:45:26Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-16T11:49:43Z", "event": "iteration_start", "source": "brain_visual:plan:mp85sj4agted", "iteration_hash": "68dc94c2255f", "prompt": "## Recent COMS conversation (24h rolling window)\n[justs @ 2026-05-16T06:52:33.508Z]\nHey Kha'an, I need you to develop a custom MCP server via Brain MCP for Power BI - NORDE Specifically. What info do "}
+{"ts": "2026-05-16T11:57:00Z", "event": "iteration_complete", "source": "brain_visual:plan:mp85sj4agted", "iteration_hash": "68dc94c2255f", "latency_ms": 436449, "exit_code": 0, "stdout_chars": 554, "stderr_chars": 0}
+{"ts": "2026-05-16T11:57:00Z", "event": "autonomy_invariant", "iteration_hash": "68dc94c2255f", "mode": "full", "coms_posted": true, "coms_ref": "mp8ajev4r03j", "digest_posted": true, "digest_ref": "mp8ajpgy", "pass": true}
+{"ts": "2026-05-16T11:57:00Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-16T11:57:30Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-16T11:58:00Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-16T12:02:21Z", "event": "iteration_start", "source": "brain_visual:plan:mp85sj4agted", "iteration_hash": "0c5b4495fc7d", "prompt": "## Recent COMS conversation (24h rolling window)\n[justs @ 2026-05-16T06:52:33.508Z]\nHey Kha'an, I need you to develop a custom MCP server via Brain MCP for Power BI - NORDE Specifically. What info do "}
+{"ts": "2026-05-16T12:10:36Z", "event": "iteration_complete", "source": "brain_visual:plan:mp85sj4agted", "iteration_hash": "0c5b4495fc7d", "latency_ms": 494533, "exit_code": 0, "stdout_chars": 637, "stderr_chars": 0}
+{"ts": "2026-05-16T12:10:36Z", "event": "autonomy_invariant", "iteration_hash": "0c5b4495fc7d", "mode": "full", "coms_posted": true, "coms_ref": "mp8b0zj295i3", "digest_posted": true, "digest_ref": "mp8b17c5", "pass": true}
+{"ts": "2026-05-16T12:10:36Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-16T12:11:06Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-16T12:11:36Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-16T12:15:36Z", "event": "iteration_start", "source": "brain_visual:plan:mp85sj4agted", "iteration_hash": "9c363526414a", "prompt": "## Recent COMS conversation (24h rolling window)\n[justs @ 2026-05-16T06:52:33.508Z]\nHey Kha'an, I need you to develop a custom MCP server via Brain MCP for Power BI - NORDE Specifically. What info do "}
+{"ts": "2026-05-16T12:20:28Z", "event": "iteration_complete", "source": "brain_visual:plan:mp85sj4agted", "iteration_hash": "9c363526414a", "latency_ms": 291243, "exit_code": 0, "stdout_chars": 317, "stderr_chars": 0}
+{"ts": "2026-05-16T12:20:28Z", "event": "autonomy_invariant", "iteration_hash": "9c363526414a", "mode": "full", "coms_posted": true, "coms_ref": "mp8bdo3rywq5", "digest_posted": true, "digest_ref": "mp8bdxac", "pass": true}
+{"ts": "2026-05-16T12:20:28Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-16T12:20:58Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-16T12:21:28Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-16T12:25:51Z", "event": "iteration_start", "source": "brain_visual:plan:mp85sj4agted", "iteration_hash": "7174b1bb40de", "prompt": "## Recent COMS conversation (24h rolling window)\n[justs @ 2026-05-16T06:52:33.508Z]\nHey Kha'an, I need you to develop a custom MCP server via Brain MCP for Power BI - NORDE Specifically. What info do "}
+{"ts": "2026-05-16T12:31:03Z", "event": "iteration_complete", "source": "brain_visual:plan:mp85sj4agted", "iteration_hash": "7174b1bb40de", "latency_ms": 312241, "exit_code": 0, "stdout_chars": 97, "stderr_chars": 0}
+{"ts": "2026-05-16T12:31:03Z", "event": "autonomy_invariant", "iteration_hash": "7174b1bb40de", "mode": "full", "coms_posted": true, "coms_ref": "mp8br8mpiuva", "digest_posted": true, "digest_ref": "mp8brjrn", "pass": true}
+{"ts": "2026-05-16T12:31:03Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-16T12:31:33Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-16T12:32:03Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-16T12:36:54Z", "event": "iteration_start", "source": "brain_visual:plan:mp85sj4agted", "iteration_hash": "05e7b498b010", "prompt": "## Recent COMS conversation (24h rolling window)\n[justs @ 2026-05-16T06:52:33.508Z]\nHey Kha'an, I need you to develop a custom MCP server via Brain MCP for Power BI - NORDE Specifically. What info do "}
+{"ts": "2026-05-16T12:42:20Z", "event": "iteration_complete", "source": "brain_visual:plan:mp85sj4agted", "iteration_hash": "05e7b498b010", "latency_ms": 326611, "exit_code": 0, "stdout_chars": 459, "stderr_chars": 0}
+{"ts": "2026-05-16T12:42:20Z", "event": "autonomy_invariant", "iteration_hash": "05e7b498b010", "mode": "full", "coms_posted": true, "coms_ref": "mp8c5r5ho0p8", "digest_posted": true, "digest_ref": "mp8c614i", "pass": true}
+{"ts": "2026-05-16T12:42:20Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-16T12:42:50Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-16T12:43:20Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-16T12:47:42Z", "event": "iteration_start", "source": "brain_visual:plan:mp85sj4agted", "iteration_hash": "273e1d5304c5", "prompt": "## Recent COMS conversation (24h rolling window)\n[justs @ 2026-05-16T06:52:33.508Z]\nHey Kha'an, I need you to develop a custom MCP server via Brain MCP for Power BI - NORDE Specifically. What info do "}
+{"ts": "2026-05-16T12:52:46Z", "event": "iteration_complete", "source": "brain_visual:plan:mp85sj4agted", "iteration_hash": "273e1d5304c5", "latency_ms": 304318, "exit_code": 0, "stdout_chars": 381, "stderr_chars": 0}
+{"ts": "2026-05-16T12:52:46Z", "event": "autonomy_invariant", "iteration_hash": "273e1d5304c5", "mode": "full", "coms_posted": true, "coms_ref": "mp8cj8ktmfnp", "digest_posted": true, "digest_ref": "mp8cjhbm", "pass": true}
+{"ts": "2026-05-16T12:52:46Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-16T12:53:16Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-16T12:53:46Z", "event": "iteration_skipped", "reason": "live_session_active"}
+{"ts": "2026-05-16T12:54:16Z", "event": "iteration_skipped", "reason": "decision_in_flight"}
+{"ts": "2026-05-16T12:54:31Z", "event": "iteration_skipped", "reason": "decision_in_flight"}
+{"ts": "2026-05-16T12:54:46Z", "event": "iteration_skipped", "reason": "decision_in_flight"}
+{"ts": "2026-05-16T12:55:01Z", "event": "iteration_skipped", "reason": "decision_in_flight"}
+{"ts": "2026-05-16T12:59:07Z", "event": "iteration_start", "source": "brain_visual:plan:mp85sj4agted", "iteration_hash": "e25f042dfd1e", "prompt": "## Recent COMS conversation (24h rolling window)\n[justs @ 2026-05-16T06:52:33.508Z]\nHey Kha'an, I need you to develop a custom MCP server via Brain MCP for Power BI - NORDE Specifically. What info do "}
