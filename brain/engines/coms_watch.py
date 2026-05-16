@@ -32,7 +32,7 @@ COMS_PENDING_BIN = BRAIN / "binaries" / "coms-pending.bin"
 THALAMUS = BRAIN / "thalamus.json"
 
 COMS_API = os.environ.get("COMS_API", "http://localhost:3001")
-POLL_INTERVAL = int(os.environ.get("COMS_POLL_INTERVAL", "8"))
+POLL_INTERVAL = int(os.environ.get("COMS_POLL_INTERVAL", "90"))
 
 
 def get_agent_name():
