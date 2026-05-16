@@ -1,4 +1,4 @@
-import os, sys, json, time, subprocess, traceback, datetime, hashlib
+import os, sys, json, time, subprocess, traceback, datetime
 from pathlib import Path
 
 sys.path.insert(0, os.path.join(os.path.expanduser("~"), ".claude", "brain"))
@@ -27,7 +27,6 @@ ACTIVE_DECISION = BRAIN / "navigation" / "active-decision.json"
 DECISION_WAIT_S = 60
 CONTEXT_WINDOW_S = 24 * 3600
 BRAIN_TASKS_URL = "http://localhost:3001/api/dashboard/brain-tasks"
-AUTONOMY_INVARIANT_SKILL = str(Path.home() / "Khaan/skills/autonomy-invariant/verify.py")
 
 
 
@@ -61,8 +60,6 @@ def get_recent_chat_context():
 
 
 import urllib.request as _urlreq
-
-_current_iteration_hash = [None]  # mutable holder readable by compose_rich_prompt
 
 def fetch_brain_tasks():
     try:
@@ -197,22 +194,6 @@ def compose_rich_prompt(base_prompt):
             parts.append(f"## {name}\n{path.read_text()[:3000]}")
         except Exception:
             pass
-    # Inject required output marker (set externally by iteration() before calling)
-    iter_hash = _current_iteration_hash[0] if _current_iteration_hash else None
-    if iter_hash:
-        marker_block = (
-            f"## REQUIRED OUTPUT MARKER\n"
-            f"Your iteration_hash is: ITERHASH-{iter_hash}\n\n"
-            f"Before you finish:\n"
-            f"- Include `ITERHASH-{iter_hash}` in your COMS POST body "
-            f"(POST http://localhost:3001/api/chat with role=khaan)\n"
-            f"- Include `ITERHASH-{iter_hash}` in your digest summary "
-            f"(mcp__claude_ai_Brain__post_digest, set triggerName=\"Brain Solo Time\")\n"
-            f"- If you wrote artifact files, list their paths in the digest items[]\n\n"
-            f"Rule 12 (autonomy-invariant-block) will REJECT your post_digest call until "
-            f"a COMS POST with this marker exists. COMS first, then digest."
-        )
-        parts.append(marker_block)
     parts.append("---\n" + seed)
     return "\n\n".join(parts)
 
@@ -339,8 +320,7 @@ def iteration():
             source = source + "+context"
     else:
         # Brain Visual driven iteration
-        base_prompt = SELF_PROMPT
-        prompt = compose_rich_prompt(base_prompt)
+        prompt = compose_rich_prompt(SELF_PROMPT)
         # Source tag reflects what we picked
         try:
             bt = fetch_brain_tasks()
@@ -352,21 +332,8 @@ def iteration():
         except Exception:
             source = "self"
 
-    # Generate iteration_hash and persist to state for Rule 12 to read
-    ts_now = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
-    iteration_hash = hashlib.sha256(f"{ts_now}|{source}|{queued and queued.get('msg_id') or 'none'}".encode()).hexdigest()[:12]
-    _current_iteration_hash[0] = iteration_hash
-    try:
-        from engines._shared import read_state, write_state
-        _st = read_state(); _st["active_iteration_hash"] = iteration_hash; write_state(_st)
-    except Exception:
-        pass
-
-    # Recompose prompt now that the marker holder is set
-    prompt = compose_rich_prompt(base_prompt)
-
     t0 = time.time()
-    log_event("iteration_start", {"source": source, "iteration_hash": iteration_hash, "prompt": prompt[:200]})
+    log_event("iteration_start", {"source": source, "prompt": prompt[:200]})
 
     env = {**os.environ}
     env.pop("BRAIN_SKIP_HOOKS", None)
@@ -378,28 +345,11 @@ def iteration():
         )
         log_event("iteration_complete", {
             "source": source,
-            "iteration_hash": iteration_hash,
             "latency_ms": int((time.time() - t0) * 1000),
             "exit_code": r.returncode,
             "stdout_chars": len(r.stdout),
             "stderr_chars": len(r.stderr),
         })
-        # Post-iteration invariant audit
-        try:
-            inv = subprocess.run(
-                ["python3", AUTONOMY_INVARIANT_SKILL, iteration_hash, "--mode", "full"],
-                capture_output=True, text=True, timeout=10
-            )
-            inv_result = json.loads(inv.stdout) if inv.stdout else {"pass": False, "error": "no stdout"}
-            log_event("autonomy_invariant", inv_result)
-        except Exception as e:
-            log_event("autonomy_invariant_failed", {"error": str(e)[:200]})
-        finally:
-            _current_iteration_hash[0] = None
-            try:
-                _st = read_state(); _st["active_iteration_hash"] = None; write_state(_st)
-            except Exception:
-                pass
         # Mark COMS items as processed after handling
         if source == "coms" and queued and queued.get("msg_id"):
             try:

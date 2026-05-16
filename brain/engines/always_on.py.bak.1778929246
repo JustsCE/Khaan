@@ -339,8 +339,7 @@ def iteration():
             source = source + "+context"
     else:
         # Brain Visual driven iteration
-        base_prompt = SELF_PROMPT
-        prompt = compose_rich_prompt(base_prompt)
+        prompt = compose_rich_prompt(SELF_PROMPT)
         # Source tag reflects what we picked
         try:
             bt = fetch_brain_tasks()

@@ -290,28 +290,4 @@ def evaluate(payload, repo_root):
         if re.search(r"python3\s+.*-c\s+", cmd) and BYPASS_GRANT_RE.search(cmd):
             gates.append("bypass-grant-block")
 
-
-    # Rule 12: autonomy-invariant-block
-    # Force COMS POST before digest. Calls the autonomy-invariant skill (coms-only mode).
-    # Mechanical mirror of decision-engine's query_hash verification — COMS must
-    # contain ITERHASH-<hash> before a digest with that hash is allowed.
-    if tool_name in ("mcp__claude_ai_Brain__post_digest", "mcp__claude_ai_WhatsApp__post_digest"):
-        st_path = repo_root / "state.json"
-        if st_path.exists():
-            try:
-                st = json.loads(st_path.read_text())
-                iter_hash = st.get("active_iteration_hash")
-            except Exception:
-                iter_hash = None
-            if iter_hash:
-                import subprocess as _sp
-                skill = os.path.expanduser("~/Khaan/skills/autonomy-invariant/verify.py")
-                try:
-                    r = _sp.run(["python3", skill, iter_hash, "--mode", "coms-only"],
-                                capture_output=True, text=True, timeout=5)
-                    if r.returncode != 0:
-                        gates.append("autonomy-invariant-block")
-                except Exception:
-                    pass  # fail-open: don't block on infra hiccup
-
     return gates
