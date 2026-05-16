@@ -1,1 +1,2 @@
 {"ts": "2026-05-16T06:11:48Z", "event": "watcher_start", "agent": "kha'an", "poll_interval": 8}
+{"ts": "2026-05-16T16:35:41Z", "event": "fetch_error", "error": "[Errno 104] Connection reset by peer"}

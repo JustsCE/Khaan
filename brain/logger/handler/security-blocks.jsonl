@@ -3,3 +3,4 @@
 {"ts": "2026-05-13T18:07:28Z", "gate": "script-content-block", "script": "~/brain/autonomy-engine/engine.py", "reason": "unreadable"}
 {"ts": "2026-05-13T20:12:33Z", "gate": "script-content-block", "script": "/opt/brain-viz/scripts/verify-viz.py", "reason": "unreadable"}
 {"ts": "2026-05-14T12:36:09Z", "gate": "script-content-block", "script": "/opt/brain-viz/scripts/verify-viz.py", "reason": "unreadable"}
+{"ts": "2026-05-16T16:45:31Z", "gate": "script-content-block", "script": "/tmp/verify-dashboard.py", "reason": "unreadable"}

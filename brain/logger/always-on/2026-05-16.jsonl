@@ -145,3 +145,5 @@
 {"ts": "2026-05-16T12:54:46Z", "event": "iteration_skipped", "reason": "decision_in_flight"}
 {"ts": "2026-05-16T12:55:01Z", "event": "iteration_skipped", "reason": "decision_in_flight"}
 {"ts": "2026-05-16T12:59:07Z", "event": "iteration_start", "source": "brain_visual:plan:mp85sj4agted", "iteration_hash": "e25f042dfd1e", "prompt": "## Recent COMS conversation (24h rolling window)\n[justs @ 2026-05-16T06:52:33.508Z]\nHey Kha'an, I need you to develop a custom MCP server via Brain MCP for Power BI - NORDE Specifically. What info do "}
+{"ts": "2026-05-16T17:11:28Z", "event": "daemon_start", "pid": 724056}
+{"ts": "2026-05-16T17:28:54Z", "event": "daemon_start", "pid": 725681}

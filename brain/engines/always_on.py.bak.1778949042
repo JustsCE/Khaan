@@ -74,7 +74,7 @@ def fetch_brain_tasks():
 
 
 def pick_one_task(bt):
-    # Priority order: EXECUTE first (autonomous), then PROJECT (multi-round)
+    # Priority order: EXECUTE first (autonomous), then PROJECT (multi-round), then PLAN
     # Within each bucket, lowest priority number wins.
     for bucket in ("execute", "project", "plan"):
         items = bt.get(bucket, [])
@@ -119,7 +119,7 @@ def select_seed(bucket, task, has_coms):
             base += (
                 "\n\nNo Brain Visual task assigned. Review the COMS section above. "
                 "If any message warrants action, POST /api/dashboard/tasks/<source>/<id>/promote "
-                "(or create a brain task via the dashboard API) and tag it EXECUTE / PROJECT / PENDING. "
+                "(or create a brain task via the dashboard API) and tag it EXECUTE / PLAN / PROJECT / PENDING. "
                 "You set priority. Then stop \u2014 the next iteration will pick it up."
             )
         return base
@@ -141,6 +141,11 @@ def select_seed(bucket, task, has_coms):
             "- If status is revision_needed: call revise_project with the new plan + notes addressing the teacher feedback.",
             "- Do NOT call user_verify_project \u2014 that's user-only.",
             "- Do NOT touch tasks at awaiting_teacher or user_verify_pending.",
+        ]
+    elif "PLAN" in tags:
+        rules += [
+            "- PLAN: produce the plan (research, design, options). Do NOT execute.",
+            "- If scope warrants a project, init_project + first round. Otherwise post the plan as a COMS reply for Justs to review.",
         ]
     else:
         rules.append("- Unknown tag combination. Read the task carefully, decide one action, execute it, report via COMS.")
