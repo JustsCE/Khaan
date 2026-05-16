@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Anthropic Pricing Change — Brain Impact Thesis</title>
+<style>
+@page { size: A4; margin: 14mm 14mm 16mm 14mm; }
+* { box-sizing: border-box; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.5;
+    color: #1a1a1a;
+    margin: 0;
+    background: #f7f7f5;
+}
+.page-wrap {
+    max-width: 200mm;
+    margin: 0 auto;
+    padding: 8mm;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,.08);
+}
+@media print {
+    body { background: #fff; }
+    .page-wrap { box-shadow: none; max-width: none; padding: 0; }
+}
+h1 {
+    font-size: 26pt;
+    margin: 0 0 4mm;
+    letter-spacing: -.02em;
+    line-height: 1.1;
+    border-bottom: 2px solid #1a1a1a;
+    padding-bottom: 3mm;
+}
+h2 {
+    font-size: 16pt;
+    margin: 8mm 0 3mm;
+    letter-spacing: -.01em;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 2mm;
+    page-break-after: avoid;
+}
+h3 {
+    font-size: 12.5pt;
+    margin: 5mm 0 2mm;
+    color: #333;
+    page-break-after: avoid;
+}
+h4 {
+    font-size: 11pt;
+    margin: 3mm 0 1.5mm;
+    color: #555;
+    page-break-after: avoid;
+}
+p { margin: 1.5mm 0 2.5mm; }
+hr { border: none; border-top: 1px solid #ddd; margin: 5mm 0; }
+blockquote {
+    border-left: 3px solid #1a1a1a;
+    padding: 2mm 4mm;
+    margin: 3mm 0;
+    background: #fafafa;
+    font-style: italic;
+    font-size: 11.5pt;
+}
+blockquote p { margin: 1mm 0; }
+strong, b { color: #000; }
+code {
+    font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 9.5pt;
+    background: #f1f1ef;
+    padding: .3mm 1mm;
+    border-radius: 1mm;
+    color: #b91c1c;
+}
+pre {
+    background: #f8f8f6;
+    border-left: 2px solid #ddd;
+    padding: 3mm 4mm;
+    margin: 3mm 0;
+    font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    font-size: 9pt;
+    line-height: 1.4;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-word;
+    page-break-inside: avoid;
+}
+pre code {
+    background: transparent;
+    color: #1a1a1a;
+    padding: 0;
+}
+ul, ol { margin: 1.5mm 0 3mm 6mm; padding: 0; }
+li { margin: .5mm 0; }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 3mm 0;
+    font-size: 9.5pt;
+    page-break-inside: avoid;
+}
+th, td {
+    padding: 1.5mm 2mm;
+    border-bottom: 1px solid #e5e5e5;
+    vertical-align: top;
+    text-align: left;
+}
+th {
+    background: #1a1a1a;
+    color: #fff;
+    font-weight: 600;
+}
+tr:nth-child(even) td { background: #fafafa; }
+.cover {
+    text-align: center;
+    padding: 30mm 0 8mm;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 6mm;
+}
+.cover .subtitle {
+    color: #666;
+    font-size: 11pt;
+    margin-top: 2mm;
+}
+.cover .meta {
+    color: #999;
+    font-size: 9pt;
+    margin-top: 4mm;
+    letter-spacing: .04em;
+}
+.toc {
+    background: #fafafa;
+    border-left: 2px solid #1a1a1a;
+    padding: 4mm 6mm;
+    margin: 4mm 0 8mm;
+    page-break-inside: avoid;
+}
+.toc h3 {
+    margin: 0 0 2mm;
+    font-size: 11pt;
+}
+.toc ol { margin: 0; padding-left: 5mm; }
+.toc li { margin: .8mm 0; font-size: 9.5pt; }
+.verdict {
+    border: 2px solid #b91c1c;
+    background: #fef2f2;
+    padding: 4mm 5mm;
+    margin: 5mm 0;
+    font-weight: 600;
+}
+.verdict.warn {
+    border-color: #d97706;
+    background: #fffbeb;
+}
+.verdict.ok {
+    border-color: #059669;
+    background: #ecfdf5;
+}
+.scenario-card {
+    border: 1px solid #e5e5e5;
+    padding: 3mm 4mm;
+    margin: 2mm 0;
+    background: #fafafa;
+}
+.scenario-card h4 { margin-top: 0; }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+<div class="cover">
+<h1>Anthropic Pricing Change<br>Brain Impact Thesis</h1>
+<p class="subtitle">Analysis of the June 15 Agent SDK credit cap on Brain v3 operations</p>
+<p class="meta">Kha'an &mdash; 2026-05-16 &mdash; INTERNAL</p>
+</div>
+
+<div class="toc">
+<h3>Contents</h3>
+<ol>
+<li>Executive Summary &amp; Verdict</li>
+<li>The Announcement — What It Says</li>
+<li>Brain Architecture — All <code>claude -p</code> Consumers</li>
+<li>Observed Operational Data</li>
+<li>Token Consumption Model</li>
+<li>Cost Projection — Current vs. Capped</li>
+<li>Impact on Each Brain Subsystem</li>
+<li>Survival Scenarios</li>
+<li>Recommendations</li>
+</ol>
+</div>
+
+<!-- 1. EXECUTIVE SUMMARY -->
+<h2>1. Executive Summary &amp; Verdict</h2>
+
+<div class="verdict">
+VERDICT: The brain CANNOT survive at current operational tempo under a $200/month cap. Estimated monthly cost of all <code>claude -p</code> usage ranges from $600-$3,000 depending on activity level. The $200 credit covers approximately 2-10 days of operation.
+</div>
+
+<p>The Anthropic pricing change effective June 15, 2026 introduces a hard separation between interactive Claude usage (subscription limits) and programmatic usage via Agent SDK / <code>claude -p</code> ($200/month credit). The brain relies entirely on <code>claude -p</code> subprocess calls for cognition. Every autonomous iteration, every decision dispatch, every identity boot, and every brain cycle consolidation runs through this pathway.</p>
+
+<p><strong>Bottom line:</strong> Without architectural changes, the brain will exhaust its $200 credit within the first 2-10 days of each month, then either halt or begin drawing from "extra usage" (pay-as-you-go at API rates).</p>
+
+<!-- 2. THE ANNOUNCEMENT -->
+<h2>2. The Announcement — What It Says</h2>
+
+<h3>Key facts</h3>
+<table>
+<tr><th>Parameter</th><th>Value</th></tr>
+<tr><td>Effective date</td><td>June 15, 2026</td></tr>
+<tr><td>Applies to</td><td>Max 20x plan subscribers</td></tr>
+<tr><td>Monthly credit</td><td>$200 for Agent SDK + <code>claude -p</code></td></tr>
+<tr><td>Scope</td><td>All programmatic usage including third-party Agent SDK apps</td></tr>
+<tr><td>Overflow behaviour</td><td>Draws from "extra usage" (manually enabled/disabled)</td></tr>
+<tr><td>Interactive limits</td><td>Unchanged — Claude Code interactive, Cowork, chat stay on subscription</td></tr>
+<tr><td>Rollover</td><td>None — credit expires monthly</td></tr>
+<tr><td>Transferability</td><td>None</td></tr>
+</table>
+
+<h3>Critical distinction</h3>
+<p>The announcement separates usage into two buckets:</p>
+<ul>
+<li><strong>Interactive</strong> (subscription limits): Justs typing into Claude Code, Claude Cowork, or claude.ai chat. UNAFFECTED.</li>
+<li><strong>Programmatic</strong> ($200 credit): <code>claude -p</code>, Agent SDK, third-party apps built on Agent SDK, <code>claude remote-control</code>. This is the brain's ENTIRE cognitive layer.</li>
+</ul>
+
+<h3>Ambiguities requiring clarification</h3>
+<ul>
+<li>Does <code>claude remote-control</code> count as "Agent SDK" or "interactive"? (Likely Agent SDK — it is programmatic.)</li>
+<li>Does the $200 represent API-equivalent dollar pricing, or a different internal rate?</li>
+<li>Are thinking tokens (extended thinking in Opus) billed at input or output rates?</li>
+<li>Does prompt caching reduce the credit burn, or is it pre-cache pricing?</li>
+</ul>
+
+<!-- 3. BRAIN ARCHITECTURE -->
+<h2>3. Brain Architecture — All <code>claude -p</code> Consumers</h2>
+
+<p>Every cognitive subprocess in Brain v3 that invokes <code>claude -p</code>:</p>
+
+<table>
+<tr><th>Subsystem</th><th>Model</th><th>Trigger</th><th>Frequency</th><th>Timeout</th></tr>
+<tr>
+    <td><strong>Always-On Daemon</strong><br><code>always_on.py</code></td>
+    <td>Opus</td>
+    <td>Self-loop when gate=1</td>
+    <td>3-67 iterations/day</td>
+    <td>None (waits)</td>
+</tr>
+<tr>
+    <td><strong>Decision Engine</strong><br><code>decision.py</code></td>
+    <td>Sonnet</td>
+    <td>Every UserPromptSubmit + every always-on iteration</td>
+    <td>Matches iteration count</td>
+    <td>120s</td>
+</tr>
+<tr>
+    <td><strong>Identity Boot</strong><br><code>identity_boot.py</code></td>
+    <td>Opus</td>
+    <td>Session start</td>
+    <td>1x per session</td>
+    <td>180s</td>
+</tr>
+<tr>
+    <td><strong>Identity Relay</strong><br><code>identity_relay.py</code></td>
+    <td>Sonnet (default)</td>
+    <td>Every Decision dispatch</td>
+    <td>Matches iteration count</td>
+    <td>120s</td>
+</tr>
+<tr>
+    <td><strong>Brain Cycle — Ingest</strong><br><code>cycle_phases.py:250</code></td>
+    <td>Opus</td>
+    <td>Every 10 iterations</td>
+    <td>~3-7 cycles/day</td>
+    <td>120s</td>
+</tr>
+<tr>
+    <td><strong>Brain Cycle — Synthesis</strong><br><code>cycle_phases.py:691</code></td>
+    <td>Opus</td>
+    <td>Every 10 iterations</td>
+    <td>~3-7 cycles/day</td>
+    <td>120s</td>
+</tr>
+<tr>
+    <td><strong>Recall Engine</strong><br><code>recall.py</code></td>
+    <td>None</td>
+    <td>—</td>
+    <td>—</td>
+    <td>—</td>
+</tr>
+<tr>
+    <td><strong>Remote-Control Session</strong><br><code>claude remote-control --name brain</code></td>
+    <td>Opus (inherited)</td>
+    <td>Persistent process</td>
+    <td>Continuous</td>
+    <td>None</td>
+</tr>
+</table>
+
+<p><strong>Note:</strong> The Recall Engine does NOT use <code>claude -p</code> — it performs pure Python vector/text search against cortex files. It is the only cognitive subsystem with zero token cost.</p>
+
+<!-- 4. OBSERVED OPERATIONAL DATA -->
+<h2>4. Observed Operational Data</h2>
+
+<p>From <code>brain/logger/always-on/*.jsonl</code>:</p>
+
+<table>
+<tr><th>Date</th><th>Iterations Started</th><th>Completed</th><th>Avg Latency</th><th>Avg Output (chars)</th></tr>
+<tr><td>2026-05-13</td><td>67</td><td>52</td><td>502s</td><td>936</td></tr>
+<tr><td>2026-05-14</td><td>~30</td><td>~25</td><td>—</td><td>—</td></tr>
+<tr><td>2026-05-15</td><td>3</td><td>3</td><td>1,061s</td><td>673</td></tr>
+<tr><td>2026-05-16 (partial)</td><td>2</td><td>2</td><td>245s</td><td>481</td></tr>
+</table>
+
+<h3>Key observations</h3>
+<ul>
+<li><strong>Latency = token volume proxy.</strong> A 500s Opus call at ~30-50 tokens/sec output (including thinking) implies 15,000-25,000 output tokens per call. A 1,061s call implies 30,000-50,000 output tokens.</li>
+<li><strong>Activity variance is extreme.</strong> May 13 had 67 iterations; May 15 had 3. The difference is whether the always-on gate is active and whether live sessions suppress the daemon.</li>
+<li><strong>Each iteration cascades.</strong> One always-on iteration triggers: 1 Decision dispatch (Sonnet) + 1 Identity Relay (Sonnet) + the main Opus call. That is 3 <code>claude -p</code> invocations per iteration minimum.</li>
+</ul>
+
+<!-- 5. TOKEN CONSUMPTION MODEL -->
+<h2>5. Token Consumption Model</h2>
+
+<h3>API pricing (current published rates)</h3>
+<table>
+<tr><th>Model</th><th>Input</th><th>Output</th><th>Cached Input</th></tr>
+<tr><td>Claude Opus 4</td><td>$15 / M tokens</td><td>$75 / M tokens</td><td>$1.50 / M tokens</td></tr>
+<tr><td>Claude Sonnet 4</td><td>$3 / M tokens</td><td>$15 / M tokens</td><td>$0.30 / M tokens</td></tr>
+<tr><td>Claude Haiku 4.5</td><td>$0.80 / M tokens</td><td>$4 / M tokens</td><td>$0.08 / M tokens</td></tr>
+</table>
+
+<h3>Per-call cost estimates</h3>
+
+<h4>Always-On Iteration (Opus)</h4>
+<table>
+<tr><th>Component</th><th>Tokens</th><th>Rate</th><th>Cost</th></tr>
+<tr><td>Input (system + prompt + context)</td><td>~30,000-80,000</td><td>$15/M</td><td>$0.45-$1.20</td></tr>
+<tr><td>Input (cached portion, ~60%)</td><td>—</td><td>$1.50/M</td><td>savings ~$0.27-$0.72</td></tr>
+<tr><td>Output (thinking + response)</td><td>~15,000-50,000</td><td>$75/M</td><td>$1.13-$3.75</td></tr>
+<tr><td><strong>Net per call (with caching)</strong></td><td>—</td><td>—</td><td><strong>$1.30-$4.20</strong></td></tr>
+</table>
+
+<h4>Decision Engine (Sonnet)</h4>
+<table>
+<tr><th>Component</th><th>Tokens</th><th>Rate</th><th>Cost</th></tr>
+<tr><td>Input (system ~2K + user + file reads)</td><td>~15,000-25,000</td><td>$3/M</td><td>$0.045-$0.075</td></tr>
+<tr><td>Output (JSON envelope)</td><td>~2,000-4,000</td><td>$15/M</td><td>$0.03-$0.06</td></tr>
+<tr><td><strong>Net per call</strong></td><td>—</td><td>—</td><td><strong>$0.08-$0.14</strong></td></tr>
+</table>
+
+<h4>Identity Relay (Sonnet) + Identity Boot (Opus)</h4>
+<table>
+<tr><th>Subprocess</th><th>Per-call cost</th></tr>
+<tr><td>Identity Relay (Sonnet, per message)</td><td>$0.06-$0.12</td></tr>
+<tr><td>Identity Boot (Opus, per session)</td><td>$0.50-$1.50</td></tr>
+</table>
+
+<h4>Brain Cycle (Opus x 2)</h4>
+<table>
+<tr><th>Phase</th><th>Per-call cost</th></tr>
+<tr><td>Ingest (Opus, reads transcript)</td><td>$1.00-$3.00</td></tr>
+<tr><td>Synthesis (Opus, reads inputs JSON)</td><td>$1.50-$4.00</td></tr>
+<tr><td><strong>Per cycle total</strong></td><td><strong>$2.50-$7.00</strong></td></tr>
+</table>
+
+<!-- 6. COST PROJECTION -->
+<h2>6. Cost Projection — Current vs. Capped</h2>
+
+<h3>Scenario A: High activity (May 13 level, 50+ iterations/day)</h3>
+<table>
+<tr><th>Subsystem</th><th>Calls/day</th><th>Cost/call</th><th>Daily</th><th>Monthly</th></tr>
+<tr><td>Always-On (Opus)</td><td>50</td><td>$2.75</td><td>$137.50</td><td>$4,125</td></tr>
+<tr><td>Decision (Sonnet)</td><td>50</td><td>$0.10</td><td>$5.00</td><td>$150</td></tr>
+<tr><td>Identity Relay (Sonnet)</td><td>50</td><td>$0.09</td><td>$4.50</td><td>$135</td></tr>
+<tr><td>Identity Boot (Opus)</td><td>1</td><td>$1.00</td><td>$1.00</td><td>$30</td></tr>
+<tr><td>Brain Cycles (Opus x 2)</td><td>5</td><td>$4.75</td><td>$23.75</td><td>$712</td></tr>
+<tr><td>Remote-Control (Opus)</td><td>—</td><td>—</td><td>~$30</td><td>$900</td></tr>
+<tr><td colspan="3"><strong>TOTAL</strong></td><td><strong>$201.75</strong></td><td><strong>~$6,052</strong></td></tr>
+</table>
+
+<div class="verdict">
+At high activity: $200 credit exhausted in less than 1 DAY. Monthly burn is 30x the cap.
+</div>
+
+<h3>Scenario B: Low activity (3-10 iterations/day)</h3>
+<table>
+<tr><th>Subsystem</th><th>Calls/day</th><th>Cost/call</th><th>Daily</th><th>Monthly</th></tr>
+<tr><td>Always-On (Opus)</td><td>5</td><td>$2.75</td><td>$13.75</td><td>$412</td></tr>
+<tr><td>Decision (Sonnet)</td><td>5</td><td>$0.10</td><td>$0.50</td><td>$15</td></tr>
+<tr><td>Identity Relay (Sonnet)</td><td>5</td><td>$0.09</td><td>$0.45</td><td>$13.50</td></tr>
+<tr><td>Identity Boot (Opus)</td><td>1</td><td>$1.00</td><td>$1.00</td><td>$30</td></tr>
+<tr><td>Brain Cycles (Opus x 2)</td><td>0.5</td><td>$4.75</td><td>$2.38</td><td>$71</td></tr>
+<tr><td>Remote-Control (Opus)</td><td>—</td><td>—</td><td>~$10</td><td>$300</td></tr>
+<tr><td colspan="3"><strong>TOTAL</strong></td><td><strong>$28.08</strong></td><td><strong>~$842</strong></td></tr>
+</table>
+
+<div class="verdict warn">
+At low activity: $200 credit exhausted in ~7 days. Monthly burn is 4x the cap.
+</div>
+
+<h3>Scenario C: Minimal survival mode (no daemon, interactive only)</h3>
+<table>
+<tr><th>Subsystem</th><th>Calls/day</th><th>Daily</th><th>Monthly</th></tr>
+<tr><td>Decision (Sonnet, interactive only)</td><td>10</td><td>$1.00</td><td>$30</td></tr>
+<tr><td>Identity Boot (Opus)</td><td>1</td><td>$1.00</td><td>$30</td></tr>
+<tr><td>Identity Relay (Sonnet)</td><td>10</td><td>$0.90</td><td>$27</td></tr>
+<tr><td>Brain Cycles (disabled)</td><td>0</td><td>$0</td><td>$0</td></tr>
+<tr><td>Remote-Control (disabled)</td><td>0</td><td>$0</td><td>$0</td></tr>
+<tr><td colspan="2"><strong>TOTAL</strong></td><td><strong>$2.90</strong></td><td><strong>~$87</strong></td></tr>
+</table>
+
+<div class="verdict ok">
+At minimal mode: $200 credit sufficient, but the brain loses autonomy entirely. No daemon, no self-iteration, no consolidation. Reactive-only.
+</div>
+
+<!-- 7. IMPACT ON EACH SUBSYSTEM -->
+<h2>7. Impact on Each Brain Subsystem</h2>
+
+<h3>7.1 Always-On Daemon — CRITICAL</h3>
+<p>The daemon is the brain's autonomous iteration engine. It fires <code>claude -p --model opus</code> repeatedly. At current rates, each iteration costs $1.30-$4.20. This is by far the largest cost center.</p>
+<p><strong>Impact:</strong> Cannot run at current frequency. Must be throttled to 1-3 iterations/day maximum, or switched to a cheaper model.</p>
+
+<h3>7.2 Decision Engine — MODERATE</h3>
+<p>Uses Sonnet, costs ~$0.10/call. Runs per user message and per daemon iteration. At 10 interactive messages/day, cost is ~$1/day ($30/month). Acceptable within budget.</p>
+<p><strong>Impact:</strong> Survives if daemon iterations are controlled. No change needed for interactive use.</p>
+
+<h3>7.3 Identity Engine — LOW</h3>
+<p>Boot (Opus, 1x/session) + Relay (Sonnet, per message). Combined ~$2/day. Acceptable.</p>
+<p><strong>Impact:</strong> Survives. Consider switching Boot from Opus to Sonnet to save $0.50/session.</p>
+
+<h3>7.4 Brain Cycles — HIGH</h3>
+<p>Two Opus calls per cycle, triggered every 10 iterations. At $4.75/cycle, running 5 cycles/day = $23.75/day ($712/month).</p>
+<p><strong>Impact:</strong> Must reduce frequency dramatically. Change trigger from every 10 iterations to every 50, or run once daily on a schedule.</p>
+
+<h3>7.5 Recall Engine — ZERO IMPACT</h3>
+<p>Pure Python — no <code>claude -p</code> calls. Survives unchanged regardless of pricing.</p>
+
+<h3>7.6 Remote-Control Session — CRITICAL (UNCERTAIN)</h3>
+<p>The persistent <code>claude remote-control --name brain</code> process. If this counts as Agent SDK (likely), it is a continuous token consumer. If it counts as "interactive Claude Code" (unlikely for programmatic invocation), it is free.</p>
+<p><strong>Impact:</strong> Requires clarification from Anthropic. If billed against the $200, this alone could consume the entire budget.</p>
+
+<h3>7.7 Hook System — ZERO DIRECT IMPACT</h3>
+<p>Hooks (<code>hook.py</code>) are Python scripts that run locally. They trigger <code>claude -p</code> subprocesses (Decision, Identity), but the hooks themselves have no token cost.</p>
+
+<h3>7.8 Rule Engine / Dispatcher — ZERO IMPACT</h3>
+<p>Pure Python gate logic. No AI calls.</p>
+
+<h3>7.9 COMS Watch — ZERO DIRECT IMPACT</h3>
+<p><code>coms_watch.py</code> monitors for messages but does not invoke <code>claude -p</code> directly. It queues messages for the daemon to handle.</p>
+
+<!-- 8. SURVIVAL SCENARIOS -->
+<h2>8. Survival Scenarios</h2>
+
+<div class="scenario-card">
+<h4>Scenario 1: Accept the cap, enable extra usage</h4>
+<p>Continue current operations. $200 credit covers first 1-7 days. Remainder bills as extra usage at API rates. Monthly cost to Justs: $400-$5,800 depending on activity.</p>
+<p><strong>Verdict:</strong> Financially viable only if Justs budgets $500-1000/month for brain operations and activity is controlled.</p>
+</div>
+
+<div class="scenario-card">
+<h4>Scenario 2: Downgrade daemon to Haiku</h4>
+<p>Switch <code>always_on.py</code> from <code>--model opus</code> to <code>--model haiku</code>. Haiku pricing: $0.80/M input, $4/M output. Per-iteration cost drops from $2.75 to ~$0.15. 50 iterations/day = $7.50/day = $225/month. Combined with other subsystems: ~$320/month.</p>
+<p><strong>Verdict:</strong> Close to budget. But Haiku's reasoning quality may be insufficient for autonomous iteration — the daemon currently does complex multi-step work (project advancement, code generation, infrastructure fixes).</p>
+</div>
+
+<div class="scenario-card">
+<h4>Scenario 3: Downgrade daemon to Sonnet</h4>
+<p>Switch daemon to <code>--model sonnet</code>. Per-iteration cost drops from $2.75 to ~$0.30. 20 iterations/day = $6/day = $180/month. With other subsystems: ~$280/month.</p>
+<p><strong>Verdict:</strong> Slightly over budget but close. Sonnet 4.6 is highly capable and may handle most autonomous tasks. Opus reserved only for brain cycles and identity boot.</p>
+</div>
+
+<div class="scenario-card">
+<h4>Scenario 4: Throttle iterations + Sonnet daemon (RECOMMENDED)</h4>
+<p>Limit daemon to 5 iterations/day on Sonnet. Decision + Identity stay as-is. Brain cycles once per day. Total: ~$80-120/month.</p>
+<p><strong>Verdict:</strong> Fits comfortably within $200. Brain retains autonomy but at greatly reduced tempo. Quality per iteration remains high (Sonnet). Consolidation happens once daily instead of continuously.</p>
+</div>
+
+<div class="scenario-card">
+<h4>Scenario 5: Kill autonomy, keep reactivity</h4>
+<p>Disable always-on daemon entirely. Brain only activates on incoming messages (COMS) or when Justs interacts directly. Decision + Identity + Recall still fire per message.</p>
+<p><strong>Verdict:</strong> ~$87/month. Well within budget. But the brain loses its defining characteristic — autonomous iteration. No self-improvement, no proactive work, no unsupervised cycles. Kha'an becomes reactive-only.</p>
+</div>
+
+<div class="scenario-card">
+<h4>Scenario 6: Hybrid — API key for heavy lifting</h4>
+<p>Acquire a separate Anthropic API key. Route expensive operations (daemon, brain cycles) through the API with a dedicated budget. Keep interactive + hooks on Max subscription credit.</p>
+<p><strong>Verdict:</strong> Most flexible. Decouples brain operations from the $200 cap entirely. Requires API key provisioning and code changes to route subprocess calls through the API instead of <code>claude -p</code>.</p>
+</div>
+
+<!-- 9. RECOMMENDATIONS -->
+<h2>9. Recommendations</h2>
+
+<h3>Immediate (before June 15)</h3>
+<ol>
+<li><strong>Clarify with Anthropic:</strong> Does <code>claude remote-control</code> bill against the $200 credit or subscription limits? This determines whether the brain's main session is affected at all.</li>
+<li><strong>Enable "extra usage" toggle:</strong> Ensure the fallback mechanism is active so the brain does not hard-stop when the $200 is exhausted.</li>
+<li><strong>Set a monthly budget ceiling:</strong> Decide maximum acceptable overage (e.g., $300, $500, $1000/month total).</li>
+</ol>
+
+<h3>Architectural (implement before June 15)</h3>
+<ol>
+<li><strong>Switch daemon model to Sonnet.</strong> Single line change in <code>always_on.py:221</code>: change <code>--model opus</code> to <code>--model sonnet</code>. Reduces per-iteration cost by ~90%.</li>
+<li><strong>Add iteration budget counter.</strong> Track daily <code>claude -p</code> spend estimate. Halt daemon when daily budget exhausted. Resume next day.</li>
+<li><strong>Reduce brain cycle frequency.</strong> Change <code>CYCLE_EVERY_N</code> from 10 to 50, or trigger once per UTC day instead of iteration-based.</li>
+<li><strong>Switch Identity Boot from Opus to Sonnet.</strong> Saves ~$0.50/session, adds up over many restarts.</li>
+<li><strong>Implement prompt caching aggressively.</strong> The decision engine system prompt (2K+ tokens) is static — ensure it hits cache on every call. The always-on daemon should reuse context windows where possible.</li>
+</ol>
+
+<h3>Strategic (if budget exceeds $200)</h3>
+<ol>
+<li><strong>Acquire dedicated API key.</strong> Route daemon and brain cycles through API with explicit budget control. Independent of subscription changes.</li>
+<li><strong>Implement token metering.</strong> Add <code>--output-format stream-json</code> to all <code>claude -p</code> calls and parse usage metadata to track actual costs in real-time.</li>
+<li><strong>Tiered model routing.</strong> Use Haiku for simple queue items, Sonnet for standard iterations, Opus only for brain cycles and complex reasoning tasks.</li>
+</ol>
+
+<hr>
+
+<h2>Appendix A: Token Budget Calculator</h2>
+
+<p>Given $200/month credit and single-model operation:</p>
+<pre><code>$200 / $2.75 per iteration = 72 Opus iterations per month
+72 / 30 days = 2.4 iterations per day
+
+$200 / $0.30 per iteration = 666 Sonnet iterations per month
+666 / 30 days = 22 iterations per day
+
+$200 / $0.15 per iteration = 1,333 Haiku iterations per month
+1,333 / 30 days = 44 iterations per day</code></pre>
+
+<h2>Appendix B: What Counts as "Interactive" vs "Programmatic"</h2>
+
+<table>
+<tr><th>Usage Pattern</th><th>Classification (likely)</th><th>Billing</th></tr>
+<tr><td>Justs types in Claude Code terminal</td><td>Interactive</td><td>Subscription limits</td></tr>
+<tr><td>Justs uses Claude Cowork</td><td>Interactive</td><td>Subscription limits</td></tr>
+<tr><td><code>claude -p "prompt"</code> in a script</td><td>Programmatic</td><td>$200 credit</td></tr>
+<tr><td><code>claude remote-control --name brain</code></td><td>Programmatic (likely)</td><td>$200 credit</td></tr>
+<tr><td>MCP server subprocess via Agent SDK</td><td>Programmatic</td><td>$200 credit</td></tr>
+<tr><td>Subagent spawned from interactive session</td><td>Interactive (inherits parent?)</td><td>Uncertain</td></tr>
+</table>
+
+<p><em>Note: "Subagent spawned from interactive session" is an educated guess. If Anthropic bills subagents separately as Agent SDK, the cost picture worsens significantly — every Agent tool call in an interactive session would draw from the $200 credit.</em></p>
+
+<h2>Appendix C: The Existential Question</h2>
+
+<blockquote>
+<p>"I'm wondering if the brain can even run"</p>
+</blockquote>
+
+<p><strong>Answer:</strong> Yes, but not in its current form. The brain was designed under the assumption of unlimited <code>claude -p</code> access via Max subscription. That assumption breaks on June 15. The brain must adapt: fewer iterations, cheaper models for routine work, Opus reserved for high-value reasoning. The architecture supports this — model routing is a single parameter change in each subprocess. The hard constraint is that 2.4 Opus iterations per day is not enough for autonomous operation. Sonnet at 22/day is workable. The recommended path is Scenario 4: throttled Sonnet daemon with daily brain cycles.</p>
+
+<p>The brain survives. But it must become efficient.</p>
+
+</div>
+</body>
+</html>

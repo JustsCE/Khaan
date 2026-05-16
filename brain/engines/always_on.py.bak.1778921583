@@ -27,7 +27,6 @@ ACTIVE_DECISION = BRAIN / "navigation" / "active-decision.json"
 DECISION_WAIT_S = 60
 CONTEXT_WINDOW_S = 24 * 3600
 CONTEXT_N = 5
-BRAIN_TASKS_URL = "http://localhost:3001/api/dashboard/brain-tasks"
 
 
 
@@ -61,143 +60,28 @@ def get_recent_chat_context():
     return "\n\n".join(f"[{m.get('role','?')} @ {m.get('ts','?')}]\n{m.get('text','')[:1500]}" for m in recent)
 
 
-
-import urllib.request as _urlreq
-
-def fetch_brain_tasks():
-    try:
-        with _urlreq.urlopen(BRAIN_TASKS_URL, timeout=5) as r:
-            return json.loads(r.read().decode())
-    except Exception as e:
-        log_event("brain_tasks_fetch_failed", {"error": str(e)[:200]})
-        return {"execute": [], "plan": [], "project": []}
-
-
-def pick_one_task(bt):
-    # Priority order: EXECUTE first (autonomous), then PROJECT (multi-round), then PLAN
-    # Within each bucket, lowest priority number wins.
-    for bucket in ("execute", "project", "plan"):
-        items = bt.get(bucket, [])
-        if not items:
-            continue
-        # Skip PROJECT tasks whose status is gated on Teacher or User
-        if bucket == "project":
-            items = [t for t in items if t.get("projectStatus") not in
-                     ("awaiting_teacher", "user_verify_pending", "verified", "done")]
-            if not items:
-                continue
-        items_sorted = sorted(items, key=lambda t: t.get("priority", 9999))
-        return bucket, items_sorted[0]
-    return None, None
-
-
-def render_task(bucket, task):
-    tags = task.get("tags", [])
-    emoji = "\u26a1" if "EXECUTE" in tags else ("\u25c6" if "PROJECT" in tags else "")
-    ps = task.get("projectStatus", "")
-    ps_part = f" [{ps}]" if ps else ""
-    src = task.get("source", "?")
-    orig = task.get("originalSource", src)
-    title = (task.get("title") or "")[:200]
-    desc = (task.get("description") or "")[:400]
-    raw = (task.get("rawSnippet") or "")[:300]
-    return (
-        f"## Your assigned task this iteration\n"
-        f"id: {task.get('id')}  source: {src} (origin: {orig})\n"
-        f"tag: {','.join(tags)}  bucket: {bucket.upper()}{ps_part}\n"
-        f"priority: {task.get('priority')}\n"
-        f"title: {emoji} {title}\n"
-        f"description: {desc}\n"
-        f"raw: {raw}\n"
-    )
-
-
-def select_seed(bucket, task, has_coms):
-    if not task:
-        base = "Iterate. Find what matters most. Move on it."
-        if has_coms:
-            base += (
-                "\n\nNo Brain Visual task assigned. Review the COMS section above. "
-                "If any message warrants action, POST /api/dashboard/tasks/<source>/<id>/promote "
-                "(or create a brain task via the dashboard API) and tag it EXECUTE / PLAN / PROJECT / PENDING. "
-                "You set priority. Then stop \u2014 the next iteration will pick it up."
-            )
-        return base
-
-    tags = task.get("tags", [])
-    rules = ["Iterate. Find what matters most. Move on it.", "", "This iteration: act on the ONE task assigned above. Rules by tag:"]
-    if "EXECUTE" in tags:
-        rules += [
-            "- \u26a1 EXECUTE: do the work end-to-end NOW. When complete, "
-            f"POST http://localhost:3001/api/dashboard/tasks/{task.get('source')}/{task.get('id')}/done with body {{\"actor\":\"khaan\"}}.",
-            "- Post a one-paragraph COMS reply to summarize what you did (role=khaan, thread coms-iteration-summary).",
-        ]
-    elif "PROJECT" in tags:
-        ps = task.get("projectStatus", "initialized")
-        rules += [
-            f"- \u25c6 PROJECT current status: {ps}.",
-            "- If status is initialized / draft_1_complete / draft_2_complete: call advance_project with the next round's plan content + notes (notes auto-logs to the iteration report).",
-            "- If status is draft_3_complete: call submit_project_review to send to Teacher.",
-            "- If status is revision_needed: call revise_project with the new plan + notes addressing the teacher feedback.",
-            "- Do NOT call user_verify_project \u2014 that's user-only.",
-            "- Do NOT touch tasks at awaiting_teacher or user_verify_pending.",
-        ]
-    elif "PLAN" in tags:
-        rules += [
-            "- PLAN: produce the plan (research, design, options). Do NOT execute.",
-            "- If scope warrants a project, init_project + first round. Otherwise post the plan as a COMS reply for Justs to review.",
-        ]
-    else:
-        rules.append("- Unknown tag combination. Read the task carefully, decide one action, execute it, report via COMS.")
-
-    if has_coms:
-        rules += [
-            "",
-            "Also: review the COMS section above. If any message contains a new actionable item, "
-            "create a Brain Visual task for it (source=brain, your choice of tag and priority). "
-            "You prioritize COMS-originated tasks.",
-        ]
-    return "\n".join(rules)
-
-
 def compose_rich_prompt(base_prompt):
-    coms_context = get_recent_chat_context()
-    bt = fetch_brain_tasks()
-    bucket, task = pick_one_task(bt)
-    seed = select_seed(bucket, task, has_coms=bool(coms_context))
-
-    # Trigger decision/recall/identity engines using whatever signal we have
-    trigger_input = ""
-    if task:
-        trigger_input = f"{task.get('title','')} {task.get('description','')}".strip()
-    if not trigger_input and coms_context:
-        trigger_input = coms_context
-    if not trigger_input:
-        return seed  # nothing to enrich
-
+    context = get_recent_chat_context()
+    if not context:
+        return base_prompt
     try:
         from engines.decision import dispatch
-        dispatch(trigger_input)
+        dispatch(context)
     except Exception as e:
         log_event("dispatch_failed", {"error": str(e)[:200]})
-
+        return base_prompt
     deadline = time.time() + DECISION_WAIT_S
     while time.time() < deadline:
         if ACTIVE_DECISION.exists() and ACTIVE_RECALL.exists() and ACTIVE_IDENTITY.exists():
             break
         time.sleep(1)
-
-    parts = []
-    if coms_context:
-        parts.append(f"## Recent COMS conversation (last {CONTEXT_N}, <=24h)\n{coms_context}")
-    if task:
-        parts.append(render_task(bucket, task))
+    parts = [f"## Recent COMS conversation (last {CONTEXT_N}, <=24h)\n{context}"]
     for name, path in [("Recall", ACTIVE_RECALL), ("Identity", ACTIVE_IDENTITY), ("Decision", ACTIVE_DECISION)]:
         try:
             parts.append(f"## {name}\n{path.read_text()[:3000]}")
         except Exception:
             pass
-    parts.append("---\n" + seed)
+    parts.append("---\n" + base_prompt)
     return "\n\n".join(parts)
 
 
@@ -318,22 +202,13 @@ def iteration():
     if queued:
         base_prompt = queued["prompt"]
         source = queued.get("source", "queue")
-        prompt = compose_rich_prompt(base_prompt)
-        if prompt != base_prompt:
-            source = source + "+context"
     else:
-        # Brain Visual driven iteration
-        prompt = compose_rich_prompt(SELF_PROMPT)
-        # Source tag reflects what we picked
-        try:
-            bt = fetch_brain_tasks()
-            bucket, task = pick_one_task(bt)
-            if task:
-                source = f"brain_visual:{bucket}:{task.get('id')}"
-            else:
-                source = "self+context" if prompt != SELF_PROMPT else "self"
-        except Exception:
-            source = "self"
+        base_prompt = SELF_PROMPT
+        source = "self"
+
+    prompt = compose_rich_prompt(base_prompt)
+    if prompt != base_prompt:
+        source = source + "+context"
 
     t0 = time.time()
     log_event("iteration_start", {"source": source, "prompt": prompt[:200]})
