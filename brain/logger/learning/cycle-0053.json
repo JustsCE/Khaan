@@ -15,7 +15,7 @@
     {
       "phase": "consolidate",
       "executed": true,
-      "detail": "4 reinforced, 5 promoted, 0 discarded"
+      "detail": "4 reinforced, 5 promoted, 0 discarded, promoted: E068 E302"
     },
     {
       "phase": "index_rebuild",

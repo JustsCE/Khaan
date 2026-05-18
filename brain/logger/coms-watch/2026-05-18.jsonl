@@ -1,3 +1,6 @@
 {"ts": "2026-05-18T10:17:28Z", "event": "fetch_error", "error": "[Errno 104] Connection reset by peer"}
 {"ts": "2026-05-18T10:40:57Z", "event": "fetch_error", "error": "[Errno 104] Connection reset by peer"}
 {"ts": "2026-05-18T11:19:23Z", "event": "fetch_error", "error": "[Errno 104] Connection reset by peer"}
+{"ts": "2026-05-18T11:49:40Z", "event": "fetch_error", "error": "[Errno 104] Connection reset by peer"}
+{"ts": "2026-05-18T12:06:37Z", "event": "fetch_error", "error": "[Errno 104] Connection reset by peer"}
+{"ts": "2026-05-18T12:21:41Z", "event": "fetch_error", "error": "[Errno 104] Connection reset by peer"}

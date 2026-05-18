@@ -15,7 +15,7 @@
     {
       "phase": "consolidate",
       "executed": true,
-      "detail": "2 reinforced, 8 promoted, 0 discarded"
+      "detail": "2 reinforced, 8 promoted, 0 discarded, promoted: E303 E304 PR345 PR346 PR347 S248 S249"
     },
     {
       "phase": "index_rebuild",

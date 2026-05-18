@@ -331,6 +331,11 @@ def phase_consolidate():
     reinforced = 0
     promoted = 0
     discarded = 0
+    # Capture entry IDs touched by this consolidation so the viz can read them
+    # via cycles.ts ID_IN_DETAIL_RE. Empty IDs make the cycle render as a
+    # generic region-arc; populated IDs drive the multi-neuron animation.
+    reinforced_ids = []
+    promoted_ids = []
 
     for h in pending:
         cat = h["meta"].get("category", "semantic")
@@ -373,21 +378,27 @@ def phase_consolidate():
             best_match["meta"]["reinforced"] = str(reinforced_count)
             _rewrite_entry(best_match)
             reinforced += 1
+            reinforced_ids.append(best_match["id"])
 
         elif best_overlap >= 0.25 and best_match:
             if salience >= 0.5:
-                _promote_new_entry(cat, obs_text, salience, thal)
+                new_id = _promote_new_entry(cat, obs_text, salience, thal)
                 promoted += 1
+                if new_id:
+                    promoted_ids.append(new_id)
             else:
                 if best_match["strength"] < 5:
                     best_match["strength"] += 1
                 best_match["meta"]["strength"] = str(best_match["strength"])
                 _rewrite_entry(best_match)
                 reinforced += 1
+                reinforced_ids.append(best_match["id"])
 
         elif salience >= 0.5:
-            _promote_new_entry(cat, obs_text, salience, thal)
+            new_id = _promote_new_entry(cat, obs_text, salience, thal)
             promoted += 1
+            if new_id:
+                promoted_ids.append(new_id)
 
         else:
             discarded += 1
@@ -400,10 +411,18 @@ def phase_consolidate():
 
     write_learning_log("consolidation_summary", {
         "ts": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-        "reinforced": reinforced, "promoted": promoted, "discarded": discarded
+        "reinforced": reinforced, "promoted": promoted, "discarded": discarded,
+        "reinforced_ids": reinforced_ids, "promoted_ids": promoted_ids,
     })
+    # Detail string embeds the entry IDs so the viz parser (cycles.ts
+    # ID_IN_DETAIL_RE) can recover them for touchedEntries / animation.
+    detail_parts = [f"{reinforced} reinforced", f"{promoted} promoted", f"{discarded} discarded"]
+    if promoted_ids:
+        detail_parts.append("promoted: " + " ".join(promoted_ids))
+    if reinforced_ids:
+        detail_parts.append("reinforced: " + " ".join(reinforced_ids))
     return {"phase": "consolidate", "executed": True,
-            "detail": f"{reinforced} reinforced, {promoted} promoted, {discarded} discarded"}
+            "detail": ", ".join(detail_parts)}
 
 
 def _promote_new_entry(region, text, salience, thal):
@@ -431,6 +450,7 @@ sources: [this-cycle]
     os.write(fd, content.encode())
     os.close(fd)
     os.rename(tmp, p)
+    return entry_id
 
 
 def _rewrite_entry(entry):

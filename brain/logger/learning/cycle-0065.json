@@ -1,26 +1,26 @@
 {
   "event": "cycle_ledger",
-  "cycle_id": 29,
+  "cycle_id": 65,
   "phases": [
     {
       "phase": "ingest",
       "executed": true,
-      "detail": "0 observations across 0 categories"
+      "detail": "12 observations across 3 categories"
     },
     {
       "phase": "hippocampus",
       "executed": true,
-      "detail": "0 entries"
+      "detail": "12 entries"
     },
     {
       "phase": "consolidate",
       "executed": true,
-      "detail": "0 reinforced, 0 promoted, 0 discarded, promoted: R145"
+      "detail": "2 reinforced, 10 promoted, 0 discarded, promoted: PR366 E317 S288 E318 S289 PR367 S290 S291 E319 S292, reinforced: S065 S072"
     },
     {
       "phase": "index_rebuild",
       "executed": true,
-      "detail": "9261 terms, 1018 entries"
+      "detail": "9441 terms, 1066 entries"
     },
     {
       "phase": "synthesis",
@@ -38,5 +38,5 @@
       "detail": "not due"
     }
   ],
-  "ts": "2026-05-13T12:10:51Z"
+  "ts": "2026-05-18T12:45:34Z"
 }

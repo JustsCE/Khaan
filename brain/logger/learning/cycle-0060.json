@@ -15,7 +15,7 @@
     {
       "phase": "consolidate",
       "executed": true,
-      "detail": "4 reinforced, 4 promoted, 0 discarded"
+      "detail": "4 reinforced, 4 promoted, 0 discarded, promoted: FUS025 FUS027 FUS035 ID029 ID031 ID037 PR089 PR110 PR179 PR189 PR203 PR288 PR318 PR321 PR322 Q1 R128 R143 R153 R156 R177 R184 R218 R234 R241 R273 R276"
     },
     {
       "phase": "index_rebuild",

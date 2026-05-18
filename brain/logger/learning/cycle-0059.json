@@ -15,7 +15,7 @@
     {
       "phase": "consolidate",
       "executed": true,
-      "detail": "1 reinforced, 7 promoted, 0 discarded"
+      "detail": "1 reinforced, 7 promoted, 0 discarded, promoted: E059 E089 E092 E104 E139 E142 E152 E181 E192 E217 E248 E256 E262 E278 E312 E313 PR030 PR135 PR140 PR151 PR153 PR161 PR163 PR173 PR174 PR178 PR180 PR185 PR187 PR193 PR201 PR212 PR258 PR293 PR295 PR301 PR316 PR326 PR331 PR356 PR357 S096 S101 S103 S127 S132 S137 S139 S155 S166 S176 S194 S199 S207 S214 S216 S243 S247 S264 S265 S266 S267 S268 S269"
     },
     {
       "phase": "index_rebuild",
