@@ -318,7 +318,7 @@ def _handoff(candidates, query_hash):
     fd, tmp = tempfile.mkstemp(dir=NAV)
     os.write(fd, json.dumps(payload, indent=2).encode())
     os.close(fd)
-    os.rename(tmp, p)
+    os.replace(tmp, p)
 
     write_recall_log("handoff", {
         "ts": payload["ts"], "query_hash": query_hash,

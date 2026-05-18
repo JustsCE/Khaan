@@ -41,7 +41,7 @@ def save_coms_state(state: dict):
     fd, tmp = tempfile.mkstemp(dir=BRAIN)
     os.write(fd, json.dumps(state, indent=2).encode())
     os.close(fd)
-    os.rename(tmp, COMS_STATE_FILE)
+    os.replace(tmp, COMS_STATE_FILE)
 
 
 def mark_processed(msg_id: str):

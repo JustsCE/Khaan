@@ -42,5 +42,5 @@ def consume(token, guard_name, repo_root):
     fd, tmp = tempfile.mkstemp(dir=repo_root)
     os.write(fd, json.dumps(st, indent=2).encode())
     os.close(fd)
-    os.rename(tmp, st_path)
+    os.replace(tmp, st_path)
     return True

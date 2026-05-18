@@ -236,7 +236,7 @@ def dispatch(user_message):
             fd, tmp = tempfile.mkstemp(dir=NAV)
             os.write(fd, json.dumps(payload, indent=2).encode())
             os.close(fd)
-            os.rename(tmp, NAV / "active-decision.json")
+            os.replace(tmp, NAV / "active-decision.json")
 
             for i in range(1, 6):
                 write_bin(f"decision-hypothesis-{i}", 0)

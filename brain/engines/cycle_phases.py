@@ -128,7 +128,7 @@ def _write_thalamus(data):
     fd, tmp = tempfile.mkstemp(dir=BRAIN)
     os.write(fd, json.dumps(data, indent=2).encode())
     os.close(fd)
-    os.rename(tmp, THALAMUS)
+    os.replace(tmp, THALAMUS)
 
 
 def _parse_hippo():
@@ -162,7 +162,7 @@ def _write_hippo(entries):
     fd, tmp = tempfile.mkstemp(dir=BRAIN)
     os.write(fd, ("\n".join(lines) + "\n").encode())
     os.close(fd)
-    os.rename(tmp, HIPPO)
+    os.replace(tmp, HIPPO)
 
 
 def _parse_cortex_entry(path):
@@ -449,7 +449,7 @@ sources: [this-cycle]
     fd, tmp = tempfile.mkstemp(dir=p.parent)
     os.write(fd, content.encode())
     os.close(fd)
-    os.rename(tmp, p)
+    os.replace(tmp, p)
     return entry_id
 
 
@@ -473,7 +473,7 @@ def _rewrite_entry(entry):
             fd, tmp = tempfile.mkstemp(dir=p.parent)
             os.write(fd, new_text.encode())
             os.close(fd)
-            os.rename(tmp, p)
+            os.replace(tmp, p)
 
 
 # _check_level_move REMOVED: L1->L2->L3 promotion is synthesis-only per spec
@@ -543,13 +543,13 @@ def phase_index_rebuild():
     fd, tmp = tempfile.mkstemp(dir=NAV)
     os.write(fd, json.dumps(idx).encode())
     os.close(fd)
-    os.rename(tmp, p)
+    os.replace(tmp, p)
 
     p2 = NAV / "recall-index.json"
     fd2, tmp2 = tempfile.mkstemp(dir=NAV)
     os.write(fd2, json.dumps(entries_meta).encode())
     os.close(fd2)
-    os.rename(tmp2, p2)
+    os.replace(tmp2, p2)
 
     write_learning_log("index_rebuild", {
         "ts": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
@@ -752,7 +752,7 @@ sources: [synthesis-cycle-{cycle_id}]
         fd, tmp = tempfile.mkstemp(dir=dst_dir)
         os.write(fd, content.encode())
         os.close(fd)
-        os.rename(tmp, p)
+        os.replace(tmp, p)
         created += 1
 
         for m in members:
@@ -767,7 +767,7 @@ sources: [synthesis-cycle-{cycle_id}]
             fd, tmp = tempfile.mkstemp(dir=archive_dir)
             os.write(fd, src_text.encode())
             os.close(fd)
-            os.rename(tmp, archive_path)
+            os.replace(tmp, archive_path)
             m["path"].unlink()
             archived_count += 1
 

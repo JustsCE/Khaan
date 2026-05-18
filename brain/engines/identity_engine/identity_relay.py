@@ -83,7 +83,7 @@ CRITICAL: You MUST return ONLY valid JSON. No prose, no markdown, no explanation
             fd, tmp = tempfile.mkstemp(dir=NAV)
             os.write(fd, json.dumps(snapshot, indent=2).encode())
             os.close(fd)
-            os.rename(tmp, p)
+            os.replace(tmp, p)
 
             write_identity_log("relay_complete", {
                 "ts": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),

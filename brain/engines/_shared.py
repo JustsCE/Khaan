@@ -24,7 +24,7 @@ def write_bin(name, val):
     fd, tmp = tempfile.mkstemp(dir=p.parent)
     os.write(fd, str(val).encode())
     os.close(fd)
-    os.rename(tmp, p)
+    os.replace(tmp, p)
 
 
 def read_state():
@@ -36,7 +36,7 @@ def write_state(data):
     fd, tmp = tempfile.mkstemp(dir=p.parent)
     os.write(fd, json.dumps(data, indent=2).encode())
     os.close(fd)
-    os.rename(tmp, p)
+    os.replace(tmp, p)
 
 
 def file_hash(path):

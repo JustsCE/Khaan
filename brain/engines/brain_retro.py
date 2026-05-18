@@ -143,7 +143,7 @@ sources: [brain-retro]
                 fd, tmp = tempfile.mkstemp(dir=p.parent)
                 os.write(fd, content.encode())
                 os.close(fd)
-                os.rename(tmp, p)
+                os.replace(tmp, p)
 
         elif cat == "worked":
             worked += 1

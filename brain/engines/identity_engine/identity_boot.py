@@ -85,7 +85,7 @@ model: claude-cli (subscription, no API key)
             fd, tmp = tempfile.mkstemp(dir=BRAIN)
             os.write(fd, md_content.encode())
             os.close(fd)
-            os.rename(tmp, p)
+            os.replace(tmp, p)
 
             write_identity_log("boot_complete", {
                 "ts": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
