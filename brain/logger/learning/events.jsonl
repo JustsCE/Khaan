@@ -1697,3 +1697,9 @@
 {"event": "index_rebuild", "ts": "2026-05-18T10:27:33Z", "terms_count": 9400, "entries_count": 1046}
 {"event": "cycle_ledger", "cycle_id": 63, "phases": [{"phase": "ingest", "executed": true, "detail": "10 observations across 4 categories"}, {"phase": "hippocampus", "executed": true, "detail": "10 entries"}, {"phase": "consolidate", "executed": true, "detail": "0 reinforced, 10 promoted, 0 discarded"}, {"phase": "index_rebuild", "executed": true, "detail": "9400 terms, 1046 entries"}, {"phase": "synthesis", "executed": true, "detail": "L2 created 0, L3 created 0, sources archived 0"}, {"phase": "eval", "executed": false, "detail": "not due"}, {"phase": "hygiene", "executed": false, "detail": "not due"}], "ts": "2026-05-18T10:27:33Z"}
 {"event": "cycle_commit", "cycle_id": 63, "ts": "2026-05-18T10:27:33Z"}
+{"event": "cycle_git", "cycle_id": 63, "status": "ok", "ts": "2026-05-18T10:27:36Z"}
+{"event": "cycle_start", "ts": "2026-05-18T11:29:09Z", "cycle_id": 64, "counter_at_start": 779}
+{"event": "consolidation_summary", "ts": "2026-05-18T11:29:35Z", "reinforced": 1, "promoted": 10, "discarded": 0}
+{"event": "index_rebuild", "ts": "2026-05-18T11:29:35Z", "terms_count": 9420, "entries_count": 1056}
+{"event": "cycle_ledger", "cycle_id": 64, "phases": [{"phase": "ingest", "executed": true, "detail": "11 observations across 3 categories"}, {"phase": "hippocampus", "executed": true, "detail": "11 entries"}, {"phase": "consolidate", "executed": true, "detail": "1 reinforced, 10 promoted, 0 discarded"}, {"phase": "index_rebuild", "executed": true, "detail": "9420 terms, 1056 entries"}, {"phase": "synthesis", "executed": true, "detail": "L2 created 0, L3 created 0, sources archived 0"}, {"phase": "eval", "executed": false, "detail": "not due"}, {"phase": "hygiene", "executed": false, "detail": "not due"}], "ts": "2026-05-18T11:29:35Z"}
+{"event": "cycle_commit", "cycle_id": 64, "ts": "2026-05-18T11:29:35Z"}

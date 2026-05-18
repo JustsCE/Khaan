@@ -40,3 +40,23 @@
 {"event": "relay_complete", "ts": "2026-05-18T10:14:08Z", "session_id": "", "query_hash": "80397e448892eeed", "latency_ms": 20272, "entries_picked": 49}
 {"event": "relay_start", "ts": "2026-05-18T10:19:31Z", "session_id": "", "query_hash": "23b8d794e5727188"}
 {"event": "relay_complete", "ts": "2026-05-18T10:19:49Z", "session_id": "", "query_hash": "23b8d794e5727188", "latency_ms": 18721, "entries_picked": 51}
+{"event": "relay_start", "ts": "2026-05-18T10:27:36Z", "session_id": "", "query_hash": "31237ca5e5c68288"}
+{"event": "relay_complete", "ts": "2026-05-18T10:28:07Z", "session_id": "", "query_hash": "31237ca5e5c68288", "latency_ms": 30657, "entries_picked": 53}
+{"event": "relay_start", "ts": "2026-05-18T10:32:52Z", "session_id": "", "query_hash": "5048f6593cdf6f1e"}
+{"event": "relay_complete", "ts": "2026-05-18T10:33:28Z", "session_id": "", "query_hash": "5048f6593cdf6f1e", "latency_ms": 35860, "entries_picked": 50}
+{"event": "relay_start", "ts": "2026-05-18T10:38:02Z", "session_id": "", "query_hash": "4cd0e21a9a0795a1"}
+{"event": "relay_complete", "ts": "2026-05-18T10:38:17Z", "session_id": "", "query_hash": "4cd0e21a9a0795a1", "latency_ms": 14971, "entries_picked": 45}
+{"event": "relay_start", "ts": "2026-05-18T10:44:36Z", "session_id": "", "query_hash": "69fbde55dd0a85ea"}
+{"event": "relay_complete", "ts": "2026-05-18T10:44:57Z", "session_id": "", "query_hash": "69fbde55dd0a85ea", "latency_ms": 21135, "entries_picked": 50}
+{"event": "relay_start", "ts": "2026-05-18T10:55:58Z", "session_id": "", "query_hash": "4cd0e21a9a0795a1"}
+{"event": "relay_complete", "ts": "2026-05-18T10:56:12Z", "session_id": "", "query_hash": "4cd0e21a9a0795a1", "latency_ms": 14332, "entries_picked": 45}
+{"event": "relay_start", "ts": "2026-05-18T10:59:42Z", "session_id": "", "query_hash": "39ea9c2d9cd9f5be"}
+{"event": "relay_complete", "ts": "2026-05-18T11:00:12Z", "session_id": "", "query_hash": "39ea9c2d9cd9f5be", "latency_ms": 29995, "entries_picked": 46}
+{"event": "relay_start", "ts": "2026-05-18T11:02:54Z", "session_id": "", "query_hash": "a1f7d3d5e1886e22"}
+{"event": "relay_complete", "ts": "2026-05-18T11:03:12Z", "session_id": "", "query_hash": "a1f7d3d5e1886e22", "latency_ms": 18316, "entries_picked": 43}
+{"event": "relay_start", "ts": "2026-05-18T11:06:49Z", "session_id": "", "query_hash": "f0df251551da4385"}
+{"event": "relay_complete", "ts": "2026-05-18T11:07:09Z", "session_id": "", "query_hash": "f0df251551da4385", "latency_ms": 19941, "entries_picked": 53}
+{"event": "relay_start", "ts": "2026-05-18T11:13:25Z", "session_id": "", "query_hash": "8abc3237cab72c71"}
+{"event": "relay_complete", "ts": "2026-05-18T11:13:52Z", "session_id": "", "query_hash": "8abc3237cab72c71", "latency_ms": 26807, "entries_picked": 54}
+{"event": "relay_start", "ts": "2026-05-18T11:25:54Z", "session_id": "", "query_hash": "c1363d80910dbd33"}
+{"event": "relay_complete", "ts": "2026-05-18T11:26:17Z", "session_id": "", "query_hash": "c1363d80910dbd33", "latency_ms": 23240, "entries_picked": 46}
