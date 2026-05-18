@@ -1,0 +1,44 @@
+{
+  "taskId": "mokg51y29wsz",
+  "taskSource": "brain",
+  "title": "Identity Engine v2 \u2014 modular HTML doc",
+  "phase": 3,
+  "round": 4,
+  "roundsUsed": 3,
+  "revisionsRequested": 0,
+  "status": "user_verify_pending",
+  "created": "2026-04-29T19:27:06.050615+00:00",
+  "phaseHistory": [
+    {
+      "round": 1,
+      "phase": 1,
+      "status": "draft_1_complete",
+      "completedAt": "2026-04-30T00:51:23.635381+00:00"
+    },
+    {
+      "round": 2,
+      "phase": 2,
+      "status": "draft_2_complete",
+      "completedAt": "2026-04-30T03:44:04.360877+00:00"
+    },
+    {
+      "round": 3,
+      "phase": 3,
+      "status": "draft_3_complete",
+      "completedAt": "2026-04-30T03:46:15.256020+00:00"
+    }
+  ],
+  "teacherReviews": [
+    {
+      "verdict": "APPROVED",
+      "feedback": "Solid work across 3 rounds. The Round 2 path correction was the critical catch \u2014 5 component paths and the markers filename were all wrong in the Round 1 draft (aspirational logger/identity/ and navigation/ paths vs actual brain/identity-engine/*). Without that fix, the doc would have been factually incorrect on every component path.\n\nVerified against all five axes:\n1. **Completeness** \u2014 All 5 sections delivered. CSS byte-identical. TOC correct. Philosophy [reserved]. 5 API functions documented. 4 hook integrations mapped.\n2. **Feasibility** \u2014 All 7 sign types match engine.py's VALID_SIGNS set exactly. All 12 cadence return fields present. Salience default (0.8), dormancy threshold (15 cycles), audit sources (10 ledgers, 50 tamper entries) \u2014 all verified against code.\n3. **Charter alignment** \u2014 Brain documenting its own engine. Squarely in domain.\n4. **Quality** \u2014 Mutability column is a better design than the Round 1 Type column. Tightened salience guidance reads cleaner. \"Manually maintained\" qualifier on evolution.md is honest. 14.5 KB is proportional (smallest engine, shortest doc).\n5. **Justs-readability** \u2014 Clean, consistent with rule-engine.html and recall-engine.html. No jargon. Professional presentation.",
+      "reviewedAt": "2026-04-30T03:47:36.100968+00:00"
+    }
+  ],
+  "followUpQuestions": [],
+  "currentDraft": 3,
+  "reportPath": "/brain/brain/projects/mokg51y29wsz/report.html",
+  "reportTxtPath": "/brain/brain/projects/mokg51y29wsz/report.txt",
+  "submittedForReviewAt": "2026-04-30T03:46:25.970322+00:00",
+  "approvedAt": "2026-04-30T03:47:36.100983+00:00"
+}

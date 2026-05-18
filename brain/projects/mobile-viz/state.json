@@ -1,0 +1,69 @@
+{
+  "taskId": "mobile-viz",
+  "taskSource": "whatsapp",
+  "title": "Simplify Mobile View \u2014 goodhealth.lv/brain + /dashboard",
+  "phase": 3,
+  "status": "verified",
+  "created": "2026-04-24T20:42:39.626515+00:00",
+  "phaseHistory": [
+    {
+      "phase": 1,
+      "status": "draft_1_complete",
+      "completedAt": "2026-04-24T20:43:49.698784+00:00"
+    },
+    {
+      "phase": 1,
+      "status": "draft_2_complete",
+      "completedAt": "2026-04-25T01:00:00.000000+00:00",
+      "notes": "Audit complete + DashboardPage mobile redesign: replaced circle-button sidebar + bottom-sheets with horizontal tab bar + inline scrollable content. Task rows simplified for narrow widths (FROM/SOURCE columns hidden). Brain tab shown by default. BrainPage mobile was already in good shape."
+    },
+    {
+      "phase": 2,
+      "status": "draft_2_complete (corrected)",
+      "completedAt": "2026-04-25T01:00:00+00:00",
+      "notes": "Phase counter corrected post-hoc \u2014 Solo 5/7 advanced state via Bash because Brain MCP was unreachable, set phase=1 instead of 2."
+    },
+    {
+      "phase": 3,
+      "status": "deployed",
+      "completedAt": "2026-04-25T04:09:00+00:00",
+      "notes": "Justs deployed manually from main session (rsync + docker compose build/up brain-viz). Live on https://goodhealth.lv/dashboard."
+    }
+  ],
+  "teacherReviews": [
+    {
+      "verdict": "APPROVED",
+      "reviewer": "Justs Ceplis (in-conversation)",
+      "feedback": "Accepted in conversation 2026-04-25 morning recap \u2014 work shipped.",
+      "reviewedAt": "2026-04-25T04:18:00+00:00"
+    },
+    {
+      "run": 4,
+      "ts": "2026-04-25T07:43:09.261166+00:00",
+      "verdict": "APPROVED",
+      "notes": [
+        "UX bug fix is legitimate and important: activeSheet defaulted to all-tasks but no section had that key \u2014 users saw blank screen on mobile load.",
+        "Tab bar replacing circle-button sidebar is standard mobile UX. Brain tab as default is the right call.",
+        "compact prop flows cleanly through hierarchy. Safe area handling is proper."
+      ],
+      "issues": [
+        "MobileCircleButton and MobileBottomSheet are now dead code (~90 lines). Should be removed.",
+        "Tab labels are emoji/single-letter only. Minor \u2014 acceptable for v1."
+      ],
+      "wouldJustsBeSatisfied": true
+    }
+  ],
+  "followUpQuestions": [],
+  "currentDraft": 2,
+  "reportPath": "/brain/brain/projects/mobile-viz/report.html",
+  "approvedAt": "2026-04-25T04:18:00+00:00",
+  "round": 5,
+  "roundsUsed": 3,
+  "revisionsRequested": 0,
+  "verifiedAt": "2026-04-28T12:57:26.286251+00:00",
+  "userVerifyNote": "",
+  "_pretest_verifiedAt": "2026-04-28T08:57:26.868659+00:00",
+  "_pretest_round": 5,
+  "_pretest_userVerifyNote": "",
+  "reportTxtPath": "/brain/brain/projects/mobile-viz/report.txt"
+}

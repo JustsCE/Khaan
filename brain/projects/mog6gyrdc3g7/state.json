@@ -1,0 +1,64 @@
+{
+  "taskId": "mog6gyrdc3g7",
+  "taskSource": "whatsapp",
+  "title": "Fix the Autonomy Engine",
+  "phase": 3,
+  "round": 5,
+  "roundsUsed": 4,
+  "revisionsRequested": 1,
+  "status": "verified",
+  "created": "2026-04-26T19:45:14.233Z",
+  "phaseHistory": [
+    {
+      "round": 1,
+      "phase": 1,
+      "status": "draft_1_complete",
+      "completedAt": "2026-04-27T09:18:00Z",
+      "notes": "Solo Time agent draft 1 \u2014 3-component architecture plan (decision router, charter verifier, recurrence detector). Commit cef8ec74."
+    },
+    {
+      "round": 2,
+      "phase": 2,
+      "status": "draft_2_complete",
+      "completedAt": "2026-04-27T09:53:00Z",
+      "notes": "Solo Time agent draft 2 \u2014 built autonomy-engine v1 core (decision.py, charter.py, recurrence.py, engine.py CLI). All 4 test scenarios passed. Commit a3b6a5fd."
+    },
+    {
+      "round": 3,
+      "phase": 3,
+      "status": "draft_3_complete",
+      "completedAt": "2026-04-28T00:11:42.624310+00:00"
+    },
+    {
+      "round": 4,
+      "revision": 1,
+      "status": "revision_attempt",
+      "completedAt": "2026-04-28T03:07:09.952825+00:00"
+    }
+  ],
+  "teacherReviews": [
+    {
+      "verdict": "REVISE",
+      "feedback": "Good architecture, clean separation, 18/18 tests pass. One real bug must be fixed:\n\n1. **BUG \u2014 warn-gate treated as block (charter.py:64):**  makes warn-gated tenet failures block tasks. Any EXECUTE task with \"skip\"/\"ignore\"/\"refuse\"/\"decline\" in the title gets DEFERRED with \"Charter: unknown\" instead of ACTing. Fix: . Add a test: EXECUTE task with \"skip\" in title should route to ACT, not DEFER.\n\n2. **__pycache__ tracked in git** \u2014 4 .pyc files committed. Add brain/autonomy-engine/__pycache__/ to .gitignore, remove from tracking.\n\n3. **Version string mismatch** \u2014 engine.py says v1.1, plan says v1.2. Sync to v1.2.",
+      "reviewedAt": "2026-04-28T01:12:17.795241+00:00"
+    },
+    {
+      "verdict": "APPROVED",
+      "feedback": "All 3 revision items verified in code: warn-gate fix correct (charter.py:64), __pycache__ removed from tracking, version synced to v1.2. 23/23 tests pass. Clean separation of concerns, good test coverage including the specific regression test for skip-keyword routing. Ship it.",
+      "reviewedAt": "2026-04-28T04:21:53.667803+00:00"
+    }
+  ],
+  "followUpQuestions": [],
+  "currentDraft": 3,
+  "reportPath": "/brain/brain/projects/mog6gyrdc3g7/report.html",
+  "reportTxtPath": "/brain/brain/projects/mog6gyrdc3g7/report.txt",
+  "submittedForReviewAt": "2026-04-28T01:12:07.329055+00:00",
+  "approvedAt": "2026-04-28T04:21:53.667823+00:00",
+  "verifyTaskId": "moi4d8r2e8w2",
+  "verifyTaskSource": "whatsapp",
+  "verifiedAt": "2026-05-13T20:00:48.188468+00:00",
+  "userVerifyNote": "",
+  "_pretest_verifiedAt": "2026-04-28T09:11:40.893560+00:00",
+  "_pretest_round": 5,
+  "_pretest_userVerifyNote": ""
+}

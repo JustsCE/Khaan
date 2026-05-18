@@ -1,0 +1,37 @@
+{
+  "taskId": "mp85sj4agted",
+  "taskSource": "brain",
+  "title": "Power BI MCP Server for NORDE",
+  "phase": 3,
+  "round": 4,
+  "roundsUsed": 3,
+  "revisionsRequested": 0,
+  "status": "awaiting_teacher",
+  "created": "2026-05-16T11:42:13.944888+00:00",
+  "phaseHistory": [
+    {
+      "round": 1,
+      "phase": 1,
+      "status": "draft_1_complete",
+      "completedAt": "2026-05-16T11:43:17.256899+00:00"
+    },
+    {
+      "round": 2,
+      "phase": 2,
+      "status": "draft_2_complete",
+      "completedAt": "2026-05-16T11:55:42.304336+00:00"
+    },
+    {
+      "round": 3,
+      "phase": 3,
+      "status": "draft_3_complete",
+      "completedAt": "2026-05-16T12:09:25.609398+00:00"
+    }
+  ],
+  "teacherReviews": [],
+  "followUpQuestions": [],
+  "currentDraft": 3,
+  "reportPath": "/brain/brain/projects/mp85sj4agted/report.html",
+  "reportTxtPath": "/brain/brain/projects/mp85sj4agted/report.txt",
+  "submittedForReviewAt": "2026-05-16T12:09:38.276602+00:00"
+}

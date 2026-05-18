@@ -1,0 +1,130 @@
+[
+  {
+    "id": "wt-2026-04-24-001",
+    "source": "slack",
+    "title": "Deliver Q4 SKU forecast (tender)",
+    "description": "Original: \"Deliver Q4 2026 SKU-level forecast for tender\"\n\nJustus Kaiser + Andreas Mientus need Q4 2026 forecast on SKU level (TCG Classic/ORWO/Sendmoments) for a tender. Justs proposed SKU x growth rate approach. Waiting for Andreas to confirm granularity (deepest SKU vs product x size x format). Deadline was EOD Apr 24.",
+    "priority": 1,
+    "tags": [
+      "TASK"
+    ],
+    "people": {
+      "from": "Justus Kaiser, Andreas Mientus",
+      "assignedTo": "Justs Ceplis"
+    },
+    "confidence": 0.9,
+    "actor": "work-triage",
+    "createdAt": "2026-04-24T09:15:46.193484Z",
+    "status": "done"
+  },
+  {
+    "id": "wt-2026-04-24-002",
+    "source": "slack",
+    "title": "Explain payment recon data flow",
+    "description": "Original: \"Complete Payment Reconciliation data flow explanation for Justs Viduss\"\n\nJusts Viduss asked (Apr 23 group DM with Mayuri) for detailed explanation of how Payment Reconciliation data collection, processing and QlikView handoff works. Justs started replying (\"hey, this:\") but response appears incomplete.",
+    "priority": 2,
+    "tags": [
+      "FOLLOW_UP"
+    ],
+    "people": {
+      "from": "Justs Viduss",
+      "assignedTo": "Justs Ceplis"
+    },
+    "confidence": 0.8,
+    "actor": "work-triage",
+    "createdAt": "2026-04-24T09:15:46.193484Z",
+    "status": "scrapped"
+  },
+  {
+    "id": "mohgn09s2vel",
+    "source": "slack",
+    "originalSource": "brain",
+    "title": "Share tax audit template",
+    "description": "Original: \"[Justs & Justus Check-In]: Share corporate income tax audit template with Justus & Mayuri\"\n\nFrom Justs & Justus Check-In (Apr 23). Share the corporate income tax audit template and related data (2024 template for identifying top 5 corporate clients in Canada sold in 2025) with Justus Kaiser and Mayuri to support auditor request.",
+    "priority": 3,
+    "status": "scrapped",
+    "createdAt": "2026-04-27T17:17:38.464Z",
+    "createdBy": "user-move",
+    "people": {
+      "from": "Justus Kaiser",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [],
+    "confidence": 0.85
+  },
+  {
+    "id": "moi452waxjh9",
+    "source": "slack",
+    "title": "Investigate live dash outage",
+    "description": "Amin Iradji in #bi-glcontrolling (Apr 26): \"hi guys, live dash isn't working. at least not for me. could you check it when you get a chance? thanks\". No response yet. Previous outage on Apr 24 was resolved by Davis/Pranav. This may be a recurring issue.",
+    "priority": 2,
+    "status": "done",
+    "createdAt": "2026-04-28T04:15:32.842Z",
+    "createdBy": "work-triage",
+    "people": {
+      "from": "Amin Iradji",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "NEW",
+      "TASK"
+    ],
+    "confidence": 0.85
+  },
+  {
+    "id": "moi455n2s5yf",
+    "source": "slack",
+    "title": "Run LucaNet stored procedures",
+    "description": "Justus Kaiser in group DM (Apr 24): \"We will then run the stored procedures on Monday.\" LucaNet March data was pulled on Apr 24 (Friday). Stored procedures to consolidate cost data are due today (Monday Apr 28). Coordinate with Justus - he said to ping him after procedures run so he can inform Finance.",
+    "priority": 1,
+    "status": "done",
+    "createdAt": "2026-04-28T04:15:36.398Z",
+    "createdBy": "work-triage",
+    "people": {
+      "from": "Justus Kaiser",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "NEW",
+      "TASK"
+    ],
+    "confidence": 0.9
+  },
+  {
+    "id": "moingwx56wj7",
+    "source": "slack",
+    "originalSource": "brain",
+    "title": "Share tax audit template",
+    "description": "Original: \"[Justs & Justus Check-In]: Share corporate income tax audit template with Justus Kaiser & Mayuri to support auditor request.\"\n\nFrom Justs & Justus Check-In (Apr 23). Share the corporate income tax audit template and related data (2024 template for identifying top 5 corporate clients in Canada sold in 2025) with Justus Kaiser and Mayuri to support auditor request.\n\n---\n**KHAN AUDIT (2026-05-13):**\n- Searched Google Drive: template not found\n- Searched Slack (TCG): no source message found for this specific request\n- Justs started at Jeff ~May 11-13 — this is a TCG task from his previous role\n- **RISK: Task may be stale or no longer Justs' responsibility**\n- Action required from Justs: confirm if still relevant, or if someone at TCG should own it",
+    "priority": 3,
+    "status": "done",
+    "createdAt": "2026-04-28T13:16:37.673Z",
+    "createdBy": "user-move",
+    "people": {
+      "from": "Justus Kaiser",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "STALE_CHECK",
+      "JOB_CHANGE_RISK"
+    ],
+    "confidence": 0.85
+  },
+  {
+    "id": "mp86d42rw5fx",
+    "source": "slack",
+    "originalSource": "brain",
+    "title": "Anthropic Pricing Impact Thesis — Full Brain Analysis",
+    "description": "Generate a full thesis-level HTML report analyzing the impact of Anthropic's new pricing structure (June 15 change: $200/mo credit for Agent SDK / claude -p, separate from subscription limits) on the entire Brain architecture. Must cover: all engines, all rules, all hooks, all processes, all prompts. Include token usage analysis comparing current vs new pricing. Output as HTML in Khaaan/Brain/docs/ style. Key question: can the brain's always-on daemon survive under the $200 credit cap?",
+    "priority": 1,
+    "status": "done",
+    "createdAt": "2026-05-16T09:59:47.427Z",
+    "createdBy": "user-move",
+    "people": {
+      "from": "justs",
+      "assignedTo": "kha'an"
+    },
+    "tags": [],
+    "confidence": 0.95
+  }
+]

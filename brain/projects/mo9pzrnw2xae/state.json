@@ -1,0 +1,55 @@
+{
+  "taskId": "mo9pzrnw2xae",
+  "taskSource": "whatsapp",
+  "title": "Vericity Transactions \u2014 Frontend Map Layer",
+  "phase": 3,
+  "round": 4,
+  "roundsUsed": 4,
+  "revisionsRequested": 1,
+  "status": "user_verify_pending",
+  "created": "2026-05-13T00:21:01.887090+00:00",
+  "phaseHistory": [
+    {
+      "round": 1,
+      "phase": 1,
+      "status": "draft_1_complete",
+      "completedAt": "2026-05-13T00:52:33.117317+00:00"
+    },
+    {
+      "round": 2,
+      "phase": 2,
+      "status": "draft_2_complete",
+      "completedAt": "2026-05-13T01:42:36.922708+00:00"
+    },
+    {
+      "round": 3,
+      "phase": 3,
+      "status": "draft_3_complete",
+      "completedAt": "2026-05-13T01:43:34.822859+00:00"
+    },
+    {
+      "round": 4,
+      "revision": 1,
+      "status": "revision_attempt",
+      "completedAt": "2026-05-13T01:49:50.747785+00:00"
+    }
+  ],
+  "teacherReviews": [
+    {
+      "verdict": "REVISE",
+      "feedback": "One functional bug in INTEGRATION.md that would cause a silent zero-point map on first run:\n\n1. **Missing --geocode flag in Step 1 (INTEGRATION.md:29):** The command shown is  \u2014 this loads data with lat/lng/district all NULL (geocoding is opt-in via flag). Without coordinates, no points appear on the map layer. Fix: change to . Also worth noting: with ~38MB of data, first geocode run will take time (unique buildings \u00d7 1.1s Nominatim rate limit) \u2014 add a note so Justs isn't surprised.\n\nEverything else verified and solid: SQL bugs fixed (TOP+OFFSET conflict, PERCENTILE_CONT mixing), migration idempotent, geocode cache correctly deduplicates by building, fast_executemany correct, all 4 frontend components clean, Radix dep removed. One doc line fix required.",
+      "reviewedAt": "2026-05-13T01:44:35.659222+00:00"
+    },
+    {
+      "verdict": "APPROVED",
+      "feedback": "All issues from prior review resolved. --geocode flag present in INTEGRATION.md:30 with timing note (Nominatim rate limit, 30-90 min first run, cached thereafter). One additional bug caught and fixed in this round: TransactionFilters.tsx was using React.ReactNode without importing React \u2014 TypeScript compilation would have failed. Fixed: added  and updated FilterSection type annotation. All 5 axes verified: 7 deliverables present and correct, SQL bugs (TOP+OFFSET, PERCENTILE_CONT mixing) fixed, migration idempotent, geocode cache deduplicates by cadastre_nr, fast_executemany correct, /stats route ordered before /{id} route, ESRI dynamic imports clean, AbortController in-flight cancellation correct, Latvian UI labels throughout. Ship it.",
+      "reviewedAt": "2026-05-13T01:51:22.767498+00:00"
+    }
+  ],
+  "followUpQuestions": [],
+  "currentDraft": 3,
+  "reportPath": "/brain/brain/projects/mo9pzrnw2xae/report.html",
+  "reportTxtPath": "/brain/brain/projects/mo9pzrnw2xae/report.txt",
+  "submittedForReviewAt": "2026-05-13T01:43:41.040584+00:00",
+  "approvedAt": "2026-05-13T01:51:22.767512+00:00"
+}

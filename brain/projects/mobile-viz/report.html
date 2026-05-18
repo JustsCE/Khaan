@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PROJECT: Simplify Mobile View — goodhealth.lv/brain + /dashboard</title>
+<style>
+  body { font-family: 'Inter', -apple-system, sans-serif; max-width: 900px; margin: 0 auto; padding: 40px 20px; background: #0a0f1a; color: #ccddee; }
+  h1 { color: #44ffcc; border-bottom: 2px solid #1a2a35; padding-bottom: 12px; }
+  h2 { color: #aa88ff; margin-top: 40px; }
+  h3 { color: #8899aa; }
+  .meta { font-size: 13px; color: #556677; margin-bottom: 30px; }
+  .iteration { background: #0d1822; border: 1px solid #1a2a35; border-radius: 8px; padding: 24px; margin: 20px 0; }
+  .iteration h2 { margin-top: 0; }
+  .feedback { background: #150d22; border-left: 3px solid #aa44ff; padding: 16px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+  .feedback.teacher { border-color: #aa44ff; }
+  .feedback.justs { border-color: #44ff88; }
+  .feedback-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; color: #667788; margin-bottom: 8px; }
+  .status { display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+  .status.planning { background: #ffaa3320; color: #ffaa33; }
+  .status.review { background: #aa44ff20; color: #aa44ff; }
+  .status.approved { background: #44ff8820; color: #44ff88; }
+  .status.revision { background: #ff444420; color: #ff4444; }
+  pre { background: #111825; padding: 16px; border-radius: 6px; overflow-x: auto; font-size: 13px; }
+  .page-break { page-break-before: always; }
+</style>
+</head>
+<body>
+<h1>Simplify Mobile View — goodhealth.lv/brain + /dashboard</h1>
+<div class="meta">Project ID: mobile-viz | Created: 2026-04-24 | Status: <span class="status planning">verified</span></div>
+
+<h2>Executive Summary</h2>
+<div id="executive-summary">
+<p>Make both routes (goodhealth.lv/brain and goodhealth.lv/dashboard) fully usable on mobile. Currently, the desktop layout is the primary design — mobile components exist but Justs reports they're not working properly.</p>
+</div>
+
+
+<div class="iteration page-break">
+<h2>Iteration 1 — 2026-04-24</h2>
+<p><em>Draft 1 — completed 2026-04-24</em></p>
+
+<div class="feedback teacher">
+<div class="feedback-label">TEACHER — APPROVED</div>
+<p>Accepted in conversation 2026-04-25 morning recap — work shipped.</p>
+</div>
+
+<div class="feedback teacher">
+<div class="feedback-label">TEACHER — APPROVED</div>
+<p></p>
+</div>
+
+</div>
+
+<div class="iteration page-break">
+<h2>Iteration 2 — 2026-04-25</h2>
+<p><em>Draft 2 — completed 2026-04-25</em></p>
+
+<div class="feedback teacher">
+<div class="feedback-label">TEACHER — APPROVED</div>
+<p>Accepted in conversation 2026-04-25 morning recap — work shipped.</p>
+</div>
+
+<div class="feedback teacher">
+<div class="feedback-label">TEACHER — APPROVED</div>
+<p></p>
+</div>
+
+</div>
+
+<div class="iteration page-break">
+<h2>Iteration 3 — 2026-04-25</h2>
+<p><em>Draft 3 — completed 2026-04-25</em></p>
+
+<div class="feedback teacher">
+<div class="feedback-label">TEACHER — APPROVED</div>
+<p>Accepted in conversation 2026-04-25 morning recap — work shipped.</p>
+</div>
+
+<div class="feedback teacher">
+<div class="feedback-label">TEACHER — APPROVED</div>
+<p></p>
+</div>
+
+</div>
+
+<div class="iteration page-break">
+<h2>Iteration 4 — 2026-04-25</h2>
+<pre># PROJECT: Simplify Mobile View — goodhealth.lv/brain + /dashboard
+
+## Draft 1 — 2026-04-24
+
+### Objective
+Make both routes (goodhealth.lv/brain and goodhealth.lv/dashboard) fully usable on mobile. Currently, the desktop layout is the primary design — mobile components exist but Justs reports they're not working properly.
+
+### Approach
+Audit both pages on a mobile viewport (375px and 390px widths), identify layout breaks, unresponsive elements, and UX friction. Fix iteratively — simplify rather than redesign.
+
+### Requirements & Access
+- viz/ frontend codebase (available in claude-brain repo)
+- Dev server (npm run dev on port 5173)
+- Deploy via `cd viz && bash deploy.sh` or SSH to goodhealth.lv
+- PEM_KEY env var for deployment
+
+### Steps
+1. **Audit BrainPage mobile** — Start dev server, test at 375px. Document: broken layouts, touch issues, Three.js canvas overflow, pane overlap, text truncation, bottom sheet behavior
+2. **Audit DashboardPage mobile** — Same viewport test. Document: MobileDashboard component, circle buttons reachability, bottom sheet scrolling, task card sizing, digest feed usability
+3. **Fix BrainPage mobile** — Priority issues first: canvas sizing, HUD readability, floating pane overlap, toolbar/inspector touch targets
+4. **Fix DashboardPage mobile** — Bottom sheet improvements, task card layout, source filter usability, safe area compliance
+5. **Deploy + verify on real device** — Deploy to goodhealth.lv, test on actual phone
+
+### Follow-up Questions (self-generated)
+- [ ] What specific issues is Justs seeing? (he said "not working" — need to reproduce)
+- [ ] Are both /brain and /dashboard equally broken, or is one worse?
+- [ ] Is the PWA install prompt working on mobile?
+- [ ] Should mobile be simplified further (e.g., skip Three.js on low-end devices)?
+
+### Risk Assessment
+- Three.js on mobile is inherently heavy — may need to reduce neuron count or disable effects
+- Touch interactions (drag-and-drop for tasks) may need mobile-specific gesture handling
+- Safe area insets on notch phones need testing
+
+### Estimated Effort
+2-3 solo-time runs for audit + fix + deploy
+</pre>
+
+<div class="feedback teacher">
+<div class="feedback-label">TEACHER — APPROVED</div>
+<p>Accepted in conversation 2026-04-25 morning recap — work shipped.</p>
+</div>
+
+<div class="feedback teacher">
+<div class="feedback-label">TEACHER — APPROVED</div>
+<p></p>
+</div>
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+[
+  {
+    "id": "moh7hprnfofa",
+    "source": "gmail",
+    "originalSource": "fireflies",
+    "title": "Schedule Mayuri stakeholder meetings",
+    "description": "Original: \"[Justs & Justus Check-In]: Schedule stakeholder meetings with Mayuri for early May\"\n\nFrom Justs & Justus Check-In (Apr 23). Initiate scheduling of stakeholder meetings with Mayuri for early May to communicate the transition of forecasting and finance responsibilities.",
+    "priority": 1,
+    "status": "done",
+    "createdAt": "2026-04-27T13:01:35.027Z",
+    "createdBy": "user-move",
+    "people": {
+      "from": "Justus Kaiser",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "TASK"
+    ],
+    "confidence": 0.85
+  },
+  {
+    "id": "mohgm8eo5h4l",
+    "source": "gmail",
+    "originalSource": "fireflies",
+    "title": "Share tax audit template",
+    "description": "Original: \"[Justs & Justus Check-In]: Share corporate income tax audit template with Justus & Mayuri\"\n\nFrom Justs & Justus Check-In (Apr 23). Share the corporate income tax audit template and related data (2024 template for identifying top 5 corporate clients in Canada sold in 2025) with Justus Kaiser and Mayuri to support auditor request.",
+    "priority": 1,
+    "status": "scrapped",
+    "createdAt": "2026-04-27T17:17:02.352Z",
+    "createdBy": "user-move",
+    "people": {
+      "from": "Justus Kaiser",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "TASK"
+    ],
+    "confidence": 0.85
+  },
+  {
+    "id": "moi28tm576a9",
+    "source": "gmail",
+    "title": "Regenerate GitHub PAT \"brain\" — expires ~May 1",
+    "description": "GitHub fine-grained PAT named \"brain\" (token ID 13040969) expires in ~3 days (email sent Apr 24 saying 7 days). This token is critical for brain Git sync operations. Regenerate at: github.com/settings/personal-access-tokens/13040969/regenerate — then update any CI/CD or agent configs that reference it.",
+    "priority": 1,
+    "status": "done",
+    "createdAt": "2026-04-28T03:22:28.205Z",
+    "createdBy": "whatsapp-agent",
+    "sourceRef": {
+      "channel": "gmail",
+      "chatId": "19dc0794d52aa16f"
+    },
+    "people": {
+      "from": "GitHub",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "NEW"
+    ],
+    "confidence": 0.95
+  },
+  {
+    "id": "moi28wwn0tz8",
+    "source": "gmail",
+    "title": "AWS unpaid invoice $10.08 — account suspension risk",
+    "description": "AWS invoice 2367147281 ($10.08, originally due 2025-11-01) remains unpaid. Email from Apr 20 warned they'd charge the default card in 2 days — that window has passed. Either it charged successfully or the account (personal AWS 487042309472) may be at risk of suspension. Check billing console to confirm status.",
+    "priority": 2,
+    "status": "done",
+    "createdAt": "2026-04-28T03:22:32.471Z",
+    "createdBy": "whatsapp-agent",
+    "sourceRef": {
+      "channel": "gmail",
+      "chatId": "19dad2c7933d1c8a"
+    },
+    "people": {
+      "from": "AWS",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "NEW"
+    ],
+    "confidence": 0.85
+  },
+  {
+    "id": "moinh2lb7aqj",
+    "source": "gmail",
+    "originalSource": "fireflies",
+    "title": "Add Justus+Mayuri to Merge1 meetings",
+    "description": "Original: \"[Justs & Justus Check-In]: Add Justus & Mayuri to future Merge1 meetings\"\n\nFrom Justs & Justus Check-In (Apr 23). Include Justus Kaiser and Mayuri as invited participants in future Merge1 meetings to maintain involvement and support development.",
+    "priority": 1,
+    "status": "scrapped",
+    "createdAt": "2026-04-28T13:16:45.023Z",
+    "createdBy": "user-move",
+    "people": {
+      "from": "Justus Kaiser",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "TASK"
+    ],
+    "confidence": 0.85
+  }
+]

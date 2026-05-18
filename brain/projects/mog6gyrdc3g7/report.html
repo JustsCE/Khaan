@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PROJECT: Fix the Autonomy Engine</title>
+<style>
+  body { font-family: 'Inter', -apple-system, sans-serif; max-width: 900px; margin: 0 auto; padding: 40px 20px; background: #0a0f1a; color: #ccddee; }
+  h1 { color: #44ffcc; border-bottom: 2px solid #1a2a35; padding-bottom: 12px; }
+  h2 { color: #aa88ff; margin-top: 40px; }
+  h3 { color: #8899aa; }
+  .meta { font-size: 13px; color: #556677; margin-bottom: 30px; }
+  .iteration { background: #0d1822; border: 1px solid #1a2a35; border-radius: 8px; padding: 24px; margin: 20px 0; }
+  .iteration h2 { margin-top: 0; }
+  .feedback { background: #150d22; border-left: 3px solid #aa44ff; padding: 16px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+  .feedback.teacher { border-color: #aa44ff; }
+  .feedback.justs { border-color: #44ff88; }
+  .feedback-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; color: #667788; margin-bottom: 8px; }
+  .status { display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+  .status.planning { background: #ffaa3320; color: #ffaa33; }
+  .status.review { background: #aa44ff20; color: #aa44ff; }
+  .status.approved { background: #44ff8820; color: #44ff88; }
+  .status.revision { background: #ff444420; color: #ff4444; }
+  pre { background: #111825; padding: 16px; border-radius: 6px; overflow-x: auto; font-size: 13px; }
+  .page-break { page-break-before: always; }
+</style>
+</head>
+<body>
+<h1>Fix the Autonomy Engine</h1>
+<div class="meta">Project ID: mog6gyrdc3g7 | Created: 2026-04-26 | Status: <span class="status planning">verified</span></div>
+
+<h2>Executive Summary</h2>
+<div id="executive-summary">
+<p>Build a functional autonomy-engine module that gives Brain decision-making hands.</p>
+</div>
+
+
+<div class="iteration page-break">
+<h2>Iteration 1 — 2026-04-27</h2>
+<p><em>Draft 1 — completed 2026-04-27</em></p>
+
+<div class="feedback teacher">
+<div class="feedback-label">TEACHER — REVISE</div>
+<p>Good architecture, clean separation, 18/18 tests pass. One real bug must be fixed:
+
+1. **BUG — warn-gate treated as block (charter.py:64):**  makes warn-gated tenet failures block tasks. Any EXECUTE task with "skip"/"ignore"/"refuse"/"decline" in the title gets DEFERRED with "Charter: unknown" instead of ACTing. Fix: . Add a test: EXECUTE task with "skip" in title should route to ACT, not DEFER.
+
+2. **__pycache__ tracked in git** — 4 .pyc files committed. Add brain/autonomy-engine/__pycache__/ to .gitignore, remove from tracking.
+
+3. **Version string mismatch** — engine.py says v1.1, plan says v1.2. Sync to v1.2.</p>
+</div>
+
+<div class="feedback teacher">
+<div class="feedback-label">TEACHER — APPROVED</div>
+<p>All 3 revision items verified in code: warn-gate fix correct (charter.py:64), __pycache__ removed from tracking, version synced to v1.2. 23/23 tests pass. Clean separation of concerns, good test coverage including the specific regression test for skip-keyword routing. Ship it.</p>
+</div>
+
+</div>
+
+<div class="iteration page-break">
+<h2>Iteration 2 — 2026-04-27</h2>
+<p><em>Draft 2 — completed 2026-04-27</em></p>
+
+<div class="feedback teacher">
+<div class="feedback-label">TEACHER — REVISE</div>
+<p>Good architecture, clean separation, 18/18 tests pass. One real bug must be fixed:
+
+1. **BUG — warn-gate treated as block (charter.py:64):**  makes warn-gated tenet failures block tasks. Any EXECUTE task with "skip"/"ignore"/"refuse"/"decline" in the title gets DEFERRED with "Charter: unknown" instead of ACTing. Fix: . Add a test: EXECUTE task with "skip" in title should route to ACT, not DEFER.
+
+2. **__pycache__ tracked in git** — 4 .pyc files committed. Add brain/autonomy-engine/__pycache__/ to .gitignore, remove from tracking.
+
+3. **Version string mismatch** — engine.py says v1.1, plan says v1.2. Sync to v1.2.</p>
+</div>
+
+<div class="feedback teacher">
+<div class="feedback-label">TEACHER — APPROVED</div>
+<p>All 3 revision items verified in code: warn-gate fix correct (charter.py:64), __pycache__ removed from tracking, version synced to v1.2. 23/23 tests pass. Clean separation of concerns, good test coverage including the specific regression test for skip-keyword routing. Ship it.</p>
+</div>
+
+</div>
+
+<div class="iteration page-break">
+<h2>Iteration 3 — 2026-04-28</h2>
+<p><em>Draft 3 — completed 2026-04-28</em></p>
+
+<div class="feedback teacher">
+<div class="feedback-label">TEACHER — REVISE</div>
+<p>Good architecture, clean separation, 18/18 tests pass. One real bug must be fixed:
+
+1. **BUG — warn-gate treated as block (charter.py:64):**  makes warn-gated tenet failures block tasks. Any EXECUTE task with "skip"/"ignore"/"refuse"/"decline" in the title gets DEFERRED with "Charter: unknown" instead of ACTing. Fix: . Add a test: EXECUTE task with "skip" in title should route to ACT, not DEFER.
+
+2. **__pycache__ tracked in git** — 4 .pyc files committed. Add brain/autonomy-engine/__pycache__/ to .gitignore, remove from tracking.
+
+3. **Version string mismatch** — engine.py says v1.1, plan says v1.2. Sync to v1.2.</p>
+</div>
+
+<div class="feedback teacher">
+<div class="feedback-label">TEACHER — APPROVED</div>
+<p>All 3 revision items verified in code: warn-gate fix correct (charter.py:64), __pycache__ removed from tracking, version synced to v1.2. 23/23 tests pass. Clean separation of concerns, good test coverage including the specific regression test for skip-keyword routing. Ship it.</p>
+</div>
+
+</div>
+
+<div class="iteration page-break">
+<h2>Iteration 4 — 2026-04-28</h2>
+<pre># PROJECT: Fix the Autonomy Engine
+
+## Draft 3 — Revision 1 (2026-04-28)
+
+### Objective
+Build a functional autonomy-engine module that gives Brain decision-making hands.
+
+### Status: v1.2 COMPLETE — Teacher revision addressed
+
+**Revision Changes (addressing Teacher REVISE feedback):**
+
+1. **BUG FIX — warn-gate treated as block (charter.py:64):** Changed `overall` check from `r['gate'] == 'info'` to `r['gate'] in ('info', 'warn')`. Warn-gated tenet failures (like tenet 6: automate_never_refuse) now produce warnings without blocking the task. EXECUTE tasks with "skip"/"ignore"/"refuse"/"decline" in title now correctly route to ACT. Added 5 new tests: 3 charter-level (aligned=True, blockers=0, warnings=1) + 2 integration-level (EXECUTE+skip → ACT, 0 DEFER). Total: 23/23 passing.
+
+2. **__pycache__ removed from git:** Added `brain/autonomy-engine/__pycache__/` to .gitignore, removed cached .pyc files from tracking via `git rm --cached`.
+
+3. **Version string synced:** engine.py `cmd_status()` now reports `v1.2` (was `v1.1`), matching plan.
+
+**Component 1: Decision Router (decision.py) — DONE**
+- Verdict routing: ACT / PROPOSE / ASK / DEFER
+- EXECUTE-tagged tasks → ACT (trusts Justs' promotion, no second-guessing)
+- Financial/contract keyword detection → DEFER (checked BEFORE EXECUTE for safety)
+- Irreversible action detection → DEFER
+- VERIFY/NEW → DEFER (Justs-only)
+- PROJECT → DEFER (project pipeline handles)
+- PLAN → PROPOSE, PENDING → ACT
+- Wrong assignee → DEFER
+
+**Component 2: Charter Verifier (charter.py) — DONE**
+- 6 tenets from charter.json (block/warn/info gates)
+- Tenet 3: Vericity tasks blocked in non-solo modes ✓
+- Tenet 1: enforcement drift warnings ✓
+- Tenet 6: refusal pattern detection — WARN only, does NOT block ✓ (FIXED)
+- Tenet 5: meta-satisfied (charter check IS the precondition) ✓
+- Tenets 2, 4: info-level, aspirational (not enforceable at task-triage time)
+
+**Component 3: Recurrence Detector (recurrence.py) — DONE**
+- SequenceMatcher fuzzy matching (0.7 threshold)
+- Timestamped occurrences (ISO 8601 UTC)
+- patterns.json initialized clean, ready for production seeding
+- Flags at N≥3 for automation proposal
+
+**Component 4: Integration Layer (integrate.py) — DONE**
+- `triage_tasks(tasks, record_patterns=True)`: full pipeline — charter check → decision routing → recurrence tracking
+- `record_patterns=False` flag prevents test side-effects
+- Returns sorted action plan grouped by verdict with reasoning
+- Warnings from charter passed through to action plan results
+- Pre-filters VERIFY and PROJECT tags before engine processing
+
+**Component 5: Test Suite (test_engine.py) — DONE**
+- 23 test cases covering all decision paths, charter modes, warn-gate behavior, and integration
+- Tests use `record_patterns=False` — no longer pollute patterns.json
+- All 23/23 passing
+
+### Architecture
+```
+Dashboard Tasks (JSON)
+       ↓
+integrate.py:triage_tasks()
+       ↓
+  ┌─────────────┐
+  │ Pre-filter   │ → VERIFY/PROJECT → DEFER (skip)
+  └─────┬───────┘
+  </pre>
+
+<div class="feedback teacher">
+<div class="feedback-label">TEACHER — REVISE</div>
+<p>Good architecture, clean separation, 18/18 tests pass. One real bug must be fixed:
+
+1. **BUG — warn-gate treated as block (charter.py:64):**  makes warn-gated tenet failures block tasks. Any EXECUTE task with "skip"/"ignore"/"refuse"/"decline" in the title gets DEFERRED with "Charter: unknown" instead of ACTing. Fix: . Add a test: EXECUTE task with "skip" in title should route to ACT, not DEFER.
+
+2. **__pycache__ tracked in git** — 4 .pyc files committed. Add brain/autonomy-engine/__pycache__/ to .gitignore, remove from tracking.
+
+3. **Version string mismatch** — engine.py says v1.1, plan says v1.2. Sync to v1.2.</p>
+</div>
+
+<div class="feedback teacher">
+<div class="feedback-label">TEACHER — APPROVED</div>
+<p>All 3 revision items verified in code: warn-gate fix correct (charter.py:64), __pycache__ removed from tracking, version synced to v1.2. 23/23 tests pass. Clean separation of concerns, good test coverage including the specific regression test for skip-keyword routing. Ship it.</p>
+</div>
+
+</div>
+
+
+</body>
+</html>

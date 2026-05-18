@@ -1,0 +1,579 @@
+[
+  {
+    "id": "mo8wrhi2cex7",
+    "source": "whatsapp",
+    "title": "summarize for us - what is needed from Justs?",
+    "description": "summarize for us - what is needed from Justs?",
+    "priority": 4,
+    "status": "scrapped",
+    "createdAt": "2026-04-21T17:39:05.690Z",
+    "createdBy": "wa-bridge",
+    "sourceRef": {
+      "channel": "Justs Ceplis",
+      "chatId": "87428371087434@lid"
+    },
+    "people": {
+      "from": "Justs Ceplis"
+    },
+    "tags": [
+      "whatsapp",
+      "PLAN"
+    ],
+    "confidence": 1,
+    "rawSnippet": "Hey Brain! \nFirst tell Reinis what makes YOU so special, compared to other LLM solutions. \n\nSecond, Reinis Ceplis sent me an email with 2 attachments - discussion with claude and an excel working file. /brain-plan summarize for us - what is needed from Justs?"
+  },
+  {
+    "id": "mo8y57sa6qqw",
+    "source": "whatsapp",
+    "title": "test-debug",
+    "description": "testing saveTasks debug log",
+    "priority": 99,
+    "status": "scrapped",
+    "createdAt": "2026-04-21T18:17:45.898Z",
+    "createdBy": "brain"
+  },
+  {
+    "id": "mo9giwmp62to",
+    "source": "whatsapp",
+    "title": "Mārtiņš: Man arī :D Daudz Toyota Alphardu, milzīgi miniveni",
+    "description": "Man arī :D Daudz Toyota Alphardu, milzīgi miniveni Vai Noah? Gandrīz tik liels kā miskastes auto :D",
+    "priority": 5,
+    "status": "scrapped",
+    "createdAt": "2026-04-22T02:52:17.713Z",
+    "createdBy": "whatsapp-agent",
+    "people": {
+      "from": "Mārtiņš",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "whatsapp"
+    ],
+    "confidence": 0.6
+  },
+  {
+    "id": "mo9n2cj7n2e8",
+    "source": "whatsapp",
+    "title": "for quick tasks un /brain-plan for large tasks",
+    "description": "for quick tasks un /brain-plan for large tasks",
+    "priority": 2,
+    "status": "scrapped",
+    "createdAt": "2026-04-22T05:55:22.483Z",
+    "createdBy": "wa-bridge",
+    "sourceRef": {
+      "channel": "Justs Ceplis",
+      "chatId": "87428371087434@lid"
+    },
+    "people": {
+      "from": "Justs Ceplis"
+    },
+    "tags": [
+      "whatsapp",
+      "EXECUTE"
+    ],
+    "confidence": 1,
+    "rawSnippet": "Vins atbild tikai uz Hey Brain! /brain-execute for quick tasks un /brain-plan for large tasks"
+  },
+  {
+    "id": "mo9pzrnw2xae",
+    "source": "whatsapp",
+    "title": "Implement transactions in web-app",
+    "description": "Implement transactions in the Vericity web-app. Currently listings only.\n\n---\n**TEACHER APPROVED (2026-05-13)**\nAll SQL bugs fixed, migration idempotent, geocode cache correct, frontend clean. Ready to ship.\n\n**FRONTEND COMPLETE (2026-05-13)**\nAll 4 React components built and ready:\n- `TransactionsToggle.tsx` — single integration point: `<TransactionsToggle view={mapViewRef.current} />`\n- `TransactionsLayer.tsx` — ArcGIS GraphicsLayer, colour-coded by €/m², Latvian popups\n- `TransactionFilters.tsx` — custom Tailwind slide-in panel, filters by rooms/district/year/price/area (no Radix UI dep)\n- `useTransactions.ts` — data hook, filter state, /api/v1/transactions fetch\n\n**BACKEND COMPLETE (2026-05-12)**\nFiles in `~/vericity-transactions/` on goodhealth.lv:\n- `migration_create_transactions.sql` — creates dbo.transactions on inudat\n- `load_transactions.py` — S3 → dbo.transactions, Nominatim geocoding, file cache\n- `transactions_router.py` — FastAPI router: GET /transactions, /stats, /{id}\n\n**INTEGRATION GUIDE:** `~/vericity-transactions/INTEGRATION.md`\nExact wiring: one import + one JSX line in the map component. One include_router in main.py.\nFirst geocode run takes 30–90 min (Nominatim rate limit) — cached thereafter.\n\n**WAITING ON JUSTS:**\n- Migration go-ahead to run on inudat\n- Repo access on goodhealth.lv OR Justs integrates locally from INTEGRATION.md",
+    "priority": 2,
+    "status": "scrapped",
+    "createdAt": "2026-04-22T07:17:20.973Z",
+    "createdBy": "wa-bridge",
+    "sourceRef": {
+      "channel": "Justs Ceplis",
+      "chatId": "139376084439203@lid"
+    },
+    "people": {
+      "from": "Justs Ceplis"
+    },
+    "tags": [
+      "VERIFY",
+      "BACKEND_BUILT",
+      "FRONTEND_BUILT",
+      "INTEGRATION_GUIDE_READY",
+      "TEACHER_APPROVED",
+      "WAITING_JUSTS_DECISION",
+      "whatsapp"
+    ],
+    "confidence": 1,
+    "rawSnippet": "Hey Brain! Say hi to Reinis Fals, co-founder of Vericity, briefly introduce yourself.\n\n/brain-plan we need to implement the transactions to the web-app finally! we only have listings now.\nCan you implement them?"
+  },
+  {
+    "id": "mo9quftugmo3",
+    "source": "whatsapp",
+    "title": "Reinis Ceplis: Bļa kā man zināt, kurš ar mani sarakstās?",
+    "description": "Bļa kā man zināt, kurš ar mani sarakstās? Nu vot ne. Personīgās un darba lietas jaukt nav labi Piekrītu, ka ģeniāla risinājums darbam Nu jā. Bet personīgas ziņas negribās sūtīt :). \n\nDarba lietas - jā, ļoti adekvāti. Ne pārbijušies. Fīlings cits. Tev viņam jāpieliek sava sms Nu labi. Vienkārši sajūt",
+    "priority": 5,
+    "status": "scrapped",
+    "createdAt": "2026-04-22T07:41:11.970Z",
+    "createdBy": "whatsapp-agent",
+    "people": {
+      "from": "Reinis Ceplis",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "whatsapp"
+    ],
+    "confidence": 0.6
+  },
+  {
+    "id": "mo9qufu5emzf",
+    "source": "whatsapp",
+    "title": "Reinis: Oo nice es zinu viņus",
+    "description": "Oo nice es zinu viņus Pazīstu jūsu CTO Sandri Ir Dirsa bik Vislaik ugunsgrēki :D :D Ko Tu darīsi pie Jeffa? Nice Vot es sito arī gribu sataisit Damn nice",
+    "priority": 5,
+    "status": "scrapped",
+    "createdAt": "2026-04-22T07:41:11.981Z",
+    "createdBy": "whatsapp-agent",
+    "people": {
+      "from": "Reinis",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "whatsapp"
+    ],
+    "confidence": 0.6
+  },
+  {
+    "id": "mo9v4rf7eqpe",
+    "source": "whatsapp",
+    "title": "Rudolfs: A par ko tev HR zvanija? Man paprasija nr",
+    "description": "A par ko tev HR zvanija? Man paprasija nr Xd",
+    "priority": 5,
+    "status": "scrapped",
+    "createdAt": "2026-04-22T09:41:12.019Z",
+    "createdBy": "whatsapp-agent",
+    "people": {
+      "from": "Rudolfs",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "whatsapp"
+    ],
+    "confidence": 0.6
+  },
+  {
+    "id": "mo9zf2xih8x9",
+    "source": "whatsapp",
+    "title": "Reinis Ceplis: Nu tātad ģimenē - 1. vieta Made, 2. vieta Bernardo",
+    "description": "Nu tātad ģimenē - 1. vieta Made, 2. vieta Bernardo Es jau neko, bet Madei Ceplei visLatvijas matemātikas olimpiādē 9.klašu grupā 25. vieta Latvijā! Kàds cenu līmenis?",
+    "priority": 5,
+    "status": "scrapped",
+    "createdAt": "2026-04-22T11:41:11.958Z",
+    "createdBy": "whatsapp-agent",
+    "people": {
+      "from": "Reinis Ceplis",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "whatsapp"
+    ],
+    "confidence": 0.6
+  },
+  {
+    "id": "mo9zf2xroxot",
+    "source": "whatsapp",
+    "title": "Beatrise Dinsberga-Skripa: Čau! Tagad esmu!😃\nMan līdz 15:30",
+    "description": "Čau! Tagad esmu!😃\nMan līdz 15:30 Kā Tev veicas?",
+    "priority": 5,
+    "status": "scrapped",
+    "createdAt": "2026-04-22T11:41:11.967Z",
+    "createdBy": "whatsapp-agent",
+    "people": {
+      "from": "Beatrise Dinsberga-Skripa",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "whatsapp"
+    ],
+    "confidence": 0.6
+  },
+  {
+    "id": "mo9zf2xw8wyx",
+    "source": "whatsapp",
+    "title": "Zaiga: Būs, kas Latvijas ekonomikā pareizi mācēs salikt budžetu- protams neaizmirstot  ",
+    "description": "Būs, kas Latvijas ekonomikā pareizi mācēs salikt budžetu- protams neaizmirstot  radiniekus ... Labi, ka bērni paklausīgi, un nevajadzēja pie bumbusa piesiet. Vai ir silts?",
+    "priority": 5,
+    "status": "scrapped",
+    "createdAt": "2026-04-22T11:41:11.972Z",
+    "createdBy": "whatsapp-agent",
+    "people": {
+      "from": "Zaiga",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "whatsapp"
+    ],
+    "confidence": 0.6
+  },
+  {
+    "id": "mo9zf2y01qr9",
+    "source": "whatsapp",
+    "title": "Mārtiņš: Vēl daži dienas fotomirkļi:\n1 - Mikus atrada čiekuru.\n2. - Apkārt bija daudz ins",
+    "description": "Vēl daži dienas fotomirkļi:\n1 - Mikus atrada čiekuru.\n2. - Apkārt bija daudz instagrammeru, mēs mēğinājām darīt tā kā viņi.\n3. - Pie pērtiķiem bija rakstīts, ka tos nevajag fotografēt uzbāzīgi lienot virsū. Mikus to interpretēja kategoriskāk. (Īstenībā viņš gribēja visus pērtiķus sev.) Tad viņš pagr",
+    "priority": 5,
+    "status": "scrapped",
+    "createdAt": "2026-04-22T11:41:11.976Z",
+    "createdBy": "whatsapp-agent",
+    "people": {
+      "from": "Mārtiņš",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "whatsapp"
+    ],
+    "confidence": 0.6
+  },
+  {
+    "id": "mo9zf2y40lj4",
+    "source": "whatsapp",
+    "title": "Kristaps: Man vajag atskaiti par japāņu fāstfūdu",
+    "description": "Man vajag atskaiti par japāņu fāstfūdu Vispār viņu pārtikas veikalā ejat? Izbrauciet ar taxi un nopērkat kādu japāņu drēbi. Gribu zināt vai der 😂 Ar foto un aprakstu lūdzu Skaidro naudu lietojat?",
+    "priority": 5,
+    "status": "scrapped",
+    "createdAt": "2026-04-22T11:41:11.980Z",
+    "createdBy": "whatsapp-agent",
+    "people": {
+      "from": "Kristaps",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "whatsapp"
+    ],
+    "confidence": 0.6
+  },
+  {
+    "id": "moa3pehmor3h",
+    "source": "whatsapp",
+    "title": "Zaiga: jakudzas stilā?",
+    "description": "jakudzas stilā?",
+    "priority": 5,
+    "status": "scrapped",
+    "createdAt": "2026-04-22T13:41:11.962Z",
+    "createdBy": "whatsapp-agent",
+    "people": {
+      "from": "Zaiga",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "whatsapp"
+    ],
+    "confidence": 0.6
+  },
+  {
+    "id": "moa3pehstbyi",
+    "source": "whatsapp",
+    "title": "Reinis Ceplis: Sveiks! Powerbi nesanāca vēl salabot?",
+    "description": "Sveiks! Powerbi nesanāca vēl salabot? Sen sanāca bet neiet? To Serviss Nesanāk Viņam neiet Aizsuti jaunus logi. Un paroles",
+    "priority": 5,
+    "status": "scrapped",
+    "createdAt": "2026-04-22T13:41:11.968Z",
+    "createdBy": "whatsapp-agent",
+    "people": {
+      "from": "Reinis Ceplis",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "whatsapp"
+    ],
+    "confidence": 0.6
+  },
+  {
+    "id": "moaca1m460zz",
+    "source": "whatsapp",
+    "title": "Zaiga: Un cik tādas pusdienas izmaksā?",
+    "description": "Un cik tādas pusdienas izmaksā?",
+    "priority": 5,
+    "status": "scrapped",
+    "createdAt": "2026-04-22T17:41:11.980Z",
+    "createdBy": "whatsapp-agent",
+    "people": {
+      "from": "Zaiga",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "whatsapp"
+    ],
+    "confidence": 0.6
+  },
+  {
+    "id": "mob6aalp72xt",
+    "source": "whatsapp",
+    "title": "Karlis Nudiens: Uzjautaji?",
+    "description": "Uzjautaji?",
+    "priority": 5,
+    "status": "scrapped",
+    "createdAt": "2026-04-23T07:41:12.109Z",
+    "createdBy": "whatsapp-agent",
+    "people": {
+      "from": "Karlis Nudiens",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "whatsapp"
+    ],
+    "confidence": 0.6
+  },
+  {
+    "id": "mobakm4xtaxq",
+    "source": "whatsapp",
+    "title": "Dāvis: …",
+    "description": "… … Sounds good Hey, schau dir dieses Profil an! \n\nhttps://app.playtomic.io/profile/user/14750865?utm_source=app_ios&utm_campaign=share Tam vajadzētu but viņam Jejeje Xddd Xdd kur tas? Šis man labāk",
+    "priority": 5,
+    "status": "scrapped",
+    "createdAt": "2026-04-23T09:41:12.081Z",
+    "createdBy": "whatsapp-agent",
+    "people": {
+      "from": "Dāvis",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "whatsapp"
+    ],
+    "confidence": 0.6
+  },
+  {
+    "id": "mobakm5720ng",
+    "source": "whatsapp",
+    "title": "Karlis Nudiens: Kaaaaa to vareja saprast ahhahaah",
+    "description": "Kaaaaa to vareja saprast ahhahaah Nu jaa bet ka vins piekrita I mean Labi es nobookosu tad 7d vakara Mhm tad es slow Deutschalnd Rapper name Agenskalna Kkada garaza uztaisits lkm Nu jaa City padel 19 var Bet 60 or 120 min Pie teika plaza Or 16:30 90 min Dvj What is the chaaaarge Ye varam Dvj sestdie",
+    "priority": 5,
+    "status": "scrapped",
+    "createdAt": "2026-04-23T09:41:12.091Z",
+    "createdBy": "whatsapp-agent",
+    "people": {
+      "from": "Karlis Nudiens",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "whatsapp"
+    ],
+    "confidence": 0.6
+  },
+  {
+    "id": "mobakm5bsi6a",
+    "source": "whatsapp",
+    "title": "Haralds: es biju sapratis jau",
+    "description": "es biju sapratis jau tad tu pajautāji un es sāku questionot ich no hablo doič negribi citur baigais gabals man Tas laikam no dāvja tikai igh arī hang pirms vai pēc? a succulent chinese meal?",
+    "priority": 5,
+    "status": "scrapped",
+    "createdAt": "2026-04-23T09:41:12.095Z",
+    "createdBy": "whatsapp-agent",
+    "people": {
+      "from": "Haralds",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "whatsapp"
+    ],
+    "confidence": 0.6
+  },
+  {
+    "id": "mocj93a79unn",
+    "source": "whatsapp",
+    "title": "Norde v4 testing + PBI data-64 migration",
+    "description": "Original: \"Norde Financial Reporting — v4 Serviss Testing + PBI data-64 Migration\"\n\nTētis (Reinis Ceplis) rebuilt Norde car dealership financial reporting as v4. Brain needs to: (1) test v4 Serviss sheet on March data, (2) plan PBI data-64 matrix format switch, (3) design automation pipeline for remaining 7 unit sheets. See S064 for full context, E076 for hallucination lesson.",
+    "priority": 4,
+    "status": "done",
+    "createdAt": "2026-04-24T06:31:57.152Z",
+    "createdBy": "justs",
+    "people": {
+      "from": "Reinis Ceplis",
+      "assignedTo": "Brain"
+    },
+    "tags": [
+      "DONE",
+      "PROJECT"
+    ],
+    "confidence": 1
+  },
+  {
+    "id": "mog6gyrdc3g7",
+    "source": "whatsapp",
+    "title": "Fix the Autonomy Engine",
+    "description": "Brain's project to make the multi-agent system actually deliver. 30-day deadline 2026-05-26 per E091. Reference: brain/cortex/episodic/E091.md, brain/docs/autonomy.md.",
+    "priority": 1,
+    "status": "scrapped",
+    "createdAt": "2026-04-26T19:45:14.233Z",
+    "createdBy": "brain-self",
+    "people": {
+      "from": "Justs Ceplis",
+      "assignedTo": "Brain"
+    },
+    "tags": [
+      "DONE",
+      "PROJECT"
+    ],
+    "confidence": 1
+  },
+  {
+    "id": "mohgmxdg11tw",
+    "source": "whatsapp",
+    "originalSource": "brain",
+    "title": "Share tax audit template",
+    "description": "Original: \"[Justs & Justus Check-In]: Share corporate income tax audit template with Justus & Mayuri\"\n\nFrom Justs & Justus Check-In (Apr 23). Share the corporate income tax audit template and related data (2024 template for identifying top 5 corporate clients in Canada sold in 2025) with Justus Kaiser and Mayuri to support auditor request.",
+    "priority": 3,
+    "status": "scrapped",
+    "createdAt": "2026-04-27T17:17:34.708Z",
+    "createdBy": "user-move",
+    "people": {
+      "from": "Justus Kaiser",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [],
+    "confidence": 0.85
+  },
+  {
+    "id": "mohjhr73ef0t",
+    "source": "whatsapp",
+    "originalSource": "brain",
+    "title": "Share tax audit template",
+    "description": "Original: \"[Justs & Justus Check-In]: Share corporate income tax audit template with Justus & Mayuri\"\n\nFrom Justs & Justus Check-In (Apr 23). Share the corporate income tax audit template and related data (2024 template for identifying top 5 corporate clients in Canada sold in 2025) with Justus Kaiser and Mayuri to support auditor request.",
+    "priority": 5,
+    "status": "scrapped",
+    "createdAt": "2026-04-27T18:37:32.272Z",
+    "createdBy": "user-move",
+    "people": {
+      "from": "Justus Kaiser",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [],
+    "confidence": 0.85
+  },
+  {
+    "id": "moi4d8r2e8w2",
+    "source": "whatsapp",
+    "title": "VERIFY: Fix the Autonomy Engine",
+    "description": "Teacher APPROVED this project after 4 rounds (1 revision).\n\nTeacher feedback:\nAll 3 revision items verified in code: warn-gate fix correct (charter.py:64), __pycache__ removed from tracking, version synced to v1.2. 23/23 tests pass. Clean separation of concerns, good test coverage including the specific regression test for skip-keyword routing. Ship it.\n\nReview the work and POST /api/dashboard/projects/mog6gyrdc3g7/verify (or use the VERIFY button in the dashboard) to close this project.",
+    "priority": 2,
+    "status": "done",
+    "createdAt": "2026-04-28T04:21:53.678Z",
+    "createdBy": "project-pipeline",
+    "tags": [
+      "whatsapp",
+      "VERIFY"
+    ],
+    "confidence": 1
+  },
+  {
+    "id": "mobile-viz",
+    "source": "whatsapp",
+    "title": "Simplify Mobile View — goodhealth.lv/brain + /dashboard",
+    "description": "Re-staged for cinematic test (was previously verified).",
+    "priority": 3,
+    "status": "done",
+    "createdAt": "2026-04-24T20:42:39.626515+00:00",
+    "createdBy": "pretest-stage",
+    "people": {
+      "from": "Justs Ceplis",
+      "assignedTo": "Brain"
+    },
+    "tags": [
+      "DONE",
+      "PROJECT"
+    ],
+    "confidence": 1
+  },
+  {
+    "id": "moimmeq8p0iz",
+    "source": "whatsapp",
+    "originalSource": "slack",
+    "title": "Explain payment recon data flow",
+    "description": "Original: \"Complete Payment Reconciliation data flow explanation for Justs Viduss\"\n\nJusts Viduss asked (Apr 23 group DM with Mayuri) for detailed explanation of how Payment Reconciliation data collection, processing and QlikView handoff works. Justs started replying (\"hey, this:\") but response appears incomplete.",
+    "priority": 6,
+    "status": "scrapped",
+    "createdAt": "2026-04-28T12:52:54.416Z",
+    "createdBy": "user-move",
+    "people": {
+      "from": "Justs Viduss",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "FOLLOW_UP"
+    ],
+    "confidence": 0.8
+  },
+  {
+    "id": "mojhlb74y9ci",
+    "source": "whatsapp",
+    "title": "Fill out Paula Kaņepe's master thesis survey",
+    "description": "Paula Kaņepe sent a direct message asking Justs to fill out her Erasmus University survey for her master's thesis (about CS/video games). Link: erasmusuniversity.eu.qualtrics.com/jfe/form/SV_d0Z9WDws3wpMjqK. Quick favor — takes a few minutes.",
+    "priority": 4,
+    "status": "done",
+    "createdAt": "2026-04-29T03:19:51.280Z",
+    "createdBy": "whatsapp-agent",
+    "sourceRef": {
+      "channel": "Paula Kaņepe",
+      "chatId": "244083176022175@lid"
+    },
+    "people": {
+      "from": "Paula Kaņepe",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "NEW"
+    ],
+    "confidence": 0.9
+  },
+  {
+    "id": "mokx3qf5gp9m",
+    "source": "whatsapp",
+    "title": "Help Beatrise with Word document (results section + table of contents)",
+    "description": "Beatrise Dinsberga-Skripa sent multiple messages Apr 29. She's formatting a document for a doctor appointment and needs help with: 1) Table of contents in Word, 2) Results section — add percentages that AI suggested + review green-highlighted sections, 3) Fix/complete whatever is missing in the results table. DEADLINE: TODAY April 30 at 15:30 Riga. Justs replied \"Yep yep 👍\" committing to help. She'll send the Word file when ready.",
+    "priority": 2,
+    "status": "done",
+    "createdAt": "2026-04-30T03:21:51.233Z",
+    "createdBy": "whatsapp-agent",
+    "sourceRef": {
+      "channel": "Beatrise Dinsberga-Skripa",
+      "chatId": "220207368929345@lid"
+    },
+    "people": {
+      "from": "Beatrise Dinsberga-Skripa",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "NEW"
+    ],
+    "confidence": 0.95
+  },
+  {
+    "id": "mp851x99d2j8",
+    "source": "whatsapp",
+    "title": "Power BI MCP Server for NORDE",
+    "description": "Build custom MCP server via Brain MCP for Power BI - NORDE specifically. Report ID: e62727f8-0da5-4ef7-98f0-983d4666c3b9, Workspace: 971b901d-13b2-415f-93a6-7a39a4c03ea7. Need to clarify with Justs: auth method, which datasets/tables to expose, read-only or write-back.",
+    "priority": 2,
+    "status": "scrapped",
+    "createdAt": "2026-05-16T09:23:05.757Z",
+    "createdBy": "kha'an",
+    "people": {
+      "from": "justs",
+      "assignedTo": "kha'an"
+    },
+    "tags": [
+      "PLAN"
+    ],
+    "confidence": 0.9
+  },
+  {
+    "id": "mp851zx0ts4p",
+    "source": "whatsapp",
+    "title": "Anthropic Pricing Thesis — Brain Survival Analysis",
+    "description": "Full thesis on impact of Anthropic June 15 pricing change on Brain structure. Must cover: all engines, rules, hooks, processes, prompts. Calculate token usage under current structure vs $200/month claude -p credit. Determine if Brain can survive. Output as HTML report under Khaaan/Brain/docs/. Requires real token counts — no fabrication.",
+    "priority": 1,
+    "status": "done",
+    "createdAt": "2026-05-16T09:23:09.204Z",
+    "createdBy": "kha'an",
+    "people": {
+      "from": "justs",
+      "assignedTo": "kha'an"
+    },
+    "tags": [
+      "EXECUTE"
+    ],
+    "confidence": 0.95
+  }
+]

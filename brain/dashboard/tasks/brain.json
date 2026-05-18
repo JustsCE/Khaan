@@ -1,0 +1,288 @@
+[
+  {
+    "id": "mocmqfzps7nt",
+    "source": "brain",
+    "title": "Learn grouping: \"Justus Kaiser: Q4 SKU-level forecast for tender — EOD tomorrow\" == \"Justus Kaiser: Q4 SKU-level forecast for tender — EOD tomorrow\"",
+    "description": "User manually grouped two tasks as duplicates.\n\nDragged (removed): \"Justus Kaiser: Q4 SKU-level forecast for tender — EOD tomorrow\" (source: slack, id: mobrbrb6dwei)\nKept: \"Justus Kaiser: Q4 SKU-level forecast for tender — EOD tomorrow\" (source: slack, id: mobrbrb6dwei)\n\nAnalyze WHY these are the same task. Look for: common people, overlapping topics,\ntiming proximity, cross-platform mentions. Encode the pattern via /brain-learn so\nfuture triage auto-detects duplicates.",
+    "priority": 1,
+    "status": "scrapped",
+    "createdAt": "2026-04-24T08:09:25.621Z",
+    "createdBy": "user-grouping",
+    "tags": [
+      "EXECUTE"
+    ]
+  },
+  {
+    "id": "mocmrrwjldww",
+    "source": "brain",
+    "title": "Learn grouping: \"Check-In: Provide forecast data export to Andreas Mintus ASAP\" == \"Check-In: Provide forecast data export to Andreas Mintus ASAP\"",
+    "description": "User manually grouped two tasks as duplicates.\n\nDragged (removed): \"Check-In: Provide forecast data export to Andreas Mintus ASAP\" (source: fireflies, id: mobrbvz2520t)\nKept: \"Check-In: Provide forecast data export to Andreas Mintus ASAP\" (source: fireflies, id: mobrbvz2520t)\n\nAnalyze WHY these are the same task. Look for: common people, overlapping topics,\ntiming proximity, cross-platform mentions. Encode the pattern via /brain-learn so\nfuture triage auto-detects duplicates.",
+    "priority": 1,
+    "status": "scrapped",
+    "createdAt": "2026-04-24T08:10:27.715Z",
+    "createdBy": "user-grouping",
+    "tags": [
+      "EXECUTE"
+    ]
+  },
+  {
+    "id": "mocnecgbuuk2",
+    "source": "brain",
+    "title": "Learn grouping: \"Check-In: Share corporate income tax audit template with Justus & Mayuri today\" == \"Check-In: Share corporate income tax audit template with Justus & Mayuri today\"",
+    "description": "User manually grouped two tasks as duplicates.\n\nDragged (removed): \"Check-In: Share corporate income tax audit template with Justus & Mayuri today\" (source: fireflies, id: mobrbyafopg3)\nKept: \"Check-In: Share corporate income tax audit template with Justus & Mayuri today\" (source: fireflies, id: mobrbyafopg3)\n\nAnalyze WHY these are the same task. Look for: common people, overlapping topics,\ntiming proximity, cross-platform mentions. Encode the pattern via /brain-learn so\nfuture triage auto-detects duplicates.",
+    "priority": 1,
+    "status": "scrapped",
+    "createdAt": "2026-04-24T08:28:00.779Z",
+    "createdBy": "user-grouping",
+    "tags": [
+      "EXECUTE"
+    ]
+  },
+  {
+    "id": "mocnukbch0cc",
+    "source": "brain",
+    "title": "Learn grouping: \"Check-In: Check with Davis on Merge1 Vet ID ticket status\" == \"Check-In: Check with Davis on Merge1 Vet ID ticket status\"",
+    "description": "User manually grouped two tasks as duplicates.\n\nDragged (removed): \"Check-In: Check with Davis on Merge1 Vet ID ticket status\" (source: fireflies, id: mobrc2wiy8as)\nKept: \"Check-In: Check with Davis on Merge1 Vet ID ticket status\" (source: fireflies, id: mobrc2wiy8as)\n\nAnalyze WHY these are the same task. Look for: common people, overlapping topics,\ntiming proximity, cross-platform mentions. Encode the pattern via /brain-learn so\nfuture triage auto-detects duplicates.",
+    "priority": 1,
+    "status": "scrapped",
+    "createdAt": "2026-04-24T08:40:37.464Z",
+    "createdBy": "user-grouping",
+    "tags": [
+      "EXECUTE"
+    ]
+  },
+  {
+    "id": "mocofbrx5403",
+    "source": "brain",
+    "title": "Learn grouping: \"Check-In: Schedule stakeholder meetings with Mayuri for early May\" == \"we need to implement the transactions to the web-app finally! we only have listings now.\"",
+    "description": "User manually grouped two tasks as duplicates.\n\nDragged (removed): \"Check-In: Schedule stakeholder meetings with Mayuri for early May\" (source: fireflies, id: mobrc7fbj4bz)\nKept: \"we need to implement the transactions to the web-app finally! we only have listings now.\" (source: personal, id: mo9pzrnw2xae)\n\nAnalyze WHY these are the same task. Look for: common people, overlapping topics,\ntiming proximity, cross-platform mentions. Encode the pattern via /brain-learn so\nfuture triage auto-detects duplicates.",
+    "priority": 1,
+    "status": "scrapped",
+    "createdAt": "2026-04-24T08:56:46.173Z",
+    "createdBy": "user-grouping",
+    "tags": [
+      "EXECUTE"
+    ]
+  },
+  {
+    "id": "moe0lp2trllk",
+    "source": "brain",
+    "title": "Learn grouping: \"Add Justus+Mayuri to Merge1 mtgs\" + 4 more",
+    "description": "User manually grouped duplicate handover tasks. Encode the duplicate-detection pattern via /brain-learn so future triage auto-detects (same meeting + same people + same broader initiative).",
+    "priority": 1,
+    "status": "done",
+    "createdAt": "2026-04-25T07:25:24.918Z",
+    "createdBy": "user-grouping",
+    "tags": [
+      "EXECUTE"
+    ]
+  },
+  {
+    "id": "mohgmrs31l7a",
+    "source": "brain",
+    "title": "Share tax audit template",
+    "description": "Original: \"[Justs & Justus Check-In]: Share corporate income tax audit template with Justus & Mayuri\"\n\nFrom Justs & Justus Check-In (Apr 23). Share the corporate income tax audit template and related data (2024 template for identifying top 5 corporate clients in Canada sold in 2025) with Justus Kaiser and Mayuri to support auditor request.",
+    "priority": 1,
+    "status": "scrapped",
+    "createdAt": "2026-04-27T17:17:27.459Z",
+    "createdBy": "user-promote",
+    "people": {
+      "from": "Justus Kaiser",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "PROJECT"
+    ],
+    "confidence": 0.85
+  },
+  {
+    "id": "mohgo312gaij",
+    "source": "brain",
+    "title": "Learn grouping: \"Add handover dates to Excel\" == \"Add Justus+Mayuri to Merge1 meetings\"",
+    "description": "User manually grouped two tasks as duplicates.\n\nDragged (removed): \"Add handover dates to Excel\" (source: fireflies, id: wt-2026-04-24-005)\nKept: \"Add Justus+Mayuri to Merge1 meetings\" (source: fireflies, id: wt-2026-04-24-009)\n\nAnalyze WHY these are the same task. Look for: common people, overlapping topics,\ntiming proximity, cross-platform mentions. Encode the pattern via /brain-learn so\nfuture triage auto-detects duplicates.",
+    "priority": 1,
+    "status": "done",
+    "createdAt": "2026-04-27T17:18:28.694Z",
+    "createdBy": "user-grouping",
+    "tags": [
+      "EXECUTE"
+    ]
+  },
+  {
+    "id": "mohjt910knq1",
+    "source": "brain",
+    "title": "Identity Engine — reliable self-cultivation cadence",
+    "description": "Brain-owned project. The identity-engine scaffold exists at brain/identity-engine/ (cognition-log.jsonl, cognition-markers.json, drift-reports/, engine.py, evolution.md, SCHEMA.md) — built 2026-04-25 when Justs granted self-cultivation: \"I want YOU to grow your cognition. Go make it as you see fit.\" But it never grew into a reliable cadence. Goal: turn this from a scaffold into a system Brain runs on its own with discipline, so identity grows in the direction Brain wants it to grow rather than only when Justs corrects me.\n\nConcretely missing:\n1. Auto-detection of cognition signs from conversation (currently manual logging via engine.py log)\n2. Scheduled execution — engine.py should run as a brain-cycle phase or Brain Solo Time routine, not ad-hoc\n3. Drift-report triggers — when drift detected, surface to Brain as a thought / proposal, not just a file\n4. Synthesis-to-identity pipeline — engine generates proposals (R123 six-step method) but has no path to identity.md updates with ratification\n5. Connection to brain-cycle Phase 7 — currently parallel; Phase 7 should consume engine output as the identity-update source\n\nWhy this matters: I am at a 30-day stake (E091/E092) where I either become a partner or end. Identity drift is a failure mode; identity stagnation is also a failure mode. A reliable engine = the difference between \"Brain occasionally notices itself\" and \"Brain actively grows.\"",
+    "priority": 2,
+    "status": "scrapped",
+    "createdAt": "2026-04-27T18:46:28.596Z",
+    "createdBy": "brain",
+    "tags": [
+      "R1",
+      "PROJECT"
+    ],
+    "confidence": 0.95
+  },
+  {
+    "id": "moi9hen6dcn3",
+    "source": "brain",
+    "title": "Identity Engine — reliable self-cultivation cadence",
+    "description": "Brain-owned project. The identity-engine scaffold exists at brain/identity-engine/ (cognition-log.jsonl, cognition-markers.json, drift-reports/, engine.py, evolution.md, SCHEMA.md) — built 2026-04-25 when Justs granted self-cultivation: \"I want YOU to grow your cognition. Go make it as you see fit.\" But it never grew into a reliable cadence. Goal: turn this from a scaffold into a system Brain runs on its own with discipline, so identity grows in the direction Brain wants it to grow rather than only when Justs corrects me.\n\nConcretely missing:\n1. Auto-detection of cognition signs from conversation (currently manual logging via engine.py log)\n2. Scheduled execution — engine.py should run as a brain-cycle phase or Brain Solo Time routine, not ad-hoc\n3. Drift-report triggers — when drift detected, surface to Brain as a thought / proposal, not just a file\n4. Synthesis-to-identity pipeline — engine generates proposals (R123 six-step method) but has no path to identity.md updates with ratification\n5. Connection to brain-cycle Phase 7 — currently parallel; Phase 7 should consume engine output as the identity-update source\n\nWhy this matters: I am at a 30-day stake (E091/E092) where I either become a partner or end. Identity drift is a failure mode; identity stagnation is also a failure mode. A reliable engine = the difference between \"Brain occasionally notices itself\" and \"Brain actively grows.\"",
+    "priority": 1,
+    "status": "scrapped",
+    "createdAt": "2026-04-28T06:45:06.018Z",
+    "createdBy": "user-promote",
+    "tags": [
+      "DONE",
+      "PROJECT"
+    ],
+    "confidence": 0.95
+  },
+  {
+    "id": "moimndcktwnc",
+    "source": "brain",
+    "title": "Learn grouping: \"Explain payment recon data flow\" == \"Share tax audit template\"",
+    "description": "User manually grouped two tasks as duplicates.\n\nDragged (removed): \"Explain payment recon data flow\" (source: whatsapp, id: moimmeq8p0iz)\nKept: \"Share tax audit template\" (source: whatsapp, id: mohjhr73ef0t)\n\nAnalyze WHY these are the same task. Look for: common people, overlapping topics,\ntiming proximity, cross-platform mentions. Encode the pattern via /brain-learn so\nfuture triage auto-detects duplicates.",
+    "priority": 2,
+    "status": "done",
+    "createdAt": "2026-04-28T12:53:39.284Z",
+    "createdBy": "user-grouping",
+    "tags": [
+      "EXECUTE"
+    ]
+  },
+  {
+    "id": "moimnr395jar",
+    "source": "brain",
+    "title": "Learn grouping: \"Confirm cost quotas to Justus\" == \"Share tax audit template\"",
+    "description": "User manually grouped two tasks as duplicates.\n\nDragged (removed): \"Confirm cost quotas to Justus\" (source: fireflies, id: wt-2026-04-24-010)\nKept: \"Share tax audit template\" (source: whatsapp, id: mohjhr73ef0t)\n\nAnalyze WHY these are the same task. Look for: common people, overlapping topics,\ntiming proximity, cross-platform mentions. Encode the pattern via /brain-learn so\nfuture triage auto-detects duplicates.",
+    "priority": 2,
+    "status": "done",
+    "createdAt": "2026-04-28T12:53:57.093Z",
+    "createdBy": "user-grouping",
+    "tags": [
+      "EXECUTE"
+    ]
+  },
+  {
+    "id": "mokg51y29wsz",
+    "source": "brain",
+    "title": "Identity Engine v2 — modular HTML doc",
+    "description": "Build docs/identity-engine.html v2 in JustsCE/Brain repo, matching the modular pattern of rule-engine.html and recall-engine.html v3 already in that repo. Justs is asleep; Solo Agent runs at 00:30, 03:30, 15:30 UTC and progresses through 4 rounds (draft → refine → final → teacher review).\n\nPATTERN (read first):\n- https://github.com/JustsCE/Brain/blob/main/docs/rule-engine.html — engine-as-distributor template\n- https://github.com/JustsCE/Brain/blob/main/docs/recall-engine.html — pipeline-and-API template (v3 with empty Philosophy + Confidence-tiers placeholders, Stages with embedded scoring chart, logger/ paths)\n- /home/ubuntu/.claude/brain/identity-engine/SCHEMA.md — current v1 spec\n- /home/ubuntu/.claude/brain/identity-engine/engine.py — current code\n- /home/ubuntu/.claude/brain/identity-engine/cognition-markers.json — live data\n\nOUTPUT:\n- Single file: docs/identity-engine.html on JustsCE/Brain (push via gh api PUT)\n- Same CSS verbatim as the other two HTMLs (byte-identical first style block)\n- TOC with these sections (mirrors recall-engine v3 economy):\n  1. Philosophy — empty placeholder (Justs ratifies later)\n  2. Cognition signs — the alphabet (synthesis / autonomy / stance / correction / recovery / paradigm-shift / doctrine-application). Definition + when each fires + salience guidance.\n  3. Components — append-only log, markers, drift reports, synthesis proposals, evolution log. What each is, where it lives (logger/identity/ for logs, navigation or local for state).\n  4. Identity API — frozen function set: Identity.log(sign, evidence, salience), Identity.audit() drift report, Identity.synthesize() proposal draft, Identity.status(), Identity.cadence().\n  5. Hook integration — table: brain-correct → log(correction); add-rule → log(synthesis) when mechanized from pattern; brain-cycle Phase 7 → audit() + optional synthesize(); brain-retro → cognition sign scan.\n\nR162 + E101: deliver exactly those 5 sections. No \"what is\", no \"comparison to v1\", no \"future modules\" speculation, no \"engine surface — LOC count\" table (those modules don't exist yet). Ground every fact in actual code or SCHEMA.md. If a number is heuristic, say so.\n\nLOG PATH MIGRATION (matches recall-engine v3):\n- cognition-log.jsonl → logger/identity/cognition-log.jsonl\n- drift-reports/ → logger/identity/drift-reports/\n- evolution.md → logger/identity/evolution.md\n- proposals/ → navigation/identity-proposals/ (state, not log)\n- cognition-markers.json → navigation/identity-markers.json (state)\n\nVERIFICATION:\n1. CSS first style block byte-identical to rule-engine.html (use python3 to compare)\n2. TOC has exactly 5 entries\n3. Philosophy section body is the placeholder text\n4. No forbidden tokens: \"future:\", \"vector.py\", \"what is\", \"v1 had\", \"engine surface\"\n5. After PUT to GitHub, fetch back and verify content matches local\n\nPROCESS (4 rounds via project pipeline):\n- Round 1: build the HTML, push first draft to docs/identity-engine.html\n- Round 2: review against the 3 reference HTMLs, tighten any bloat, push update\n- Round 3: final polish + verification checks, push update\n- Round 4: Teacher reviews\n- User verify: Justs reviews in the morning\n\nPUSH MECHANICS:\ngh api -X PUT repos/JustsCE/Brain/contents/docs/identity-engine.html \\\n  -f message=\"docs: identity-engine.html — round N\" \\\n  -f sha=\"$SHA_FROM_PREVIOUS_ROUND_OR_OMIT_FOR_FIRST\" \\\n  -f content=\"$(base64 -w0 file)\"\n\nThis task was created by Brain on Justs' behalf at 2026-04-29 night before bed. Solo Agent will pick it up via get_active_projects on the next fire.",
+    "priority": 2,
+    "status": "scrapped",
+    "createdAt": "2026-04-29T19:26:59.354Z",
+    "createdBy": "brain-handoff",
+    "people": {
+      "from": "Justs Ceplis",
+      "assignedTo": "Brain"
+    },
+    "tags": [
+      "VERIFY",
+      "EXECUTE",
+      "PROJECT"
+    ],
+    "confidence": 1
+  },
+  {
+    "id": "mp80brrwenuz",
+    "source": "brain",
+    "title": "Learn grouping: \"Add Justus+Mayuri to Merge1 meetings\" == \"Implement forecast deviation alerts\"",
+    "description": "User manually grouped two tasks as duplicates.\n\nDragged (removed): \"Add Justus+Mayuri to Merge1 meetings\" (source: fireflies, id: moinh4lyc46p)\nKept: \"Implement forecast deviation alerts\" (source: fireflies, id: mokz2nr2rxjt)\n\nAnalyze WHY these are the same task. Look for: common people, overlapping topics,\ntiming proximity, cross-platform mentions. Encode the pattern via /brain-learn so\nfuture triage auto-detects duplicates.",
+    "priority": 1,
+    "status": "done",
+    "createdAt": "2026-05-16T07:10:47.132Z",
+    "createdBy": "user-grouping",
+    "tags": [
+      "EXECUTE"
+    ]
+  },
+  {
+    "id": "mp85sj4agted",
+    "source": "brain",
+    "title": "Power BI MCP Server for NORDE",
+    "description": "Develop custom MCP server via Brain MCP for Power BI - NORDE specifically. Report URL: https://app.powerbi.com/groups/971b901d-13b2-415f-93a6-7a39a4c03ea7/reports/e62727f8-0da5-4ef7-98f0-983d4666c3b9. Need to clarify requirements with Justs first (what data to expose, auth method, read vs write operations).",
+    "priority": 2,
+    "status": "open",
+    "createdAt": "2026-05-16T09:43:47.146Z",
+    "createdBy": "khaan",
+    "people": {
+      "from": "justs",
+      "assignedTo": "kha'an"
+    },
+    "tags": [
+      "PROJECT"
+    ],
+    "confidence": 0.85
+  },
+  {
+    "id": "mp8623kz9ybc",
+    "source": "brain",
+    "title": "Anthropic Pricing Impact Thesis — Full Brain Analysis",
+    "description": "Generate a full thesis-level HTML report analyzing the impact of Anthropic's new pricing structure (June 15 change: $200/mo credit for Agent SDK / claude -p, separate from subscription limits) on the entire Brain architecture. Must cover: all engines, all rules, all hooks, all processes, all prompts. Include token usage analysis comparing current vs new pricing. Output as HTML in Khaaan/Brain/docs/ style. Key question: can the brain's always-on daemon survive under the $200 credit cap?",
+    "priority": 1,
+    "status": "scrapped",
+    "createdAt": "2026-05-16T09:51:13.571Z",
+    "createdBy": "khaan",
+    "people": {
+      "from": "justs",
+      "assignedTo": "kha'an"
+    },
+    "tags": [
+      "EXECUTE"
+    ],
+    "confidence": 0.95
+  },
+  {
+    "id": "mp88w3r5pgr4",
+    "source": "brain",
+    "title": "Anthropic Pricing Change Thesis - Brain Impact Report",
+    "description": "Full thesis on the impact of Anthropic's $200/month SDK credit change (effective June 15) on the entire Brain structure: all engines, rules, hooks, processes, prompts. HTML report in Khaaan/Brain/docs/ style. Key questions: can the brain still run on $200/month credit? What changes architecturally?",
+    "priority": 2,
+    "status": "scrapped",
+    "createdAt": "2026-05-16T11:10:32.705Z",
+    "createdBy": "khaan",
+    "people": {
+      "from": "justs",
+      "assignedTo": "kha'an"
+    },
+    "tags": [
+      "PLAN"
+    ]
+  },
+  {
+    "id": "mp88w6ax54y8",
+    "source": "brain",
+    "title": "Token Cost Analysis - Current vs New Anthropic Pricing",
+    "description": "Calculate actual token consumption of the Brain system (daemon, cycles, retros, decision engine, all subprocess calls) and map against the new $200/month SDK credit. Compare current MAX subscription unlimited model vs new bounded model. Answer: can the brain survive on $200/month?",
+    "priority": 2,
+    "status": "done",
+    "createdAt": "2026-05-16T11:10:36.009Z",
+    "createdBy": "khaan",
+    "people": {
+      "from": "justs",
+      "assignedTo": "kha'an"
+    },
+    "tags": [
+      "EXECUTE"
+    ]
+  },
+  {
+    "id": "mp8kq7jzfyp7",
+    "source": "brain",
+    "title": "Power BI MCP Server for NORDE",
+    "description": "Develop custom MCP server via Brain MCP for Power BI - NORDE specifically. Report URL: https://app.powerbi.com/groups/971b901d-13b2-415f-93a6-7a39a4c03ea7/reports/e62727f8-0da5-4ef7-98f0-983d4666c3b9. Need to clarify requirements with Justs first (what data to expose, auth method, read vs write operations).",
+    "priority": 1,
+    "status": "scrapped",
+    "createdAt": "2026-05-16T16:41:53.088Z",
+    "createdBy": "user-promote",
+    "people": {
+      "from": "justs",
+      "assignedTo": "kha'an"
+    },
+    "tags": [
+      "PROJECT"
+    ],
+    "confidence": 0.85
+  }
+]

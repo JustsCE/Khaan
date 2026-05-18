@@ -1,0 +1,39 @@
+PROJECT: Vericity Transactions — Frontend Map Layer
+Task ID: mo9pzrnw2xae
+Created: 2026-05-13
+Status:  user_verify_pending
+Round:   4/4 (rounds used: 4, revisions: 1)
+
+=== ROUND 1 — BRAIN DRAFT (2026-05-13) ===
+Status: draft_1_complete
+
+(Round 1 completed 2026-05-13 — no detailed notes captured)
+
+=== ROUND 2 — BRAIN DRAFT (2026-05-13) ===
+Status: draft_2_complete
+
+(Round 2 completed 2026-05-13 — no detailed notes captured)
+
+=== ROUND 3 — BRAIN DRAFT (2026-05-13) ===
+Status: draft_3_complete
+
+(Round 3 completed 2026-05-13 — no detailed notes captured)
+
+=== REVISION ATTEMPT 1 (2026-05-13) ===
+Status: revision_attempt
+
+(Round 4 completed 2026-05-13 — no detailed notes captured)
+
+=== TEACHER VERDICT — REVISE (2026-05-13) ===
+Status: revise
+
+One functional bug in INTEGRATION.md that would cause a silent zero-point map on first run:
+
+1. **Missing --geocode flag in Step 1 (INTEGRATION.md:29):** The command shown is  — this loads data with lat/lng/district all NULL (geocoding is opt-in via flag). Without coordinates, no points appear on the map layer. Fix: change to . Also worth noting: with ~38MB of data, first geocode run will take time (unique buildings × 1.1s Nominatim rate limit) — add a note so Justs isn't surprised.
+
+Everything else verified and solid: SQL bugs fixed (TOP+OFFSET conflict, PERCENTILE_CONT mixing), migration idempotent, geocode cache correctly deduplicates by building, fast_executemany correct, all 4 frontend components clean, Radix dep removed. One doc line fix required.
+
+=== TEACHER VERDICT — APPROVED (2026-05-13) ===
+Status: approved
+
+All issues from prior review resolved. --geocode flag present in INTEGRATION.md:30 with timing note (Nominatim rate limit, 30-90 min first run, cached thereafter). One additional bug caught and fixed in this round: TransactionFilters.tsx was using React.ReactNode without importing React — TypeScript compilation would have failed. Fixed: added  and updated FilterSection type annotation. All 5 axes verified: 7 deliverables present and correct, SQL bugs (TOP+OFFSET, PERCENTILE_CONT mixing) fixed, migration idempotent, geocode cache deduplicates by cadastre_nr, fast_executemany correct, /stats route ordered before /{id} route, ESRI dynamic imports clean, AbortController in-flight cancellation correct, Latvian UI labels throughout. Ship it.

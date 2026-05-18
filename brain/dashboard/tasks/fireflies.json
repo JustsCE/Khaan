@@ -1,0 +1,374 @@
+[
+  {
+    "id": "wt-2026-04-24-003",
+    "source": "fireflies",
+    "title": "Share tax audit template",
+    "description": "Original: \"[Justs & Justus Check-In]: Share corporate income tax audit template with Justus & Mayuri\"\n\nFrom Justs & Justus Check-In (Apr 23). Share the corporate income tax audit template and related data (2024 template for identifying top 5 corporate clients in Canada sold in 2025) with Justus Kaiser and Mayuri to support auditor request.",
+    "priority": 1,
+    "tags": [
+      "TASK"
+    ],
+    "people": {
+      "from": "Justus Kaiser",
+      "assignedTo": "Justs Ceplis"
+    },
+    "confidence": 0.85,
+    "actor": "work-triage",
+    "createdAt": "2026-04-24T09:15:46.193484Z",
+    "status": "scrapped"
+  },
+  {
+    "id": "wt-2026-04-24-004",
+    "source": "fireflies",
+    "title": "Check Merge1 Vet ID with Davis",
+    "description": "Original: \"[Justs & Justus Check-In]: Check Merge1 Vet ID ticket with Davis\"\n\nFrom Justs & Justus Check-In (Apr 23). Check with Davis Lozda on the creation/status of the Merge1 Vet ID ticket. Create and assign the ticket if missing, then update Justus Kaiser.",
+    "priority": 5,
+    "tags": [
+      "TASK"
+    ],
+    "people": {
+      "from": "Justus Kaiser",
+      "assignedTo": "Justs Ceplis"
+    },
+    "confidence": 0.85,
+    "actor": "work-triage",
+    "createdAt": "2026-04-24T09:15:46.193484Z",
+    "status": "done"
+  },
+  {
+    "id": "wt-2026-04-24-005",
+    "source": "fireflies",
+    "title": "Add handover dates to Excel",
+    "description": "Original: \"[Justs & Justus Check-In]: Add handover meeting dates to Excel template\"\n\nFrom Justs & Justus Check-In (Apr 23). Add handover meeting dates to the handover Excel template: Apr 27, Apr 29, May 11, and early May (~May 5-6). Track progress and deadlines for each handover topic.",
+    "priority": 2,
+    "tags": [
+      "TASK"
+    ],
+    "people": {
+      "from": "Justus Kaiser",
+      "assignedTo": "Justs Ceplis"
+    },
+    "confidence": 0.85,
+    "actor": "work-triage",
+    "createdAt": "2026-04-24T09:15:46.193484Z",
+    "status": "scrapped"
+  },
+  {
+    "id": "wt-2026-04-24-006",
+    "source": "fireflies",
+    "title": "Schedule Mayuri stakeholder meetings",
+    "description": "Original: \"[Justs & Justus Check-In]: Schedule stakeholder meetings with Mayuri for early May\"\n\nFrom Justs & Justus Check-In (Apr 23). Initiate scheduling of stakeholder meetings with Mayuri for early May to communicate the transition of forecasting and finance responsibilities.",
+    "priority": 3,
+    "tags": [
+      "TASK"
+    ],
+    "people": {
+      "from": "Justus Kaiser",
+      "assignedTo": "Justs Ceplis"
+    },
+    "confidence": 0.85,
+    "actor": "work-triage",
+    "createdAt": "2026-04-24T09:15:46.193484Z",
+    "status": "scrapped"
+  },
+  {
+    "id": "wt-2026-04-24-007",
+    "source": "fireflies",
+    "title": "Confirm Mon forecast mtg w/ Tim+Torsten",
+    "description": "Original: \"[Justs & Justus Check-In]: Confirm Monday forecasting meeting with Tim & Torsten\"\n\nFrom Justs & Justus Check-In (Apr 23). Reach out to Tim and Torsten to confirm the necessity and focus of the upcoming Monday forecasting meeting. Copy Justus Kaiser and adjust preparation accordingly.",
+    "priority": 4,
+    "tags": [
+      "TASK"
+    ],
+    "people": {
+      "from": "Justus Kaiser",
+      "assignedTo": "Justs Ceplis"
+    },
+    "confidence": 0.85,
+    "actor": "work-triage",
+    "createdAt": "2026-04-24T09:15:46.193484Z",
+    "status": "done"
+  },
+  {
+    "id": "wt-2026-04-24-008",
+    "source": "fireflies",
+    "title": "Document handover topics + dates",
+    "description": "Original: \"[Justs & Justus Check-In]: Document open handover topics with completion dates\"\n\nFrom Justs & Justus Check-In (Apr 23). Start documenting open topics in the handover Excel sheet and add planned completion dates to track progress and deadlines. Also includes scheduling handover calls for forecast and finance topics within next 3-4 weeks (from Analysts Weekly Catch-up, Apr 22).",
+    "priority": 4,
+    "tags": [
+      "TASK"
+    ],
+    "people": {
+      "from": "Justus Kaiser",
+      "assignedTo": "Justs Ceplis"
+    },
+    "confidence": 0.85,
+    "actor": "work-triage",
+    "createdAt": "2026-04-24T09:15:46.193484Z",
+    "status": "done"
+  },
+  {
+    "id": "wt-2026-04-24-009",
+    "source": "fireflies",
+    "title": "Add Justus+Mayuri to Merge1 meetings",
+    "description": "Original: \"[Justs & Justus Check-In]: Add Justus & Mayuri to future Merge1 meetings\"\n\nFrom Justs & Justus Check-In (Apr 23). Include Justus Kaiser and Mayuri as invited participants in future Merge1 meetings to maintain involvement and support development.",
+    "priority": 7,
+    "tags": [
+      "TASK"
+    ],
+    "people": {
+      "from": "Justus Kaiser",
+      "assignedTo": "Justs Ceplis"
+    },
+    "confidence": 0.85,
+    "actor": "work-triage",
+    "createdAt": "2026-04-24T09:15:46.193484Z",
+    "status": "scrapped"
+  },
+  {
+    "id": "wt-2026-04-24-010",
+    "source": "fireflies",
+    "title": "Confirm cost quotas to Justus",
+    "description": "Original: \"[Justs & Justus Check-In]: Write note confirming updated cost quotas to Justus\"\n\nFrom Justs & Justus Check-In (Apr 23). Write a quick note to Justus Kaiser confirming updated cost quotas and figures after Alisa presentation.",
+    "priority": 8,
+    "tags": [
+      "TASK"
+    ],
+    "people": {
+      "from": "Justus Kaiser",
+      "assignedTo": "Justs Ceplis"
+    },
+    "confidence": 0.85,
+    "actor": "work-triage",
+    "createdAt": "2026-04-24T09:15:46.193484Z",
+    "status": "scrapped"
+  },
+  {
+    "id": "moi458ggze3n",
+    "source": "fireflies",
+    "title": "Write GLC process documentation",
+    "description": "From \"Loading LucaNet & GLC Data Quality and Coefficients Process\" meeting (Apr 27, Justs+Justus). Action: write comprehensive process documentation capturing 80% of discussion, including links to files outside BI SharePoint.\n\n---\n**DRAFT COMPLETE (2026-05-12, Kha'an):**\nFull process documentation written from Apr 27 Fireflies transcript (01KQ2MJYRYHHM72D6ZGE67R7AX).\nDraft location: `/home/ubuntu/glc-process-guide.md`\n\nCovers:\n- Monthly timeline (22nd–23rd trigger → next-day validation)\n- Step-by-step: LucaNet data confirm → backup → SP_pivot_lucanet_costs_oids → SP_CM2_EBITDA → coefficient adjustment → next-day validation\n- Personnel cost distribution table structure + how to add 2026 split\n- GLC Alerts Controlling Excel workflow (Anchors tab, export/import flow)\n- ORVO intercompany margin issue (material cost benchmark ~0.5–1pp overstated vs. clean GEO target)\n- Key files table with access notes\n- Known issues + open questions\n\n**STILL NEEDS JUSTS:**\n- Q1: Upload draft to SharePoint — which subfolder in BI SharePoint?\n- Q2: Confirm Alisa's Global Reporting file link (for Justus Kaiser access)\n- Q3: GL data information file location — confirm path\n- Q4: Confirm ORVO margin % with Tobias → refine material cost target\n- Q5: Has Alisa replied on December 2025 final cost quotas?\n- Q6: 2026 personnel cost split percentages — confirm before updating CM2 function",
+    "priority": 1,
+    "status": "done",
+    "createdAt": "2026-04-28T04:15:40.048Z",
+    "createdBy": "work-triage",
+    "people": {
+      "from": "Justus Kaiser",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "DRAFT_READY",
+      "NEEDS_JUSTS"
+    ],
+    "confidence": 0.85
+  },
+  {
+    "id": "moi45akn7vka",
+    "source": "fireflies",
+    "title": "Prep labor cost session Wednesday",
+    "description": "From \"Loading LucaNet & GLC Data Quality\" meeting (Apr 27). Action: \"Prepare for live session on labor cost loading with Shemek on Wednesday and coordinate with Justus Kaiser to perform coefficient adjustments collaboratively.\" Also from same meeting: participate in Wednesday's labor costs meeting.\n\nPLAN:\n1. Pre-session prep checklist:\n   a. Pull current labor cost coefficients from the GLC system — verify which months are loaded and which are pending\n   b. Review Shemek's previous labor cost submissions (if available) to understand format/cadence\n   c. Prepare a diff of current vs expected coefficients so adjustments can be discussed live\n   d. Have the stored procedure scripts ready to run during the session\n2. Coordination with Justus:\n   a. Confirm Wednesday meeting time and attendees (Justs, Justus, Shemek — anyone else?)\n   b. Agree on which coefficient adjustments to tackle in the session vs offline\n3. Session deliverables: updated coefficients loaded, documented changes, next month's timeline agreed\n\nQUESTIONS:\n1. What time is the Wednesday session? Is it already on the calendar?\n2. Is Shemek providing raw labor cost data that Justs then loads, or does Shemek do the loading and Justs validates?\n3. Which specific coefficients need adjustment — is there a list from the Apr 27 meeting?",
+    "priority": 2,
+    "status": "done",
+    "createdAt": "2026-04-28T04:15:42.791Z",
+    "createdBy": "work-triage",
+    "people": {
+      "from": "Justus Kaiser",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "PENDING",
+      "TASK"
+    ],
+    "confidence": 0.8
+  },
+  {
+    "id": "moi45ctwlmf9",
+    "source": "fireflies",
+    "title": "Check Merge1 Vet ID ticket status",
+    "description": "From \"Justs & Justus Check-In\" (Apr 23). Action: \"Check with Davis regarding the creation or status of the Merge1 Vet ID ticket; create and assign the ticket if missing, then update Justus Kaiser.\" Quick follow-up item.",
+    "priority": 3,
+    "status": "done",
+    "createdAt": "2026-04-28T04:15:45.716Z",
+    "createdBy": "work-triage",
+    "people": {
+      "from": "Justus Kaiser",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "NEW",
+      "FOLLOW_UP"
+    ],
+    "confidence": 0.8
+  },
+  {
+    "id": "moinh4lyc46p",
+    "source": "fireflies",
+    "originalSource": "fireflies",
+    "title": "Add Justus+Mayuri to Merge1 meetings",
+    "description": "Original: \"[Justs & Justus Check-In]: Add Justus & Mayuri to future Merge1 meetings\"\n\nFrom Justs & Justus Check-In (Apr 23). Include Justus Kaiser and Mayuri as invited participants in future Merge1 meetings to maintain involvement and support development.",
+    "priority": 5,
+    "status": "scrapped",
+    "createdAt": "2026-04-28T13:16:47.638Z",
+    "createdBy": "user-move",
+    "people": {
+      "from": "Justus Kaiser",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "TASK"
+    ],
+    "confidence": 0.85
+  },
+  {
+    "id": "mojj9zbppm90",
+    "source": "fireflies",
+    "title": "Finish MRR tickets before handover",
+    "description": "From Justs & Justus Check-In (Apr 28). Justs action: \"Finish partially done MRR tickets and confirm outstanding finance data issues with Dana and Caroline, prioritizing vendor ID fixes and small BI report updates before handover.\" Pre-departure priority — must complete before handover window closes.\n\nPLAN:\n1. Inventory open MRR tickets — identify which tickets are partially done and what remains on each. Check ticketing system (Jira/similar) for Justs' assigned MRR items.\n2. Prioritize by dependency — vendor ID fixes first (blocks downstream reporting), then small BI report updates.\n3. For vendor ID fixes — identify the specific data corrections needed, which tables/views are affected.\n4. For BI report updates — catalog which reports need changes and the nature of each change.\n5. Confirm with Dana and Caroline — prepare a summary of outstanding finance data issues to send them for confirmation.\n6. Complete and close tickets — execute fixes, validate, document changes for handover.\n\nQUESTIONS:\n1. Where are the MRR tickets tracked — Jira, Azure DevOps, or elsewhere? Can you share the ticket IDs or a filter URL?\n2. What specific vendor ID fixes are needed — is this about mapping/merging vendor IDs, correcting wrong IDs, or adding missing ones?\n3. Which BI reports need updates — Power BI reports on the Picanova workspace? What kind of updates (filters, measures, visuals)?\n4. What's the handover deadline — when does the window close?\n5. Should Brain draft the message to Dana and Caroline, or is this a conversation Justs needs to have directly?",
+    "priority": 2,
+    "status": "done",
+    "createdAt": "2026-04-29T04:07:01.910Z",
+    "createdBy": "work-triage",
+    "people": {
+      "from": "Justus Kaiser",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "PENDING",
+      "TASK"
+    ],
+    "confidence": 0.85
+  },
+  {
+    "id": "mojja1i4m3sh",
+    "source": "fireflies",
+    "title": "Check shop files for risk clients",
+    "description": "From Justs & Justus Check-In (Apr 28). Justs action: \"Check shop files for client performance over the past three weeks to identify risk clients and prepare for forecast meetings.\" Part of proactive Mother's Day forecast accuracy strategy — early analysis of actual sales vs forecasts planned for Tuesday morning (week 18).\n\nPLAN:\n1. Identify data sources — shop files likely on Picanova AWS S3 (realrigafingoodhealth bucket or FORECAST pipeline output). Check what's available for weeks 15-17 (Apr 7-27).\n2. Pull actual sales data by client for past 3 weeks — use either S3 shop files or Azure SQL dbo.listings_fact / relevant tables.\n3. Compare actual vs forecast — pull forecast figures from the FORECAST pipeline for the same period. Calculate variance % per client.\n4. Flag risk clients — clients with significant negative variance (actual << forecast) or declining week-over-week trends.\n5. Prepare summary — top risk clients ranked by revenue impact, with variance details, ready for Tuesday forecast meeting.\n\nQUESTIONS:\n1. Where exactly are the \"shop files\"? S3 bucket path, SharePoint, or Azure SQL table? What format (CSV, Excel, database)?\n2. What threshold defines a \"risk client\" — is it variance % (e.g. >20% below forecast), absolute revenue shortfall, or declining trend?\n3. Which forecast figures should I compare against — the FORECAST pipeline output, or a separate planning spreadsheet?\n4. Is this about Picanova shop/client performance specifically, or broader?\n5. Should I prepare a formatted report or just raw data for the meeting?",
+    "priority": 2,
+    "status": "done",
+    "createdAt": "2026-04-29T04:07:04.732Z",
+    "createdBy": "work-triage",
+    "people": {
+      "from": "Justus Kaiser",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "PENDING",
+      "TASK"
+    ],
+    "confidence": 0.85
+  },
+  {
+    "id": "mojja3l8ibra",
+    "source": "fireflies",
+    "title": "Review ETL scripts for personal matrix",
+    "description": "From Justs & Justus Check-In (Apr 28). Justs action: \"Review and support ETL and GL script usage for the personal matrix update as planned, ensuring alignment with labor cost procedures.\" Support role — coordinate with labor cost packaging share change (40% → 20%) discussed in same meeting.",
+    "priority": 3,
+    "status": "done",
+    "createdAt": "2026-04-29T04:07:07.436Z",
+    "createdBy": "work-triage",
+    "people": {
+      "from": "Justus Kaiser",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "NEW",
+      "TASK"
+    ],
+    "confidence": 0.8
+  },
+  {
+    "id": "mokz2f8t0ktl",
+    "source": "fireflies",
+    "title": "Submit TeamOps goals to BOB",
+    "description": "From Analysts Weekly Catch-up (Apr 29, Justus/Davis/Niklavs/Dawid/Mayuri/Przemek/Justs). Justus sharing draft goals by evening, finalized goals must be entered into BOB system by end of day Apr 30. Justs action: \"Finalize coordination on TeamOps goal input and support data team requests to ensure timely completion.\"",
+    "priority": 2,
+    "status": "done",
+    "createdAt": "2026-04-30T04:16:49.326Z",
+    "createdBy": "work-triage",
+    "people": {
+      "from": "Justus Kaiser",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "NEW",
+      "TASK"
+    ],
+    "confidence": 0.85
+  },
+  {
+    "id": "mokz2hcf5mwn",
+    "source": "fireflies",
+    "title": "Add Mayuri to forecast channel",
+    "description": "From Forecasting Process handover meeting (Apr 29, 91 min, Justs/Mayuri/Justus). Justs action: \"Add Mayuri to Slack forecast channel and meeting invites for full involvement.\" Also share scripts and documentation related to product mapping and forecast update processes. Part of forecasting handover to Mayuri.",
+    "priority": 2,
+    "status": "done",
+    "createdAt": "2026-04-30T04:16:52.047Z",
+    "createdBy": "work-triage",
+    "people": {
+      "from": "Justus Kaiser",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "NEW",
+      "TASK"
+    ],
+    "confidence": 0.85
+  },
+  {
+    "id": "mokz2l3s101v",
+    "source": "fireflies",
+    "title": "Revise Zmail/Lito forecasts",
+    "description": "From Forecast meeting (Apr 29, Sanita/Edgars/Justs/Skyler/Mayuri). Zmail canvas products down 70% — forecast needs halving to prevent production mismatch. Lito frame posters nearly doubled — forecast needs upward revision. Milano mostly on track. Smile Poster adjustments deferred until after Mother's Day. Justs action: \"Prepare forecast revisions based on sales data discrepancies, focusing on key clients like Zmail, Milano, and Lito\" and \"Oversee final compilation and update of forecasts for all critical clients, ensuring accuracy before next Tuesday meeting.\"",
+    "priority": 2,
+    "status": "done",
+    "createdAt": "2026-04-30T04:16:56.920Z",
+    "createdBy": "work-triage",
+    "people": {
+      "from": "Sanita Jancevska",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "NEW",
+      "TASK"
+    ],
+    "confidence": 0.85
+  },
+  {
+    "id": "mokz2nr2rxjt",
+    "source": "fireflies",
+    "title": "Implement forecast deviation alerts",
+    "description": "From both Forecast (Apr 29) and Forecasting Process (Apr 29) meetings. Justs action: \"Implement an automatic alert system to notify the team proactively of forecast inaccuracies or substantial deviations\" and \"Implement alerts in forecast Slack channel to notify when forecasts are off or data quality issues arise.\" Mentioned in both meetings as important for handover continuity.",
+    "priority": 3,
+    "status": "done",
+    "createdAt": "2026-04-30T04:17:00.350Z",
+    "createdBy": "work-triage",
+    "people": {
+      "from": "Justus Kaiser",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "NEW",
+      "TASK"
+    ],
+    "confidence": 0.8
+  },
+  {
+    "id": "mokz2pu5c247",
+    "source": "fireflies",
+    "title": "Clarify US PET capacity with Mela",
+    "description": "From Forecast meeting (Apr 29). Justs action: \"Engage production team (Mela) to clarify US production capacity concerns on PET printed frame posters.\" Lito frame posters nearly doubled in sales — need to confirm production can handle upward forecast revision.",
+    "priority": 3,
+    "status": "done",
+    "createdAt": "2026-04-30T04:17:03.053Z",
+    "createdBy": "work-triage",
+    "people": {
+      "from": "Justs Ceplis",
+      "assignedTo": "Justs Ceplis"
+    },
+    "tags": [
+      "NEW",
+      "TASK"
+    ],
+    "confidence": 0.8
+  }
+]

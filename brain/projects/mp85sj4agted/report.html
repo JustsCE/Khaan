@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PROJECT: Power BI MCP Server for NORDE</title>
+<style>
+  body { font-family: 'Inter', -apple-system, sans-serif; max-width: 900px; margin: 0 auto; padding: 40px 20px; background: #0a0f1a; color: #ccddee; }
+  h1 { color: #44ffcc; border-bottom: 2px solid #1a2a35; padding-bottom: 12px; }
+  h2 { color: #aa88ff; margin-top: 40px; }
+  h3 { color: #8899aa; }
+  .meta { font-size: 13px; color: #556677; margin-bottom: 30px; }
+  .iteration { background: #0d1822; border: 1px solid #1a2a35; border-radius: 8px; padding: 24px; margin: 20px 0; }
+  .iteration h2 { margin-top: 0; }
+  .feedback { background: #150d22; border-left: 3px solid #aa44ff; padding: 16px; margin: 16px 0; border-radius: 0 8px 8px 0; }
+  .feedback.teacher { border-color: #aa44ff; }
+  .feedback.justs { border-color: #44ff88; }
+  .feedback-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; color: #667788; margin-bottom: 8px; }
+  .status { display: inline-block; padding: 3px 10px; border-radius: 4px; font-size: 12px; font-weight: 600; }
+  .status.planning { background: #ffaa3320; color: #ffaa33; }
+  .status.review { background: #aa44ff20; color: #aa44ff; }
+  .status.approved { background: #44ff8820; color: #44ff88; }
+  .status.revision { background: #ff444420; color: #ff4444; }
+  pre { background: #111825; padding: 16px; border-radius: 6px; overflow-x: auto; font-size: 13px; }
+  .page-break { page-break-before: always; }
+</style>
+</head>
+<body>
+<h1>Power BI MCP Server for NORDE</h1>
+<div class="meta">Project ID: mp85sj4agted | Created: 2026-05-16 | Status: <span class="status planning">draft_3_complete</span></div>
+
+<h2>Executive Summary</h2>
+<div id="executive-summary">
+<p>Project initialized. Power BI MCP Server for NORDE.</p>
+</div>
+
+
+<div class="iteration page-break">
+<h2>Iteration 1 — 2026-05-16</h2>
+<p><em>Draft 1 — completed 2026-05-16</em></p>
+
+</div>
+
+<div class="iteration page-break">
+<h2>Iteration 2 — 2026-05-16</h2>
+<p><em>Draft 2 — completed 2026-05-16</em></p>
+
+</div>
+
+<div class="iteration page-break">
+<h2>Iteration 3 — 2026-05-16</h2>
+<pre># Power BI MCP Server for NORDE — Project Plan (R3 Final)
+
+## Objective
+Integrate Power BI read-only access for the NORDE FINANCIALS HORIZON dataset into the existing Brain MCP server, exposing workspace 971b901d / report e62727f8 via 5 tool functions.
+
+## Confirmed Spec
+- **Workspace:** 971b901d-13b2-415f-93a6-7a39a4c03ea7
+- **Report:** e62727f8-0da5-4ef7-98f0-983d4666c3b9
+- **Dataset:** FINANCIALS HORIZON (full access)
+- **Access mode:** Read-only
+- **Integration target:** `/opt/brain-viz/mcp-servers/whatsapp/server.py`
+- **Auth:** Manual bearer token via env var (no MSAL, no Azure AD app)
+
+## Validated Architecture (code-verified against server.py)
+
+### File: `/opt/brain-viz/mcp-servers/whatsapp/server.py` (789 lines)
+
+**Insertion Point 1 — Power BI module (after line 27, before `_dashboard_url`):**
+```python
+# --- Power BI Module ---
+POWERBI_TOKEN = os.environ.get("POWERBI_TOKEN", "")
+POWERBI_WORKSPACE = os.environ.get("POWERBI_WORKSPACE_ID", "971b901d-13b2-415f-93a6-7a39a4c03ea7")
+POWERBI_API = "https://api.powerbi.com/v1.0/myorg"
+
+def call_powerbi(path: str, method: str = "GET", data: dict | None = None) -> dict:
+    """Call Power BI REST API. Returns parsed JSON or error dict."""
+    if not POWERBI_TOKEN:
+        return {"error": "POWERBI_TOKEN not set. See project plan for setup instructions."}
+    url = f"{POWERBI_API}/groups/{POWERBI_WORKSPACE}/{path}"
+    headers = {
+        "Authorization": f"Bearer {POWERBI_TOKEN}",
+        "Content-Type": "application/json"
+    }
+    body = json.dumps(data).encode() if data else None
+    req = urllib.request.Request(url, body, headers, method=method)
+    try:
+        resp = urllib.request.urlopen(req, timeout=30)
+        return json.loads(resp.read().decode())
+    except urllib.error.HTTPError as e:
+        err_body = e.read().decode() if e.readable() else ""
+        if e.code == 429:
+            return {"error": "Power BI rate limit hit (200 req/hr). Retry later.", "status": 429}
+        if e.code == 403:
+            return {"error": "Token expired or insufficient permissions. Get a new bearer token.", "status": 403}
+        return {"error": f"Power BI API error {e.code}: {err_body}", "status": e.code}
+    except Exception as e:
+        return {"error": str(e)}
+```
+
+**Insertion Point 2 — Tool definitions (after line 387, before Gmail loader at line 392):**
+```python
+# --- Power BI Tools ---
+TOOLS.extend([
+    {
+        "name": "powerbi_list_datasets",
+        "description": "List all datasets in the NORDE Power BI workspace.",
+        "inputSchema": {"type": "object", "properties": {}},
+    },
+    {
+        "name": "powerbi_list_tables",
+        "description": "List tables and columns in a Power BI dataset.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "dataset_id": {"type": "string", "description": "Dataset ID from powerbi_list_datasets"},
+            },
+            "required": ["dataset_id"],
+        },
+    },
+    {
+        "name": "powerbi_r</pre>
+
+</div>
+
+
+</body>
+</html>
